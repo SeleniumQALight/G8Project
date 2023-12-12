@@ -17,6 +17,15 @@
         <module>KamaievaProj</module>
         <module>KraynovProj</module>
         <module>LupikProj</module>
+        <module>MyhashkoProj</module>
+        <module>MyrhorodskaProj</module>
+        <module>NahotniukProj</module>
+        <module>OnofriichukProj</module>
+        <module>PavlykProj</module>
+        <module>PetrivProj</module>
+        <module>PrudkyiProj</module>
+        <module>SadikovaProj</module>
+        <module>SvyrydiukProj</module>
     </modules>
 
     <properties>
