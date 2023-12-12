@@ -26,6 +26,13 @@
         <module>PrudkyiProj</module>
         <module>SadikovaProj</module>
         <module>SvyrydiukProj</module>
+        <module>SemerenkoProj</module>
+        <module>SerhataProj</module>
+        <module>SmirnovaProj</module>
+        <module>StorozhukProj</module>
+        <module>SushkoProj</module>
+        <module>TepliukProj</module>
+        <module>YashchenkoProj</module>
     </modules>
 
     <properties>
