@@ -3,21 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.example</groupId>
+        <artifactId>G8_TAF</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
-    <groupId>org.example</groupId>
-    <artifactId>G8_TAF</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <modules>
-        <module>overAll</module>
-        <module>BozhokProj</module>
-        <module>BulakhProj</module>
-        <module>HrabProj</module>
-        <module>YesypovProj</module>
-        <module>KamaievaProj</module>
-        <module>KraynovProj</module>
-        <module>LupikProj</module>
-    </modules>
+    <artifactId>KraynovProj</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
