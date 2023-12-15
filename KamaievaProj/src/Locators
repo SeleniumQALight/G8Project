@@ -1,0 +1,5 @@
+#LoginPage
+input_username = ".//input["id='username']"
+
+#HomePage
+button_logout =

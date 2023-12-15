@@ -1,0 +1,26 @@
+BASE_URL =
+USER_NAME =
+USER_PASSWORD = 123456gwerty
+
+TestCase #001 - Test Case to verify the functionality of the Login Page
+
+Precondition:
+1.
+2. Check user USER_NAME exists in the system
+and if needed create a new user with USER_NAME
+
+Steps:
+1. Open the browser [optional]
+2. Navigate to the BASE_URL
+3. Enter the username
+4. Enter the password
+5. Click on the Sign in button
+
+Expected Result:
+6.Verify user sees the Home Page
+(see button "Sign Out" and do not see button "Sign in")
+
+Postcondition:
+1. Delete user USER_NAME from the system [optional]
+
+TestCase #002
