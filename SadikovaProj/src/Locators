@@ -1,5 +1,5 @@
 Login:
-userNameField = "//input[@id='username1']",
+userNameField = "//form//div[contains(@class,'align-items-center')]//input[@name="username"]",
 passwordField = "//form[@action='/login']//input[@name='password']",
 signInButton ="//button[text()='Sign In']",
 

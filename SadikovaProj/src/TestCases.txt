@@ -1,5 +1,5 @@
 Additinal Info:
-Пользователь у которого нет подписок:
+
 USER_PASSWORD = "123456789123",
 USER_NAME = "sadikovaqa",
 USER_EMAIL = "sadikovamaria12@gmail.com",
@@ -21,11 +21,11 @@ written by people with similar interests and then follow them." +  ИЛИ + "Lat
 
 Отображается ссылка 'Create Post'
 
-В хедере отображен 'userName' пользователя
+В хедере отображен 'USER_NAME' пользователя
 
 Отображается кнопка 'Sign Out'
 
-TestCase#002. Зарегистрировать пользователя с пустыми полями
+TestCase#002. Проверка валидационных уведомлений при регистрации с пустыми полями
 Шаги:
 1. Перейти на страницу: https://aqa-complexapp.onrender.com/
 2. Нажать на кнопку 'Sign up for OurApp'
