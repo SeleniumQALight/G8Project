@@ -37,6 +37,9 @@ allUsersDropdown = "//select/option[@value='All Users']",
 titleField = "//input[@id='post-title']",
 bodyContentField = "//textarea[@id='post-body']",
 
+Post Created:
+postCreatedBlock = "//div[contains(@class,'alert-success')]/ancestor::div[contains(@class,'container')]",
+
 Post Page:
 
 myPostLocator = "//a[contains(@class,'list-group-item')]/strong[text()='%s']",
