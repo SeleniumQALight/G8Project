@@ -70,37 +70,37 @@ URL соответствует: https://aqa-complexapp.onrender.com/
 TestCase#004. Пользователь подписывается на профиль другого пользователя
 
 PRE-C:
-1.Зарегистрировать пользователя №1:
+1.Зарегистрировать пользователя №1 и запомнить данные RANDOM_USER_NAME_1:
   1) Перейти на страницу: https://aqa-complexapp.onrender.com/
   2) Заполнить поле 'Username' со значением = RANDOM_USER_NAME
   3) Заполнить поле 'Email' со значением = RANDOM_EMAIL
   4) Заполнить поле 'Password' со значением = USER_PASSWORD
   5) Нажать на кнопку 'Sign up for OurApp'
   ОР: Отображается текст: Latest posts from those you follow
-2. Перейти во новую вкладку
-3.Зарегистрировать пользователя №2 и запомнить данные RANDOM_USER_NAME_2:
+2. Нажать на кнопку: 'Sign Out'
+    ОР: Отображается страница 'Home'
+3.Зарегистрировать пользователя №2 :
   1) Перейти на страницу: https://aqa-complexapp.onrender.com/
   2) Заполнить поле 'Username' со значением = RANDOM_USER_NAME
   3) Заполнить поле 'Email' со значением = RANDOM_EMAIL
   4) Заполнить поле 'Password' со значением = USER_PASSWORD
   5) Нажать на кнопку 'Sign up for OurApp'
   ОР: Отображается текст: Latest posts from those you follow
-  ОР: Отображается страница 'Home'
-4. Перейти в предыдущую вкладку(1)
-5. Перейти на страницу: /profile/%RANDOM_USER_NAME_2%
-6. Нажать на кнопку 'Follow'
+
+4. Перейти на страницу: /profile/%RANDOM_USER_NAME_1%
+5. Нажать на кнопку 'Follow'
 ОР: Отображается кнопка 'Stop Following'
 7. Перейти на страницу: /profile/%RANDOM_USER_NAME%/following
-ОР: Отображается в списке пользователь %RANDOM_USER_NAME_2%
+ОР: Отображается в списке пользователь %RANDOM_USER_NAME_1%
 
 POST CONDITION:
 1. Отписаться от пользователя
- 1)Перейти на страницу: /profile/%RANDOM_USER_NAME_2%
+ 1)Перейти на страницу: /profile/%RANDOM_USER_NAME_1%
  2) Нажать на кнопку 'Stop Following'
 ОР: Отображается кнопка 'Follow'
-Отображается уведомление: Successfully stopped following %RANDOM_USER_NAME_2%.
+Отображается уведомление: Successfully stopped following %RANDOM_USER_NAME_1%.
  3) Перейти на страницу: /profile/%USER_NAME%/following
-ОР: Пользователь %RANDOM_USER_NAME_2% отсутствует в списке
+ОР: Пользователь %RANDOM_USER_NAME_1% отсутствует в списке
 URL соответствует: /profile/%USER_NAME%/following
 2. Удалить пользователя №1 и №2
 
