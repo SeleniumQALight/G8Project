@@ -31,5 +31,12 @@ stopFollowingButton = "//button[contains(text(),'Stop Following')]",
 Following Page:
 userFollowLocator = "//div[@class="list-group"]/a[@href='/profile/%s']"
 
+Create Post :
+saveNewPostButton = "//button[text()='Save New Post']",
+allUsersDropdown = "//select/option[@value='All Users']",
+titleField = "//input[@id='post-title']",
+bodyContentField = "//textarea[@id='post-body']",
+
+
 
 
