@@ -37,6 +37,10 @@ allUsersDropdown = "//select/option[@value='All Users']",
 titleField = "//input[@id='post-title']",
 bodyContentField = "//textarea[@id='post-body']",
 
+Post Page:
+
+myPostLocator = "//a[contains(@class,'list-group-item')]/strong[text()='%s']",
+postCounterLocator = "//a[contains(@class,'profile-nav-link') and contains(@class,'active') and text()='Posts: %s']",
 
 
 
