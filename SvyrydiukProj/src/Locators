@@ -1,7 +1,34 @@
 #LoginPage
-input_username = ".//input[@id='username']"
-input_password = ".//input[@id='password']"
+input_username = ".//input[@placeholder='Username']"
+input_password = ".//input[@placeholder='Password']"
+button_sign_in = ".//button[text()='Sign In']"
+warning_message = ".//div[text()='Invalid username/password.']"
 
 
-#HomePage
+
+#HomePage.//button[text()='Sign In']
 button_logout = ".//a[@id='logout']"
+welcome_message = ".//h2[text()='Hello ']//strong[text()='"+String parameter = user name+"']"
+#String parameter will be set in the test case and implemented in the page object
+
+
+
+#CreatePostPage
+input_title = ".//input[@id='post-title']"
+input_body_content = ".//textarea[@id='post-body'].//textarea[@id='post-body']"
+button_create_post = ".//button[text()='Save New Post']"
+info_message = ".//div[text()='New post successfully created.']"
+title_post = ".//div//h2[text()='" +String parameter = Test Post Title +"']"
+#String parameter will be set in the test case and implemented in the page object
+body_post = ".//div//h2[text()='" +String parameter = Test Post Title +"']/../..//div[@class='body-content']//p[text()='" +String parameter = Test Post Body +"']"
+#String parameter will be set in the test case and implemented in the page object
+
+
+#EditPostPage
+button_edit_post = ".//a[@data-original-title='Edit']"
+button_save_updates = ".//button[text()='Save Updates']"
+info_message_edit = ".//div[text()='Post successfully updated.']"
+
+#DeletePostPage
+button_delete_post = ".//button[@data-original-title='Delete']"
+info_message_delete = ".//div[text()='Post successfully deleted.']"
