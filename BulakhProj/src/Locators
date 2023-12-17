@@ -1,6 +1,46 @@
 #LoginPage
-input_username = ".//input[@id='username']" - example
-input_password = ".//input[@id='password']" - example
+input_username - //input[@name="username" and @placeholder="Username"]
+input_password = //input[@name="password" and @placeholder="Password"]
+Sign in button = //button[@class="btn btn-primary btn-sm"]
 
 #HomePage
-button_logout = ".//a[@id=''logout']" - example
+button_logout = //button[@class="btn btn-sm btn-secondary"]
+
+#CreatePost
+button_CreatePost = //a[@class="btn btn-sm btn-success mr-2"]
+input_Title = //input[@name="title"]
+input_BodyContent = //textarea[@name="body"]
+button_SaveNewPost =//button[@class="btn btn-primary"]
+Message = //div[@class="alert alert-success text-center"]
+button_Delete = //button[@class="delete-post-button text-danger"]
+button_Edit = //a[@class="text-primary mr-2"]
+
+#EditPost
+input_BodyContent = //textarea[@name="body"]
+button_SaveUpdates = //button[@class="btn btn-primary"]
+button_BackToPostPermalink= //a[@class="small font-weight-bold"]
+iconMyProfile=//a[@class="mr-2"]
+
+#DeletePost
+iconMyProfile = //a[@class="mr-2"]
+clickPost = //a[@class="list-group-item list-group-item-action" and @href="/post/657f3a4ba0f81f002b53807f"]
+button_Delete = //button[@class="delete-post-button text-danger"]
+Message = //div[@class="alert alert-success text-center"]
+iconMyProfile=//a[@class="mr-2"]
+
+#StartChat
+iconChat = //span[@class="text-white mr-2 header-chat-icon"]
+window_Chat = //div[@id="chat"]
+field_TypeAMessage = //input[@type="text" and @id = "chatField"]
+button_CloseChat = //span[@class="chat-title-bar-close"]
+iconMyProfile=//a[@class="mr-2"]
+
+#SingOut
+icon_MyProfile=//a[@class="mr-2"]
+link_ComplexApp = //a[@class="text-white"]
+tab_Post = //a[@class="profile-nav-link nav-item nav-link active"]
+tab_Followers = //a[@class="profile-nav-link nav-item nav-link " and contains(text(),'Followers')]
+tab_Following = //a[@class="profile-nav-link nav-item nav-link " and contains(text(),'Following')]
+Massege = //h2[contains(text(),'Hello')]
+button_SingOut = //button[@class="btn btn-sm btn-secondary"]
+title_RememberWriting = //h1[@class="display-3"]
