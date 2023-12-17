@@ -55,17 +55,17 @@ Preconditions:
 Steps:
 1. Open the browser [optional]
 2. Navigate to the BASE_URL
-3. Enter the username  USER_NAME + '111'
+3. Enter the username  USER_NAME + 'current_time'
 4. Enter the email  USER_EMAIL
 4. Enter the password  USER_PASSWORD
 5. Click on the Sign Up for OurApp button
 
 Expected Result:
-6. Verify that new user USER_NAME+111 created and user sees the Home Page (sees button "Sign Out" and does not see button "Sign In")
-7. Verify user sees the message "Hello USER_NAME + '111'" on the page
+6. Verify that new user USER_NAME+current_time created and user sees the Home Page (sees button "Sign Out" and does not see button "Sign In")
+7. Verify user sees the message "Hello USER_NAME + 'current_time'" on the page
 
 Postconditions:
-1. Delete user USER_NAME+111 from the system
+1. Delete user USER_NAME+current_time from the system
 
 
 -----------------------------------------------------------------------
@@ -88,7 +88,7 @@ Steps:
 
 Expected Result:
 6. Verify that new post created and user sees the Home Page (sees button "Sign Out" and does not see button "Sign In")
-7. Verify that new post is displayed on the Home Page and has the title "Test Post" and content "Test Content" and info_message "New post successfully created."
+7. Verify that user redirected to Post page and new post is displayed and has the title "Test Post" and content "Test Content" and info_message "New post successfully created."
 
 Postconditions:
 1. Delete the post from the system
