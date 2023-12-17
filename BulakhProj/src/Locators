@@ -1,0 +1,6 @@
+#LoginPage
+input_username = ".//input[@id='username']" - example
+input_password = ".//input[@id='password']" - example
+
+#HomePage
+button_logout = ".//a[@id=''logout']" - example
