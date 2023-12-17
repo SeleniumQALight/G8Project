@@ -1,4 +1,31 @@
-#LoginPage
-input_username = ".//input[]@id='username'"
+#HeaderGuest
+header_input_username   = .//header//input[@name='username']
+header_input_password   = .//header//input[@name='password']
+header_button_signIn    = .//header//button[text()='Sign In']
 
-#HomePage
+#HeaderUser
+header_link_search          = .//a[@data-original-title='Search']
+header_link_myProfile       = .//img[@data-original-title='My Profile']/..
+header_link_createPost      = .//a[text()='Create Post']
+header_button_signOut       = .//button[text()='Sign Out']
+
+#LoginPage
+registration_form_input_username            = .//input[@id='username-register']
+registration_form_input_email               = .//input[@id='email-register']
+registration_form_input_password            = .//input[@id='password-register']
+registration_form_button_signUpForOurApp    = .//form[@id='registration-form']//button[@type='submit' ]
+
+#ModalSeach
+input_whatAreYouInterestedIn    = .//input[@id='live-search-field']
+link_to_post                    = .//strong[text()='Закарпатські заповідники: збереження біорізноманітності']/..
+
+#CreatePostPage
+input_post_title        = .//input[@id='post-title']
+textarea_body_content   = .//textarea[@id='post-body']
+button_saveNewPost      = .//button[text()='Save New Post']
+
+#PostPage
+post_alert = .//div[contains(@class,'alert')]
+post_title = .//h2
+post_content = .//p[contains(text(),'Is this post unique?')]/../following-sibling::div/p
+delete_button = .//button[@data-original-title='Delete']
