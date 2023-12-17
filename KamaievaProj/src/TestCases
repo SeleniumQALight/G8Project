@@ -95,10 +95,10 @@ Steps:
 1. Creates a 'One Person' post by User_A.
 2. Remember the title of created the 'One Person' post.
 3. Log out of User_A's account.
-3. Log in with User_B's credentials.
-4. Click 'Search' button in header.
-5. Enter the title of the created 'One Person' post by User_A.
-6. Click on the title of the created 'One Person' post by User_A.
+4. Log in with User_B's credentials.
+5. Click 'Search' button in header.
+6. Enter the title of the created 'One Person' post by User_A.
+7. Click on the title of the created 'One Person' post by User_A.
 
 Expected Result:
 1. Verify that title of the created 'One Person' post by User_A is present on Post Page.
@@ -118,13 +118,13 @@ Precondition:
 Steps:
 1. User_A creates a 'All Users' post.
 2. Remember the title of created the 'All Users' post.
-2. Log out of User_A's account.
-3. Log in with User_B's credentials.
-4. Click 'Search' button in header.
-5. Enter the title of the created 'All Users' post by User_A.
-6. Click on the title of the created 'All Users' post by User_A.
-7. Click on the post Author link
-8. Click on the 'Follow' button
+3. Log out of User_A's account.
+4. Log in with User_B's credentials.
+5. Click 'Search' button in header.
+6. Enter the title of the created 'All Users' post by User_A.
+7. Click on the title of the created 'All Users' post by User_A.
+8. Click on the post Author link
+9. Click on the 'Follow' button
 
 Expected Result:
 1. Verify that the 'Successfully followed User_A.' alert is present on the page.
@@ -133,5 +133,5 @@ Expected Result:
 
 Postcondition:
 1. Stop following User_A.
-1. Delete created 'All Users' post by User_A.
-2. Click on the 'Sign out' button.
+2. Delete created 'All Users' post by User_A.
+3. Click on the 'Sign out' button.
