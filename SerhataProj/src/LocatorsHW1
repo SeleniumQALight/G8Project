@@ -1,5 +1,5 @@
 Sign In
-Username = //input[@id='username0']
+Username = //input[@name='username' and @class='form-control form-control-sm input-dark']
 Password = //input[@name='password' and not(@id)]
 Sign In = //button [@class='btn btn-primary btn-sm']
 
