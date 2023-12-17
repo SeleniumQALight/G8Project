@@ -32,7 +32,7 @@ DropdownSelectValue = "//select[@id= 'select1']",
 DropdownOptions = "//option[@value= '%s']",
 buttonSaveNewPost = "//button[contains(text(),'Save New Post')]"
 
-#PostIdPage
+#PostPage
 alertSuccessfullyCreated = "//div[text() = 'New post successfully created.']"
 postTitle = "//div/h2[text() = '%s']",
 postNote = "//u[contains(text(),'%s')]",

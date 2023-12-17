@@ -1,18 +1,20 @@
 BASE_URL = "https://aqa-complexapp.onrender.com/"
 
 //User_A
-USER_A_NAME = "Kamaievauser7",
-USER_A_EMAIL = "kamaevaNataliiaVladi@mail.com",
+USER_A_NAME = "Kamaievauser7" + time,
+USER_A_EMAIL = "kamaevaNataliiaVladi" + time + "@mail.com",
 USER_A_PASSWORD = "1234567Kamaieva$";
 
 //User_B
-USER_B_NAME = "secondUserKamaeva007"
-USER_B_EMAIL = "secondUserKamaeva007@mail.com"
-USER_B_PASSWORD = "1234567Kamaieva007$"
+USER_B_NAME = "secondUserKamaeva007" + time,
+USER_B_EMAIL = "secondUserKamaeva007" + time + "@mail.com",
+USER_B_PASSWORD = "1234567Kamaieva007$",
 
 //Test_Post_Data
-POST_TITLE = "My new private post Kamaieva 007",
-POST_BODY_CONTENT = "Test body content of my ne post"
+POST_TITLE = "My new post ",
+POST_BODY_CONTENT = "Test body content ",
+UNIQUE_POST_TITLE_USER_A = POST_TITLE + USER_A_NAME,
+UNIQUE_POST_BODY_CONTENT_USER_A = POST_TITLE + USER_A_NAME;
 
 TestCase #001 - Verify that the user is successfully registered.
 
@@ -66,8 +68,8 @@ Precondition:
 
 Steps
 1. Click on 'Create post' button.
-2. Enter POST_TITLE in the 'Title' field.
-3. Enter POST_BODY_CONTENT in the 'Body Content' field.
+2. Enter UNIQUE_POST_TITLE_USER_A in the 'Title' field.
+3. Enter UNIQUE_POST_BODY_CONTENT_USER_A in the 'Body Content' field.
 4. Select 'Is this post unique?' checkbox.
 5. Select 'Приватне повідомлення' in the dropdown 'Select value'.
 6. Click 'Save new post' button.
@@ -82,7 +84,7 @@ Postcondition:
 1. Delete created post
 2. Click on the 'Sign out' button.
 
-TestCase #004 - Verify that the 'One Person' post cannot see another users.
+TestCase #004 - Verify that the 'One Person' post can see another users.
 Precondition:
 1. Open the browser [optional]
 2. Navigate to the BASE_URL.
@@ -92,13 +94,15 @@ Precondition:
 Steps:
 1. Creates a 'One Person' post by User_A.
 2. Remember the title of created the 'One Person' post.
-2. Log out of User_A's account.
+3. Log out of User_A's account.
 3. Log in with User_B's credentials.
 4. Click 'Search' button in header.
 5. Enter the title of the created 'One Person' post by User_A.
+6. Click on the title of the created 'One Person' post by User_A.
 
 Expected Result:
-1. Verify that the 'Sorry, we could not find any results for that search.' alert is present on the page.
+1. Verify that title of the created 'One Person' post by User_A is present on Post Page.
+2. Verify that name of User_A is present on Post Page.
 
 Postcondition:
 1. Delete created 'One Person' post by User_A.
@@ -128,5 +132,6 @@ Expected Result:
 3. Verify that the title of the created 'All Users' post by User_A and name of User_A are present on HomePage.
 
 Postcondition:
+1. Stop following User_A.
 1. Delete created 'All Users' post by User_A.
 2. Click on the 'Sign out' button.
