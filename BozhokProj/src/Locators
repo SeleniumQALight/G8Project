@@ -1,0 +1,17 @@
+#Login Page
+input_username = .//input[@id="username4"]
+input_password = .//input[@placeholder="Password"]
+button_Sign_In = .//button[@class="btn btn-primary btn-sm"]
+
+#Register
+input_username = .//input[@id="username-register"]
+input_password = .//input[@placeholder="Create a password"]
+input_email = .//input[@name="email"]
+button_Sign_up = .//button[@type="submit"]
+
+#My profile
+avatar = .//a[@class="mr-2"]
+create_post = .//a[@class="btn btn-sm btn-success mr-2"]
+title_post = .//a[@class="list-group-item list-group-item-action"]
+delete_post = .//button[@class="delete-post-button text-danger"]
+search_post = .//a[@class="list-group-item list-group-item-action"]
