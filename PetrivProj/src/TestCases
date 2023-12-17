@@ -1,18 +1,18 @@
 BASE_URL = https://aqa-complexapp.onrender.com
-USER_NAME = petriv_g8_testuser
+USER_NAME = testuser
 USER_PASSWORD = qwerty123456
-USER_EMAIL = petrivg8.testuser@test.com
-POST_TITLE = New post title
-POST_CONTENT = New post content
-USER_TO_FOLLOW_NAME = petriv_g8_testuser_for_following
+USER_EMAIL = testuser@test.com
+POST_TITLE = Post title
+POST_CONTENT = Post content
+USER_TO_FOLLOW_NAME = testuser_for_following
 
 TestCase #001 - Test Case to verify the functionality of the signing in
 Precondition:
-1. Check if the user USER_NAME exists in the system and if doesn't - create a new user with USER_NAME and USER_PASSWORD
+1. Check if the user "TC001 + USER_NAME + TIME" exists in the system and if doesn't - create a new user with "TC001 + USER_NAME = TIME" and USER_PASSWORD
 
 Steps:
 1. Navigate to the BASE_URL
-2. Enter the user name USER_NAME
+2. Enter the user name "TC001 + USER_NAME + TIME"
 3. Enter the password USER_PASSWORD
 4. Click on the "Sign In" button
 Expected Result:
@@ -20,38 +20,38 @@ Expected Result:
 (sees button "Sign Out" and don't see button "Sign In")
 
 Postcondition:
-1. Delete user USER_NAME from the system
+1. Delete user "TC001 + USER_NAME + TIME" from the system
 
 
 TestCase #002 - Test Case to verify the functionality of the signing up
 Precondition:
-1. Check if the user USER_NAME doesn't exist in the system and if it does - delete the user
+1. Check if the user "TC002 + USER_NAME + TIME" doesn't exist in the system and if it does - delete the user
 
 Steps:
 1. Navigate to the BASE_URL
-2. Enter the user name USER_NAME
+2. Enter the user name "TC002 + USER_NAME + TIME"
 3. Enter the user email USER_EMAIL
 4. Enter the password USER_PASSWORD
 5. Click on the "Sign up for OurApp" button
 Expected Result:
 6. Verify user sees the Home Page
 (sees button "Sign Out" and doesn't see button "Sign In",
-and sees text "Hello USER_NAME, your feed is empty.")
+and sees text "Hello "TC002 + USER_NAME + TIME", your feed is empty.")
 
 Postcondition:
-1. Delete user USER_NAME from the system
+1. Delete user "TC002 + USER_NAME + TIME" from the system
 
 
 TestCase #003 - Test Case to verify the functionality of the public post creation
 Precondition:
-1. Check if the user USER_NAME exists in the system and if doesn't - create a new user with USER_NAME and USER_PASSWORD
-2. Authorize in the app as USER_NAME
+1. Check if the user "TC003 + USER_NAME + TIME" exists in the system and if doesn't - create a new user with "TC003 + USER_NAME + TIME" and USER_PASSWORD
+2. Authorize in the app as "TC003 + USER_NAME + TIME"
 
 Steps:
 1. Navigate to the BASE_URL
 2. Click on the "Create Post" button
     2.1 User redirects to the BASE_URL/create-post page
-3. Enter post title POST_TITLE
+3. Enter post title "TC003 + POST_TITLE + TIME"
 4. Enter post content POST_CONTENT
 5. Check "unique post" checkbox
 6. Select public access
@@ -59,42 +59,44 @@ Steps:
 Expected Result:
 8. Verify user redirects to the page where URL contains BASE_URL/post/POST_ID
 and sees the "New post successfully created." info text
-and verify post title = POST_TITLE, post content = POST_CONTENT
+and verify post title = "TC003 + POST_TITLE + TIME", post content = POST_CONTENT
+and verify post title is added in the posts list on the MyProfile page (BASE_URL/profile/TC003 + USER_NAME + TIME)
 
 Postcondition:
-1. Delete post by POST_ID from the system
-2. Delete user USER_NAME from the system
+1. Delete post "TC003 + POST_TITLE + TIME" by POST_ID from the system
+2. Delete user "TC003 + USER_NAME + TIME" from the system
 
 
 TestCase #004 - Test Case to verify the functionality of the post editing
 Precondition:
-1. Check if the user USER_NAME exists in the system and if doesn't - create a new user with USER_NAME and USER_PASSWORD
-2. Authorize in the app as USER_NAME
-3. Create a new unique public post POST_TITLE and save POST_ID
+1. Check if the user "TC004 + USER_NAME + TIME" exists in the system and if doesn't - create a new user with "TC004 + USER_NAME + TIME" and USER_PASSWORD
+2. Authorize in the app as "TC004 + USER_NAME + TIME"
+3. Create a new unique public post "TC004 + POST_TITLE + TIME" and save POST_ID
 
 Steps:
 1. Navigate to the BASE_URL/post/POST_ID
 2. Click on the Edit button
     2.1 User redirects to the BASE_URL/post/POST_ID/edit page
-3. Edit title POST_TITLE = POST_TITLE + "updated"
-4. Edit content POST_CONTENT = POST_CONTENT + "updated"
+3. Edit title POST_TITLE = "TC004 + POST_TITLE + TIME + Updated"
+4. Edit content POST_CONTENT = "POST_CONTENT + Updated"
 5. Uncheck "unique post" checkbox
 6. Select private access
 7. Click on the "Save Updates" button
 Expected Result:
 8. Verify user sees the "Post successfully updated." info text
-and verify post title = POST_TITLE + "updated", post content = POST_CONTENT + "updated"
+and verify post title = "TC004 + POST_TITLE + TIME + Updated", post content = "POST_CONTENT + Updated"
+and verify post title is updated in the posts list on the MyProfile page (BASE_URL/profile/TC004 + USER_NAME + TIME)
 
 Postcondition:
-1. Delete post by POST_ID from the system
-2. Delete user USER_NAME from the system
+1. Delete post "TC004 + POST_TITLE + TIME + Updated" by POST_ID from the system
+2. Delete user "TC004 + USER_NAME + TIME" from the system
 
 
 TestCase #005 - Test Case to verify the functionality of the post deletion
 Precondition:
-1. Check if the user USER_NAME exists in the system and if doesn't - create a new user with USER_NAME and USER_PASSWORD
-2. Authorize in the app as USER_NAME
-3. Create a new unique public post POST_TITLE and save POST_ID
+1. Check if the user "TC005 + USER_NAME + TIME" exists in the system and if doesn't - create a new user with "TC005 + USER_NAME + TIME" and USER_PASSWORD
+2. Authorize in the app as "TC005 + USER_NAME + TIME"
+3. Create a new unique public post "TC005 + POST_TITLE + TIME" and save POST_ID
 
 Steps:
 1. Navigate to the BASE_URL/post/POST_ID
@@ -102,34 +104,34 @@ Steps:
 Expected Result:
 3. Verify user redirects to the profile page (URL contains BASE_URL/profile/USER_NAME)
 and sees the "Post successfully deleted." info text
-and doesn't see post POST_TITLE
+and doesn't see post "TC005 + POST_TITLE + TIME"
 
 Postcondition:
-1. Check if the post doesn't exist in the system and if it does - delete post by POST_ID
-2. Delete user USER_NAME from the system
+1. Check if the post "TC005 + POST_TITLE + TIME" doesn't exist in the system and if it does - delete post "TC005 + POST_TITLE + TIME" by POST_ID
+2. Delete user "TC005 + USER_NAME + TIME" from the system
 
 
 TestCase #006 - Test Case to verify the functionality of the following another user
 Precondition:
-1. Check if the user USER_TO_FOLLOW_NAME exists in the system and if doesn't - create a new user with USER_TO_FOLLOW_NAME and USER_PASSWORD
-2. Create a new unique public post for USER_TO_FOLLOW_NAME - POST_TITLE with POST_CONTENT and save POST_ID
-3. Check if the user USER_NAME exists in the system and if doesn't - create a new user with USER_NAME and USER_PASSWORD
-4. Authorize in the app as USER_NAME
+1. Check if the user "TC006 + USER_TO_FOLLOW_NAME + TIME" exists in the system and if doesn't - create a new user with "TC006 + USER_TO_FOLLOW_NAME + TIME" and USER_PASSWORD
+2. Create a new unique public post for "TC006 + USER_TO_FOLLOW_NAME + TIME" - "TC006 + POST_TITLE + TIME" with POST_CONTENT and save POST_ID
+3. Check if the user "TC006 + USER_NAME + TIME" exists in the system and if doesn't - create a new user with "TC006 + USER_NAME + TIME" and USER_PASSWORD
+4. Authorize in the app as "TC006 + USER_NAME + TIME"
 
 Steps:
 1. Navigate to the BASE_URL
 2. Click on the Search button in the Header
-3. Enter POST_TITLE and wait for searching results
-    3.1 Assert search results with POST_TITLE are shown
-4. Click on the link with POST_TITLE
+3. Enter "TC006 + POST_TITLE + TIME" and wait for searching results
+    3.1 Assert search results with "TC006 + POST_TITLE + TIME" are shown
+4. Click on the link with "TC006 + POST_TITLE + TIME"
     4.1 User redirects to the post page (URL contains BASE_URL/post/POST_ID)
-5. Click on the post author USER_TO_FOLLOW_NAME link
-    5.1 User redirects to the post author USER_TO_FOLLOW_NAME profile page (URL contains BASE_URL/profile/USER_TO_FOLLOW_NAME)
+5. Click on the post author "TC006 + USER_TO_FOLLOW_NAME + TIME" link
+    5.1 User redirects to the post author "TC006 + USER_TO_FOLLOW_NAME + TIME" profile page (URL contains BASE_URL/profile/TC006 + USER_TO_FOLLOW_NAME + TIME)
 6. Click on the Follow button
 Expected Result:
-7. Verify user sees "Successfully followed USER_TO_FOLLOW_NAME." info text
+7. Verify user sees "Successfully followed TC006 + USER_TO_FOLLOW_NAME + TIME." info text
 and sees button Stop Following and doesn't see button Follow
 
 Postcondition:
-1. Delete post by POST_ID from the system
-2. Delete users USER_NAME and USER_TO_FOLLOW_NAME from the system
+1. Delete post "TC006 + POST_TITLE + TIME" by POST_ID from the system
+2. Delete users "TC006 + USER_NAME + TIME" and "TC006 + USER_TO_FOLLOW_NAME + TIME" from the system
