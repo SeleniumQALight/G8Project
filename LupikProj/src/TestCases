@@ -1,1 +1,123 @@
-TestCase #001
+BASE_URL = "https://aqa-complexapp.onrender.com/"
+USER_NAME = qaauto
+USER_PASSWORD = 123456qwerty
+USER_EMAIL = autoTest@mail.com
+
+
+///////////////////////////////////////////////////////////
+
+TestCase #001 - Checking user login
+
+Preconditions:
+1. Open the browser [optional];
+2. Check user USER_NAME exist in the system and if not create a new user with NEW_USER_NAME and USER_PASSWORD;
+
+Steps:
+1. Navigate to the BASE_URL;
+2. Enter USER_NAME in the username field in the site header;
+3. Enter USER_PASSWORD the password field in the site header;
+4. Click on the "Sign In" button in the site header.
+
+Expected result: The user navigates to the home page. (USER_NAME and the "Create Post" button should be displayed in the site header);
+
+Postconditions: Click on the "Sign Out" to log out.
+
+//////////////////////////////////////////////////////////
+
+TestCase #002 - Checking the creation of a new user;
+
+1. Open the browser [optional];
+
+Steps:
+1. Navigate to the BASE_URL;
+2. Enter USER_NAME + current date + current time in the username field(For example: qaauto181220232150);
+3. Enter USER_EMAIL by adding the current date + current time before  @ in the Email field (For example autoTest181220232150@mail.com);
+4. Enter USER_PASSWORD the password field;
+5. Click on the "Sign up for OurApp" button;
+
+Expected result: The created user navigates to the home page. (USER_NAME+ current date + current time and the "Create Post" button should be displayed in the site header);
+
+Postconditions: Delete created user from the system.
+
+////////////////////////////////////////////////////////
+
+TestCase #003 - Checking the creation of a new post;
+
+Preconditions:
+1. Open the browser [optional];
+2. Check user USER_NAME exist in the system and if not create a new user with NEW_USER_NAME and USER_PASSWORD;
+
+Steps:
+1. Navigate to the BASE_URL;
+2. Enter USER_NAME in the username field in the site header;
+3. Enter USER_PASSWORD the password field in the site header;
+4. Click on the "Sign In" button in the site header;
+5. Click on the "Create Post" button in the site header;
+6. Write some text in Title field;
+7. Write some text in Body Content;
+8. Click on the "Save New Post" button;
+
+Expected result:
+1. New post successfully created. The text in Title and Body matches the text you enter.
+
+Postconditions: Delete created post from the system.
+
+
+/////////////////////////////////////////////////////////
+
+TestCase #004 - Checking edit post;
+
+Preconditions:
+1. Open the browser [optional];
+2. Check user USER_NAME exist in the system and if not create a new user with NEW_USER_NAME and USER_PASSWORD;
+3. Navigate to the BASE_URL;
+4. Enter USER_NAME in the username field in the site header;
+5. Enter USER_PASSWORD the password field in the site header;
+6. Click on the "Sign In" button in the site header;
+7. Click on the "Create Post" button in the site header;
+8. Write some text in Title field;
+9. Write some text in Body Content;
+10. Make sure that "Общедоступное" is selected in the dropdown list;
+11. Make sure checkbox "Is this post unique?" is not selected;
+12. Click on the "Save New Post" button;
+13. Check that a new post has been created with the your wrote text in Title and Body,
+ and that the text  is displayed “This post was written for All Users” and Is this post unique? :no
+
+Steps:
+1. Checking edit post(Blue pencil inside a rectangle);
+2. Write "some "Changed title" in Title field;
+3. Write "Changed  Body" in Body Content;
+4. Select checkbox "Is this post unique?";
+5. Change the value to "Частное сообщение" in the drop down list;
+6. Click on the "Save Updates" button;
+7. Make sure that "Post successfully updated." appears. on a green background;
+8. Return to the post display page (click on "Back to post permalink");
+
+Expected result: The title and body of the post have been changed, the texts is displayed
+"This post was written for One Person", Is this post unique? : yes
+
+Postconditions: Delete created post from the system.
+
+/////////////////////////////////////////////////////////
+
+TestCase #005 - Checking post search by title;
+
+Preconditions:
+1. Open the browser [optional];
+2. Check user USER_NAME exist in the system and if not create a new user with NEW_USER_NAME and USER_PASSWORD;
+3. Navigate to the BASE_URL;
+4. Enter USER_NAME in the username field in the site header;
+5. Enter USER_PASSWORD the password field in the site header;
+6. Click on the "Sign In" button in the site header;
+7. Click on the "Create Post" button in the site header;
+8. Write some text in Title field;
+9. Write some text in Body Content;
+10. Click on the "Save New Post" button;
+
+Steps:
+1. Click on the search icon (white magnifying glass icon);
+2. Enter the full title text that you entered in the Title field;
+
+Expected result: The created post appears in a pop-up window;
+
+Postconditions: Delete created post from the system.
