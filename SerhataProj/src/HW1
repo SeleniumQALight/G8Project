@@ -58,9 +58,11 @@ Steps:
 3. Enter text "Hello Test" to the Body Content field
 4. Select checkbox "Is this post unique?"
 5. Click Save New Post button
+6. Click My Profile Title
 
 Expected result:
 Text "New post successfully created" is displayed
+New post "UI test 3 + time" is displayed in the list
 
 Postcondition:
 1. Delete new post from the system
