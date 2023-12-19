@@ -31,3 +31,4 @@ edit post= './/*[@class="text-primary mr-2"]'
 title of post = './/*[@name="title"]'
 body of post = './/*[@name="body"]'
 button 'Save Updates' = './/*[@class="btn btn-primary"]'
+
