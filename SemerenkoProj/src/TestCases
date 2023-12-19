@@ -1,0 +1,103 @@
+BASE_URL = https://aqa-complexapp.onrender.com
+USER_NAME = qaauto
+USER_PASSWORD = 123456qwerty
+
+USER_NAME1 = ustestg8s
+USER_PASSWORD1 = qwaszxQWASZX
+USER_EMAIL = testg8@gmail.com
+
+POST_TITLE = test post 2
+POST_BODY = test post contetnt 2
+
+SEARCH_TEXT = "Закарпатські"
+
+
+TC #001 - Create User
+Precondition:
+1. Open the browser [optional]
+2. Check user USER_NAME not exists in the system
+
+Steps:
+1. Navigate to the BASE_URL
+2. Enter the username USER_NAME1
+3. Enter the email USER_EMAIL
+4. Enter the password USER_PASSWORD1
+5. Click on the Sign up for OurApp button
+Expected Result:
+1. Created user sees the Home Page
+- sees button "Sign Out" and don see button "Sign In" in header
+- Created user sees the header text Hello USER_NAME1, your feed is empty
+- Headder contains link to my profile
+
+Postcondition:
+1. Delete user USER_NAME from the system [optional]
+
+
+TC #002 - Check Logon
+Precondition:
+1. Open the browser [optional]
+2. Check user USER_NAME exists in the system
+and if needed create a new user with USER_NAME
+
+Steps:
+1. Navigate to the BASE_URL
+2. Enter the username USER_NAME
+3. Enter the password USER_PASSWORD
+4. Click on the Sign In button
+Expected Result:
+1. Verify user sees the Home Page
+- sees button "Sign Out" and don see button "Sign In" in header
+- Created user sees the header text Hello USER_NAME1, your feed is empty
+- Headder contains link to my profile
+
+Postcondition:
+1. Delete user USER_NAME from the system [optional]
+
+
+TC #003 - Check Logout
+Precondition:
+1. Open the browser [optional]
+2. SignIn with USER_NAME (if needed create a new user with USER_NAME)
+
+Steps:
+1. Click on Sign Out button
+Expected Result:
+1. User sees the Login Page
+(sees button "Sign in", fields: username, password in header)
+
+Postcondition:
+1. Delete user USER_NAME from the system [optional]
+
+
+TC #004 - Creat Post
+Precondition:
+1. Open the browser [optional]
+2. SignIn with USER_NAME (if needed create a new user with USER_NAME)
+
+Steps:
+1. Navigate to the BASE_URL
+2. Click on the Create Post button
+3. Enter the title POST_TITLE
+4. Enter the body content POST_BODY
+5. Click on the Save New Post button
+Expected Result:
+1. User sees success masage "New post successfully created" and text with  POST_TITLE
+
+Postcondition:
+1. Delete user USER_NAME from the system [optional]
+
+
+ TC #005 - Search
+Precondition:
+1. Open the browser [optional]
+2. SignIn with USER_NAME (if needed create a new user with USER_NAME)
+
+Steps:
+1. Navigate to the BASE_URL
+2. Click on the Search button
+3. Enter the "What are you interested in" field SEARCH_TEXT
+Expected Result:
+1. User sees Search result window with topics contains SEARCH_TEXT
+
+Postcondition:
+1. Delete user USER_NAME from the system [optional]

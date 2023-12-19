@@ -1,0 +1,40 @@
+#LoginPage
+input_username_register =  ".//input[@id='username-register']"
+input_email_register =  ".//input[@id='email-register']"
+input_password_register =  ".//input[@id='password-register']"
+
+input_username_signin = ".//input[@id='username1']"
+input_password_signin = ".//input[@placeholder='Password']"
+
+button_signup = ".//button[@type='submit']"
+button_signin = ".//button[@class='btn btn-primary btn-sm']"
+
+
+#HomePage
+button_signout = ".//button[@class='btn btn-sm btn-secondary']"
+button_createPost = ".// a [@class='btn btn-sm btn-success mr-2']"
+
+a_my_profile = ".//a[@class='mr-2']"
+a_search = ".//a[@class='text-white mr-2 header-search-icon']"
+
+text_hello = ".//h2 [contains(text(), "Hello")]"
+
+
+#CreationPostPage
+input_title = ".//input[@id='post-title']"
+textarea_bodyContetnt = ".//textarea[@id='post-body']"
+button_saveNewPost = ".//button[@class='btn btn-primary']"
+
+
+#SuccesfulCreatetPostPage
+div_massage = ".//div[contains(text(), 'New post successfully created.')]"
+h2_postTitle = ".//h2[contains(text(), "test post 2")]"
+
+
+#SearchInputPage
+input_search = ".//input[@id='live-search-field']"
+
+
+#SearchResultPage
+div_searchResultHeader = ".//div[@class='list-group-item active']"
+a_searchResultRows = ".//a[@class='list-group-item list-group-item-action']"
