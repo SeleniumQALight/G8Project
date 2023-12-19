@@ -20,7 +20,7 @@ Expected Result: Побачити напис 'Hello' + 'USER_NAME' + ', your fee
 Post-condition: видалити USER_NAME, Email_fo_reg, USER_PASSWORD
 
 TestCase #002
-Створення піблічного посту
+Створення публічного посту
 Precondition:
 Перейти на сайт BASE_url
 Steps:
