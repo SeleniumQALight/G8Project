@@ -1,5 +1,5 @@
 #Login Page
-input_username = .//input[@id="username4"]
+input_username = .//input[@name="username" and @placeholder="Username"]
 input_password = .//input[@placeholder="Password"]
 button_Sign_In = .//button[@class="btn btn-primary btn-sm"]
 
