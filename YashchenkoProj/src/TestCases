@@ -2,6 +2,9 @@ BASE_URL = https://aqa-complexapp.onrender.com
 NAME_REG = RegUser123123
 PASSWORD = Aa123456QWE!+
 NAME_LOGIN = User135444
+NAME_LOGIN_2 = 135444user
+NAME_LOGIN_3 = 135444user123
+NAME_LOGIN_4 = Userrrr123
 VALID_EMAIL = yashchenko.tim+$timestamp@gmail.com
 TITLE = Title + &timestamp
 TITLE_2 = 2Title + &timestamp
@@ -29,7 +32,7 @@ TestCase #001 Test Registration functionality
 -There is "Create Post" button in the header
 -There is "Sign Out" button in the header
 ==Postconditions:
-  1. Delete user from the system [optional]
+  1. Delete user NAME_REG from the system [optional]
 
 
 TestCase #002 Test Login functionality
@@ -48,15 +51,15 @@ TestCase #002 Test Login functionality
 -There is "Create Post" button in the header
 -There is "Sign Out" button in the header
 ==Postconditions:
-  1. Delete user from the system [optional]
+  1. Delete user NAME_LOGIN from the system [optional]
 
 
 TestCase #003 Creating the Post functionality
 ==Preconditions:
 1. Open the browser [optional]
-2. Check that user NAME_LOGIN exists in the system and if needed create a new user with NAME_LOGIN, PASSWORD, VALID_EMAIL
+2. Check that user NAME_LOGIN_2 exists in the system and if needed create a new user with NAME_LOGIN_2, PASSWORD, VALID_EMAIL
 3. Navigate to the BASE_URL
-4. Log In using NAME_LOGIN, PASSWORD
+4. Log In using NAME_LOGIN_2, PASSWORD
 ==Steps:
 1. Click "Create Post" button in the header
 2. Enter TITLE in the Title field
@@ -70,15 +73,15 @@ TestCase #003 Creating the Post functionality
 - There is "Note: This post was written for All Users" text
 - There is "Is this post unique? : yes" text
 ==Postconditions:
-  1. Delete user from the system [optional]
+  1. Delete user NAME_LOGIN_2 from the system [optional]
 
 
 TestCase #004 Testing Search functionality
 ==Preconditions:
 1. Open the browser [optional]
-2. Check that user NAME_LOGIN exists in the system and if needed create a new user with NAME_LOGIN, PASSWORD, VALID_EMAIL
+2. Check that user NAME_LOGIN_3 exists in the system and if needed create a new user with NAME_LOGIN_3, PASSWORD, VALID_EMAIL
 3. Navigate to the BASE_URL
-4. Log In using NAME_LOGIN, PASSWORD
+4. Log In using NAME_LOGIN_3, PASSWORD
 ==Steps:
 1. Click "Create Post" button in the header
 2. Enter TITLE_2 in the Title field
@@ -91,14 +94,16 @@ TestCase #004 Testing Search functionality
 - There is search result with "Search Result" title
 - There is "(1 item found)" near "Search Result" title
 - There is one post in search results that have title == TITLE_2
+==Postconditions:
+  1. Delete user NAME_LOGIN_3 from the system [optional]
 
 
 TestCase #005 Testing Chat functionality
 ==Preconditions:
 1. Open the browser [optional]
-2. Check that user NAME_LOGIN exists in the system and if needed create a new user with NAME_LOGIN, PASSWORD, VALID_EMAIL
+2. Check that user NAME_LOGIN_4 exists in the system and if needed create a new user with NAME_LOGIN_4, PASSWORD, VALID_EMAIL
 3. Navigate to the BASE_URL
-4. Log In using NAME_LOGIN, PASSWORD
+4. Log In using NAME_LOGIN_4, PASSWORD
 ==Steps:
 1. Click on the Chat icon in the header
 - Chat modal window opened in the bottom right corner
@@ -107,5 +112,7 @@ TestCase #005 Testing Chat functionality
 4. Click Enter
 ==ER:
 - The message with text == SOME_TEXT appeared in the chat history
+==Postconditions:
+  1. Delete user NAME_LOGIN_4 from the system [optional]
 
 
