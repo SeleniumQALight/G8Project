@@ -1,3 +1,67 @@
-TestCase #001 -
+BASE URL = https://aqa-complexapp.onrender.com/
+USER_NAME = qaauto
+USER_PASSWORD = 123456qwerty
+
+TestCase #001 - Create new user
+Precondition:
+1. Check user exists in the system and if needed create a new user
 Steps:
-1.
+1. Open to the BASE_URL
+2. Enter the username Olesia
+3. Enter the Email fneerkl+123456@gmail.com
+4. Enter the Password uvoteam1234567
+5. Click on the "Sign up for Our App" button
+
+Expected Result: User is logged in
+Postcondition:
+1. Delete user from the system
+
+TestCase #002 - Create new post
+Steps:
+1. Open to the BASE_URL
+2. Enter the USER_NAME
+3. Enter the USER_PASSWORD
+4. Click on the "Create Post" button
+5. Input "New Test for QA" in Title
+6. Put the checkbox in the "Is this post unique?"
+7. Select value "Загальнодоступне"
+8. Put on the "Save New Post" button
+
+Expected Result: An error "Please fill in this field." was displayed on the textarea Body Content
+
+Test #003 - Checking if Massage has been sent the chat
+Steps:
+1. Open to the BASE_URL
+2. Enter the USER_NAME
+3. Enter the USER_PASSWORD
+4. Click on the chat icon
+5. Write "Test chat"
+6. Click enter
+7. Close chat
+
+Expected Result: Massage Test chat  in  chat window
+
+Test #004 Checking a non-existent post
+Steps:
+1. Open to the BASE_URL
+2. Enter the USER_NAME
+3. Enter the USER_PASSWORD
+4. Click on the search icon
+5. Input New Test for QA
+
+Expected Result: Loader displayed, post not found
+
+Test #005 Create new validation post
+Steps:
+1. Open to the BASE_URL
+2. Enter the USER_NAME
+3. Enter the USER_PASSWORD
+4. Click on the "Create Post" button
+5. Input "New Test for QA#2" in Title
+6. Empty the checkbox in the "Is this post unique?"
+7. Select value "Загальнодоступне"
+8. Put on the "Save New Post" button
+
+Expected Result: Post created, displayed massage "New post successfully created.", edit, delete icon, note and ho posted
+
+postcondition: Delete post

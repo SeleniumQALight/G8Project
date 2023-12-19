@@ -1,0 +1,34 @@
+#LoginPage
+input_username = .//input[@id="username-register"]
+input Email =.//input[@id="email-register"]
+input password = .//input[@id="password-register"]
+button = .//button[@type="submit"]
+input username in sign in = .//input[@id="username3"]
+input password in sign in = .//*[(@name='password') and not(@id="password-register")]
+button Sign In = .//*[contains(text(),'Sign In')]
+
+
+#Create non-post
+Button Create Post = .//a[@href="/create-post"]
+input title = .//*[(@name="title") and (@id="post-title")]
+checkbox = .//input[@type="checkbox" and @value='yes']
+select = .//select//option [@value='All Users']
+button "Save New Post" = .//*[contains(text(),'Save New Post')]
+
+input Body Content = .//input[(@name="title") and (@id="post-title")]
+
+
+#Chat
+Chat icon = .//*[contains(name(), 'svg')][@data-icon='comment']
+input text = .//*[(@type='text') and (@id="chatField")]
+enter enter
+close chat = .//span[@class='chat-title-bar-close']/*[contains(name(), 'svg')]/*[contains(name(), 'path')]
+
+#Search
+button search = .//a/*[contains(name(), 'svg')][@data-icon='search']
+loader = .//*[contains(name(), 'div')][contains(@class, 'circle')]
+
+#Create new post
+text = .//*[contains(text(),'New post successfully created.')]
+edit icon = .//*[contains(name(), 'svg')][@data-icon='edit']
+delete icon = .//*[contains(name(), 'svg')][@data-icon='trash']
