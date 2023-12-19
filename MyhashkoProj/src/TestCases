@@ -36,7 +36,7 @@ Expected Result: Побачити напис 'New post successfully created.'
 Post-condition: видалити: пост з Title = Title_for_TC, USER_NAME, Email_fo_reg, USER_PASSWORD, Title_for_TC, Body_Content
 
 TestCase #003
-Знаходження влвсного посту
+Знаходження власного посту
 Precondition:
 Перейти на сайт BASE_url
 Steps:
