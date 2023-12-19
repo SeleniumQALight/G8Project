@@ -21,76 +21,59 @@ Post-condition: видалити USER_NAME, Email_fo_reg, USER_PASSWORD
 
 TestCase #002
 Перевірка напису після створення нового посту
+
 Precondition:
-Перейти на сайт BASE_url
+Створити нового користувача
 Steps:
-1. В поле Username ввести USER_NAME
-2. В поле Email ввести Email_fo_reg
-3. В поле Password ввести USER_PASSWORD
-4. Натиснути кнопку Sign up for OurApp
-5. Натиснути кнопку Create Post
-6. В поле Title ввести Title_for_TC
-7. В поле Body Content ввести Body_Content
-8. Натиснути кнопку Save New Post
+1. Натиснути кнопку Create Post
+2. В поле Title ввести Title_for_TC
+3. В поле Body Content ввести Body_Content
+4. Натиснути кнопку Save New Post
 Expected Result: Побачити напис 'New post successfully created.'
 Post-condition: видалити: пост з Title = Title_for_TC, USER_NAME, Email_fo_reg, USER_PASSWORD, Title_for_TC, Body_Content
 
 TestCase #003
 Знаходження власного посту
+
 Precondition:
 Перейти на сайт BASE_url
+Створити нового користувача
+Створити новий пост
 Steps:
-1. В поле Username ввести USER_NAME
-2. В поле Email ввести Email_fo_reg
-3. В поле Password ввести USER_PASSWORD
-4. Натиснути кнопку Sign up for OurApp
-5. Натиснути кнопку Create Post
-6. В поле Title ввести Title_for_TC
-7. В поле Body Content ввести Body_Content
-8. Натиснути кнопку Save New Post
-9. Натиснути кнопку Search
-10. В поле пошуку ввести Title
-11. Натиснути на той, що має: 1) 'by' + 'USER_NAME' + 'on' + 'Date' 2) Title = Title_for_TC
+1. Натиснути кнопку Search
+2. В поле пошуку ввести Title
+3. Натиснути на той, що має: 1) 'by' + 'USER_NAME' + 'on' + 'Date' 2) Title = Title_for_TC
 Expected Result: Title і Body знайденого посту дорівнюють Title_for_TC і Body_Content
 Post-condition: видалити: пост з Title = Title_for_TC, USER_NAME, Email_fo_reg, USER_PASSWORD, Title_for_TC, Body_Content
 
 TestCase #004
 Редагування посту
+
 Precondition:
 Перейти на сайт BASE_url
+Створити нового користувача
+Створити новий пост
+Знайти створений пост і перейти на нього
 Steps:
-1. В поле Username ввести USER_NAME
-2. В поле Email ввести Email_fo_reg
-3. В поле Password ввести USER_PASSWORD
-4. Натиснути кнопку Sign up for OurApp
-5. Натиснути кнопку Create Post
-6. В поле Title ввести Title_for_TC
-7. В поле Body Content ввести Body_Content
-8. Натиснути кнопку Save New Post
-9. Натиснути кнопку Search
-10. В поле пошуку ввести Title
-11. Натиснути на той, що має: 1) 'by' + 'USER_NAME' + 'on' + 'Date' 2) Title = Title_for_TC
-12. Натиснути кнопку Edit
-13. Додати до Title  - 'Edited'
-14. Додати до Body - 'Edited'
-15. Нвтиснути кнопку Save Updates
-16. Натиснути кнопку Search
-17. В поле пошуку ввести Title + 'Edited'
-18. Натиснути на той, що має: 1) 'by' + 'USER_NAME' + 'on' + 'Date' 2) Title = Title_for_TC+'Edited'
+1. Натиснути кнопку Edit
+2. Додати до Title  - 'Edited'
+3. Додати до Body - 'Edited'
+4. Нвтиснути кнопку Save Updates
+5. Натиснути кнопку Search
+6. В поле пошуку ввести Title + 'Edited'
+7. Натиснути на той, що має: 1) 'by' + 'USER_NAME' + 'on' + 'Date' 2) Title = Title_for_TC+'Edited'
 Expected Result: Title і Body знайденого посту мають текст 'Edited'
 Post-condition: видалити: пост з Title = Title_for_TC+'Edited', USER_NAME, Email_fo_reg, USER_PASSWORD, Title_for_TC, Body_Content, Date
 
 TestCase #005
 Перевірка відправки повідомлення у загальний чат
+
 Precondition:
 Перейти на сайт BASE_url
+Створити нового користувача
 Steps:
-1. В поле Username ввести USER_NAME
-2. В поле Email ввести Email_fo_reg
-3. В поле Password ввести USER_PASSWORD
-4. Натиснути кнопку Sign up for OurApp
-5. Натиснути кнопку чат
-6. В поле 'Type a message…' вввести chat_text
-7. Натиснути 'Enter'
+1. Натиснути кнопку чат
+2. В поле 'Type a message…' вввести chat_text
+3. Натиснути 'Enter'
 Expected Result: чат має повідомлення chat_text
 Post-condition: видалити USER_NAME, Email_fo_reg, USER_PASSWORD, chat_text
