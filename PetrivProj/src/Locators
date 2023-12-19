@@ -1,0 +1,42 @@
+#SignIn
+input_username =  ".//form[@action='/login']//input[@name='username']"
+input_password = ".//form[@action='/login']//input[@name='password']"
+button_sign_in = ".//form[@action='/login']//button"
+
+#SignUp
+input_username_register = ".//input[@id='username-register']"
+label_username = ".//label[@for='username-register']"
+input_email_register = ".//input[@id='email-register']"
+label_email = ".//label[@for='email-register']"
+input_password_register = ".//input[@id='password-register']"
+label_password = ".//label[@for='password-register']"
+button_sign_up = ".//form[@id='registration-form']//button[@type='submit']"
+
+#Header
+button_home = ".//header//a[@href='/']"
+button_search = ".//a[@data-original-title='Search']"
+button_chat = ".//span[@data-original-title='Chat']"
+button_profile = ".//img[@data-original-title='My Profile']"
+button_create_post = ".//a[@href='/create-post']"
+button_sign_out = ".//form[@action='/logout']//button"
+
+#PostPage
+input_title = ".//input[@id='post-title']"
+input_content = ".//textarea[@id='post-body']"
+checkbox_unique_post = ".//input[@type="checkbox" and @name='uniquePost']"
+option_public_post = ".//select[@id='select1']//option[@value='All Users']"
+option_private_post = ".//select[@id='select1']//option[@value='One Person']"
+option_group_post = ".//select[@id='select1']//option[@value='Group Message']"
+button_save_new_post = ".//form[@action='/create-post']//button"
+button_edit_post = ".//a[@data-original-title='Edit']"
+button_delete_post = ".//button[@data-original-title='Delete']"
+button_back_to_post = ".//a[text()='« Back to post permalink']"
+button_save_updates = ".//form[contains(@action, '/post/')]//button"
+
+#ProfilePage
+button_follow = ".//form[contains(@action, '/addFollow/')]//button"
+button_unfollow = ".//form[contains(@action, '/removeFollow/')]//button"
+
+#Search
+input_search = ".//input[@id='live-search-field']"
+button_close_search = ".//span[@class="close-live-search"]"

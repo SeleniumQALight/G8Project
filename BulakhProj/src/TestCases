@@ -1,0 +1,21 @@
+BASE_URL = https://aqa-complexapp.onrender.com
+USER_NAME = qaauto
+USER_PASSWORD = 123456qwerty
+
+TestCase #001 - Test Case to verify the functionality of the Login Page
+Precondition:
+1. Open the browser [optional]
+2. Check user USER_NAME exists in the system and if needed create a new user with USER_NAME
+Steps:
+1. Open the browser [optional]
+2. Navigate to the BASE_URL
+3. Enter the username USER_NAME
+4. Enter password USER_PASSWORD
+5. Click on the Sign in button
+Expected Result:
+6.Verify user sees the Home Page (sees button "Sing Out" and don`t see button "Sing in")
+
+Postcondition:
+1. Delete user USER_NAME from the system [optional]
+
+TestCase #002
