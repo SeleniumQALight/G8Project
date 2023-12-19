@@ -1,26 +1,3 @@
-BASE_URL = https://aqa-complexapp.onrender.com
-//USER_NAME = qaauto
-//USER_PASSWORD = 123456qwerty
-USER_NAME =
-USER_PASSWORD =
-TestCase #001 - Test Case to verify the functionality of Login page
-Precondition:
-1. Open browser [optional]
-2. Check user USER_NAME exists in the system
-
-Steps:
-2. Navigate to the URL BASE_URL
-3. Enter the username USER_NAME
-4. Enter the password USER_PASSWORD
-5. Click on the Sign In  button
-Expected result:
-1 . Verify user sees the Home Page (sees button "Sign out" and don't see button "Sign In")
-
-Postcondition :
-1. Delete created user USER_NAME from the system
-----------------------------------------------------------------------------------
-----------------------------------------------------------------------------------
-
 USER_NAME = tc001testusertime
 USER_PASSWORD = Tequth_83!NM
 TestCase #001_Homework
@@ -43,7 +20,7 @@ Check: Make sure the system returns an incorrect password message
 
 ---------------------------------------------------------------
 TestCase #003_Homework
-Add Item to Cart Test Case:
+Create post Test Case:
 
 Precondition: Create a unique user “tc002testusertime”” in the precondition step.
 1.Login using the created unique user.
@@ -51,7 +28,7 @@ Precondition: Create a unique user “tc002testusertime”” in the preconditio
 3.Click on button "CREATE POST".
 4.Verify that the user is successfully  redirected to the next page and the cart count is updated accordingly.
 5.Go to the "Titel" field
-6.Add text to the "Titel" field like : titel1
+6.Add text to the "Titel" field like : example : titel1
 7.Go ti the "Body context" and add value "xxx"
 8.Click on button "Save new post"
 Post-condition: Delete the user “tc002testusertime” and titel to clean up the environment
@@ -65,16 +42,30 @@ Precondition: Create a unique post with a title “tc003testusertime” in the p
 2. Verify that the user is successfully logged in and redirected to the home page.
 3. Navigate to the search bar and enter the unique post title in the search bar.
 4. Verify that the search results display the relevant post matching the title.
-5. Post-condition: Delete the post “tc003testusertime” and titel to clean up the environment.
 
+ Post-condition: Delete the post “tc003testusertime” and title to clean up the environment.
+
+-------------------------------------------------------------------
 TestCase #005_Homework
 Checking the ability to view a user's profile:
 
-Predispositions: Create a unique user USER_NAME = "TC004testusertime"
+Precondition: Create a unique user USER_NAME = "tc004testusertime"
 1. Login using a default user or create a unique user USER_NAME.
 2. Verify that the user is successfully logged in and redirected to the home page.
 3. Navigate to the tool bar and find "My Profile" button
 4. Click on "My Profile" icon
 5. View your profile
 Check: Make sure that the user profile is USER_NAME displayed correctly
-6.Post-condition: Delete the post “tc004testusertime” and titel to clean up the environment.
+Post-condition: Delete the post “tc004testusertime” and titel to clean up the environment.
+
+-------------------------------------------------------------------
+TestCase #006_Homework
+
+Checking the possibility of deleting a post:
+
+Predispositions: Create a unique user USER_NAME = "tc005testusertime"
+1.Log in as a USER_NAME user,
+2.Create a post with TITLE = "tc005title"
+3.Find the post with the TITLE1 and delete it
+Check: Make sure that the post with the TITLE is successfully deleted
+Post-condition: Delete the post “tc005testusertime” and titel to clean up the environment.
