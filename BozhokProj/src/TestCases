@@ -5,11 +5,18 @@ USER_PASSWORD = 123456qatest
 NEW_USER_NAME = testBozhok
 NEW_USER_PASSWORD = 1234567oliva
 EMAIL = bozhok.iryna@gmail.com
-TITLE = X-Path локатори.
+TITLE = X-Path локатори
+TITLE_1 = Автоматизація
 
 TestCases №1 - The verify functionality of the login Page
 Pre conditional:
 1. Open the browser
+2. Create new user
+2.1 Enter USER_NAME
+2.2 Enter USER_PASSWORD
+2.3 Enter EMAIL
+2.4 Click button Sign up for OurApp
+2.5 Click button Sign Out
 Steps:
 1. Navigate BASE_URL
 2. In the header enter the Username USER_NAME
@@ -25,7 +32,6 @@ TestCases №2 - The verify functionality of the Registration Page
 Pre conditional:
 1. Open the browser
 2. Navigate BASE_URL
-3. Check user NEW_USER_NAME exist in the system is described TestCases №1
 Steps:
 1. On the page enter the Username NEW_USER_NAME
 2. Enter the EMAIL
@@ -59,12 +65,17 @@ Pre conditional:
 1. Open the browser
 2. Navigate BASE_URL
 3. In the header log in USER_NAME and USER_PASSWORD
+4. Create new Post TITLE_1 in the Test Cases №3
 Steps:
 1. In the header click icon search
-2. Enter TITLE
-3. Click on the TITLE post
+2. Enter TITLE_1
+3. Click on the TITLE_1 post
 Expected Result:
-Open page with our post TITLE
+1. Find this post
+2. You can see only one unique post on the list.
+3. Open page with our post TITLE_1
+Post condition:
+1. Delete post TITLE_1 from the system
 
 
 TestCases №5 - Verification of the delete post
@@ -72,9 +83,10 @@ Pre conditional:
 1. Open the browser
 2. Navigate BASE_URL
 3. In the header log in USER_NAME and USER_PASSWORD
+4. Create new Post TITLE
 Steps:
 1. In the header click icon avatar or go over PROFILE_URL
 2. Click on the TITLE post
 3. Click on the button Delete
 Expected Result:
-On the page PROFILE_URL in the tab Post:0
+On the page PROFILE_URL in the tab Post:0 and we see massage Post successfully deleted.
