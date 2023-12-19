@@ -1,6 +1,6 @@
 BASE_url = https://aqa-complexapp.onrender.com/
-USER_NAME = '№тесткейса' + 'TCmyhashko'
-Email_fo_reg = '№тесткейса' + 'TCmyhashko' + '@gmail.com'
+USER_NAME = '№тесткейса' + 'TCmyhashko' + i (i = 0. якщо вже існує такий юзер, то i = i+1)
+Email_fo_reg = '№тесткейса' + i + 'TCmyhashko' + '@gmail.com' (i = 0. якщо вже існує такий емеіл, то i = i+1)
 USER_PASSWORD = '123456789012'
 Title_for_TC = '№тесткейса' + 'TCmyhashko' + 'Title'
 Body_Content = '№тесткейса' + 'TCmyhashko' + 'Body_Content'
@@ -12,8 +12,8 @@ TestCase #001
 Precondition:
 Перейти на сайт BASE_url
 Steps:
-1. В поле Username ввести USER_NAME (якщо вже існує + 'i', де i = i+1)
-2. В поле Email ввести Email_fo_reg (якщо вже існує + 'i', де i = i+1)
+1. В поле Username ввести USER_NAME
+2. В поле Email ввести Email_fo_reg
 3. В поле Password ввести USER_PASSWORD
 4. Натиснути кнопку Sign up for OurApp
 Expected Result: Побачити напис 'Hello' + 'USER_NAME' + ', your feed is empty.' + Побачити кнопку 'Sign Out'
@@ -24,8 +24,8 @@ TestCase #002
 Precondition:
 Перейти на сайт BASE_url
 Steps:
-1. В поле Username ввести USER_NAME (якщо вже існує + 'i', де i = i+1)
-2. В поле Email ввести Email_fo_reg (якщо вже існує + 'i', де i = i+1)
+1. В поле Username ввести USER_NAME
+2. В поле Email ввести Email_fo_reg
 3. В поле Password ввести USER_PASSWORD
 4. Натиснути кнопку Sign up for OurApp
 5. Натиснути кнопку Create Post
@@ -40,8 +40,8 @@ TestCase #003
 Precondition:
 Перейти на сайт BASE_url
 Steps:
-1. В поле Username ввести USER_NAME (якщо вже існує + 'i', де i = i+1)
-2. В поле Email ввести Email_fo_reg (якщо вже існує + 'i', де i = i+1)
+1. В поле Username ввести USER_NAME
+2. В поле Email ввести Email_fo_reg
 3. В поле Password ввести USER_PASSWORD
 4. Натиснути кнопку Sign up for OurApp
 5. Натиснути кнопку Create Post
@@ -59,8 +59,8 @@ TestCase #004
 Precondition:
 Перейти на сайт BASE_url
 Steps:
-1. В поле Username ввести USER_NAME (якщо вже існує + 'i', де i = i+1)
-2. В поле Email ввести Email_fo_reg (якщо вже існує + 'i', де i = i+1)
+1. В поле Username ввести USER_NAME
+2. В поле Email ввести Email_fo_reg
 3. В поле Password ввести USER_PASSWORD
 4. Натиснути кнопку Sign up for OurApp
 5. Натиснути кнопку Create Post
@@ -85,8 +85,8 @@ TestCase #005
 Precondition:
 Перейти на сайт BASE_url
 Steps:
-1. В поле Username ввести USER_NAME (якщо вже існує + 'i', де i = i+1)
-2. В поле Email ввести Email_fo_reg (якщо вже існує + 'i', де i = i+1)
+1. В поле Username ввести USER_NAME
+2. В поле Email ввести Email_fo_reg
 3. В поле Password ввести USER_PASSWORD
 4. Натиснути кнопку Sign up for OurApp
 5. Натиснути кнопку чат
