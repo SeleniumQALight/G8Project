@@ -48,8 +48,9 @@ public class LoginTestAllInOneClass {
         logger.info("Button 'Sign In' was clicked");
 
         Assert.assertTrue("Button SignOut is not visible", isButtonSignOutVisible());
-
+        Assert.assertFalse("Button SignIn is visible", isButtonSignInVisible());
     }
+
 
     private boolean isButtonSignOutVisible() {
         try {
@@ -60,7 +61,20 @@ public class LoginTestAllInOneClass {
             logger.info("Button SignOut is not visible");
             return false;
         }
+}
+
+        private boolean isButtonSignInVisible() {
+            try {
+                boolean state = webDriver.findElement(By.xpath(".//button[text()='Sign In']")).isDisplayed();
+                logger.info(state + " Button SignIn is visible");
+                return state;
+            } catch (Exception e) {
+                logger.info("Button SignIn is not visible, exception error occurred");
+                return false;
+            }
         //home work Sign in button is visible
+
+
     }
 
 }
