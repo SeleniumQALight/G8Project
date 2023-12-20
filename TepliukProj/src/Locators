@@ -1,2 +1,41 @@
-#LoginPage
-input_username = ".//input[@id='username']"
+url: https://qa-complexapp.onrender.com/
+Page 1
+sign up:
+username  .//*[@id='username-register']
+email     .//input[@name="email"]
+password  .//input[@id="password-register"]
+button    .//*[@class="py-3 mt-4 btn btn-lg btn-success btn-block"]
+
+Page2
+
+sign In
+Username:  .//*[@placeholder="Username"]
+Password:  .//*[@placeholder='Password']
+button:     .//*[@class='btn btn-primary btn-sm']
+
+Page3
+
+Create Post
+button(Create post):  .//*[@class='btn btn-sm btn-success mr-2']
+title:                 .//*[@class="form-control form-control-lg form-control-title"]
+body:                  .//*[@class='body-content tall-textarea form-control']
+button(Save New Post):  .//*[@class='btn btn-primary']
+messege:                .//*[@class='alert alert-success text-center']
+
+Page 4
+
+Subscribe
+search:                 .//*[@class='text-white mr-2 header-search-icon']//*[@class='svg-inline--fa fa-search fa-w-16']
+phrase:                 .//*[@id='live-search-field']
+posted by               //*[@class='text-muted small mb-4']
+
+Page 5
+
+List users
+button: 				.//*[@class='btn btn-primary btn-sm']
+messege:				.//*[@class='alert alert-success text-center']
+
+Page 6
+Deleting post
+button:					.//*[@class='delete-post-button text-danger']
+messege:				.//*[@class='alert alert-success text-center']
