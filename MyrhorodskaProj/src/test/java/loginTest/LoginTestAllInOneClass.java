@@ -37,6 +37,7 @@ public class LoginTestAllInOneClass {
 
     }
 
+
     @Test
     public void validLogin() {
         webDriver.get("https://aqa-complexapp.onrender.com/");
@@ -55,6 +56,26 @@ public class LoginTestAllInOneClass {
         logger.info("Button Sign in was clicked");
 
         Assert.assertTrue("Button sign out is not visible", isButtonSignOutVisible());
+    }
+
+    @Test
+    public void notValidLogin() {
+        webDriver.get("https://aqa-complexapp.onrender.com/");
+        logger.info("Site was opened");
+        WebElement inputUserName = webDriver.findElement(By.xpath(".//*[@placeholder='Username']"));
+        inputUserName.clear();
+        inputUserName.sendKeys("qaauto1");
+        logger.info("'qaauto' was inputted into input UserName");
+
+        WebElement inputPassword = webDriver.findElement(By.xpath(".//*[@placeholder='Password']"));
+        inputPassword.clear();
+        inputPassword.sendKeys("123456qwerty");
+        logger.info("password was inputted");
+
+        webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")).click();
+        logger.info("Button Sign in was clicked");
+
+        Assert.assertFalse("Button sign out is not visible", isButtonSignOutVisible());
     }
 
     private boolean isButtonSignOutVisible() {
