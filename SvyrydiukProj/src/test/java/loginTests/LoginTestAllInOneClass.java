@@ -37,7 +37,7 @@ public class LoginTestAllInOneClass {
 
         WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         inputUserName.clear();
-        inputUserName.sendKeys("qaauto");
+        inputUserName.sendKeys("qaautoA");
         logger.info("Login 'qaauto' was entered into input UserName");
         WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         inputPassword.clear();
@@ -47,8 +47,9 @@ public class LoginTestAllInOneClass {
         webDriver.findElement(By.xpath(".//button[text()='Sign In']")).click();
         logger.info("Button 'Sign In' was clicked");
 
-        Assert.assertTrue("Button SignOut is not visible", isButtonSignOutVisible());
-        Assert.assertFalse("Button SignIn is visible", isButtonSignInVisible());
+        Assert.assertFalse("Button SignOut is not visible", isButtonSignOutVisible());
+        Assert.assertTrue("Button SignIn is visible", isButtonSignVisible());
+        Assert.assertTrue("Warning message Invalid username/password is visible", isWarningMessageInvalidLoginVisible());
     }
 
 
@@ -63,7 +64,7 @@ public class LoginTestAllInOneClass {
         }
 }
 
-        private boolean isButtonSignInVisible() {
+        private boolean isButtonSignVisible() {
             try {
                 boolean state = webDriver.findElement(By.xpath(".//button[text()='Sign In']")).isDisplayed();
                 logger.info(state + " Button SignIn is visible");
@@ -72,9 +73,19 @@ public class LoginTestAllInOneClass {
                 logger.info("Button SignIn is not visible, exception error occurred");
                 return false;
             }
+
+        }
         //home work Sign in button is visible
 
-
+            private boolean isWarningMessageInvalidLoginVisible() {
+                try {
+                    boolean state = webDriver.findElement(By.xpath(".//div[text()='Invalid username/password.']")).isDisplayed();
+                    logger.info(state + "Warning message Invalid username/password is visible");
+                    return state;
+                } catch (Exception e) {
+                    logger.info("Warning message Invalid username/password is not visible");
+                    return false;
+                }
     }
 
 }
