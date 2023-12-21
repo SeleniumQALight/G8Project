@@ -1,0 +1,104 @@
+BASE_URL = https://aqa-complexapp.onrender.com
+USER_NAME = qaauto
+USER_PASSWORD = 123456qwerty
+NEW_USER_NAME = Funny3333
+NEW_USER_PASSWORD = 111111111111
+NEW_USER_EMAIL = test@gmail.com
+NAME = Test post1
+BODY = Text for new post
+
+TestCase #001 - Verify the process of creating a new user and signing in
+
+Precondition:
+1. Open the browser [Chrome]
+2. Check if a user with the NEW_USER_NAME and NEW_USER_PASSWORD exists. If yes, it needs to be deleted
+
+Steps:
+1. Navigate to the BASE_URL
+2. Enter NEW_USER_NAME to the Username field
+3. Enter NEW_USER_EMAIL to the Email field
+4. Enter NEW_USER_PASSWORD to the Password field
+5. Click on the Sign up forOurApp button
+Expected result:
+User is created and sign in.
+Text "Hello funny3333, your feed is empty" is displayed.
+Button "Sign Out" is displayed
+
+Postcondition:
+1. Delete user NEW_USER_NAME from the system
+
+TestCase #002 - Check login to the system with existing user credentials
+
+Precondition:
+1. Open the browser [Chrome]
+2. User with USER_NAME and USER_PASSWORD is exist
+3. The user isn't subscribed to any other users
+
+Steps:
+1. Navigate to the BASE_URL
+2. Enter USER_NAME to the Username field
+3. Enter USER_PASSWORD to the Password field
+5. Click on the Sign In button
+
+Expected result:
+User is sign in.
+Text "Hello qaauto, your feed is empty" is displayed.
+Button "Sign Out" is displayed
+
+TestCase #003 - Check creating a new post
+
+Precondition:
+1. Open the browser [Chrome]
+2. User with USER_NAME and USER_PASSWORD is exist
+3. User is sign in
+
+Steps:
+1. Click on the Create Post button
+2. Enter title "UI test 3 + time" to the Title field
+3. Enter text "Hello Test" to the Body Content field
+4. Select checkbox "Is this post unique?"
+5. Click Save New Post button
+6. Click My Profile Title
+
+Expected result:
+Text "New post successfully created" is displayed
+New post "UI test 3 + time" is displayed in the list
+
+Postcondition:
+1. Delete new post from the system
+
+TestCase #004 - Check editing an existing post
+
+Precondition:
+1. Open the browser [Chrome]
+2. User with USER_NAME and USER_PASSWORD is exist
+3. User is sign in
+4. User is created post with NAME and BODY
+
+Steps:
+1. Click on the My Profile title
+2. Click on the title NAME
+3. Click on the Edit button
+4. Enter text "Test 4" to the Body Content field
+5. Click Save Updates button
+
+Expected result:
+Text "Post successfully updated" is displayed
+Updated post is displayed. Text "Test 4" is displayed in the Body Content field
+
+TestCase #005 - Check deletion just created post
+
+Precondition:
+1. Open the browser [Chrome]
+2. User with USER_NAME and USER_PASSWORD is exist
+3. User is sign in
+4. User is created post with NAME and BODY
+
+Steps:
+1. Click on the My Profile title
+2. Click on the title NAME
+5. Click Delete button
+
+Expected result:
+Text "Post successfully deleted" is displayed
+Post with title NAME isn't displayed
