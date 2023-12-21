@@ -1,0 +1,49 @@
+Login:
+userNameField = "//form//div[contains(@class,'align-items-center')]//input[@name="username"]",
+passwordField = "//form[@action='/login']//input[@name='password']",
+signInButton ="//button[text()='Sign In']",
+
+Registration Form:
+
+userNameField = "//input[@id='username-register']",
+passwordField = "//input[@id='password-register']",
+emailField = "//input[@id='email-register']",
+signInForOurAppButton = "//button[text()='Sign up for OurApp']",
+errorBlockList = "//div[contains(@class,'liveValidateMessage--visible')]",
+
+MyAccount Page:
+userName = "//a[contains(@href,'/profile')]/..//span[contains(@class,'text-white') and not (contains(@class,'header-chat-icon'))]",
+createPostLink = "//a[text()='Create Post']",
+signOutButton = "//button[text()='Sign Out']",
+searchLink = "//a[contains(@class,'header-search-icon')]",
+searchField = "//input[@id='live-search-field']",
+searchBlock = "//div[contains(@class,'live-search-results--visible')]",
+searchResultPostLocatorList = "//div[contains(@class,'live-search-results--visible')]//a//strong[contains(text(),'%s')]",
+
+
+UserProfile Page:
+
+followButton = "//button[contains(text(),'Follow')]",
+notificationBlock = "//div[contains(@class,'alert-success')]",
+stopFollowingButton = "//button[contains(text(),'Stop Following')]",
+
+
+Following Page:
+userFollowLocator = "//div[@class="list-group"]/a[@href='/profile/%s']"
+
+Create Post :
+saveNewPostButton = "//button[text()='Save New Post']",
+allUsersDropdown = "//select/option[@value='All Users']",
+titleField = "//input[@id='post-title']",
+bodyContentField = "//textarea[@id='post-body']",
+
+Post Created:
+postCreatedBlock = "//div[contains(@class,'alert-success')]/ancestor::div[contains(@class,'container')]",
+
+Post Page:
+
+myPostLocator = "//a[contains(@class,'list-group-item')]/strong[text()='%s']",
+postCounterLocator = "//a[contains(@class,'profile-nav-link') and contains(@class,'active') and text()='Posts: %s']",
+
+
+

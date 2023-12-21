@@ -1,0 +1,133 @@
+Additinal Info:
+
+USER_PASSWORD = "123456789123",
+RANDOM_EMAIL = "email" + UUID.randomUUID().toString().replace("-", "") + "gmail.com";
+RANDOM_USER_NAME = generateUserName();
+RANDOM_TITLE = generateTitle();
+RANDOM_TEXT = generateText();
+
+TestCase#001. Авторизоваться под пользователем
+
+PRE-C:
+1.Зарегистрировать пользователя и запомнить данные RANDOM_USER_NAME:
+  1) Перейти на страницу: https://aqa-complexapp.onrender.com/
+  2) Заполнить поле 'Username' значением = RANDOM_USER_NAME
+  3) Заполнить поле 'Email' значением = RANDOM_EMAIL
+  4) Заполнить поле 'Password' значением = USER_PASSWORD
+  5) Нажать на кнопку 'Sign up for OurApp'
+  ОР: Отображается текст: Latest posts from those you follow
+2. Нажать на кнопку: 'Sign Out'
+ОР: Отображается страница 'Home'
+
+Шаги:
+1. Перейти на страницу: https://aqa-complexapp.onrender.com/
+2. Заполнить поле 'Username' = RANDOM_USER_NAME
+3. Заполнить поле 'Password' = USER_PASSWORD
+4. Нажать на кнопку 'Sign In'
+
+ОР: Отображается текст: "Latest posts from those you follow"
+
+Отображается ссылка 'Create Post'
+
+В хедере отображен 'USER_NAME' пользователя
+
+Отображается кнопка 'Sign Out'
+
+POST CONDITION: Удалить пользователя
+
+TestCase#002. Проверка валидационных уведомлений при регистрации с пустыми полями
+Шаги:
+1. Перейти на страницу: https://aqa-complexapp.onrender.com/
+2. Нажать на кнопку 'Sign up for OurApp'
+
+ОР: Отображается ошибка: Username must be at least 3 characters.
+Отображается ошибка: You must provide a valid email address.
+Отображается ошибка: Password must be at least 12 characters.
+
+
+TestCase#003. Зарегистрировать пользователя с существующим email
+PRE-C:
+1.Зарегистрировать пользователя и запомнить данные RANDOM_USER_NAME, RANDOM_EMAIL:
+  1) Перейти на страницу: https://aqa-complexapp.onrender.com/
+  2) Заполнить поле 'Username' со значением = RANDOM_USER_NAME
+  3) Заполнить поле 'Email' со значением = RANDOM_EMAIL
+  4) Заполнить поле 'Password' со значением = USER_PASSWORD
+  5) Нажать на кнопку 'Sign up for OurApp'
+  ОР: Отображается текст: Latest posts from those you follow
+2. Нажать на кнопку: 'Sign Out'
+ОР: Отображается страница 'Home'
+
+ШВ:
+1. Перейти на страницу: https://aqa-complexapp.onrender.com/
+2. Заполнить поле 'Username' со значением = RANDOM_USER_NAME
+3. Заполнить поле 'Email' со значением = RANDOM_EMAIL
+4. Заполнить поле 'Password' со значением = USER_PASSWORD
+5. Нажать на кнопку 'Sign up for OurApp'
+
+ОР: Отображается ошибка: This email is already being used.
+URL соответствует: https://aqa-complexapp.onrender.com/
+
+TestCase#004. Пользователь подписывается на профиль другого пользователя
+
+PRE-C:
+1.Зарегистрировать пользователя №1 и запомнить данные RANDOM_USER_NAME_1:
+  1) Перейти на страницу: https://aqa-complexapp.onrender.com/
+  2) Заполнить поле 'Username' со значением = RANDOM_USER_NAME
+  3) Заполнить поле 'Email' со значением = RANDOM_EMAIL
+  4) Заполнить поле 'Password' со значением = USER_PASSWORD
+  5) Нажать на кнопку 'Sign up for OurApp'
+  ОР: Отображается текст: Latest posts from those you follow
+2. Нажать на кнопку: 'Sign Out'
+    ОР: Отображается страница 'Home'
+3.Зарегистрировать пользователя №2 :
+  1) Перейти на страницу: https://aqa-complexapp.onrender.com/
+  2) Заполнить поле 'Username' со значением = RANDOM_USER_NAME
+  3) Заполнить поле 'Email' со значением = RANDOM_EMAIL
+  4) Заполнить поле 'Password' со значением = USER_PASSWORD
+  5) Нажать на кнопку 'Sign up for OurApp'
+  ОР: Отображается текст: Latest posts from those you follow
+
+4. Перейти на страницу: /profile/%RANDOM_USER_NAME_1%
+5. Нажать на кнопку 'Follow'
+ОР: Отображается кнопка 'Stop Following'
+7. Перейти на страницу: /profile/%RANDOM_USER_NAME%/following
+ОР: Отображается в списке пользователь %RANDOM_USER_NAME_1%
+
+POST CONDITION:
+1. Отписаться от пользователя
+ 1)Перейти на страницу: /profile/%RANDOM_USER_NAME_1%
+ 2) Нажать на кнопку 'Stop Following'
+ОР: Отображается кнопка 'Follow'
+Отображается уведомление: Successfully stopped following %RANDOM_USER_NAME_1%.
+ 3) Перейти на страницу: /profile/%USER_NAME%/following
+ОР: Пользователь %RANDOM_USER_NAME_1% отсутствует в списке
+URL соответствует: /profile/%USER_NAME%/following
+2. Удалить пользователя №1 и №2
+
+
+TestCase#005. Новый пользователь создает пост
+1.Зарегистрировать пользователя и запомнить данные RANDOM_USER_NAME
+  1) Перейти на страницу: https://aqa-complexapp.onrender.com/
+  2) Заполнить поле 'Username' со значением = RANDOM_USER_NAME
+  3) Заполнить поле 'Email' со значением = RANDOM_EMAIL
+  4) Заполнить поле 'Password' со значением = USER_PASSWORD
+  5) Нажать на кнопку 'Sign up for OurApp'
+  ОР: Отображается текст: Latest posts from those you follow
+   В хедере отображен %USER_NAME% пользователя
+ 2. Перейти на страницу: /create-post
+ 3. Заполнить поле 'Title' значением = RANDOM_TITLE
+ 4. Заполнить поле 'Body Content' значением = RANDOM_TEXT
+ 5. Выбрать значение = 'All Users' в дропдаун меню
+ 6. Нажать на кнопку 'Save New Post'
+ ОР: Отображается текст : New post successfully created.
+ Отображен пост пользователем
+ 7. Перейти на страницу: /profile/%RANDOM_USER_NAME%
+ ОР: Отображен пост пользователя в блоке 'Posts'
+ Счетчик 'Posts' со значением = 1;
+
+ POST CONDITION:
+ Удалить пользователя
+
+
+
+
