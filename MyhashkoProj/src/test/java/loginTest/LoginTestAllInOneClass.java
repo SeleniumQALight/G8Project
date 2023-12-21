@@ -20,6 +20,8 @@ public class LoginTestAllInOneClass {
 
 
 
+    //Буде викликатися перед кожним тестом
+
     @Before
     public void setup(){
         WebDriverManager.chromedriver().setup();  // .m2 папка куди завантажиться
