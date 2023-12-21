@@ -15,6 +15,7 @@ public class LoginTestAllInOneClass {
     WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
 
+    //Will be executed before each test
     @Before
     public void setUp() {
         WebDriverManager.chromedriver().setup(); //.m2
@@ -50,6 +51,7 @@ public class LoginTestAllInOneClass {
         Assert.assertTrue("Button SignOut is not visible", isButtonSignOutVisible());
 
     }
+
 
     private boolean isButtonSignOutVisible() {
         try {
