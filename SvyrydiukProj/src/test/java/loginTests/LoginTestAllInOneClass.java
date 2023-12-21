@@ -11,6 +11,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.Date;
+
 public class LoginTestAllInOneClass {
     WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
@@ -37,7 +39,29 @@ public class LoginTestAllInOneClass {
 
         WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         inputUserName.clear();
-        inputUserName.sendKeys("qaautoA");
+        inputUserName.sendKeys("qaauto");
+        logger.info("Login 'qaauto' was entered into input UserName");
+        WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        inputPassword.clear();
+        inputPassword.sendKeys("123456qwerty");
+        logger.info("Password was entered into input Password");
+
+        webDriver.findElement(By.xpath(".//button[text()='Sign In']")).click();
+        logger.info("Button 'Sign In' was clicked");
+
+        Assert.assertTrue("Button SignOut is visible", isButtonSignOutVisible());
+    }
+
+
+    @Test
+    public void invalidLogin() {
+        webDriver.get("https://aqa-complexapp.onrender.com");
+        logger.info("Site was opened");
+
+        WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
+        inputUserName.clear();
+        Date date = new Date();
+        inputUserName.sendKeys("qaauto" + date.getTime());
         logger.info("Login 'qaauto' was entered into input UserName");
         WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         inputPassword.clear();
@@ -51,7 +75,6 @@ public class LoginTestAllInOneClass {
         Assert.assertTrue("Button SignIn is visible", isButtonSignVisible());
         Assert.assertTrue("Warning message Invalid username/password is visible", isWarningMessageInvalidLoginVisible());
     }
-
 
     private boolean isButtonSignOutVisible() {
         try {
