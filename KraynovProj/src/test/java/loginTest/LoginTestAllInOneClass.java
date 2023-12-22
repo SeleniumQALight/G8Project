@@ -16,6 +16,7 @@ public class LoginTestAllInOneClass {
     WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
 
+    // @Before - аннотация, которая указывает, что метод будет выполняться перед каждым тестом
     @Before
     public void setup(){
         WebDriverManager.chromedriver().setup(); // .m2
@@ -50,7 +51,6 @@ public class LoginTestAllInOneClass {
         logger.info("Button Sing In was clicked");
 
         Assert.assertTrue("Button sign out in not visible", isButtonSingOutVisible());
-
     }
 
     private boolean isButtonSingOutVisible() {
