@@ -19,6 +19,7 @@ public class LoginTestAllInOneClass {
     WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
 
+    // буде виконуватися
     @Before
     public void setUp() {
         WebDriverManager.chromedriver().setup(); // m.2
@@ -52,6 +53,7 @@ public class LoginTestAllInOneClass {
 
         Assert.assertTrue("Button sing out is not visible", isButtonSingOutVisible());
     }
+
 
     private boolean isButtonSingOutVisible() {
         try {
