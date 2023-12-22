@@ -18,6 +18,7 @@ public class LoginTestAllInOneClass {
     WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
 
+    // Буде виконано перед кожним тестом
     @Before
     public void setup(){
         WebDriverManager.chromedriver().setup(); // .m2

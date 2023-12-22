@@ -1,1 +1,118 @@
-TestCase #001
+BASE_URL = https://aqa-complexapp.onrender.com
+NAME_REG = RegUser123123
+PASSWORD = Aa123456QWE!+
+NAME_LOGIN = User135444
+NAME_LOGIN_2 = 135444user
+NAME_LOGIN_3 = 135444user123
+NAME_LOGIN_4 = Userrrr123
+VALID_EMAIL = yashchenko.tim+$timestamp@gmail.com
+TITLE = Title + &timestamp
+TITLE_2 = 2Title + &timestamp
+SOME_TEXT = Text Text 123 Kiev
+SOME_TEXT_2 = Text Text 123 Odessa
+
+
+TestCase #001 Test Registration functionality
+==Preconditions:
+1. Open the browser [optional]
+2. Check that user NAME_REG DOESN'T exists in the system
+==Steps:
+1. Navigate to the BASE_URL
+2. Enter NAME_REG to the Username field in the Registration form
+   - there is no validation pop-ups
+3. Enter VALID_EMAIL to the Email field in the Registration form
+   - there is no validation pop-ups
+4. Enter PASSWORD to the Password field in the Registration form
+   - there is no validation pop-ups
+5. Click on the "Sign up for OurApp"
+==ER:
+-User redirected to the Home Page
+-There is "Hello NAME_REG, your feed is empty." text with description
+-There is NAME_REG in the header
+-There is "Create Post" button in the header
+-There is "Sign Out" button in the header
+==Postconditions:
+  1. Delete user NAME_REG from the system [optional]
+
+
+TestCase #002 Test Login functionality
+==Preconditions:
+1. Open the browser [optional]
+2. Check that user NAME_LOGIN exists in the system and if needed create a new user with NAME_LOGIN, PASSWORD, VALID_EMAIL
+==Steps:
+1. Navigate to the BASE_URL
+2. Enter NAME_LOGIN in the Username field in the header
+3. Enter PASSWORD in the Password field in the header
+4. Click "Sign In" button in the header
+==ER:
+-User redirected to the Home Page
+-There is "Hello NAME_REG, your feed is empty." text with description
+-There is NAME_REG in the header
+-There is "Create Post" button in the header
+-There is "Sign Out" button in the header
+==Postconditions:
+  1. Delete user NAME_LOGIN from the system [optional]
+
+
+TestCase #003 Creating the Post functionality
+==Preconditions:
+1. Open the browser [optional]
+2. Check that user NAME_LOGIN_2 exists in the system and if needed create a new user with NAME_LOGIN_2, PASSWORD, VALID_EMAIL
+3. Navigate to the BASE_URL
+4. Log In using NAME_LOGIN_2, PASSWORD
+==Steps:
+1. Click "Create Post" button in the header
+2. Enter TITLE in the Title field
+3. Enter SOME_TEXT in the Body Content field
+4. Check "Is this post unique?" checkbox
+5. Click on the "Save New Post" button
+==ER:
+- User redirected to the /post/{post_uid}
+- There is "New post successfully created." message in green box
+- New post Title == TITLE
+- There is "Note: This post was written for All Users" text
+- There is "Is this post unique? : yes" text
+==Postconditions:
+  1. Delete user NAME_LOGIN_2 from the system [optional]
+
+
+TestCase #004 Testing Search functionality
+==Preconditions:
+1. Open the browser [optional]
+2. Check that user NAME_LOGIN_3 exists in the system and if needed create a new user with NAME_LOGIN_3, PASSWORD, VALID_EMAIL
+3. Navigate to the BASE_URL
+4. Log In using NAME_LOGIN_3, PASSWORD
+==Steps:
+1. Click "Create Post" button in the header
+2. Enter TITLE_2 in the Title field
+3. Enter SOME_TEXT_2 in the Body Content field
+4. Check "Is this post unique?" checkbox
+5. Click on the "Save New Post" button
+6. Click on the Search icon in the header
+7. In the Search input field enter "Odessa"
+==ER:
+- There is search result with "Search Result" title
+- There is "(1 item found)" near "Search Result" title
+- There is one post in search results that have title == TITLE_2
+==Postconditions:
+  1. Delete user NAME_LOGIN_3 from the system [optional]
+
+
+TestCase #005 Testing Chat functionality
+==Preconditions:
+1. Open the browser [optional]
+2. Check that user NAME_LOGIN_4 exists in the system and if needed create a new user with NAME_LOGIN_4, PASSWORD, VALID_EMAIL
+3. Navigate to the BASE_URL
+4. Log In using NAME_LOGIN_4, PASSWORD
+==Steps:
+1. Click on the Chat icon in the header
+- Chat modal window opened in the bottom right corner
+2. Click on the "Type a message..." field
+3. Enter SOME_TEXT
+4. Click Enter
+==ER:
+- The message with text == SOME_TEXT appeared in the chat history
+==Postconditions:
+  1. Delete user NAME_LOGIN_4 from the system [optional]
+
+
