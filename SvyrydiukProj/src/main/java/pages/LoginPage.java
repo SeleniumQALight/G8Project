@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LoginPage extends ParentPage{
+public class LoginPage extends ParentPage {
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -35,4 +35,23 @@ public class LoginPage extends ParentPage{
         WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[text()='Sign In']"));
         clickOnElement(buttonSignIn);
     }
+
+    public boolean isWarningMessageVisible() {
+        try {
+            WebElement warningMessage = webDriver.findElement(By.xpath(".//div[text()='Invalid username/password.']"));
+            return isElementDisplayed(warningMessage);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isButtonSignInVisible() {
+        try {
+            WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[text()='Sign In']"));
+            return isElementDisplayed(buttonSignIn);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }
