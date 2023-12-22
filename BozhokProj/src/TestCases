@@ -1,0 +1,92 @@
+BASE_URL = https://aqa-complexapp.onrender.com/
+PROFILE_URL = https://aqa-complexapp.onrender.com/profile/qatestuser
+USER_NAME = qatestuser
+USER_PASSWORD = 123456qatest
+NEW_USER_NAME = testBozhok
+NEW_USER_PASSWORD = 1234567oliva
+EMAIL = bozhok.iryna@gmail.com
+TITLE = X-Path локатори
+TITLE_1 = Автоматизація
+
+TestCases №1 - The verify functionality of the login Page
+Pre conditional:
+1. Open the browser
+2. Create new user
+2.1 Enter USER_NAME
+2.2 Enter USER_PASSWORD
+2.3 Enter EMAIL
+2.4 Click button Sign up for OurApp
+2.5 Click button Sign Out
+Steps:
+1. Navigate BASE_URL
+2. In the header enter the Username USER_NAME
+3. Enter the Password USER_PASSWORD
+4. Click on the Sign in button
+Expected Result:
+In the header is no button Sign In in the header;
+In the header we see the user's avatar is name USER_NAME;
+On the page we see the greeting of the user "Hello USER_NAME, your feed is empty."
+
+
+TestCases №2 - The verify functionality of the Registration Page
+Pre conditional:
+1. Open the browser
+2. Navigate BASE_URL
+Steps:
+1. On the page enter the Username NEW_USER_NAME
+2. Enter the EMAIL
+3. Enter the Password NEW_USER_PASSWORD
+4. Click button Sign up for OurApp
+Expected Result:
+In the header is no button Sign In in the header;
+In the header we see the user's avatar is name NEW_USER_NAME;
+On the page we see the greeting of the user "Hello NEW_USER_NAME, your feed is empty."
+Post condition:
+1. Delete user NEW_USER_NAME from the system
+
+TestCases №3 - Verification of the creation of a new unique post.
+Pre conditional:
+1. Open the browser
+2. Navigate BASE_URL
+3. In the header log in USER_NAME and USER_PASSWORD
+Steps:
+1. In the header click button Create Post
+2. Enter TITLE
+3. Enter Body Content
+4. Click checkbox Is this unique?
+5. Click button Save New Post
+Expected Result:
+In your profile (click on the avatar) see post TITLE
+Post condition:
+1. Delete post TITLE from the system
+
+TestCases №4 - The verify functionality of the search
+Pre conditional:
+1. Open the browser
+2. Navigate BASE_URL
+3. In the header log in USER_NAME and USER_PASSWORD
+4. Create new Post TITLE_1 in the Test Cases №3
+Steps:
+1. In the header click icon search
+2. Enter TITLE_1
+3. Click on the TITLE_1 post
+Expected Result:
+1. Find this post
+2. You can see only one unique post on the list.
+3. Open page with our post TITLE_1
+Post condition:
+1. Delete post TITLE_1 from the system
+
+
+TestCases №5 - Verification of the delete post
+Pre conditional:
+1. Open the browser
+2. Navigate BASE_URL
+3. In the header log in USER_NAME and USER_PASSWORD
+4. Create new Post TITLE
+Steps:
+1. In the header click icon avatar or go over PROFILE_URL
+2. Click on the TITLE post
+3. Click on the button Delete
+Expected Result:
+On the page PROFILE_URL in the tab Post:0 and we see massage Post successfully deleted.

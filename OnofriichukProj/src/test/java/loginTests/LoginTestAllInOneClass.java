@@ -20,7 +20,9 @@ public class LoginTestAllInOneClass {
 
 
 
-  @Before
+
+    //Буде виконуватися перед кожним тестом
+    @Before
   public void setup(){
       WebDriverManager.chromedriver().setup(); // .m2
       webDriver = new ChromeDriver();
@@ -29,10 +31,7 @@ public class LoginTestAllInOneClass {
       logger.info("Browser was opened");
 
 
-
-
   }
-
 
   @After
   public void tearDown(){
@@ -64,6 +63,9 @@ public class LoginTestAllInOneClass {
         Assert.assertTrue("Button sign out is not visible", isButtonSignOutVisible());
 
     }
+
+
+
 
     private boolean isButtonSignOutVisible() {
       try{

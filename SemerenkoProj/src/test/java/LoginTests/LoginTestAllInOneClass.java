@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit;
 public class LoginTestAllInOneClass {
     WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
-
     @Before
     public void setup() {
 //        WebDriverManager.chromedriver().setup();

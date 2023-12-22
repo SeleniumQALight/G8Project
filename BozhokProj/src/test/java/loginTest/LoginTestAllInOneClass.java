@@ -18,6 +18,7 @@ public class LoginTestAllInOneClass {
     Logger logger = Logger.getLogger(getClass());
 
 
+    // Буде виконано перед кожним тестом
     @Before
     public void setup(){
         WebDriverManager.chromedriver().setup();
@@ -27,6 +28,7 @@ public class LoginTestAllInOneClass {
         logger.info("Browser was opened");
 
     }
+    // Буде виконано після кожного тесту
     @After
     public void tearDown(){
         webDriver.quit();
