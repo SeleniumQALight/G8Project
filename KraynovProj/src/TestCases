@@ -28,6 +28,7 @@ Steps:
 
 Expected Result:
 1. Отображена кнопка "Sign Out" и не отображена кнопка "Sign In"
+2. Отображено NEW_USER_NAME пользователя в хедере
 
 Postcondition:
 1. Удалить пользователя NEW_USER_NAME из системы
@@ -100,6 +101,7 @@ Expected result:
 Появилась плашка с уведомлением "New post successfully created"
 Заголовок поста соответствует "Post title" + CURRENT_DATE
 Контент статьи соответствует NEW_POST_CONTENT
+Пост с заголовком NEW_POST_TITLE есть в списке постов
 
 Postcondition:
 1. Удалить пост с заголовком NEW_POST_TITLE
