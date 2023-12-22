@@ -53,6 +53,12 @@ public class LoginTestAllInOneClass {
         Assert.assertTrue("Button sign out is not visible", isButtonSignOutVisible());
     }
 
+    @Test
+    public void invalidLogin(){
+        webDriver.get("https://aqa-complexapp.onrender.com");
+        logger.info("Site was opened");
+    }
+
     private boolean isButtonSignOutVisible() {
         try {
             boolean state = webDriver.findElement(By.xpath("//button[contains(text(),'Sign Out')]")).isDisplayed();
