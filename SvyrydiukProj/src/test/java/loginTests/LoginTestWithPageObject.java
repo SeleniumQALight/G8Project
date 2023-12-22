@@ -4,7 +4,6 @@ import baseTest.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Date;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
@@ -20,8 +19,7 @@ public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void invalidLogin() {
         pageProvider.loginPage().openLoginPage();
-        Date date = new Date();
-        pageProvider.loginPage().enterTextIntoInputLogin("qaauto" + date.getTime());
+        pageProvider.loginPage().enterTextIntoInputLogin("NotValidLogin");
         pageProvider.loginPage().enterTextIntoInputPassword("123456qwerty");
         pageProvider.loginPage().clickOnButtonSignIn();
 
