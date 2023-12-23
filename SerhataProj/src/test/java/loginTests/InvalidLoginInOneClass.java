@@ -33,7 +33,7 @@ public class InvalidLoginInOneClass {
     }
 
     @Test
-    public void validLogin(){
+    public void invalidLogin(){
         webDriver.get("https://aqa-complexapp.onrender.com");
         logger.info("Site was opened");
 
@@ -52,7 +52,7 @@ public class InvalidLoginInOneClass {
 
         Assert.assertTrue("Button Sign In is visible", isButtonSignInVisible());
         Assert.assertTrue("Text Invalid username/password. is visible", isErrorMessageVisible());
-        Assert.assertTrue("Button Sign Out is not visible", isButtonSignOutVisible());
+        Assert.assertFalse("Button Sign Out is visible", isButtonSignOutVisible());
 
     }
 
@@ -63,7 +63,7 @@ public class InvalidLoginInOneClass {
             return state;
         } catch (Exception e){
             logger.info("Sign Out button is not displayed");
-            return true;
+            return false;
         }
     }
 
@@ -74,7 +74,7 @@ public class InvalidLoginInOneClass {
             return state;
         } catch (Exception e){
             logger.info("Error text is not displayed");
-            return false;
+            return true;
         }
     }
 
@@ -85,7 +85,7 @@ public class InvalidLoginInOneClass {
             return state;
         } catch (Exception e){
             logger.info("Sign In is not displayed");
-            return false;
+            return true;
         }
     }
 }
