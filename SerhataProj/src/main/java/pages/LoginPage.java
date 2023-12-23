@@ -36,4 +36,26 @@ public class LoginPage extends ParentPage {
         WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignIn);
     }
+
+    public boolean isButtonSignInPresent() {
+        try {
+            boolean state = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")).isDisplayed();
+            logger.info(state + " is button Sign In visible");
+            return state;
+        } catch (Exception e){
+            logger.info("Button Sign In is not displayed");
+            return false;
+        }
+    }
+
+    public boolean isErrorMessagePresent() {
+        try {
+            boolean state = webDriver.findElement(By.xpath("//div[@class='alert alert-danger text-center']")).isDisplayed();
+            logger.info(state + " is error message visible");
+            return state;
+        } catch (Exception e){
+            logger.info("Error message is not displayed");
+            return false;
+        }
+    }
 }
