@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -34,8 +35,9 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected boolean isElementDisplayed(WebElement element) {
+    protected boolean isElementDisplayed(String elementXpath) {
         try {
+            WebElement element = webDriver.findElement(By.xpath(elementXpath));
             boolean state = element.isDisplayed();
             logger.info("Element is displayed -> " + state);
             return state;

@@ -11,7 +11,17 @@ public class HomePage extends ParentPage {
     }
 
     public boolean isButtonSignOutVisible() {
-        WebElement buttonSignOut = webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
-        return isElementDisplayed(buttonSignOut);
+        String buttonSignOutXpath = ".//button[text()='Sign Out']";
+        return isElementDisplayed(buttonSignOutXpath);
+    }
+
+    public boolean isButtonSignInVisible() {
+        String buttonSignInXpath = ".//button[text()='Sign In']";
+        return isElementDisplayed(buttonSignInXpath);
+    }
+
+    public boolean isInvalidUsernameOrPasswordMessageVisible() {
+        String invalidUsernameOrPasswordMessageXpath = ".//div[contains(text(),'Invalid username/password.')]";
+        return isElementDisplayed(invalidUsernameOrPasswordMessageXpath);
     }
 }
