@@ -1,6 +1,6 @@
 package loginTest;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.junit.After;
