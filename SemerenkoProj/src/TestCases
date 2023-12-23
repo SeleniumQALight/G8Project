@@ -98,6 +98,7 @@ Steps:
 3. Enter the "What are you interested in" field SEARCH_TEXT
 Expected Result:
 1. User sees Search result window with topics contains SEARCH_TEXT
+2. User doesn't see one more same post at the post list
 
 Postcondition:
 1. Delete user USER_NAME from the system [optional]

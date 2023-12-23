@@ -3,7 +3,7 @@ input_username_register =  ".//input[@id='username-register']"
 input_email_register =  ".//input[@id='email-register']"
 input_password_register =  ".//input[@id='password-register']"
 
-input_username_signin = ".//input[@id='username1']"
+input_username_signin = ".//input[@placeholder='Username']"
 input_password_signin = ".//input[@placeholder='Password']"
 
 button_signup = ".//button[@type='submit']"
@@ -12,10 +12,10 @@ button_signin = ".//button[@class='btn btn-primary btn-sm']"
 
 #HomePage
 button_signout = ".//button[@class='btn btn-sm btn-secondary']"
-button_createPost = ".// a [@class='btn btn-sm btn-success mr-2']"
+button_createPost = ".// a [@href='/create-post']"
 
-a_my_profile = ".//a[@class='mr-2']"
-a_search = ".//a[@class='text-white mr-2 header-search-icon']"
+a_my_profile = ".//a[@href='/profile/qaauto']"
+a_search = ".//a[@data-original-title='Search']"
 
 text_hello = ".//h2 [contains(text(), "Hello")]"
 
