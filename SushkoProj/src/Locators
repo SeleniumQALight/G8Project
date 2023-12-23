@@ -1,0 +1,34 @@
+#LoginPage - login form
+input_username =  ".//input[@id='username']"
+input_password = ".//input[@id='password']"
+button_sign_in = ".//button[text()='Sign In']"
+
+#LoginPage - registration form
+input_username_register = ".//input[@id='username-register']"
+input_email_register = ".//input[@id='email-register']"
+input_password_register = ".//input[@id='password-register']"
+button_sign_up = ".//button[text()='Sign up for OurApp']"
+
+div_username_validation_text = ".//div[text()='This username is already taken.']"
+div_email_validation_text = ".//div[text()='This email is already being used.']"
+
+#HomePage
+button_logout = ".//button[text() = 'Sign Out']"
+button_create_post = ".//a[text() = 'Create Post']"
+span_user_name = ".//span[contains(text(), USER_NAME.lower_case)]"
+
+#CreatePostPage
+input_title = ".//input[@id = 'post-title']"
+text_area_body_content = ".//textarea[@id = 'post-body']"
+button_save_new_post = ".//button[text() = 'Save New Post']"
+
+#PostPage
+post_title = ".//h2"
+post_body = ".//p[contains(text(), TEXT_WE_NEED_TO_CHECK)]"
+div_successfully_created_post_message = ".//div[text()='New post successfully created.']"
+button_edit = ".//a[@data-original-title = 'Edit']"
+
+#EditPostPage
+div_successfully_updated_post_message = ".//div[text()='Post successfully updated.']"
+button_update_post = ".//button[text() = 'Save Updates']"
+link_back_to_post = ".//a[text() = '« Back to post permalink']"
