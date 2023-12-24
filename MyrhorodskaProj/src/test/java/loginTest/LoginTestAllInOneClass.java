@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginTestAllInOneClass {
     WebDriver webDriver;
-    Logger logger = Logger.getLogger("BaseTest");
+    Logger logger = Logger.getLogger(getClass());;
 
 // буде виконуватись перед кожним тестом (відкривати браузер)
 
