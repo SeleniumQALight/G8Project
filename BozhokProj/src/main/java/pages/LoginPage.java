@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LoginPage extends ParentPage{
+public class LoginPage extends ParentPage {
 
 
     public LoginPage(WebDriver webDriver) {
@@ -39,5 +39,40 @@ public class LoginPage extends ParentPage{
         WebElement buttonSignIn = webDriver.findElement(
                 By.xpath("//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignIn);
+    }
+
+
+    public boolean isButtonSignInVisible() {
+        try {
+            boolean state = webDriver.findElement(By.xpath("//button[text()='Sign In']")).isDisplayed();
+            logger.info(state + " is button visible");
+            return state;
+        } catch (Exception e) {
+            logger.info("Button Sign In is displayed");
+            return false;
+        }
+    }
+
+    public boolean isMessageInvalidUsernamePasswordInVisible() {
+        try {
+            boolean state = webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']"))
+                    .isDisplayed();
+            logger.info(state + " is message visible");
+            return state;
+        } catch (Exception e) {
+            logger.info("Message is not displayed");
+            return false;
+        }
+    }
+
+    public boolean isButtonSignOutVisible() {
+        try {
+            boolean state = webDriver.findElement(By.xpath("//button[text()='Sign Out']")).isDisplayed();
+            logger.info(state + " is button visible");
+            return state;
+        } catch (Exception e) {
+            logger.info("Button Sign Out is not displayed");
+            return false;
+        }
     }
 }
