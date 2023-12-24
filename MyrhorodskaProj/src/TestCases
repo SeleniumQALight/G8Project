@@ -21,60 +21,200 @@ Postcondition :
 ----------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------
 
-USER_NAME = tc001testusertime
-USER_PASSWORD = Tequth_83!NM
 TestCase #001_Homework
 Registration Test Case:
 
-Precondition: Create a unique user “tc001testusertime” in the precondition step.
+Precondition:
+1. Ensure the application is accessible/open browser
+2. Clean up the environment by deleting any existing user accounts with the name "tc001testusertime."
 
-1.Perform registration using the created unique user.
-1.1 Enter the USER_NAME
-1.2.Enter the password USER_PASSWORD
-2.Verify that the user is successfully registered and redirected to the login page.
-3.Post-condition: Delete the user “tc001testusertime” to clean up the environment.
+1. Perform registration using the created unique user.
+   1.1 Navigate to the registration page.
+   1.2 Enter the USER_NAME "tc001testusertime" in the username field.
+   1.3 Enter a valid email address in the email field.
+   1.4 Enter the USER_PASSWORD "Tequth_83!NM" in the password field.
+   1.5 Click on the "Sign up for OurApp" button.
+
+2. Verify that the user is successfully registered and redirected to the login page.
+   2.1 Confirm that the login page is displayed.
+   2.2 Check for any confirmation message
+
+3. Post-condition:
+   3.1 Delete the user "tc001testusertime" to clean up the environment.
+   3.2 Confirm that the user "tc001testusertime" no longer exists in the system.
+   3.3 Ensure no residual data from the registration process remains.
 ---------------------------------------------------------------------------------
-TestCase#002_Homework
-To check if an invalid login is recognized:
-Presentations: None
-Actions:
-1. Try to log in with an invalid login "tc001"
-Check: Make sure the system returns an incorrect password message
+TestCase #002_Homework
+Invalid Login Recognition Test Case:
+
+Precondition:
+1. Ensure the application is accessible.
+
+1. Try to log in with an invalid login "tc001":
+   1.1 Navigate to the login page.
+   1.2 Locate the username input field and enter the invalid login "tc001."
+   1.3 Locate the password input field and enter a valid password.
+   1.4 Click on the Sign In button.
+
+Check:
+   1.5 Ensure that the system recognizes the invalid login.
+   1.6 Verify that the system returns an incorrect username or password message.
+        - **Expected Message:** "Invalid username/password."
+
 
 ---------------------------------------------------------------
 TestCase #003_Homework
-Add Item to Cart Test Case:
+Create Post Test Case:
 
-Precondition: Create a unique user “tc002testusertime”” in the precondition step.
-1.Login using the created unique user.
-2.Verify that the user is successfully logged in and redirected to the home page.
-3.Click on button "CREATE POST".
-4.Verify that the user is successfully  redirected to the next page and the cart count is updated accordingly.
-5.Go to the "Titel" field
-6.Add text to the "Titel" field like : titel1
-7.Go ti the "Body context" and add value "xxx"
-8.Click on button "Save new post"
-Post-condition: Delete the user “tc002testusertime” and titel to clean up the environment
+Precondition:
+1. Ensure the application is accessible.
+2. Create a unique user "tc002testusertime" in the precondition step.
+
+1. Login using the created unique user:
+   1.1 Navigate to the login page.
+   1.2 Enter the username "tc002testusertime."
+   1.3 Enter the password.
+   1.4 Click on the Sign in  button.
+
+2. Verify that the user is successfully logged in and redirected to the home page.
+   2.1 Confirm that the home page is displayed.
+   2.2 Check for personalized welcome message
+
+3. Click on the "CREATE POST" button.
+   3.1 Locate and click on the "CREATE POST" button.
+
+4. Verify that the user is successfully redirected to the next page
+   4.1 Confirm that the next page is displayed.
+
+5. Go to the "Title" field.
+   5.1 Locate the "Title" field on the page.
+
+6. Add text to the "Title" field (e.g., "title1").
+   6.1 Enter the desired text, for example, "title1," into the "Title" field.
+
+7. Go to the "Body Content" field and add the value "xxx."
+   7.1 Locate the "Body Content" field on the page.
+   7.2 Enter the value "xxx" into the "Body Content" field.
+
+8. Click on the "Save new post" button.
+   8.1 Locate and click on the "Save new post" button.
+
+Verification:
+   9. Verify that a success message is displayed.
+      9.1 Check for a success message such as "New post successfully created."
+
+   10. Verify that the created post is visible in the list of posts.
+       10.1 Navigate to the list of posts.
+       10.2 Confirm that the post with the title "title1" is present in the list.
+
+Post-condition:
+   11. Delete the user "tc002testusertime" and the post with the title "title1" to clean up the environment.
+       11.1 Confirm that the user "tc002testusertime" no longer exists in the system.
+       11.2 Confirm that the post with the title "title1" is deleted.
+
 
 -----------------------------------------------------------------
 TestCase #004_Homework
 Search Test Case:
 
-Precondition: Create a unique post with a title “tc003testusertime” in the precondition step.
+Precondition:
+1. Ensure the application is accessible.
+2. Create a unique post with the title "tc003testusertime" in the precondition step.
+
 1. Login using a default user or create a unique user USER_NAME.
+   1.1 Navigate to the login page.
+   1.2 Enter the username (either a default user or create a unique user).
+   1.3 Enter the password.
+   1.4 Click on the Sign in  button.
+
 2. Verify that the user is successfully logged in and redirected to the home page.
+   2.1 Confirm that the home page is displayed.
+   2.2 Check for any personalized welcome message or user information indicating a successful login.
+
 3. Navigate to the search bar and enter the unique post title in the search bar.
+   3.1 Locate the search bar on the page.
+   3.2 Enter the post title "tc003testusertime" in the search bar.
+   3.3 Click on the search icon or press "Enter."
+
 4. Verify that the search results display the relevant post matching the title.
-5. Post-condition: Delete the post “tc003testusertime” and titel to clean up the environment.
+   4.1 Check the search results for the presence of a post with the title "tc003testusertime."
+   4.2 Confirm that only one post with the title "tc003testusertime" is displayed in the search results.
+   4.3 Verify that the post details, including the title
 
+Post-condition:
+   5. Delete the post "tc003testusertime" and title to clean up the environment.
+
+-------------------------------------------------------------------
 TestCase #005_Homework
-Checking the ability to view a user's profile:
+Checking the Ability to View a User's Profile:
 
-Predispositions: Create a unique user USER_NAME = "TC004testusertime"
+Precondition:
+1. Ensure the application is accessible.
+2. Create a unique user with USER_NAME "tc004testusertime" in the precondition step.
+
 1. Login using a default user or create a unique user USER_NAME.
+   1.1 Navigate to the login page.
+   1.2 Enter the username (either a default user or create a unique user with USER_NAME "tc004testusertime").
+   1.3 Enter the password.
+   1.4 Click on the login button.
+
 2. Verify that the user is successfully logged in and redirected to the home page.
-3. Navigate to the tool bar and find "My Profile" button
-4. Click on "My Profile" icon
-5. View your profile
-Check: Make sure that the user profile is USER_NAME displayed correctly
-6.Post-condition: Delete the post “tc004testusertime” and titel to clean up the environment.
+   2.1 Confirm that the home page is displayed.
+   2.2 Check for any personalized welcome message or user information indicating a successful login.
+
+3. Navigate to the toolbar and find the "My Profile" button.
+   3.1 Locate the toolbar on the page.
+   3.2 Find and click on the "My Profile" button/icon.
+
+4. Click on the "My Profile" icon.
+   4.1 Click on the "My Profile" icon to view the user profile.
+
+5. View your profile.
+   5.1 Check that the user profile is displayed.
+   5.2 Verify that the displayed profile corresponds to the logged-in user (USER_NAME).
+
+Check:
+   6. Make sure that the user profile is USER_NAME displayed correctly.
+
+Post-condition:
+   7. Create a post with a unique title, e.g., "tc004post."
+   7.1 Confirm that the post "tc004post" is visible in the list of posts.
+
+   8. Delete the user "tc004testusertime" and the post "tc004post" to clean up the environment.
+      8.1 Confirm that the user "tc004testusertime" no longer exists in the system.
+      8.2 Confirm that the post "tc004post" is deleted.
+-------------------------------------------------------------------
+TestCase #006_Homework
+
+Checking the Possibility of Deleting a Post:
+
+Preconditions:
+1. Ensure the application is accessible.
+2. Create a unique user with USER_NAME "tc005testusertime" in the precondition step.
+
+1. Log in as the USER_NAME user:
+   1.1 Navigate to the login page.
+   1.2 Enter the username (USER_NAME).
+   1.3 Enter the password.
+   1.4 Click on the Sign in button.
+
+2. Create a post with TITLE "tc005title":
+   2.1 Locate and click on the "Create Post" button.
+   2.2 Enter the title "tc005title" in the post creation form.
+   2.3 Add any necessary content to the post.
+   2.4 Click on the "Save" or "Publish" button.
+
+3. Find the post with TITLE "tc005title" and delete it:
+   3.1 Navigate to the list of posts.
+   3.2 Find the post with the title "tc005title."
+   3.3 Click on the post to view its details.
+   3.4 Locate and click on the "Delete" or "Remove" button.
+
+Check:
+   4. Make sure that the post with the TITLE "tc005title" is successfully deleted.
+      - Confirm that the post is no longer visible in the list of posts.
+
+Post-condition:
+   5. Delete the user "tc005testusertime" and the post "tc005title" to clean up the environment.
+
+
