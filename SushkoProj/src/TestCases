@@ -1,7 +1,9 @@
 BASE_URL = https://aqa-complexapp.onrender.com
-USER_NAME = Vladyslava+CURRENT_DATE
-EMAIL = test+CURRENT_DATE@gmail.com
+USER_NAME = Vladyslava+CURRENT_DATE_TIME
+EMAIL = test+CURRENT_DATE_TIME@gmail.com
 USER_PASSWORD = 123456qwerty
+TITLE = title + CURRENT_DATE_TIME
+BODY = body content + CURRENT_DATE_TIME
 
 TestCase #001 - Verify the functionality of the Creating User
 Steps:
@@ -16,7 +18,12 @@ Expected Result:
 7. Verify user sees the Home Page
 (sees button "Sign Out", sees user name and don see button "Sign In")
 
+
 TestCase #002 - Verify the functionality of the Prohibiting the creation of a few users with the same name and email
+Precondition:
+1. Check user USER_NAME exists in the system
+and if needed create a new user with USER_NAME
+
 Steps:
 1. Open the browser
 2. Navigate to the BASE_URL
@@ -24,85 +31,91 @@ Steps:
 4. Enter the email EMAIL
 5. Enter the password USER_PASSWORD
 6. Click on the Sign Up for OurApp button
-7. Verify user sees the Home Page
-(sees button "Sign Out", sees user name and don see button "Sign In")
-8. Click on Sign Out
-9. Verify user sees the Login Page
-  (sees button "Sign in" and don see button "Sign Out")
-10. Enter the username USER_NAME
-11. Enter the email EMAIL
-12. Enter the password USER_PASSWORD
-13. Click on the Sign Up for OurApp button
 
 Expected Result: Verify user isn't created
 (user sees the Login Page with validation messages 'This username is already taken.', 'This email is already being used.'))
 
 
-
 TestCase #003 - Verify the functionality of the Login Page
+Precondition:
+1. Check user USER_NAME exists in the system
+and if needed create a new user with USER_NAME
+
 Steps:
 1. Open the browser
 2. Navigate to the BASE_URL
 3. Enter the username USER_NAME
-4. Enter the email EMAIL
-5. Enter the password USER_PASSWORD
-6. Click on the Sign Up for OurApp button
-7. Verify user sees the Home Page
-(sees button "Sign Out", sees user name and don see button "Sign In")
-8. Click on Sign Out
-9. Verify user sees the Login Page
-  (sees button "Sign in" and don see button "Sign Out")
-10. Enter the username USER_NAME
-11. Enter the password USER_PASSWORD
-12. Click on the Sign In button
+4. Enter the password USER_PASSWORD
+5. Click on the Sign In button
 
 Expected Result:
-13. Verify user sees the Home Page
+6. Verify user sees the Home Page
 (sees button "Sign Out", sees user name and don see button "Sign In")
 
 
 TestCase #004 - Verify the functionality of the Creating Post
+Precondition:
+1. Check user USER_NAME exists in the system
+and if needed create a new user with USER_NAME
+
 Steps:
 1. Open the browser
 2. Navigate to the BASE_URL
 3. Enter the username USER_NAME
-4. Enter the email EMAIL
-5. Enter the password USER_PASSWORD
-6. Click on the Sign Up for OurApp button
-7. Verify user sees the Home Page
+4. Enter the password USER_PASSWORD
+5. Click on the Sign In button
+6. Verify user sees the Home Page
 (sees button "Sign Out", sees user name and don see button "Sign In")
-8. Click on Create post button
-9. Enter title
-10. Enter Body Content
-11. Click Save button
+7. Click on Create post button
+8. Enter title TITLE
+9. Enter Body Content BODY
+10. Click Save button
 
 Expected Result:
-12. Verify new post created successfully
+11. Verify new post created successfully
 (sees message 'New post successfully created.', see title and body content)
+12. Click on My profile button and find created post by TITLE
+
+Postcondition:
+1. Click on created post
+2. Waiting for Delete button is appear
+3. Click on Delete button
+4. Check that message "Post successfully deleted." is appear
+
 
 TestCase #005 - Verify the functionality of the Editing Post
+Precondition:
+1. Check user USER_NAME exists in the system
+and if needed create a new user with USER_NAME
+
 Steps:
 1. Open the browser
 2. Navigate to the BASE_URL
 3. Enter the username USER_NAME
-4. Enter the email EMAIL
-5. Enter the password USER_PASSWORD
-6. Click on the Sign Up for OurApp button
-7. Verify user sees the Home Page
+4. Enter the password USER_PASSWORD
+5. Click on the Sign In button
+6. Verify user sees the Home Page
 (sees button "Sign Out", sees user name and don see button "Sign In")
-8. Click on Create post button
-9. Enter title
-10. Enter Body Content
-11. Click Save button
-12. Verify new post created successfully
+7. Click on Create post button
+8. Enter title
+9. Enter Body Content
+10. Click Save button
+11. Verify new post created successfully
 (sees message 'New post successfully created.', see title and body content)
-13. Click on Edit button
-14. Change title
-15. Change Content Body
-16. Click on Save button
-17. Check that message 'Post successfully updated.' is appear
-18. Click on Back to post permalink button
+12. Click on Edit button
+13. Change title
+14. Change Content Body
+15. Click on Save button
+16. Check that message 'Post successfully updated.' is appear
+17. Click on Back to post permalink button
 
 Expected Result:
 19. Verify new post updated successfully
 (see new title and body content)
+20. Click on My profile button and find updated post by new title
+
+Postcondition:
+1. Click on created post
+2. Waiting for Delete button is appear
+3. Click on Delete button
+4. Check that message "Post successfully deleted." is appear

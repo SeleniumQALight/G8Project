@@ -1,6 +1,6 @@
 #LoginPage - login form
-input_username =  ".//input[@id='username']"
-input_password = ".//input[@id='password']"
+input_username =  ".//input[@placeholder='Username']"
+input_password = ".//input[@placeholder='Password']"
 button_sign_in = ".//button[text()='Sign In']"
 
 #LoginPage - registration form
@@ -32,3 +32,8 @@ button_edit = ".//a[@data-original-title = 'Edit']"
 div_successfully_updated_post_message = ".//div[text()='Post successfully updated.']"
 button_update_post = ".//button[text() = 'Save Updates']"
 link_back_to_post = ".//a[text() = '« Back to post permalink']"
+button_delete_post = ".//button[@data-original-title = 'Delete']"
+
+#ProfilePage
+link_my_profile = ".//img[@data-original-title='My Profile']//.."
+post_title_by_text = ".//strong[text() = TEXT_WE_NEED_TO_CHECK]"
