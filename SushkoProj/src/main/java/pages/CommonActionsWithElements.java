@@ -2,7 +2,6 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -15,35 +14,35 @@ public class CommonActionsWithElements {
     }
 
     protected void enterTextIntoInput(WebElement input, String text) {
-        try {
+        try{
             input.clear();
             input.sendKeys(text);
             logger.info(text + " was inputted into input");
-        } catch (Exception e) {
+        }catch (Exception e){
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
         }
     }
 
     protected void clickOnElement(WebElement element) {
-        try {
+        try{
             element.click();
             logger.info("Element was clicked");
-        } catch (Exception e) {
+        }catch (Exception e){
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
         }
     }
 
-    protected boolean isElementDisplayed(String elementXpath) {
-        try {
-            WebElement element = webDriver.findElement(By.xpath(elementXpath));
+    protected boolean isElementDisplayed(WebElement element) {
+        try{
             boolean state = element.isDisplayed();
             logger.info("Element is displayed -> " + state);
             return state;
-        } catch (Exception e) {
+        }catch (Exception e){
             logger.info("Element is displayed -> false");
             return false;
         }
     }
+
 }

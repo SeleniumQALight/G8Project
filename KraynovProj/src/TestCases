@@ -1,1 +1,133 @@
-TestCase
+BASE_URL = https://aqa-complexapp.onrender.com
+NEW_USER_NAME = "ukrmystic";
+NEW_USER_EMAIL = "ukrmystic@gmail.com"
+USER_NAME = "qaauto"
+USER_PASSWORD = "123456qwerty"
+POST_TITLE = "Туристичні маршрути Карпат"
+BODY_CONTENT = "Карпати - це ідеальне місце для піших прогулянок та велосипедних маршрутів. Відкрийте для себе чудові маршрути, які проходять через гірські хребти, заповідники та природні заповідники."
+NEW_POST_TITLE = "Топ заклади Карпат"
+NEW_POST_CONTENT = "Пивнуха у Степана"
+CURRENT_DATE = Текущая дата;
+POST_TITLE_TO_DELETE = "Post title to delete"
+
+/*
+* Тест-кейс 1
+*/
+
+TC#01. Зарегистрировать нового пользователя через форму регистрации
+
+Precondition:
+1. Открыть браузер [optional]
+
+Steps:
+1. Перейти на BASE_URL
+2. Ввести NEW_USER_NAME в поле 'Username'
+3. Ввести NEW_USER_EMAIL в поле 'Email'
+3. Ввести USER_PASSWORD в поле 'Password'
+5. Нажать на кнопку 'Sign up for OurApp'
+
+Expected Result:
+1. Отображена кнопка "Sign Out" и не отображена кнопка "Sign In"
+2. Отображено NEW_USER_NAME пользователя в хедере
+
+Postcondition:
+1. Удалить пользователя NEW_USER_NAME из системы
+
+/*
+* Тест-кейс 2
+*/
+
+TC#02. Авторизоваться под пользователем через форму авторизации в хедере
+
+Precondition:
+1. Открыть браузер [optional]
+2. Убедитесь, что пользователь USER_NAME существует в системе. При необходимости создайте нового пользователя с именем USER_NAME
+
+Steps:
+1. Перейти на BASE_URL
+2. Ввести USER_NAME в поле 'Username'
+3. Ввести USER_PASSWORD в поле 'Password'
+5. Нажать на кнопку 'Sign In'
+
+Expected Result:
+1. Отображена кнопка "Sign Out" и не отображена кнопка "Sign In"
+
+Postcondition:
+1. Удалить пользователя USER_NAME из системы [optional]
+
+
+/*
+* Тест-кейс 3
+*/
+
+TC#03. Пользователь ищет определенный пост
+
+Precondition:
+1. Открыть браузер [optional]
+2. Убедитесь, что пользователь USER_NAME существует в системе. При необходимости создайте нового пользователя с именем USER_NAME
+3. Авторизоваться под пользователем USER_NAME
+4. Убедитесь, что пост POST_TITLE существует в системе. При необходимости создайте новый пост с заголовком POST_TITLE и контентом BODY_CONTENT
+
+Steps:
+1. Нажать на иконку 'Search'
+2. Ввести POST_TITLE в поле 'What are you interested in?'
+3. Подождать загрузку результата поиска
+
+Expected result:
+Убедитесь, что пост POST_TITLE существует в списке результата поиска
+
+Postcondition:
+1. Удалить пользователя USER_NAME из системы [optional]
+
+
+/*
+* Тест-кейс 4
+*/
+
+TC#04. Пользователь создает новый пост на сайте
+
+Precondition:
+1. Открыть браузер [optional]
+2. Убедитесь, что пользователь USER_NAME существует в системе. При необходимости создайте нового пользователя с именем USER_NAME
+3. Авторизоваться под пользователем USER_NAME
+
+Steps:
+1. Нажать на кнопку 'Create Post'
+2. Ввести текст NEW_POST_TITLE в поле 'Title'
+3. Ввести текст NEW_POST_CONTENT в поле 'Body Content'
+4. Нажать на кнопку 'Save New Post'
+
+Expected result:
+Появилась плашка с уведомлением "New post successfully created"
+Заголовок поста соответствует "Post title" + CURRENT_DATE
+Контент статьи соответствует NEW_POST_CONTENT
+Пост с заголовком NEW_POST_TITLE есть в списке постов
+
+Postcondition:
+1. Удалить пост с заголовком NEW_POST_TITLE
+2. Удалить пользователя USER_NAME из системы [optional]
+
+
+/*
+* Тест-кейс 5
+*/
+
+TC#05. Пользователь удаляет пост на сайте
+
+Precondition:
+1. Открыть браузер [optional]
+2. Убедитесь, что пользователь USER_NAME существует в системе. При необходимости создайте нового пользователя с именем USER_NAME
+3. Авторизоваться под пользователем USER_NAME
+4. Создайте новый пост с заголовком POST_TITLE_TO_DELETE и контентом BODY_CONTENT
+
+Steps:
+1. Нажать на иконку 'My Profile'
+2. Нажать на пост с названием POST_TITLE_TO_DELETE
+3. Нажать на иконку 'Delete'
+
+Expected result:
+Появилась плашка с уведомлением "Post successfully deleted."
+Поста с заголовком POST_TITLE_TO_DELETE нет в списке постов
+
+Postcondition:
+1. Удалить пользователя USER_NAME из системы [optional]
