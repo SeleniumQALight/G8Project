@@ -1,0 +1,26 @@
+Sign In
+Username = //input[@name='username' and @class='form-control form-control-sm input-dark']
+Password = //input[@name='password' and not(@id)]
+Sign In = //button [@class='btn btn-primary btn-sm']
+
+Sign Up
+Username = //input[@id='username-register']
+Email = //input[@id='email-register']
+Password = //input[@id='password-register']
+Sign up for OurApp = //button [@type='submit']
+
+Main Page
+Create Post = //a[@class='btn btn-sm btn-success mr-2']
+Sign Out = //button[@class='btn btn-sm btn-secondary']
+My Profile = //a[@href="/profile/qaauto"]
+
+Create Post
+Title = //input[@id='post-title']
+Body Content = //textarea[@id='post-body']
+Is this post unique? = //input[@name='uniquePost']
+Save New Post = //button[@class='btn btn-primary']
+Dropdown = //select//option[@value='All Users']
+
+Edit post
+Edit = //a[@class='text-primary mr-2']
+Delete =//button[@class='delete-post-button text-danger']
