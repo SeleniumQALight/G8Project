@@ -13,4 +13,14 @@ public class HomePage extends ParentPage {
         WebElement buttonSignOut = webDriver.findElement(By.xpath("//button[text()='Sign Out']"));
         return isElementDisplayed(buttonSignOut);
     }
-}
+    public boolean isButtonSingOutNotVisible(){
+        try {
+            WebElement buttonSignOut = webDriver.findElement(By.xpath("//button[text()='Sign Out']"));
+            return isElementDisplayed(buttonSignOut);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    }
+
+
