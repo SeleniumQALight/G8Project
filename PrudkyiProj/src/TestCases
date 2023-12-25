@@ -2,7 +2,15 @@ BASE_URL = "https://aqa-complexapp.onrender.com/"
 USER_NAME = alex
 USER_PASSWORD = alex123456789
 USER_EMAIL = alexalex7788@ukr.net
-DEFAULT_USER = USER_NAME and USER_PASSWORD
+
+USER_NAME_1 = nick
+USER_PASSWORD_1 = nick123456789
+USER_EMAIL_1 = nick7788@ukr.net
+
+USER_NAME_2 = qaauto
+USER_PASSWORD_2 =123456qwerty
+
+DEFAULT_USER = USER_NAME_2 and USER_PASSWORD_2
 
 -----------------------------------------------------------------------
 TestCase #001 - Verify the functionality of the Login Page
@@ -29,12 +37,12 @@ TestCase #002 - Verify the functionality of My profile page
 
 Preconditions:
 1. Open the browser [optional]
-2. Check user USER_NAME exist in the system and if not create a new user with USER_NAME, USER_PASSWORD and USER_EMAIL
+2. Check user USER_NAME_1 exist in the system and if not create a new user with USER_NAME_1, USER_PASSWORD_1 and USER_EMAIL_1
 
 Steps:
 1. Navigate to the BASE_URL
-2. Enter the username  USER_NAME
-3. Enter the password  USER_PASSWORD
+2. Enter the username  USER_NAME_1
+3. Enter the password  USER_PASSWORD_1
 4. Click on the Sign In button
 5. Hover mouse on My Profile icon
 6. Click on My Profile icon
@@ -43,7 +51,7 @@ Expected Result:
 1. Verify user sees My Profile page (user can see Posts, Followers and Following sections)
 
 Post-conditions:
-1. Delete user USER_NAME from the system
+1. Delete user USER_NAME_1 from the system
 
 -----------------------------------------------------------------------
 
@@ -52,9 +60,8 @@ TestCase #003 - Verify the functionality of the new Post creation
 Preconditions:
 1. Open the browser [optional]
 2. Navigate to the BASE_URL
-3. Check user USER_NAME exist in the system and if not create a new user with USER_NAME, USER_PASSWORD and USER_EMAIL
-4. Login as a DEFAULT_USER
-5. Verify user is logged in successfully
+3. Login as a DEFAULT_USER
+4. Verify user is logged in successfully
 
 Steps:
 1. Click on the "Create Post" button
@@ -71,7 +78,6 @@ Expected Result:
 
 Post-conditions:
 1. Delete the post from the system
-2. Delete user USER_NAME from the system
 
 -----------------------------------------------------------------------
 
@@ -80,23 +86,19 @@ TestCase #004 - Verify the functionality of deleting the Post
 Preconditions:
 1. Open the browser [optional]
 2. Navigate to the BASE_URL
-3. Check user USER_NAME exist in the system and if not create a new user with USER_NAME, USER_PASSWORD and USER_EMAIL
-4. Login as a DEFAULT_USER
-5. Verify user is logged in successfully
-6. Create a new post with Title "New test title" and Body Content "New text for the test"
-7.Verify the post was created successfully
+3. Login as a DEFAULT_USER
+4. Verify user is logged in successfully
+5. Create a new post with Title "New test with new title" and Body Content "New text for the test with new test info"
+6.Verify the post was created successfully
 
 Steps:
 1. Click on My Profile icon
-2. Click on post with Title "New test title"
-3. Verify the post with Title "New test title" was opened -> Delete and edite icons are shown, title of the post is "New test title"
+2. Click on post with Title "New test with new title"
+3. Verify the post with Title "New test with new title" was opened -> Delete and edite icons are shown, title of the post is "New test with new title"
 4. Click on the Delete icon
 
 Expected Result:
 1. Verify the post was deleted and user sees the message "Post successfully deleted" on the Home Page. The Posts counter is changed, deleted post is not shown anymore.
-
-Post-conditions:
-1. Delete user USER_NAME from the system
 
 -----------------------------------------------------------------------
 
@@ -105,23 +107,24 @@ TestCase #005 - Verify Search functionality
 Preconditions:
 1. Open the browser [optional]
 2. Navigate to the BASE_URL
-3. Check user USER_NAME exist in the system and if not create a new user with USER_NAME, USER_PASSWORD and USER_EMAIL
-4. Login as a DEFAULT_USER
-5. Verify user is logged in successfully
+3. Login as a DEFAULT_USER
+4. Verify user is logged in successfully
+5. Create a new post with Title "Test test test"
+6. Verify the post was created successfully
 
 Steps:
 1. Click on Search icon
-2. Verify Search page is opened -> Search input field with placeholder "What are you interested in" is shown on the page , cross icon is shown on the right next to Search input field, search icon is shown ont he left next to the Search input field
+2. Verify Search page is opened -> Search input field with placeholder "What are you interested in" is shown on the page , cross icon is shown on the right next to Search input field, search icon is shown on the left next to the Search input field
 3. Enter text "Task"
 5. Get no results > Message "Sorry, we could not find any results for that search." is shown
 6. Delete text
-7. Enter text "Title"
+7. Enter text "Test test test"
 8. Get success
 
 Expected Result:
-1. Verify the found results are shown on the Search page -> Search results counter and the found results are shown on the Search page
+1. Verify that one found result is shown on the Search page -> Search result counter and one founded post  are shown on the Search page
 
 Post-conditions:
-1. Delete user USER_NAME from the system
+1. Delete the post from the system
 
 
