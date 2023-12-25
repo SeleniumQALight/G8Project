@@ -50,8 +50,8 @@ public class InvalidLoginAllInOneClass {
         webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]")).click();
         logger.info("Button Sign In was clicked");
         Assert.assertTrue("Button Sign In is not displayed", isButtonSignInDisplayed());
-        Assert.assertTrue("Button Sign In is not displayed", isTextInvalidLoginOrPasswordDisplayed());
-        Assert.assertFalse("Button Sign Out is not displayed", isButtonSignOutDisplayed());
+        Assert.assertTrue("Text 'Invalid username/password' is not displayed", isTextInvalidLoginOrPasswordDisplayed());
+        Assert.assertFalse("Button Sign Out is displayed", isButtonSignOutDisplayed());
     }
 
     private boolean isButtonSignOutDisplayed() {
