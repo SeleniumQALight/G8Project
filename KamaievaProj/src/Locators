@@ -5,6 +5,7 @@ loginForm = "//form[@action= '/login']"
 inputUsernameForLogin = "//input[@placeholder = 'Username']",
 inputPasswordForLogin = "//input[@placeholder = 'Password']",
 buttonSignIn = "//button[contains(text(),'Sign In')]",
+alertInvalidUsernamePassword = "//div[text() = 'Invalid username/password.']",
 
 //Register form
 registerForm = "//form[@id = 'registration-form']",

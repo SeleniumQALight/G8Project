@@ -17,10 +17,11 @@ import java.util.concurrent.TimeUnit;
 public class LoginTestAllInOneClass {
     WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
-
+ // Буде виконуватися перед кожним тестом
     @Before
     public void setup() {
         WebDriverManager.chromedriver().setup();
+
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -28,6 +29,7 @@ public class LoginTestAllInOneClass {
 
 
     }
+// Буде виконуватися після кожного тесту
 
     @After
     public void tearDown() {
@@ -35,6 +37,9 @@ public class LoginTestAllInOneClass {
         logger.info("Browser was closed");
 
     }
+
+
+
 
     @Test
     public void validLogin() {
@@ -47,7 +52,7 @@ public class LoginTestAllInOneClass {
 
         WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         inputPassword.clear();
-        ;
+
         inputPassword.sendKeys("123456qwerty");
         logger.info("password was inputted ");
         webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]")).click();
