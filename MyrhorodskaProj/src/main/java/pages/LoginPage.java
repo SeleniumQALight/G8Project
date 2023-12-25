@@ -34,4 +34,21 @@ public class LoginPage extends ParentPage{
         WebElement buttonSingIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSingIn);
     }
+    public boolean isWarningMessageVisible() {
+        try {
+            WebElement warningMessage = webDriver.findElement(By.xpath(".//div[text()='Invalid username/password.']"));
+            return isElementDisplayed(warningMessage);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isButtonSignInVisible() {
+        try {
+            WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[text()='Sign In']"));
+            return isElementDisplayed(buttonSignIn);
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
