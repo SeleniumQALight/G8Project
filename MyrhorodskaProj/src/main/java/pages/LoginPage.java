@@ -34,14 +34,6 @@ public class LoginPage extends ParentPage{
         WebElement buttonSingIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSingIn);
     }
-    public boolean isWarningMessageVisible() {
-        try {
-            WebElement warningMessage = webDriver.findElement(By.xpath(".//div[text()='Invalid username/password.']"));
-            return isElementDisplayed(warningMessage);
-        } catch (Exception e) {
-            return false;
-        }
-    }
 
     public boolean isButtonSignInVisible() {
         try {
@@ -51,8 +43,8 @@ public class LoginPage extends ParentPage{
             return false;
         }
     }
-    public boolean isInvalidUserNamePasswordAlertVisible() {
-        WebElement invalidAllert = webDriver.findElement(By.xpath("//div[contains(text(),'Invalid username/password.')]"));
-        return isElementDisplayed(invalidAllert);
+    public boolean isInvalidUserNamePasswordMessageVisible() {
+        WebElement invalidMassage = webDriver.findElement(By.xpath("//div[contains(text(),'Invalid username/password.')]"));
+        return isElementDisplayed(invalidMassage);
     }
 }
