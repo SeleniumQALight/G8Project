@@ -33,14 +33,11 @@ iconChat = //span[@class="text-white mr-2 header-chat-icon"]
 window_Chat = //div[@id="chat"]
 field_TypeAMessage = //input[@type="text" and @id = "chatField"]
 button_CloseChat = //span[@class="chat-title-bar-close"]
-iconMyProfile=//a[@class="mr-2"]
+
 
 #SingOut
 icon_MyProfile=//a[@class="mr-2"]
 link_ComplexApp = //a[@class="text-white"]
-tab_Post = //a[@class="profile-nav-link nav-item nav-link active"]
-tab_Followers = //a[@class="profile-nav-link nav-item nav-link " and contains(text(),'Followers')]
-tab_Following = //a[@class="profile-nav-link nav-item nav-link " and contains(text(),'Following')]
 Massege = //h2[contains(text(),'Hello')]
 button_SingOut = //button[@class="btn btn-sm btn-secondary"]
 title_RememberWriting = //h1[@class="display-3"]
