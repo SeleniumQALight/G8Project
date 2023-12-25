@@ -1,6 +1,6 @@
 #LoginPage
 
-input_username = .//input[@id='username0'];
+input_username = ..//input[@placeholder = 'Username'];
 input_password = .//input[@placeholder ='Password'];
 button_sign_in = .//button[@class = 'btn btn-primary btn-sm'];
 button_sing_up = .//button[@class = 'py-3 mt-4 btn btn-lg btn-success btn-block'];
@@ -34,7 +34,7 @@ edit_icon = .//a[@class = 'text-primary mr-2'];
 info_message = .//div[@class = 'alert alert-success text-center'];
 posts_counter = .//a[@class = 'profile-nav-link nav-item nav-link active'];
 
-#EarchPage
+#SearchPage
 search_icon = .//a[@href = '#'];
 input_search_field_placeholder = .//input[@id = 'live-search-field'];
 nav_search_icon = .//label[@class = 'search-overlay-icon'];
