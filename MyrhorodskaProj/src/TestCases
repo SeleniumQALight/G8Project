@@ -36,8 +36,10 @@ Precondition:
    1.5 Click on the "Sign up for OurApp" button.
 
 2. Verify that the user is successfully registered and redirected to the login page.
-   2.1 Confirm that the login page is displayed.
-   2.2 Check for any confirmation message
+     2.1 Confirm that the home page is displayed.
+     2.2 Verify the presence of the "Sign Out" button.
+     2.3 Check for a welcome message or a "Hello + USER_NAME + your feed is empty." greeting.
+
 
 3. Post-condition:
    3.1 Delete the user "tc001testusertime" to clean up the environment.
