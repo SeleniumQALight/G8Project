@@ -51,4 +51,8 @@ public class LoginPage extends ParentPage{
             return false;
         }
     }
+    public boolean isInvalidUserNamePasswordAlertVisible() {
+        WebElement invalidAllert = webDriver.findElement(By.xpath("//div[contains(text(),'Invalid username/password.')]"));
+        return isElementDisplayed(invalidAllert);
+    }
 }
