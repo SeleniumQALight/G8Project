@@ -17,5 +17,9 @@ public class HomePage extends ParentPage {
             return false;
         }
     }
+<<<<<<< HEAD
 }
 
+=======
+}
+>>>>>>> 3a409fe01ea463fa368157df8d6ab2facd56281e

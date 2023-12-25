@@ -34,6 +34,10 @@ public class LoginPage extends ParentPage{
         WebElement buttonSingIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSingIn);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3a409fe01ea463fa368157df8d6ab2facd56281e
     public boolean isButtonSignInVisible() {
         try {
             WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[text()='Sign In']"));
