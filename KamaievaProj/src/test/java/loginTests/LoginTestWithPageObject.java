@@ -5,14 +5,16 @@ import jdk.jfr.Description;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static libs.TestData.*;
+
 public class LoginTestWithPageObject extends BaseTest {
 
     @Test
     @Description("Check that user can login with valid login")
     public void validLogin() {
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextIntoInputLogin("qaauto");
-        pageProvider.getLoginPage().enterTextIntoInputPassword("123456qwerty");
+        pageProvider.getLoginPage().enterTextIntoInputLogin(VALID_LOGIN_UI);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
         Assert.assertTrue("Button 'Sign Out' is not visible", pageProvider.getHomePage().isButtonSignOutVisible());
