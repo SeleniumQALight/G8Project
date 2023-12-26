@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class LoginTestAllInOneClass {
     WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
-
+//Буде виконуватися перед кожним тестом
     @Before
     public void setUp() {
         WebDriverManager.chromedriver().setup();
@@ -65,7 +65,7 @@ public class LoginTestAllInOneClass {
                             ("//button[contains(text(),'Sign Out')]")).isDisplayed();
             logger.info(state + " is button visible");
             return state;
-        } catch (Exception e){
+        } catch (Exception e) {
             logger.info("Element is not displayed");
             return false;
         }
