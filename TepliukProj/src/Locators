@@ -19,20 +19,20 @@ body:                  .//*[@class='body-content tall-textarea form-control']
 button(Save New Post):  .//*[@class='btn btn-primary']
 messege:                .//*[@class='alert alert-success text-center']
 
-Page 4
+Page 3
 
 Subscribe
 search:                 .//*[@class='text-white mr-2 header-search-icon']//*[@class='svg-inline--fa fa-search fa-w-16']
 phrase:                 .//*[@id='live-search-field']
 posted by               //*[@class='text-muted small mb-4']
 
-Page 5
+Page 4
 
 List users
 button: 				.//*[@class='btn btn-primary btn-sm']
 messege:				.//*[@class='alert alert-success text-center']
 
-Page 6
+Page 5
 Deleting post
 button:					.//*[@class='delete-post-button text-danger']
 messege:				.//*[@class='alert alert-success text-center']
