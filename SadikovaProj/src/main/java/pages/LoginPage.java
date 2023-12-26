@@ -53,7 +53,7 @@ private WebElement userNameField;
         try {
             return isElementDisplayed(warningMessage);
         } catch (Exception e) {
-            logger.error("Element is displayed -> false");
+            logger.error("Element is displayed -> " + false);
             return false;
         }
     }
@@ -62,7 +62,7 @@ private WebElement userNameField;
         try {
             return isElementDisplayed(signInButton);
         } catch (Exception e) {
-            logger.error("Element is displayed -> false");
+            logger.error("Element is displayed -> " + false);
             return false;
         }
     }
