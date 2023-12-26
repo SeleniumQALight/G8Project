@@ -4,8 +4,18 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParentPage {
+@FindBy(xpath = ".//button[text()='Sign In']") // this element will crreated in PageFactory in CommonActionsWithElements.java
+    private WebElement buttonSignIn;
+
+@FindBy(xpath = ".//input[@placeholder='Username']")
+    private WebElement inputLogin;
+
+@FindBy(xpath = ".//input[@placeholder='Password']")
+    private WebElement inputPassword;
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -22,17 +32,17 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterTextIntoInputLogin(String login) {
-        WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
+       // WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         enterTextIntoInput(inputLogin, login);
     }
 
     public void enterTextIntoInputPassword(String password) {
-        WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        //WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         enterTextIntoInput(inputPassword, password);
     }
 
     public void clickOnButtonSignIn() {
-        WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[text()='Sign In']"));
+        //WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[text()='Sign In']"));
         clickOnElement(buttonSignIn);
     }
 
@@ -46,12 +56,15 @@ public class LoginPage extends ParentPage {
     }
 
     public boolean isButtonSignInVisible() {
-        try {
-            WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[text()='Sign In']"));
+        //try {
+            //WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[text()='Sign In']"));
             return isElementDisplayed(buttonSignIn);
-        } catch (Exception e) {
-            return false;
-        }
+        //} catch (Exception e) {
+        //    return false;
+       // }
     }
+
+    //is button Sign In visible
+
 
 }
