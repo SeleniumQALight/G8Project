@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,5 +16,11 @@ public class HomePage extends ParentPage {
     public boolean isButtonSignOutVisible() {
      //   WebElement buttonSignOut = webDriver.findElement(By.xpath("//button[contains(text(),'Sign Out')]"));
         return isElementDisplayed(buttonSignOut);
+    }
+
+    public HomePage checkIsredirectToHomePage() {
+        //TODO check url
+        Assert.assertTrue("Home page is not opened", isButtonSignOutVisible());
+        return this; //перевірка чи ми на сторінці
     }
 }

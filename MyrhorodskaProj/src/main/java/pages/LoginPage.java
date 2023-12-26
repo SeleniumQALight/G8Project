@@ -1,5 +1,6 @@
 package pages;
 
+import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -48,5 +49,13 @@ public class LoginPage extends ParentPage{
     public boolean isButtonSignInVisible() {
       //  WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         return isElementDisplayed(buttonSignIn);
+    }
+
+    public HomePage openLoginPageAndFillLoginFormWithValidCred(){
+        openLoginPage();
+        enterTextInToInputLogin(TestData.VALID_LOGIN_UI);
+        enterTextInToInputPassword(TestData.VALID_PASSWORD_UI);
+        clickOnButtonSingIn();
+        return new HomePage(webDriver);
     }
 }
