@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 public class CommonActionsWithElements {
   protected   WebDriver webDriver;//save browser //доступний в нащадках і в цьому класі (protected)
@@ -12,7 +13,9 @@ public class CommonActionsWithElements {
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
+        PageFactory.initElements(webDriver, this); //ініціалізує всі елементи (передаємо вебдрайвер і цей клас) опираючись на анотації FindBy
     }
+
     protected void enterTextInToInput(WebElement element, String text) {
         try {
             element.clear();

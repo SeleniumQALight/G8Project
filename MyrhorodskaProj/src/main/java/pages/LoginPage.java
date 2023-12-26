@@ -4,9 +4,19 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 //опис методів для сторінки логін
 public class LoginPage extends ParentPage{
+    @FindBy(xpath = "//button[contains(text(),'Sign In')]") //all elements of this page described here //цей створиться PageFactory в CommonActionsWithElements
+    private WebElement buttonSignIn; // all methods will be working with this element (buttonSignIn)
+
+    @FindBy(xpath = ".//*[@placeholder='Username']")
+    private WebElement inputLogin;
+
+    @FindBy(xpath = ".//*[@placeholder='Password']")
+    private WebElement inputPassword;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -31,7 +41,12 @@ public class LoginPage extends ParentPage{
         enterTextInToInput(inputPassword, password);
     }
     public void clickOnButtonSingIn() {
-        WebElement buttonSingIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
-        clickOnElement(buttonSingIn);
+    //    WebElement buttonSingIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
+        clickOnElement(buttonSignIn);
+    }
+    //is button Sign In visible
+    public boolean isButtonSignInVisible() {
+      //  WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
+        return isElementDisplayed(buttonSignIn);
     }
 }
