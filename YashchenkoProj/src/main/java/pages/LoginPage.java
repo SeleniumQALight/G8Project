@@ -1,9 +1,13 @@
 package pages;
 
+import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static libs.TestData.DEFAULT_VALID_LOGIN_UI;
+import static libs.TestData.DEFAULT_VALID_PASSWORD_UI;
 
 public class LoginPage extends ParentPage {
 
@@ -53,5 +57,13 @@ public class LoginPage extends ParentPage {
 
     public boolean isInvalidUserNamePasswordAlertVisible() {
         return isElementDisplayed(invalidAlert);
+    }
+
+    public HomePage openLoginPageAndFillLoginFormWithValidCreds() {
+        openLoginPage();
+        enterTextIntoInputLogin(DEFAULT_VALID_LOGIN_UI);
+        enterTextIntoInputPassword(DEFAULT_VALID_PASSWORD_UI);
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
     }
 }

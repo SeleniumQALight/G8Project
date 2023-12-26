@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,4 +19,13 @@ public class HomePage extends ParentPage {
 
     }
 
+    public HomePage checkIsRedirectedToHomePage() {
+        // TODO check url
+        Assert.assertEquals("Invalid page"
+                , "https://aqa-complexapp.onrender.com/"
+                , webDriver.getCurrentUrl());
+        Assert.assertTrue("Invalid page - not Home Page"
+                , isButtonSignOutVisible());
+        return this;
+    }
 }
