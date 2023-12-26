@@ -4,3 +4,23 @@ input_password = ".//input[@id='password']"
 
 #HomePage
 button_loggout = ".//a[id='logout']
+
+
+----------------------------------------------
+#HomeWork
+#Registration/LoginPage:
+
+XPath for registration button:
+1. Sign up for OurApp_button : ".//button[@type="submit" and contains(text(), "Sign up for OurApp")]"
+2. href_Complex app for testing - QA : ".//a[@class="text-white"]"
+
+-----------------------------
+#HomePage
+
+1. CreatePost_button : .//a[@href="/create-post"]
+2. My_Profile : ".//img[@alt="My profile"]"
+
+#ProfilePage
+
+1. //a[@href="/post/65816e58d2ec9d00379fe4a0" and contains(@class, "list-group-item")]
+2. tc001testusertime_button: ".//img[@alt='small avatar img']"

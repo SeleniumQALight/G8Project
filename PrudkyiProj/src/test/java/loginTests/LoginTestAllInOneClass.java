@@ -19,6 +19,7 @@ public class LoginTestAllInOneClass {
     WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
 
+    // буде виконуватися
     @Before
     public void setUp() {
         WebDriverManager.chromedriver().setup(); // m.2
@@ -53,10 +54,55 @@ public class LoginTestAllInOneClass {
         Assert.assertTrue("Button sing out is not visible", isButtonSingOutVisible());
     }
 
+
     private boolean isButtonSingOutVisible() {
         try {
             boolean state = webDriver.findElement(By.xpath("//button[contains(text(),'Sign Out')]")).isDisplayed();
             logger.info(state + " is button visible");
+            return state;
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return false;
+        }
+    }
+
+    @Test
+    public void invalidLogin() {
+        webDriver.get("https://aqa-complexapp.onrender.com");
+        logger.info("Site was opened");
+
+        WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
+        inputUserName.clear();
+        inputUserName.sendKeys("qaauto1");
+        logger.info("'qaauto1' was entered into the input UserName");
+        WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        inputPassword.clear();
+        inputPassword.sendKeys("123456qwerty");
+        logger.info("password was entered");
+        webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]")).click();
+        logger.info("Button Sing In was clicked");
+
+        Assert.assertFalse("Button sing out is  not visible", isButtonSingOutVisible());
+        Assert.assertTrue("Button sing in is visible", isButtonSingInVisible());
+        Assert.assertTrue("Error message is visible", isErrorMessageVisible());
+
+    }
+
+    private boolean isButtonSingInVisible() { // check if button Sing in is shown
+        try {
+            boolean state = webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]")).isDisplayed();
+            logger.info(state + " is button visible");
+            return state;
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return false;
+        }
+    }
+
+    private boolean isErrorMessageVisible() { // check if error message is shown
+        try {
+            boolean state = webDriver.findElement(By.xpath(".//div[@class = 'alert alert-danger text-center']")).isDisplayed();
+            logger.info(state + " is  error message visible");
             return state;
         } catch (Exception e) {
             logger.info("Element is not displayed");
