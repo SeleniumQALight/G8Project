@@ -35,28 +35,23 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterTextIntoInputLogin(String login) {
-//        WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
+//        WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']")); //For example
         enterTextIntoInput(inputLogin, login);
     }
 
     public void enterTextIntoInputPassword(String password) {
-//        WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         enterTextIntoInput(inputPassword, password);
     }
 
     public void clickOnButtonSignIn() {
-//        WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignIn);
     }
 
     public boolean isButtonSignInVisible() {
-//        WebElement buttonSignIn
-//                = webDriver.findElement(By.xpath("//button[text()='Sign In']"));
         return isElementDisplayed(buttonSignIn);
     }
 
     public boolean isInvalidUserNamePasswordAlertVisible() {
-//        WebElement invalidAlert = webDriver.findElement(By.xpath("//div[contains(text(),'Invalid username/password.')]"));
         return isElementDisplayed(invalidAlert);
     }
 }
