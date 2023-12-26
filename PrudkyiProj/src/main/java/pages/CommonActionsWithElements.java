@@ -20,31 +20,40 @@ public class CommonActionsWithElements {
         try {
             input.clear();
             input.sendKeys(text);
-            logger.info(text + " was inputted into input");
+            logger.info(text + " was inputted into input" + getElementName(input));
         } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
         }
     }
 
-    protected void clickOnElement(WebElement element) {
+    private String getElementName(WebElement element) {
         try {
-            element.click();
-            logger.info("Element was clicked");
+            return element.getAccessibleName();
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            return "";
         }
     }
 
-    protected boolean isElementDisplayed(WebElement element) {
-        try {
-            boolean state = element.isDisplayed();
-            logger.info(state + " is element displayed");
-            return state;
-        } catch (Exception e) {
-            logger.error("Can not work with element");
-            return false;
+        protected void clickOnElement (WebElement element){
+            try {
+                String elementName = getElementName(element);
+                element.click();
+                logger.info("Element was clicked" + elementName);
+            } catch (Exception e) {
+                logger.error("Can not work with element" + getElementName(element));
+                Assert.fail("Can not work with element");
+            }
+        }
+
+        protected boolean isElementDisplayed (WebElement element){
+            try {
+                boolean state = element.isDisplayed();
+                logger.info(state + " is element displayed");
+                return state;
+            } catch (Exception e) {
+                logger.error("Can not work with element");
+                return false;
+            }
         }
     }
-}
