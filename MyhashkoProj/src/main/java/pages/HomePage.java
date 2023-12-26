@@ -3,18 +3,19 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class HomePage extends ParentPage{
+public class HomePage extends ParentPage {
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @FindBy(xpath = "//button[text()='Sign Out']")
+    private WebElement buttonSignOut;
+
     public boolean isButtonSignOutVisble() {
-        try { WebElement buttonSignOut = webDriver.findElement(By.xpath("//button[text()='Sign Out']"));
+
         return isElementDisplayed(buttonSignOut);
-    } catch (Exception e) {
-            logger.info("Catch 'Exception e' while trying to find button SignOut");
-            return false;
-        }
-}
+
+    }
 }
