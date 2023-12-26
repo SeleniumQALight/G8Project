@@ -19,30 +19,40 @@ public class CommonActionsWithElements {
         try {
             input.clear();
             input.sendKeys(text);
-            logger.info(text + " was inputted into input ");
+            logger.info(text + " was inputted into input " + getElementName(input));
         } catch (Exception e) {
-            logger.error("Can not work with element ");
-            Assert.fail("Can not work with element ");
+            logger.error("Can not work with element " + getElementName(input));
+            Assert.fail("Can not work with element " + getElementName(input));
+        }
+    }
+
+    private String getElementName(WebElement webElement) {
+        try {
+            return webElement.getAccessibleName();
+
+        } catch (Exception e) {
+            return "";
         }
     }
 
     protected void clickOnElement(WebElement element) {
         try {
+            String elementName = getElementName(element);  // getTagName() - return name of element
             element.click();
-            logger.info("Element was clicked ");
+            logger.info("Element was clicked " + elementName);
         } catch (Exception e) {
-            logger.error("Can not work with element ");
-            Assert.fail("Can not work with element ");
+            logger.error("Can not work with element " + getElementName(element));
+            Assert.fail("Can not work with element " + getElementName(element));
         }
     }
 
 protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
-            logger.info(state + " Element is displayed ");
+            logger.info(state + " Element is displayed " + getElementName(element));
             return state;
         } catch (Exception e) {
-            logger.info("Element is not displayed ");
+            logger.info("Element is not displayed " + getElementName(element));
             return false;
         }
     }
