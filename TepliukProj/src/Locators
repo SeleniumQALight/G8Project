@@ -4,16 +4,13 @@ sign up:
 username  .//*[@id='username-register']
 email     .//input[@name="email"]
 password  .//input[@id="password-register"]
-button    .//*[@class="py-3 mt-4 btn btn-lg btn-success btn-block"]
+button    .//button[@class="py-3 mt-4 btn btn-lg btn-success btn-block"]
+sign In
+Username:  .//input[@placeholder="Username"]
+Password:  .//input[@placeholder='Password']
+button:     .//button[@class='btn btn-primary btn-sm']
 
 Page2
-
-sign In
-Username:  .//*[@placeholder="Username"]
-Password:  .//*[@placeholder='Password']
-button:     .//*[@class='btn btn-primary btn-sm']
-
-Page3
 
 Create Post
 button(Create post):  .//*[@class='btn btn-sm btn-success mr-2']

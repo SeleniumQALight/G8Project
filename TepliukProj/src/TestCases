@@ -3,12 +3,13 @@ TC1
  Name:New user registration
 Objective:Needs to register a new user in the system
 Precondition:Input dataset witch user detail available
+User must have more than 3 characters and less than 30 characters, e.g: User1
 Test script (Steps):
 1.go to the https://qa-complexapp.onrender.com/
 2.filling the field "Username" in "Sign up" section with a unique value
-Test data: tepliuk
+Test data: tepliuk. If user tepliuk exist, use one of the users from list: tepliuk2, tepliuk3, tepliuk4.
 3.filling the field "Email" in "Sign up" section with a unique value
-Test data:tepliuk@gmail.com
+Test data:tepliuk@gmail.com. If email tepliuk@gmail.com exist, use one of the users from list: tepliuk2@gmail.com, tepliuk3@gmail.com, tepliuk4@gmail.com.
 4.filling the field "create a Password" in "Sign up" section
 Test data: tepliuktepliuk
 5.click on "Sign up for OurApp" button
@@ -69,9 +70,9 @@ Test data: new hot post
 3. click a post with a title "new hot post"
 4.click on the username in the row "Posted by"
 5.click on the button "Follow"
-Test data:qaauto
+Test data:tepliuk2
 Expected result:
-1. message "Successfully followed qaauto."
+1. message "Successfully followed tepliuk2."
 2. can see the "my profile" in the tab "following" name user
 Post condition: Unsubscribe from the user
 Version: 1.0
@@ -87,6 +88,7 @@ Test script (Steps):
 1. click on "my profile"
 2. Click on the title of the post
 3.Click the Delete button
+4. Check that post (Title: new post(HW)) is absent in list of posts.
 Expected result:
 1. can see the message "Post successful deleted."
 Post condition: none
