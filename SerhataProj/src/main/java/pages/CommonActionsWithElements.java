@@ -19,17 +19,26 @@ public class CommonActionsWithElements {
         try {
             element.clear();
             element.sendKeys(text);
-            logger.info(text + " was inputted into input");
+            logger.info(text + " was inputted into input " + getElementName(element));
         } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
         }
     }
 
+    private String getElementName(WebElement webElement) {
+        try {
+            return webElement.getAccessibleName();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
     protected void clickOnElement(WebElement element) {
         try {
+            String elementName = getElementName(element);
             element.click();
-            logger.info("Element was clicked");
+            logger.info("Element was clicked " + elementName);
         } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
