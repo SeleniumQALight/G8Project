@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,5 +15,10 @@ public class HomePage extends ParentPage {
 
     public boolean isButtonSignOutVisible() {
         return isElementDisplayed(buttonSignOut);
+    }
+
+    public HomePage checkIsRedirectToHomePage() {
+        Assert.assertTrue("Invalid page - not Home Page", isButtonSignOutVisible());
+        return this;
     }
 }
