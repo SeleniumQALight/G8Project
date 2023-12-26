@@ -52,7 +52,6 @@ public class CommonActionsWithElements {
             return state;
         } catch (Exception e) {
             logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
             return false;
         }
     }

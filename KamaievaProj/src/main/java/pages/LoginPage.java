@@ -1,5 +1,6 @@
 package pages;
 
+import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -56,5 +57,13 @@ public class LoginPage extends ParentPage {
             logger.info("Alert is not displayed");
             return false;
         }
+    }
+
+    public HomePage openLoginPageAndFillLoginFormWithValidCreat() {
+        openLoginPage();
+        enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
+        enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
     }
 }
