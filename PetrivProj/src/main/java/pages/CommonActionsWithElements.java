@@ -2,9 +2,9 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
@@ -12,6 +12,7 @@ public class CommonActionsWithElements {
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
+        PageFactory.initElements(webDriver, this); // ініціалізує всі елементи сторінки опираючись на @FindBy
     }
 
     protected void enterTextIntoInput(WebElement input, String text) {
@@ -35,9 +36,8 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected boolean isElementDisplayed(String elementXpath) {
+    protected boolean isElementDisplayed(WebElement element) {
         try {
-            WebElement element = webDriver.findElement(By.xpath(elementXpath));
             boolean state = element.isDisplayed();
             logger.info("Element is displayed -> " + state);
             return state;
