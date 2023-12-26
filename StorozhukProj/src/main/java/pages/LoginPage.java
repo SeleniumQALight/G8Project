@@ -4,8 +4,16 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage  extends ParentPage {
+    @FindBy(xpath = ".//button[contains(text(),'Sign In')]") //цей елемент буде створенний PageFactory в CommonActionsWithElements
+    private WebElement buttonSingIn;
+    @FindBy(xpath = ".//input[@placeholder='Username']")
+    private WebElement inputLogin;
+    @FindBy(xpath = ".//input[@placeholder='Password']")
+    private WebElement inputPassword;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -21,17 +29,21 @@ public class LoginPage  extends ParentPage {
     }
 
     public void enterTextIntoInputLogin(String login) {
-        WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
-        enterTextIntoInputLogin(inputLogin, login);
+        enterTextIntoInputLogin(inputLogin, login); //   WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
     }
 
     public void enterTextIntoInputPassword(String password) {
-        WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
-        enterTextIntoInputLogin(inputPassword, password);
+        enterTextIntoInputLogin(inputPassword, password); // WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
     }
 
     public void clickOnButtonSignIn() {
-        WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
-        clickOnElement(buttonSignIn);
+    //    WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
+        clickOnElement(buttonSingIn);
     }
+
+    // is button Sign In visible
+    public boolean isButtonSignInVisible() {
+        return isElementDisplayed(buttonSingIn);
+    }
+
 }
