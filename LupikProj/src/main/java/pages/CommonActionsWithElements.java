@@ -36,7 +36,7 @@ public class CommonActionsWithElements {
 protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
-            logger.info("Element " + element.getAccessibleName() + " is displayed -> " + state);
+            logger.info("Element is displayed -> " + state);
             return state;
         } catch (Exception e) {
             logger.info("Element is displayed -> false");
