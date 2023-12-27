@@ -39,4 +39,13 @@ public class LoginPage extends ParentPage{
                 webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignIn);
     }
+    public boolean isInvalidLoginMessageDisplayed() {
+        try {
+            WebElement invalidLoginMessage =
+                    webDriver.findElement(By.xpath("//div[text()='Invalid username / password']"));
+            return isElementDisplayed(invalidLoginMessage);
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
