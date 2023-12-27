@@ -29,7 +29,6 @@ public class LoginPage extends ParentPage {
             logger.error("Can not open Login Page");
             Assert.fail("Can not open Login Page");
         }
-
     }
 
     public void enterTextIntoInputLogin(String login) {
