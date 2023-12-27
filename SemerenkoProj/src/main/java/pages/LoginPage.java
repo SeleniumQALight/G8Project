@@ -7,13 +7,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends ParentPage{
+public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonSignIn;
     @FindBy(xpath = ".//input[@placeholder='Username']")
     private WebElement inputUsername;
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPassword;
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center' and contains(text(),'Invalid username/password.')]")
+    private WebElement divFailSignIn;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -30,7 +32,7 @@ public class LoginPage extends ParentPage{
     }
 
     public void enterTextIntoInputLogin(String login) {
-       enterTextIntoInput(inputUsername, login);
+        enterTextIntoInput(inputUsername, login);
     }
 
     public void enterTextIntoInputPass(String pass) {
@@ -39,6 +41,10 @@ public class LoginPage extends ParentPage{
 
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
+    }
+
+    public boolean isMessageFailLogin() {
+        return isElementDisplayed(divFailSignIn);
     }
 
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {

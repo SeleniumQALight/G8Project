@@ -5,8 +5,7 @@ import libs.TestData;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static libs.TestData.VALID_LOGIN_UI;
-import static libs.TestData.VALID_PASSWORD_UI;
+import static libs.TestData.*;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
@@ -18,5 +17,15 @@ public class LoginTestWithPageObject extends BaseTest {
 
         Assert.assertTrue("Button SignOut is not displayed",
                 pageProvider.homePage().isButtonSignOutVisible());
+    }
+    @Test
+    public void invalidLogin(){
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputLogin(INVALID_LOGIN_UI);
+        pageProvider.loginPage().enterTextIntoInputPass(VALID_PASSWORD_UI);
+        pageProvider.loginPage().clickOnButtonSignIn();
+
+        Assert.assertFalse("Button SignOut is displayed", pageProvider.homePage().isButtonSignOutVisible());
+        Assert.assertTrue("Invalid Login massage is absent", pageProvider.loginPage().isMessageFailLogin());
     }
 }
