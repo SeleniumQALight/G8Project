@@ -1,6 +1,7 @@
 package loginTests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import libs.TestData;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Assert;
@@ -12,6 +13,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
+
+import static libs.TestData.VALID_PASSWORD;
+import static libs.TestData.WRONG_LOGIN;
 
 public class LoginTestAllInOneClass {
     WebDriver webDriver;
@@ -64,5 +68,30 @@ public class LoginTestAllInOneClass {
             return false;
         }
     }
+
+
+    @Test
+    public void invalidLogin() {
+        webDriver.get("https://aqa-complexapp.onrender.com");
+        logger.info("Site was opened");
+
+        WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
+        inputUserName.clear();
+        inputUserName.sendKeys(WRONG_LOGIN);
+        logger.info(WRONG_LOGIN + " was inputted into input 'UserName'");
+
+        WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        inputPassword.clear();
+        inputPassword.sendKeys(VALID_PASSWORD);
+        logger.info(VALID_PASSWORD + " was inputted into input 'Password'");
+
+        webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")).click();
+        logger.info("'Sign In' button was clicked");
+
+        Assert.assertFalse("Button 'Sign Out' is not visible", isElementVisible(".//button[contains(text(),'Sign Out')]", "'Sign Out' button"));
+        Assert.assertTrue("Button 'Sign In' is visible", isElementVisible(".//button[text()='Sign In']", "'Sign In' button"));
+        Assert.assertTrue("Warning button Invalid username/password is visible", isElementVisible(".//div[text()='Invalid username/password.']", "Warning message"));
+    }
+
 
 }

@@ -52,7 +52,7 @@ public class CommonActionsWithElements {
             logger.info("Element " + getElementName(element) + " is displayed -> " + state);
             return state;
         } catch (Exception e) {
-            logger.error("Element is displayed -> false");
+            logger.error("Element is displayed -> " + false);
             return false;
         }
     }
