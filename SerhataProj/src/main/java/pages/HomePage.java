@@ -2,24 +2,23 @@ package pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage{
-    @FindBy(xpath = "//button[contains(text(),'Sign Out')]")
-    private WebElement buttonSignOut;
+
+    private HeaderElement headerElement;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public boolean isButtonSignOutPresent() {
-       return isElementDisplayed(buttonSignOut);
-    }
-
     public HomePage checkIsRedirectToHomePage() {
         //TODO check url
-        Assert.assertTrue("Invalid page - not Home Page", isButtonSignOutPresent());
+        Assert.assertTrue("Invalid page - not Home Page", getHeader().isButtonSignOutPresent());
         return this;
+    }
+
+    public HeaderElement getHeader() {
+        return new HeaderElement(webDriver);
     }
 }
