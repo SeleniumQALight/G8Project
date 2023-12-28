@@ -1,6 +1,6 @@
 package pages;
 
-import org.bouncycastle.jcajce.provider.asymmetric.X509;
+
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,19 +8,14 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParentPage {
 
-@FindBy(xpath = "//button[text()='Sign In']")
-private WebElement signInButton;
-@FindBy(xpath = ".//input[@placeholder='Password']")
-private WebElement passwordField;
-@FindBy(xpath = ".//div[text()='Invalid username/password.']")
-private WebElement warningMessage;
-@FindBy(xpath = ".//input[@placeholder='Username']")
-private WebElement loginField;
-@FindBy(xpath = ".//input[@placeholder='Username']")
-private WebElement userNameField;
-//@FindBy(xpath = "")
-//private WebElement userNameField;
-
+    @FindBy(xpath = "//button[text()='Sign In']")
+    private WebElement signInButton;
+    @FindBy(xpath = ".//input[@placeholder='Password']")
+    private WebElement passwordField;
+    @FindBy(xpath = ".//div[text()='Invalid username/password.']")
+    private WebElement warningMessage;
+    @FindBy(xpath = ".//input[@placeholder='Username']")
+    private WebElement loginField;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -50,28 +45,18 @@ private WebElement userNameField;
     }
 
     public boolean isWarningMessageVisible() {
-        try {
-            return isElementDisplayed(warningMessage);
-        } catch (Exception e) {
-            logger.error("Element is displayed -> false");
-            return false;
-        }
+        return isElementDisplayed(warningMessage);
     }
 
     public boolean isButtonSignInVisible() {
-        try {
-            return isElementDisplayed(signInButton);
-        } catch (Exception e) {
-            logger.error("Element is displayed -> false");
-            return false;
-        }
+        return isElementDisplayed(signInButton);
     }
 
     public void clickOnButtonSingIn() {
         clickOnElement(signInButton);
     }
 
-    public void loginToProfile(String login, String password){
+    public void loginToProfile(String login, String password) {
         openLoginPage();
         enterTextIntoInputLogin(login);
         enterTextIntoInputPassword(password);
