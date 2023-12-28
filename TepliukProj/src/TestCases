@@ -1,1 +1,95 @@
-TestCase #001 -
+TC1
+
+ Name:New user registration
+Objective:Needs to register a new user in the system
+Precondition:Input dataset witch user detail available
+User must have more than 3 characters and less than 30 characters, e.g: User1
+Test script (Steps):
+1.go to the https://qa-complexapp.onrender.com/
+2.filling the field "Username" in "Sign up" section with a unique value
+Test data: tepliuk. If user tepliuk exist, use one of the users from list: tepliuk2, tepliuk3, tepliuk4.
+3.filling the field "Email" in "Sign up" section with a unique value
+Test data:tepliuk@gmail.com. If email tepliuk@gmail.com exist, use one of the users from list: tepliuk2@gmail.com, tepliuk3@gmail.com, tepliuk4@gmail.com.
+4.filling the field "create a Password" in "Sign up" section
+Test data: tepliuktepliuk
+5.click on "Sign up for OurApp" button
+Expected result:
+1.can see the user name at the top side
+2.can see the "Sign Out" button
+Post condition:click the "Sign Out" button
+Version:1.0
+
+TC2
+
+ Name: Signing in with an existing user
+Objective: Checking of the "signing in" functionality
+Precondition: existing user available (username: tepliuk, password: tepliuktepliuk)
+Test script (Steps):
+1. filling the field "Username" in "Sign in" section
+Test data: tepliuk
+2. filling the field "Password" in "Sign in" section
+Test data: tepliuktepliuk
+3. click on "Sign in" button
+Test data: -
+Expected result:
+1. can see the username at the top side of the page
+2. can see the "Sign Out" button
+Post condition: none
+Version: 1.0
+
+TC3
+
+Name: Create new post (public)
+Objective: Checking of the "create post " functionality
+Precondition: The user must be registered and logged in (username: tepliuk, password: tepliuktepliuk)
+Test script (Steps):
+1. click on "create post"
+2. filling the field "Title"
+Test data: new post(HW)
+3. filling the field "Body Content"
+Test data: HW
+4.click "Save New Post"
+Expected result:
+1. message "New post successfully created".
+2. can see the "my profile" "new post(HW)"
+Post condition: Delete the created post
+Version: 1.0
+
+
+TC4
+
+Name: Subscribe to the user
+Objective: Checking the functionality of subscribing to another user
+Precondition:
+1.The user must be registered and logged in (username: tepliuk, password: tepliuktepliuk)
+2.The user must have a post created (Title: new hot post)
+Test script (Steps):
+1. click on "search"
+2. filling the field "What are you interested in?" in "search" section
+Test data: new hot post
+3. click a post with a title "new hot post"
+4.click on the username in the row "Posted by"
+5.click on the button "Follow"
+Test data:tepliuk2
+Expected result:
+1. message "Successfully followed tepliuk2."
+2. can see the "my profile" in the tab "following" name user
+Post condition: Unsubscribe from the user
+Version: 1.0
+
+TC5
+
+Name: Deleting a post
+Objective: Checking the post deletion functionality
+Precondition:
+1.The user must be registered and logged in (username: tepliuk, password: tepliuktepliuk)
+2.Post must be created (Title: new post(HW))
+Test script (Steps):
+1. click on "my profile"
+2. Click on the title of the post
+3.Click the Delete button
+4. Check that post (Title: new post(HW)) is absent in list of posts.
+Expected result:
+1. can see the message "Post successful deleted."
+Post condition: none
+Version: 1.0
