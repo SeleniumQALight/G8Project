@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class CommonActionsWhithElements {
     protected WebDriver webDriver;
@@ -51,6 +52,46 @@ public class CommonActionsWhithElements {
         } catch (Exception e) {
             logger.info("Element is displayed -> false");
             return false;
+        }
+    }
+    // select Text in DropDown
+    protected void selectTextInDropDown(WebElement dropDown, String text) {
+        try {
+            Select select = new Select(dropDown);
+            select.selectByVisibleText(text);
+            logger.info(text + " was selected in DropDown" + getElementName(dropDown));
+        }
+            catch (Exception e) {
+                logger.error("Can not work with element");
+                Assert.fail("Can not work with element");
+            }
+        }
+
+    // select Value in DropDown
+    protected void selectValueInDropDown(WebElement dropDown, String value) {
+        try {
+            Select select = new Select(dropDown);
+            select.selectByValue(value);
+            logger.info(value + " was selected in DropDown" + getElementName(dropDown));
+        }
+            catch (Exception e) {
+                logger.error("Can not work with element");
+                Assert.fail("Can not work with element");
+            }
+        }
+    protected void checkIsElementVisible(WebElement webElement) {
+        Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
+    }
+
+    // check text in element
+
+    protected void checkTextInElement(WebElement element, String expectedText) {
+        try {
+            String textFromElement = element.getText();
+            Assert.assertEquals("Text in element not matched", expectedText, textFromElement);
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
         }
     }
 }

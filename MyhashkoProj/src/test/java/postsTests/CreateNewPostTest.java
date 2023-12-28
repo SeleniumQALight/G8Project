@@ -11,7 +11,20 @@ public class CreateNewPostTest extends BaseTest {
         pageProvider.loginPage()
                 .openLoginPageAndFillLoginFormWhithValidCred()
                 .checkIsRedirectToHomePage()
+                .getHeader().clickOnButtonCreatePost()
+                .checkIsRedirectToCreatePostPage()
+                .enterTextIntoTitleField("Myhashko title")
+                .enterTextIntoInputBody("Myhashko body")
+                //.selectTextInDropDown("Приватне повідомлення")
+                .selectValueInDropDown("One Person")
+                .clickOnButtonSaveNewPost()
+                .checkIsRedirectToPostPage()
+                .checkIsSuccessMessageDisplayed()
+                .checkTextInSuccessMessage("New post successfully created.")
+
         ;
+
+
 
     }
 
