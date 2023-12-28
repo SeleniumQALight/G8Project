@@ -17,6 +17,7 @@ public class LoginTestAllInOneClass {
     WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
 
+
     @Before
     public void setUp() {
         WebDriverManager.chromedriver().setup();     //.m2
@@ -52,7 +53,6 @@ public class LoginTestAllInOneClass {
 
         Assert.assertTrue("Button sign out isn't visible", isButtonSignOutVisible());
     }
-
     private boolean isButtonSignOutVisible() {
         try {
             boolean state = webDriver.findElement(By.xpath("//button[contains(text(),'Sign Out')]")).isDisplayed();
