@@ -1,7 +1,6 @@
 package LoginTests;
 
 import baseTest.BaseTest;
-import libs.TestData;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,7 +15,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().clickOnButtonSignIn();
 
         Assert.assertTrue("Button SignOut is not displayed",
-                pageProvider.homePage().isButtonSignOutVisible());
+                pageProvider.homePage().getHeader().isButtonSignOutVisible());
     }
     @Test
     public void invalidLogin(){
@@ -25,7 +24,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().enterTextIntoInputPass(VALID_PASSWORD_UI);
         pageProvider.loginPage().clickOnButtonSignIn();
 
-        Assert.assertFalse("Button SignOut is displayed", pageProvider.homePage().isButtonSignOutVisible());
+        Assert.assertFalse("Button SignOut is displayed", pageProvider.homePage().getHeader().isButtonSignOutVisible());
         Assert.assertTrue("Invalid Login massage is absent", pageProvider.loginPage().isMessageFailLogin());
     }
 }

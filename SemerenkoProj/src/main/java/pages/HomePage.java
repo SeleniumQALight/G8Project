@@ -5,21 +5,25 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
-    @FindBy(xpath = ".//button[@class='btn btn-sm btn-secondary']")
-    private WebElement buttonSignOut;
+    private HeaderElement headerElement;
+
+
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public boolean isButtonSignOutVisible() {
-        return isElementDisplayed(buttonSignOut);
+    public HeaderElement getHeader() {
+        return new HeaderElement(webDriver);
     }
 
+
+
     public HomePage checkIsRedirectToHomePage() {
-        Assert.assertTrue("Invalid page - not Home Page", isButtonSignOutVisible());
+        Assert.assertTrue("Invalid page - not Home Page", getHeader().isButtonSignOutVisible());
         return this;
     }
 }
