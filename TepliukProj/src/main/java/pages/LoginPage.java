@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends ParentPage {
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -14,11 +15,10 @@ public class LoginPage extends ParentPage {
         try {
             webDriver.get("https://aqa-complexapp.onrender.com");
             logger.info("Login page was opened");
-        } catch (Exception e) {
-            logger.error("Can not open login page");
-            Assert.fail("Can not open login page");
+        }catch (Exception e){
+            logger.error("Can not open Login Page");
+            Assert.fail("Can not open Login Page");
         }
-
     }
 
     public void enterTextIntoInputLogin(String login) {
@@ -31,19 +31,9 @@ public class LoginPage extends ParentPage {
         enterTextIntoInput(inputPassword, password);
     }
 
+
     public void clickOnButtonSignIn() {
         WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignIn);
-    }
-
-    public boolean isButtonSignInVisible() {
-        WebElement buttonSignIn
-                = webDriver.findElement(By.xpath("//button[text()='Sign In']"));
-        return isElementDisplayed(buttonSignIn);
-    }
-
-    public boolean isInvalidUserNamePasswordAlertVisible() {
-        WebElement invalidAllert = webDriver.findElement(By.xpath("//div[contains(text(),'Invalid username/password.')]"));
-        return isElementDisplayed(invalidAllert);
     }
 }

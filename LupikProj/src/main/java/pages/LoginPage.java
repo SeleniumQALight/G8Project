@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LoginPage extends ParrentPage{
+public class LoginPage extends ParrentPage {
 
 
     public LoginPage(WebDriver webDriver) {
@@ -17,8 +17,8 @@ public class LoginPage extends ParrentPage{
             webDriver.get("https://aqa-complexapp.onrender.com");
             logger.info("Login page was opened");
         } catch (Exception e) {
-          logger.error("Can not open Login Page");
-          Assert.fail("Can not open Login Page");
+            logger.error("Can not open Login Page");
+            Assert.fail("Can not open Login Page");
         }
     }
 
@@ -36,4 +36,25 @@ public class LoginPage extends ParrentPage{
         WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignIn);
     }
+
+    public boolean isButtonSignInVisible() {
+        try {
+            WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));
+            return isElementDisplayed(buttonSignIn);
+        } catch (Exception e) {
+            logger.info("Element button SignIn is displayed -> false");
+            return false;
+        }
+    }
+        public boolean isTextInvalidLoginOrPasswordDisplayed () {
+           try {
+               WebElement textInvalidLoginOrPassword = webDriver.findElement(By.xpath(".//div[contains(text(),'Invalid username/password')]"));
+
+            return isElementDisplayed(textInvalidLoginOrPassword);}
+              catch (Exception e){
+                logger.info("Element text Invalid Login Or Password is displayed -> false");
+                return false;
+        }
+    }
+
 }
