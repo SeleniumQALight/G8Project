@@ -55,17 +55,17 @@ public class InvalidLogin {
         webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")).click();
         logger.info("Button Sign in was clicked");
 
-        Assert.assertTrue("Button Sign out is visible",isButtonSignOutNotVisible());
+        Assert.assertFalse("Button Sign out is visible",isButtonSignOutVisible());
         Assert.assertTrue("Button Sign in is not visible",isButtonSignInVisible());
         Assert.assertTrue("Alert Danger is not visible",isAlertDangerVisible());
 
     }
 
-private boolean isButtonSignOutNotVisible() { // method for checking that button Sign Out is not visible
+private boolean isButtonSignOutVisible() { // method for checking that button Sign Out is not visible
         try {
-            return webDriver.findElements(By.xpath("//button[contains(text(),'Sign Out')]")).size() == 0;
+            return webDriver.findElement(By.xpath("//button[contains(text(),'Sign Out')]")).isDisplayed();
         }catch (Exception e){
-            return true;
+            return false;
         }
     }
 
