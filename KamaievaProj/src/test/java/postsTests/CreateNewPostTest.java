@@ -1,16 +1,24 @@
 package postsTests;
 
 import BaseTest.BaseTest;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
 
     @Test
-    @Ignore
     public void createNewPost() {
         pageProvider.getLoginPage()
                 .openLoginPageAndFillLoginFormWithValidCreat()
-                .checkIsRedirectToHomePage();
+                .checkIsRedirectToHomePage()
+                .getHeader().clickOnButtonCreatePost()
+                .checkIsRedirectToCreatePostPage()
+                .enterTextIntoInputTitle("Kamaieva title")
+                .enterTextIntoInputBody("Body text")
+                //.selectTextInDropdown("Приватне повідомлення")
+                .selectValueInDropdown("One Person")
+                .clickOnButtonSaveNewPost()
+                .checkIsRedirectToPostPage()
+                .checkIsSuccessMessageDisplayed()
+                .checkTextInSuccessMessage("New post successfully created.");
     }
 }
