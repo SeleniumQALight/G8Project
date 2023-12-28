@@ -13,7 +13,7 @@
                         - checkCurrentUrl(String partUrl)
                 - HomePage.java extends ParentPage.java
                 - LoginPage.java extends ParentPage.java
-                - PageProvider.java
+                - pages.PageProvider.java
                     - loginPage()                     // метод який буде повертати обєкт сторінки LoginPage
                     - homePage()                      // метод який буде повертати обєкт сторінки HomePage
             - libs
@@ -26,7 +26,7 @@
             - BaseTest.java                             // Base class for all test classes
                 - before()                              // This method will be executed before each test method
                     - intiDriver()
-                    - creating PageProvider object      // він нам буде повертати обєкти сторінок які ми будемо використовувати в тестах
+                    - creating pages.PageProvider object      // він нам буде повертати обєкти сторінок які ми будемо використовувати в тестах
                 - after()                               // This method will be executed after each test method
                     - quitDriver()
 
