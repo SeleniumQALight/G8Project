@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class HomePage extends ParentPage {
 
@@ -11,7 +10,13 @@ public class HomePage extends ParentPage {
     }
 
     public boolean isButtonSignOutVisible() {
-        WebElement buttonSignOut = webDriver.findElement(By.xpath("//button[text()='Sign Out']"));
-        return isElementDisplayed(buttonSignOut);
+        try {
+            boolean state = webDriver.findElement(By.xpath("//button[contains(text(),'Sign Out')]")).isDisplayed();
+            logger.info(state + " is button visible");
+            return state;
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return false;
+        }
     }
 }
