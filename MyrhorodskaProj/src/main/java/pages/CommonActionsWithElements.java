@@ -5,9 +5,10 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class CommonActionsWithElements {
-  protected   WebDriver webDriver;//save browser //доступний в нащадках і в цьому класі (protected)
+    protected WebDriver webDriver;//save browser //доступний в нащадках і в цьому класі (protected)
 
     protected Logger logger = Logger.getLogger(getClass());//save logger
 
@@ -29,7 +30,7 @@ public class CommonActionsWithElements {
 
     private String getElementName(WebElement webElement) {
         try {
-           return webElement.getAccessibleName();
+            return webElement.getAccessibleName();
 
         } catch (Exception e) {
             return "";
@@ -46,7 +47,8 @@ public class CommonActionsWithElements {
             Assert.fail(" Can't work with element ");
         }
     }
-   protected boolean isElementDisplayed(WebElement element) {
+
+    protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
             if (state) {
@@ -60,6 +62,43 @@ public class CommonActionsWithElements {
             logger.error("Can not work with element ");
             Assert.fail("Can not work with element ");
             return false;
+        }
+    }
+    //select text in dropDown
+
+    protected void selectTextInDropDown(WebElement dropDown, String text) {
+        try {
+            Select select = new Select(dropDown);
+            select.selectByValue(text);
+            logger.info(text + " was selected in dropDown" + getElementName(dropDown));
+        } catch (Exception e) {
+            logger.error("Can not work with element ");
+            Assert.fail("Can not work with element ");
+        }
+    }
+
+    //select Value in dropDown
+    protected void selectValueInDropDown(WebElement dropDown, String value) {
+        try {
+            Select select = new Select(dropDown);
+            select.selectByValue(value);
+            logger.info(value + " was selected in dropDown" + getElementName(dropDown));
+        } catch (Exception e) {
+            logger.error("Can not work with element ");
+            Assert.fail("Can not work with element ");
+        }
+    }
+    protected void checkIsElementVisible(WebElement webElement){
+        Assert.assertTrue("element is not visible",isElementDisplayed(webElement));
+    }
+    //check text in element
+    protected void checkTextInElement(WebElement element, String expectedText) {
+        try {
+            String textFromElement = element.getText();
+            Assert.assertEquals("Text in element not matched", expectedText, textFromElement);
+        } catch (Exception e) {
+            logger.error("Can not work with element ");
+            Assert.fail("Can not work with element ");
         }
     }
 }
