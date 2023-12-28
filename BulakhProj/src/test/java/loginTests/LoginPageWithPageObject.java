@@ -22,7 +22,7 @@ public class LoginPageWithPageObject extends BaseTest {
         pageProvider.loginPage().enterTextInToInputPassword("invalid_password");
         pageProvider.loginPage().clickOnButtonSingIn();
 
-        Assert.assertFalse("Button SignOut is visible", pageProvider.homePage().isButtonSingOutNotVisible());
+        Assert.assertFalse("Button SignOut is visible", pageProvider.homePage().isButtonSingOutVisible());
         Assert.assertTrue("Button SignIn is visible", pageProvider.loginPage().isButtonSignInVisible());
         Assert.assertTrue("Alert Danger is not visible", pageProvider.loginPage().isInvalidLoginMessageDisplayed());
 
