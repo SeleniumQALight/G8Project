@@ -4,10 +4,10 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
-    @FindBy(xpath = ".//button[text()='Sign Out']")
-    private WebElement buttonSignOut;
+    private HeaderElement headerElement;
 
     @FindBy(xpath = ".//button[contains(text(),'Sign In')]") // цей елемент створиться PageFactory в CommonActionsWithElements
     private WebElement buttonSignIn;
@@ -17,10 +17,6 @@ public class HomePage extends ParentPage {
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
-    }
-
-    public boolean isButtonSignOutVisible() {
-        return isElementDisplayed(buttonSignOut);
     }
 
     public boolean isButtonSignInVisible() {
@@ -33,7 +29,11 @@ public class HomePage extends ParentPage {
 
     public HomePage checkIsRedirectToHomePage() {
         // TODO check url
-        Assert.assertTrue("Invalid page - not Home Page", isButtonSignOutVisible());
+        Assert.assertTrue("Invalid page - not Home Page", getHeader().isButtonSignOutVisible());
         return this;
+    }
+
+    public HeaderElement getHeader() {
+        return new HeaderElement(webDriver);
     }
 }
