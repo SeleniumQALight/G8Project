@@ -1,11 +1,24 @@
 package pages;
 
+import libs.TestData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParentPage {
+
+    @FindBy(xpath = ".//button[contains(text(),'Sign In')]")
+    private WebElement buttonSignIn; // этот элемент создется PageFactory в CommonActionsWithElements
+
+    @FindBy(xpath = ".//input[@placeholder='Username']")
+    private WebElement inputLogin;
+
+    @FindBy(xpath = ".//input[@placeholder='Password']")
+    private WebElement inputPassword;
+
+    @FindBy(xpath = ".//div[text()='Invalid username/password.']")
+    private WebElement warningMessage;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -23,37 +36,39 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterTextIntoInputLogin(String login) {
-        WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
+//        WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         enterTextIntoInput(inputLogin, login);
     }
 
     public void enterTextIntoInputPassword(String password) {
-        WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+//        WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         enterTextIntoInput(inputPassword, password);
     }
 
     public void clickOnButtonSignIn() {
-        WebElement signInButton = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
-        clickOnElement(signInButton);
+//        WebElement signInButton = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
+        clickOnElement(buttonSignIn);
     }
 
     public boolean isWarningMessageVisible() {
-        try {
-            WebElement warningMessage = webDriver.findElement(By.xpath(".//div[text()='Invalid username/password.']"));
-            return isElementDisplayed(warningMessage);
-        } catch (Exception e) {
-            logger.error("Element is displayed -> false");
-            return false;
-        }
+//        WebElement warningMessage = webDriver.findElement(By.xpath(".//div[text()='Invalid username/password.']"));
+        return isElementDisplayed(warningMessage);
+
     }
 
+    // is button Sign in visible
     public boolean isButtonSignInVisible() {
-        try {
-            WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[text()='Sign In']"));
-            return isElementDisplayed(buttonSignIn);
-        } catch (Exception e) {
-            logger.error("Element is displayed -> false");
-            return false;
-        }
+//        WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
+        return isElementDisplayed(buttonSignIn);
+
+    }
+
+
+    public HomePage openLoginPageAndFillLoginFormWithValidCred() {
+        openLoginPage();
+        enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
+        enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
     }
 }
