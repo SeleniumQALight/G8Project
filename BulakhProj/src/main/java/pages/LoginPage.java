@@ -3,7 +3,6 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,6 +17,9 @@ public class LoginPage  extends ParentPage{
 
     @FindBy(xpath = "//input[@placeholder='Password']")
     private WebElement inputPassword;
+
+    @FindBy(xpath = "//div[@class=\"alert alert-danger text-center\" and contains(text(),\"Invalid username/password.\")]")
+    private WebElement invalidLoginMessage;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -65,7 +67,7 @@ public class LoginPage  extends ParentPage{
         return new HomePage(webDriver);
     }
     public boolean isInvalidLoginMessageDisplayed(){
-        WebElement invalidLoginMessage = webDriver.findElement(By.xpath("//div[@class=\"alert alert-danger text-center\" and contains(text(),\"Invalid username/password.\")]"));
-        return isElementDisplayed(invalidLoginMessage );
+//        WebElement invalidLoginMessage = webDriver.findElement(By.xpath("//div[@class=\"alert alert-danger text-center\" and contains(text(),\"Invalid username/password.\")]"));
+        return isElementDisplayed(invalidLoginMessage);
     }
 }
