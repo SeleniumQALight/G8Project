@@ -23,14 +23,7 @@ public class HomePage extends ParentPage {
     public HeaderElement getHeader() {
         return new HeaderElement(webDriver);
     }
-    public boolean isButtonSingOutVisible(){
-        try {
-            WebElement buttonSignOut = webDriver.findElement(By.xpath("//button[text()='Sign Out']"));
-            return isElementDisplayed(buttonSignOut);
-        } catch (Exception e) {
-            return false;
-        }
-    }
+
     }
 
 
