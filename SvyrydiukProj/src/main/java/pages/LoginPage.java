@@ -91,14 +91,26 @@ public class LoginPage extends ParentPage {
 
     //is username field visible
 
-    public boolean isUsernameFieldVisible() {
-        return isElementDisplayed(inputLogin);
+    public void checkUsernameFieldNotVisible() {
+        checkIsElementNotVisible(inputLogin);
+    }
+
+    public void checkUsernameFieltVisible() {
+        checkIsElementVisible(inputLogin);
     }
 
     //is password field visible
 
-    public boolean isPasswordFieldVisible() {
-        return isElementDisplayed(inputPassword);
+    public void checkPasswordFieldNotVisible() {
+        checkIsElementNotVisible(inputPassword);
+    }
+
+    public void checkPasswordFieldVisible() {
+        checkIsElementVisible(inputPassword);
+    }
+
+    public void checkSignInButtonNotVisible() {
+        checkIsElementNotVisible(buttonSignIn);
     }
 
 
