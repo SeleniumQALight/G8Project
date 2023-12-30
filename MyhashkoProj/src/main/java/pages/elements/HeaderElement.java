@@ -14,6 +14,17 @@ public class HeaderElement extends CommonActionsWhithElements {
 
     @FindBy(xpath = "//button[text()='Sign Out']")
     private WebElement buttonSignOut;
+    @FindBy(xpath = ".//img[@alt='My profile']")
+    private WebElement buttonMyProfile;
+    @FindBy(xpath = ".//span[@class='text-white mr-2']")
+    private WebElement buttonLogin;
+    @FindBy(xpath = ".//*[@class='text-white mr-2 header-search-icon']")
+    private WebElement buttonSearch;
+    @FindBy(xpath = ".//*[@class='text-white mr-2 header-chat-icon']")
+    private WebElement buttonChatCall;
+    @FindBy(xpath = ".//*[@alt='My profile']")
+    private WebElement avatarka;
+
 
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
@@ -27,5 +38,28 @@ public class HeaderElement extends CommonActionsWhithElements {
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
+    }
+    public boolean isButtonCreatePostVisble() {
+        return isElementDisplayed(buttonCreatePost);
+    }
+
+    public boolean isButtonMyProfileVisble() {
+        return isElementDisplayed(buttonMyProfile);
+    }
+
+    public boolean isLoginVisible() {
+        return isElementDisplayed(buttonLogin);
+    }
+
+    public boolean isButtonSearchVisble() {
+        return isElementDisplayed(buttonSearch);
+    }
+
+    public boolean isButtonChatVisble() {
+        return isElementDisplayed(buttonChatCall);
+    }
+
+    public boolean isAvatarVisible() {
+        return isElementDisplayed(avatarka);
     }
 }

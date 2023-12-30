@@ -15,6 +15,20 @@ public class LoginPage extends ParentPage{
     private WebElement inputPassword;
     @FindBy(xpath = "//div[contains(text(),'Invalid username/password.')]")
     private WebElement errorMessage;
+    @FindBy(xpath = ".//button[contains(text(),'Sign up for OurApp')]")
+    private WebElement buttonSignUp;
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private WebElement inputUsernameRegister;
+    @FindBy(xpath = ".//input[@id='email-register']")
+    private WebElement inputEmailRegister;
+    @FindBy(xpath = ".//input[@id='password-register']")
+    private WebElement inputPasswordRegister;
+    @FindBy(xpath = ".//*[text()='Username must be at least 3 characters.']")
+    private WebElement errorMessageForUsernameInput;
+    @FindBy(xpath = ".//*[text()='You must provide a valid email address.']")
+    private WebElement errorMessageForEmailInput;
+    @FindBy(xpath = ".//*[text()='Password must be at least 12 characters.']")
+    private WebElement errorMessageForPasswordInput;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -61,6 +75,42 @@ public class LoginPage extends ParentPage{
         enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+
+    public boolean isInputLoginVisible() {
+        return isElementDisplayed(inputLogin);
+    }
+    public boolean isInputPasswordVisible() {
+        return isElementDisplayed(inputPassword);
+    }
+
+    public void enterTextIntoInputUsernameRegister(String UserName) {
+        enterTextIntoInput(inputUsernameRegister, UserName);
+
+    }
+
+    public void enterTextIntoInputEmailRegister(String Email) {
+        enterTextIntoInput(inputEmailRegister, Email);
+    }
+
+    public void enterTextIntoInputPasswordRegister(String Password) {
+        enterTextIntoInput(inputPasswordRegister, Password);
+    }
+
+    public void clickOnButtonSignUpRegister() {
+        clickOnElement(buttonSignUp);
+    }
+
+    public boolean isErrorMessageVisibleForUsernameInput() {
+        return isElementDisplayed(errorMessageForUsernameInput);
+    }
+
+    public boolean isErrorMessageVisibleForEmailInput() {
+        return isElementDisplayed(errorMessageForEmailInput);
+    }
+
+    public boolean isErrorMessageVisibleForPasswordInput() {
+        return isElementDisplayed(errorMessageForPasswordInput);
     }
 }
 
