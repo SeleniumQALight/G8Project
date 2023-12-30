@@ -9,7 +9,7 @@ import pages.CreatePostPage;
 //описує елементи які є в хедері залогіненого юзера
 public class HeaderElement extends CommonActionsWithElements {
     //create post button
-    @FindBy(xpath = "//button[@class='btn-sm btn-success mr-2']")
+    @FindBy(xpath = "//a[contains(text(), 'Create Post')]")
     private WebElement buttonCreatePost;
 
     @FindBy(xpath = "//button[contains(text(),'Sign Out')]")

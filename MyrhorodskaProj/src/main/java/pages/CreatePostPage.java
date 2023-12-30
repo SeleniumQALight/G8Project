@@ -21,7 +21,7 @@ public class CreatePostPage  extends ParentPage{
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
-    public CreatePostPage checkIsRedirectedOnCreatePostPage() {
+    public CreatePostPage checkIsRedirectOnCreatePostPage() {
         //TODO check url
         //TODO check is Page title correct
 
@@ -54,7 +54,7 @@ public class CreatePostPage  extends ParentPage{
         return this;
     }
 
-    public void clickOnSaveNewPostButton() {
+    public PostPage clickOnSaveNewButton() {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }

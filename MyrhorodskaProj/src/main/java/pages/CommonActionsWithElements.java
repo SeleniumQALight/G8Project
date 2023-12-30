@@ -52,7 +52,7 @@ public class CommonActionsWithElements {
         try {
             boolean state = element.isDisplayed();
             if (state) {
-                logger.info(" Element is displayed " + getElementName(element) + " is displayed" + state);
+                logger.info("Element " + getElementName(element) + " is displayed -> " + state);
                 return true;
             } else {
                 logger.info("Element is not displayed ");
@@ -60,45 +60,49 @@ public class CommonActionsWithElements {
             }
         } catch (Exception e) {
             logger.error("Can not work with element ");
-            Assert.fail("Can not work with element ");
+       //     Assert.fail("Can not work with element ");
             return false;
         }
     }
     //select text in dropDown
 
+
+    // select Text in dropDown
     protected void selectTextInDropDown(WebElement dropDown, String text) {
         try {
             Select select = new Select(dropDown);
-            select.selectByValue(text);
-            logger.info(text + " was selected in dropDown" + getElementName(dropDown));
+            select.selectByVisibleText(text);
+            logger.info(text + " was selected in DropDown " + getElementName(dropDown));
         } catch (Exception e) {
-            logger.error("Can not work with element ");
-            Assert.fail("Can not work with element ");
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
         }
     }
 
-    //select Value in dropDown
+    // select Value in dropDown
     protected void selectValueInDropDown(WebElement dropDown, String value) {
         try {
             Select select = new Select(dropDown);
             select.selectByValue(value);
-            logger.info(value + " was selected in dropDown" + getElementName(dropDown));
+            logger.info(value + " was selected in DropDown " + getElementName(dropDown));
         } catch (Exception e) {
-            logger.error("Can not work with element ");
-            Assert.fail("Can not work with element ");
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
         }
     }
-    protected void checkIsElementVisible(WebElement webElement){
-        Assert.assertTrue("element is not visible",isElementDisplayed(webElement));
+
+    protected void checkIsElementVisible(WebElement webElement) {
+        Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
     }
-    //check text in element
+    // check text in element
     protected void checkTextInElement(WebElement element, String expectedText) {
         try {
             String textFromElement = element.getText();
             Assert.assertEquals("Text in element not matched", expectedText, textFromElement);
         } catch (Exception e) {
-            logger.error("Can not work with element ");
-            Assert.fail("Can not work with element ");
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
         }
     }
+
 }

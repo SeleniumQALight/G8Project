@@ -33,12 +33,12 @@ public class LoginPage extends ParentPage{
     }
 
     public void enterTextInToInputLogin(String login) {
-        WebElement inputLogin = webDriver.findElement(By.xpath(".//*[@placeholder='Username']"));
+      //  WebElement inputLogin = webDriver.findElement(By.xpath(".//*[@placeholder='Username']"));
         enterTextInToInput(inputLogin, login);
 
     }
     public void enterTextInToInputPassword(String password) {
-        WebElement inputPassword = webDriver.findElement(By.xpath(".//*[@placeholder='Password']"));
+       // WebElement inputPassword = webDriver.findElement(By.xpath(".//*[@placeholder='Password']"));
         enterTextInToInput(inputPassword, password);
     }
     public void clickOnButtonSingIn() {
