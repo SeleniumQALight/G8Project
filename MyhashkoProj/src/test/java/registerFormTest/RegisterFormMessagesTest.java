@@ -14,6 +14,7 @@ public class RegisterFormMessagesTest extends BaseTest {
         pageProvider.loginPage().clickOnButtonSignUpRegister();
 
 
+        Assert.assertTrue("Button Sign Up is visible", pageProvider.loginPage().isButtonSignUpVisible());
         Assert.assertTrue("Error message is visible for username", pageProvider.loginPage().isErrorMessageVisibleForUsernameInput());
         Assert.assertTrue("Error message is visible for email", pageProvider.loginPage().isErrorMessageVisibleForEmailInput());
         Assert.assertTrue("Error message is visible for password", pageProvider.loginPage().isErrorMessageVisibleForPasswordInput());
