@@ -38,4 +38,16 @@ public class LoginPage extends ParentPage{
                 webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSingIn);
     }
+
+    public boolean isButtonSignInVisible() {
+        WebElement buttonSignIn
+                = webDriver.findElement(By.xpath(".//button[text()='Sign In']"));
+        return isElementDisplayed(buttonSignIn);
+    }
+
+    public boolean isValidationMessageIsDisplayed() {
+        WebElement validationMessage
+                = webDriver.findElement(By.xpath(".//div[text() = 'Invalid username/password.']"));
+        return isElementDisplayed(validationMessage);
+    }
 }
