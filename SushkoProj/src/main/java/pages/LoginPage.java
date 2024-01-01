@@ -1,9 +1,12 @@
 package pages;
 
+import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static libs.TestData.*;
 
 public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//button[contains(text(),'Sign In')]") // цей елемент створиться в PageFactory в CommonActionsWithElements
@@ -45,5 +48,13 @@ public class LoginPage extends ParentPage{
 
     public boolean isButtonSignInIsVisible(){
         return isElementDisplayed(buttonSingIn);
+    }
+
+    public HomePage openLoginPageAndFillLoginFormWithValidCreds() {
+        openLoginPage();
+        enterTextIntoInputLogin(VALID_LOGIN_UI);
+        enterTextIntoInputPassword(VALID_PASSWORD_UI);
+        clickOnButtonSingIn();
+        return new HomePage(webDriver);
     }
 }
