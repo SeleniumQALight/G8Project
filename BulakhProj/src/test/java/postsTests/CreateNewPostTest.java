@@ -21,7 +21,6 @@ public class CreateNewPostTest  extends BaseTest {
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
 
-
         ;
 
 

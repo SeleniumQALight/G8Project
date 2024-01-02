@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import pages.elements.HeaderElement;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
@@ -95,6 +96,13 @@ public class CommonActionsWithElements {
             Assert.fail("Can not get text from element");
         }
     }
+
+    // Sing out button
+    public void clickOnButtonSignOut() {
+        HeaderElement headerElement = new HeaderElement(webDriver);
+        headerElement.clickOnButtonSignOut();
+    }
+
 
 }
 
