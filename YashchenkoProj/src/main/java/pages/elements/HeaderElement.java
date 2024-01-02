@@ -15,8 +15,26 @@ public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = "//button[text()='Sign Out']")
     private WebElement buttonSignOut;
 
+    @FindBy(xpath = ".//span[@class='text-white mr-2']")
+    private WebElement profileName;
+
+    @FindBy(xpath = ".//a[@href='/profile/qaauto']")
+    private WebElement buttonMyProfile;
+
     public boolean isButtonSignOutVisible() {
         return isElementDisplayed(buttonSignOut);
+    }
+
+    public void checkIsProfileNameVisible() {
+        checkIsElementVisible(profileName);
+    }
+
+    public void checkIsButtonMyProfileVisible() {
+        checkIsElementVisible(buttonMyProfile);
+    }
+
+    public void  checkIsCreatePostButtonVisible() {
+        checkIsElementVisible(buttonCreatePost);
     }
 
     public HeaderElement(WebDriver webDriver) {
