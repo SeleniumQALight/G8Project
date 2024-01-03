@@ -15,6 +15,12 @@ public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = "//button[contains(text(),'Sign Out')]")
     private WebElement buttonSignOut;
 
+    @FindBy(xpath = "//a[@href='/profile/qaauto']")
+    private WebElement titleMyProfile;
+
+    @FindBy(xpath = "//span[@class='text-white mr-2']")
+    private WebElement userName;
+
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
     }
@@ -27,4 +33,10 @@ public class HeaderElement extends CommonActionsWithElements {
     public boolean isButtonSignOutPresent() {
         return isElementDisplayed(buttonSignOut);
     }
+
+    public boolean isButtonCreatePostPresent() {return isElementDisplayed(buttonCreatePost);}
+
+    public boolean isTitleMyProfilePresent() {return isElementDisplayed(titleMyProfile);}
+
+    public boolean isUserNamePresent() {return isElementDisplayed(userName);}
 }

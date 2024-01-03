@@ -65,4 +65,26 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
+
+    public boolean isInputLoginPresent() {
+        try {
+            boolean state = inputLogin.isDisplayed();
+            logger.info(state + " is input Login visible");
+            return state;
+        } catch (Exception e){
+            logger.info("Input Login is not displayed");
+            return false;
+        }
+    }
+
+    public boolean isInputPasswordPresent() {
+        try {
+            boolean state = inputPassword.isDisplayed();
+            logger.info(state + " is input Password visible");
+            return state;
+        } catch (Exception e){
+            logger.info("Input Password is not displayed");
+            return false;
+        }
+    }
 }
