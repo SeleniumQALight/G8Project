@@ -98,4 +98,15 @@ public class CommonActionsWithElements {
             Assert.fail("Can not work with element");
         }
     }
+
+    protected boolean checkIsElementNotVisible(WebElement webElement) {
+        try {
+            boolean state = webElement.isDisplayed();
+            logger.info(state + " is " + getElementName(webElement) + " visible");
+            return state;
+        } catch (Exception e){
+            logger.info("Element" + getElementName(webElement) + " is not displayed");
+            return false;
+        }
+    }
 }

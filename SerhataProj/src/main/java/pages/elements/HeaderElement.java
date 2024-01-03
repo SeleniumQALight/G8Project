@@ -5,21 +5,27 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.CommonActionsWithElements;
 import pages.CreatePostPage;
+import pages.LoginPage;
 
 // описує елементи які є в хедері залогіненого юзера
 public class HeaderElement extends CommonActionsWithElements {
-    // create post button
     @FindBy(xpath = "//a[contains(text(), 'Create Post')]")
-    private WebElement buttonCreatePost;
-
-    @FindBy(xpath = "//button[contains(text(),'Sign Out')]")
-    private WebElement buttonSignOut;
+    public static WebElement buttonCreatePost;
 
     @FindBy(xpath = "//a[@href='/profile/qaauto']")
-    private WebElement titleMyProfile;
+    public static WebElement titleMyProfile;
+
+    @FindBy(xpath = "//a[@data-original-title='Search']")
+    public static WebElement buttonSearch;
+
+    @FindBy(xpath = "//span[@data-original-title='Chat']")
+    public static WebElement buttonChat;
 
     @FindBy(xpath = "//span[@class='text-white mr-2']")
     private WebElement userName;
+
+    @FindBy(xpath = "//button[contains(text(),'Sign Out')]")
+    private WebElement buttonSignOut;
 
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
@@ -39,4 +45,25 @@ public class HeaderElement extends CommonActionsWithElements {
     public boolean isTitleMyProfilePresent() {return isElementDisplayed(titleMyProfile);}
 
     public boolean isUserNamePresent() {return isElementDisplayed(userName);}
+
+    public LoginPage clickOnButtonSignOut() {
+        clickOnElement(buttonSignOut);
+        return new LoginPage(webDriver);
+    }
+
+    public void checkIsHeaderForUserVisible() {
+        checkIsElementVisible(buttonCreatePost);
+        checkIsElementVisible(titleMyProfile);
+        checkIsElementVisible(buttonSearch);
+        checkIsElementVisible(buttonChat);
+        checkIsElementVisible(userName);
+    }
+
+    public void checkIsHomeHeaderInvisibleFolSignOutUser() {
+        checkIsElementNotVisible(buttonCreatePost);
+        checkIsElementNotVisible(titleMyProfile);
+        checkIsElementNotVisible(buttonSearch);
+        checkIsElementNotVisible(buttonChat);
+        checkIsElementNotVisible(userName);
+    }
 }

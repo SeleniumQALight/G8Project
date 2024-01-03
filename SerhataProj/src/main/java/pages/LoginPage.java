@@ -6,14 +6,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[contains(text(),'Sign In')]")//цей елемент створиться PageFactory в CommonActionsWithElements
-    private WebElement buttonSignIn;
+    public static WebElement buttonSignIn;
     @FindBy(xpath = ".//input[@placeholder='Username']")
-    private WebElement inputLogin;
+    public static WebElement inputLogin;
     @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPassword;
+    public static WebElement inputPassword;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -44,7 +45,14 @@ public class LoginPage extends ParentPage {
     }
 
     public boolean isButtonSignInPresent() {
-      return isElementDisplayed(buttonSignIn);
+        try {
+            boolean state = buttonSignIn.isDisplayed();
+            logger.info(state + " is input Password visible");
+            return state;
+        } catch (Exception e){
+            logger.info("Input Password is not displayed");
+            return false;
+        }
     }
 
     public boolean isErrorMessagePresent() {
@@ -86,5 +94,23 @@ public class LoginPage extends ParentPage {
             logger.info("Input Password is not displayed");
             return false;
         }
+    }
+
+    public LoginPage checkIsRedirectToLoginPage() {
+        Assert.assertTrue("Invalid page - not Login Page", isButtonSignInPresent());
+        Assert.assertTrue("Invalid page - not Login Page", isInputLoginPresent());
+        Assert.assertTrue("Invalid page - not Login Page", isInputPasswordPresent());
+        return this;
+    }
+
+    public void checkIsLoginFieldIsNotVisible() {
+        isInputLoginPresent();
+        isInputPasswordPresent();
+        isButtonSignInPresent();
+        logger.info("Login fields are not visible");
+    }
+
+    public HeaderElement getHeader() {
+        return new HeaderElement(webDriver);
     }
 }
