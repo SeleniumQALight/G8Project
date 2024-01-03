@@ -31,8 +31,6 @@ public class HomePage extends ParentPage {
         return this;
     }
 
-
-
     public HeaderElement getHeader() {
         return new HeaderElement(webDriver);
     }
