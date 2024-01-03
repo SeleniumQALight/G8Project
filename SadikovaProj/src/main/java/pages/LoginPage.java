@@ -1,6 +1,7 @@
 package pages;
 
 
+import libs.Urls;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,13 +24,7 @@ public class LoginPage extends ParentPage {
     }
 
     public void openLoginPage() {
-        try {
-            webDriver.get("https://aqa-complexapp.onrender.com");
-            logger.info("Login page was opened");
-        } catch (Exception e) {
-            logger.error("Can not open login page");
-            Assert.fail("Can not open login page");
-        }
+        goToWebPage(Urls.HOME_PAGE_URL);
     }
 
     public void enterTextIntoInputLogin(String login) {
@@ -48,9 +43,45 @@ public class LoginPage extends ParentPage {
         return isElementDisplayed(warningMessage);
     }
 
-    public boolean isButtonSignInVisible() {
-        return isElementDisplayed(signInButton);
+    /**
+     * VISIBLE
+     */
+    public LoginPage loginFieldIsVisible() {
+        checkIsElementVisible(loginField);
+        return this;
     }
+
+
+    public LoginPage passwordFieldIsVisible() {
+        checkIsElementVisible(passwordField);
+        return this;
+    }
+
+    public LoginPage signInButtonIsVisible() {
+        checkIsElementVisible(signInButton);
+        return this;
+    }
+
+
+    /**
+     * NOT visible elements
+     */
+
+    public LoginPage loginFieldNotVisible() {
+        checkIsNotElementDisplayed(loginField);
+        return this;
+    }
+
+    public LoginPage passwordFieldNotVisible() {
+        checkIsNotElementDisplayed(passwordField);
+        return this;
+    }
+
+    public LoginPage signInButtonIsNotVisible() {
+        checkIsNotElementDisplayed(signInButton);
+        return this;
+    }
+
 
     public void clickOnButtonSingIn() {
         clickOnElement(signInButton);
@@ -63,4 +94,5 @@ public class LoginPage extends ParentPage {
         clickOnButtonSingIn();
         return new HomePage(webDriver);
     }
+
 }

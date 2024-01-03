@@ -16,6 +16,9 @@ public class CommonActionsWithElements {
         PageFactory.initElements(webDriver, this); // инициализирует все элементы на странице отмеченные аннотацией @FindBy
     }
 
+    /**
+     * Actions
+     */
     private String getElementName(WebElement webElement) {
         try {
             return webElement.getAccessibleName();
@@ -46,6 +49,19 @@ public class CommonActionsWithElements {
         }
     }
 
+    public void goToWebPage(String url) {
+        try {
+            webDriver.get(url);
+            logger.info("Page was opened: " + url);
+        } catch (Exception e) {
+            logger.error("Can not open page: " + url);
+            Assert.fail("Can not open page");
+        }
+    }
+
+    /**
+     * Checkers
+     */
     protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
@@ -57,9 +73,20 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void checkIsElementVisible(WebElement webElement) {
-        Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
+    protected void checkIsNotElementDisplayed(WebElement element) {
+        Assert.assertFalse(isElementDisplayed(element));
     }
+
+    protected void checkIsElementVisible(WebElement webElement) {
+        Assert.assertTrue(isElementDisplayed(webElement));
+    }
+
+    protected void assertUrl(String url) {
+        Assert.assertTrue(webDriver.getCurrentUrl().equals(url));
+        logger.info("Url is correct: " + url);
+    }
+
+
     // select Text in dropDown
     protected void selectTextInDropDown(WebElement dropDown, String text) {
         try {
@@ -84,9 +111,10 @@ public class CommonActionsWithElements {
         }
     }
 
-    public void checkTextInElement(WebElement element, String expectedText){
+    public void checkTextInElement(WebElement element, String expectedText) {
         String actualText = element.getText();
-        System.out.println(actualText);
         Assert.assertEquals(actualText, expectedText);
+        logger.info("Text visible: " + expectedText);
+
     }
 }

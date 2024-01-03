@@ -30,4 +30,6 @@ public class PageProvider {
     public PostPage postPage() {
         return new PostPage(webDriver);
     }
+
+    public RegistrationForm registrationForm(){return new RegistrationForm(webDriver);}
 }
