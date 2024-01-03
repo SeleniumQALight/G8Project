@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class LoginTestAllInOneClass {
@@ -27,7 +28,7 @@ public class LoginTestAllInOneClass {
         System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         logger.info("Browser was opened");
 
     }
@@ -64,14 +65,50 @@ public class LoginTestAllInOneClass {
 
     }
 
-    private boolean isButtonSignOutVisible() {
-        try{
+    @Test
+    public void testInvalidLogin() {
+        webDriver.get("https://aqa-complexapp.onrender.com");
+        logger.info("Site was opened");
 
-        boolean state = webDriver.findElement(By.xpath(".//button[@class='btn btn-sm btn-secondary']")).isDisplayed();
-        logger.info(state + "SignOut button");
-        return state;}
-        catch(Exception e){
+        WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
+        inputUserName.clear();
+        inputUserName.sendKeys("qaauto2");
+        logger.info("'qaauto2' input into userName");
+
+        WebElement inputUserPass = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        inputUserPass.clear();
+        inputUserPass.sendKeys("123456qwerty");
+        logger.info("'123456qwerty' input into Password");
+
+        WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
+        buttonSignIn.click();
+        logger.info("Button SignIn was click");
+
+        Assert.assertTrue("Button SignOut is not absent", !(isButtonSignOutVisible()));
+        Assert.assertTrue("Massage failLogin is absent", isMessageFailLogin());
+
+
+    }
+
+    private boolean isButtonSignOutVisible() {
+        try {
+
+            boolean state = webDriver.findElement(By.xpath(".//button[@class='btn btn-sm btn-secondary']")).isDisplayed();
+            logger.info(state + " SignOut button");
+            return state;
+        } catch (Exception e) {
             logger.info("Element is not displayed");
+        }
+        return false;
+    }
+
+    private boolean isMessageFailLogin() {
+        try {
+            boolean state = webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center' and contains(text(),'Invalid username/password.')]")).isDisplayed();
+            logger.info(state+ " Fail massage");
+            return state;
+        } catch (Exception e) {
+            logger.info("Massage failLogin is not displaed");
         }
         return false;
     }

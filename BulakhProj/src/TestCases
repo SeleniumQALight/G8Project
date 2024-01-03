@@ -14,8 +14,75 @@ Steps:
 5. Click on the Sign in button
 Expected Result:
 6.Verify user sees the Home Page (sees button "Sing Out" and don`t see button "Sing in")
-
-Postcondition:
+Postconditions:
 1. Delete user USER_NAME from the system [optional]
 
-TestCase #002
+TestCase #002 - Create Post
+Precondition:
+1.User must be logged in application
+Steps:
+1. Click on Create Post button.
+2. Enter text on Title - Test1
+3. Enter text on Body Content - 17-12 test cases
+4. Click button - Save New Post
+Expected Result:
+5. Message "New post successfully created." is displayed.
+6. See the Delete button.
+7. See the Edit button.
+8. See post in the list of posts.
+Postconditions:
+1. Click on icon "Delete"[optional]
+
+
+TestCase #003 - Edit Post
+Precondition:
+1.Post created and user logged in application
+Steps:
+1. Click on button Edit
+2. Add text to our existing text - new test for case
+3. Click button "Save Updates"
+Expected Result:
+4. Message "Post successfully updated." is displayed.
+5. See button "Back to post permalink"
+6. See post with new text
+Postconditions:
+1. Delete post with Title
+
+TestCase #004 - Delete Post
+Precondition:
+1.Post created with title "Test1 on 12/17/2023" and user logged in application
+Steps:
+1. Click on icon "My profile"
+2. Click on post "Test1 on 12/17/2023"
+3. Click on icon "Delete"
+Expected Result:
+4. Message "Post successfully deleted." is displayed.
+Postconditions:
+1. Click on icon "My profile"
+
+TestCase #005 - Start Chat
+Precondition:
+1.User must be logged in application
+Steps:
+1. Click on icon "Chat"
+2. Wright message - Hello
+3. Close "Chat"
+Expected Result:
+4. See window "Chat"
+5. See "Type a message" field
+6. Window "Chat" was close
+Postconditions:
+1. After window "Chat" was close we see "Chat" icon
+
+TestCase #005 - Sing out
+Precondition:
+1.User must be logged in application
+Steps:
+1. Click on icon "My profile"
+2. Click on link "Complex app for testing - QA"
+3. Press button "Sing out"
+Expected Result:
+4. See message "Hello qaauto, your feed is empty."
+5. See Home page with title "Remember Writing?"
+Postconditions:
+1. Create a new user [optional]
