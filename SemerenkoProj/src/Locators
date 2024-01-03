@@ -18,6 +18,8 @@ button_createPost = ".// a [@href='/create-post']"
 a_my_profile = ".//a[@href='/profile/qaauto']"
 a_search = ".//a[@data-original-title='Search']"
 
+span_user_name = ".//span[contains (text(), "qaauto")]"
+
 text_hello = ".//h2 [contains(text(), "Hello")]"
 
 

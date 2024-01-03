@@ -69,6 +69,7 @@ public class CommonActionsWithElements {
             Assert.fail("Can not work with element");
         }
     }
+
     //select value in dropDown
     protected void selectValueInDropDown(WebElement dropDown, String value) {
         try {
@@ -80,10 +81,15 @@ public class CommonActionsWithElements {
             Assert.fail("Can not work with element");
         }
     }
+
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
-
     }
+
+    protected void checkIsElementUnvisible(WebElement webElement) {
+        Assert.assertFalse("Element " + webElement.getAccessibleName() + " is visible", isElementDisplayed(webElement));
+    }
+
     //check text in element
     protected void checkTextInElement(WebElement element, String expectedText) {
         try {
