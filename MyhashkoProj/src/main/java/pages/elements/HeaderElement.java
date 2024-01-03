@@ -13,7 +13,7 @@ public class HeaderElement extends CommonActionsWhithElements {
     private WebElement buttonCreatePost;
 
     @FindBy(xpath = "//button[text()='Sign Out']")
-    protected WebElement buttonSignOut;
+    private WebElement buttonSignOut;
     @FindBy(xpath = ".//img[@alt='My profile']")
     private WebElement buttonMyProfile;
     @FindBy(xpath = ".//span[@class='text-white mr-2']")
