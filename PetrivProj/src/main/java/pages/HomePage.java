@@ -1,27 +1,39 @@
 package pages;
 
-import org.openqa.selenium.By;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
+    private HeaderElement headerElement;
+
+    @FindBy(xpath = ".//button[contains(text(),'Sign In')]") // цей елемент створиться PageFactory в CommonActionsWithElements
+    private WebElement buttonSignIn;
+
+    @FindBy(xpath = ".//div[contains(text(),'Invalid username/password.')]")
+    private WebElement invalidUsernameOrPasswordMessage;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public boolean isButtonSignOutVisible() {
-        String buttonSignOutXpath = ".//button[text()='Sign Out']";
-        return isElementDisplayed(buttonSignOutXpath);
-    }
-
     public boolean isButtonSignInVisible() {
-        String buttonSignInXpath = ".//button[text()='Sign In']";
-        return isElementDisplayed(buttonSignInXpath);
+        return isElementDisplayed(buttonSignIn);
     }
 
     public boolean isInvalidUsernameOrPasswordMessageVisible() {
-        String invalidUsernameOrPasswordMessageXpath = ".//div[contains(text(),'Invalid username/password.')]";
-        return isElementDisplayed(invalidUsernameOrPasswordMessageXpath);
+        return isElementDisplayed(invalidUsernameOrPasswordMessage);
+    }
+
+    public HomePage checkIsRedirectToHomePage() {
+        // TODO check url
+        Assert.assertTrue("Invalid page - not Home Page", getHeader().isButtonSignOutVisible());
+        return this;
+    }
+
+    public HeaderElement getHeader() {
+        return new HeaderElement(webDriver);
     }
 }
