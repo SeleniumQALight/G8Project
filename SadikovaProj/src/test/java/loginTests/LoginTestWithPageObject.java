@@ -14,7 +14,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD);
         pageProvider.loginPage().clickOnButtonSingIn();
         Assert.assertTrue("Button SignOut is not visible",
-                pageProvider.homePage().isButtonSignOutVisible());
+                pageProvider.headerElement().isButtonSignOutVisible());
     }
 
     @Test
@@ -23,7 +23,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().enterTextIntoInputLogin(WRONG_LOGIN);
         pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD);
         pageProvider.loginPage().clickOnButtonSingIn();
-        Assert.assertFalse("Button SignOut is not visible", pageProvider.homePage().isButtonSignOutVisible());
+        Assert.assertFalse("Button SignOut is not visible", pageProvider.headerElement().isButtonSignOutVisible());
         Assert.assertTrue("Button 'Sign In' is visible", pageProvider.loginPage().isButtonSignInVisible());
         Assert.assertTrue("Warning button Invalid username/password is visible", pageProvider.loginPage().isWarningMessageVisible());
     }

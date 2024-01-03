@@ -4,14 +4,17 @@ import baseTest.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static libs.TestData.VALID_LOGIN_UI;
+import static libs.TestData.VALID_PASSWORD_UI;
+
 public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void validLogin() {
         pageProvider.loginPage().openLoginPage();
-        pageProvider.loginPage().enterTextInToInputLogin("qaauto");
-        pageProvider.loginPage().enterTextInToInputPassword("123456qwerty");
+        pageProvider.loginPage().enterTextInToInputLogin(VALID_LOGIN_UI);
+        pageProvider.loginPage().enterTextInToInputPassword(VALID_PASSWORD_UI);
         pageProvider.loginPage().clickOnButtonSignIn();
-        Assert.assertTrue("Button SignOut is not visible", pageProvider.homePage().isButtonSignOutPresent());
+        Assert.assertTrue("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutPresent());
     }
 
     @Test
@@ -22,7 +25,6 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().clickOnButtonSignIn();
         Assert.assertTrue("Button Sign is not visible", pageProvider.loginPage().isButtonSignInPresent());
         Assert.assertTrue("Error message is not visible", pageProvider.loginPage().isErrorMessagePresent());
-        Assert.assertFalse("Button SignOut is not visible", pageProvider.homePage().isButtonSignOutPresent());
-
+        Assert.assertFalse("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutPresent());
     }
 }
