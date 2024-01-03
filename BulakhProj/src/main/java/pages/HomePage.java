@@ -23,4 +23,7 @@ public class HomePage extends ParentPage {
     public HeaderElement getHeader() {
         return new HeaderElement(webDriver);
     }
-}
+
+    }
+
+

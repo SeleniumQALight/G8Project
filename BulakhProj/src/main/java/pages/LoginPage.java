@@ -18,6 +18,9 @@ public class LoginPage  extends ParentPage{
     @FindBy(xpath = "//input[@placeholder='Password']")
     private WebElement inputPassword;
 
+    @FindBy(xpath = "//div[@class=\"alert alert-danger text-center\" and contains(text(),\"Invalid username/password.\")]")
+    private WebElement invalidLoginMessage;
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -62,5 +65,9 @@ public class LoginPage  extends ParentPage{
         enterTextInToInputPassword(TestData.VALID_PASSWORD_UI);
         clickOnButtonSingIn();
         return new HomePage(webDriver);
+    }
+    public boolean isInvalidLoginMessageDisplayed(){
+//        WebElement invalidLoginMessage = webDriver.findElement(By.xpath("//div[@class=\"alert alert-danger text-center\" and contains(text(),\"Invalid username/password.\")]"));
+        return isElementDisplayed(invalidLoginMessage);
     }
 }
