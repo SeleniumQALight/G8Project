@@ -10,6 +10,8 @@ import static libs.TestData.DEFAULT_VALID_PASSWORD_UI;
 
 public class LoginPage extends ParentPage {
 
+    //Find elements by xpath
+
     @FindBy(xpath = "//button[contains(text(),'Sign In')]") //This element will be initialized in PageFactory
     private WebElement buttonSignIn;
 
@@ -22,6 +24,7 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = "//div[contains(text(),'Invalid username/password.')]")
     private WebElement invalidAlert;
 
+    //Constructor
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -54,6 +57,36 @@ public class LoginPage extends ParentPage {
         return isElementDisplayed(buttonSignIn);
     }
 
+    public LoginPage checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn);
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInNotVisible() {
+        checkIsElementInvisible(buttonSignIn);
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordVisible() {
+        checkIsElementVisible(inputPassword);
+        return this;
+    }
+
+    public LoginPage checkIsPasswordInputNotVisible() {
+        checkIsElementInvisible(inputPassword);
+        return this;
+    }
+
+    public LoginPage checkIsInputLoginVisible() {
+        checkIsElementVisible(inputLogin);
+        return this;
+    }
+
+    public LoginPage checkIsLoginInputNotVisible() {
+        checkIsElementInvisible(inputLogin);
+        return this;
+    }
+
     public boolean isInvalidUserNamePasswordAlertVisible() {
         return isElementDisplayed(invalidAlert);
     }
@@ -65,4 +98,6 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
+
+
 }

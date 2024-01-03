@@ -19,7 +19,7 @@ public class HomePage extends ParentPage {
                 , "https://aqa-complexapp.onrender.com/"
                 , webDriver.getCurrentUrl());
         Assert.assertTrue("Invalid page - not Home Page"
-                , getHeader().isButtonSignOutVisible());
+                , getHeader().IsButtonSignOutVisible());
         return this;
     }
 
