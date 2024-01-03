@@ -1,11 +1,22 @@
 package pages;
 
+import libs.TestData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import static libs.TestData.*;
 
 public class LoginPage extends ParentPage{
+    @FindBy(xpath = ".//button[contains(text(),'Sign In')]") // цей елемент створиться в PageFactory в CommonActionsWithElements
+    private WebElement buttonSingIn;
+
+    @FindBy(xpath = ".//input[@placeholder='Username']")
+    private WebElement inputLogin;
+
+    @FindBy(xpath = ".//input[@placeholder='Password']")
+    private WebElement inputPassword;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -22,32 +33,28 @@ public class LoginPage extends ParentPage{
     }
 
     public void enterTextIntoInputLogin(String login) {
-        WebElement inputLogin =
-                webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         enterTextIntoInput(inputLogin, login);
     }
 
     public void enterTextIntoInputPassword(String password) {
-        WebElement inputPassword =
-                webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         enterTextIntoInput(inputPassword, password);
     }
 
     public void clickOnButtonSingIn() {
-        WebElement buttonSingIn =
-                webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));
+//        WebElement buttonSingIn =
+//                webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSingIn);
     }
 
-    public boolean isButtonSignInVisible() {
-        WebElement buttonSignIn
-                = webDriver.findElement(By.xpath(".//button[text()='Sign In']"));
-        return isElementDisplayed(buttonSignIn);
+    public boolean isButtonSignInIsVisible(){
+        return isElementDisplayed(buttonSingIn);
     }
 
-    public boolean isValidationMessageIsDisplayed() {
-        WebElement validationMessage
-                = webDriver.findElement(By.xpath(".//div[text() = 'Invalid username/password.']"));
-        return isElementDisplayed(validationMessage);
+    public HomePage openLoginPageAndFillLoginFormWithValidCreds() {
+        openLoginPage();
+        enterTextIntoInputLogin(VALID_LOGIN_UI);
+        enterTextIntoInputPassword(VALID_PASSWORD_UI);
+        clickOnButtonSingIn();
+        return new HomePage(webDriver);
     }
 }
