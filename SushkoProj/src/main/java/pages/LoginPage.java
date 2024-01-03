@@ -19,6 +19,9 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPassword;
 
+    @FindBy(xpath = ".//div[text() = 'Invalid username/password.']")
+    private WebElement validationMessage;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -52,8 +55,6 @@ public class LoginPage extends ParentPage{
     }
 
     public boolean isValidationMessageIsDisplayed() {
-        WebElement validationMessage
-                = webDriver.findElement(By.xpath(".//div[text() = 'Invalid username/password.']"));
         return isElementDisplayed(validationMessage);
     }
 
