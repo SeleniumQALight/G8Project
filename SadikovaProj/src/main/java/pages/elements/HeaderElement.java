@@ -67,32 +67,32 @@ public class HeaderElement extends CommonActionsWithElements {
      * NOT visible
      */
     public HeaderElement signOutButtonIsNotVisible() {
-        checkIsNotElementDisplayed(signOutButton);
+        checkElementIsNotDisplayed(signOutButton);
         return this;
     }
 
     public HeaderElement searchLinkIsNotVisible() {
-        checkIsNotElementDisplayed(searchLink);
+        checkElementIsNotDisplayed(searchLink);
         return this;
     }
 
     public HeaderElement chatIconIsNotVisible() {
-        checkIsNotElementDisplayed(chatIcon);
+        checkElementIsNotDisplayed(chatIcon);
         return this;
     }
 
     public HeaderElement createPostButtonIsNotVisible() {
-        checkIsNotElementDisplayed(createPostButton);
+        checkElementIsNotDisplayed(createPostButton);
         return this;
     }
 
     public HeaderElement myProfileIconIsNotVisible() {
-        checkIsNotElementDisplayed(myProfileIcon);
+        checkElementIsNotDisplayed(myProfileIcon);
         return this;
     }
 
     public HeaderElement userNameIsNotVisible() {
-        checkIsNotElementDisplayed(userName);
+        checkElementIsNotDisplayed(userName);
         return this;
     }
 
@@ -132,7 +132,7 @@ public class HeaderElement extends CommonActionsWithElements {
         userNameIsNotVisible();
         myProfileIconIsNotVisible();
         createPostButtonIsNotVisible();
-        checkIsNotElementDisplayed(signOutButton);
+        checkElementIsNotDisplayed(signOutButton);
         loginPage.passwordFieldIsVisible();
         loginPage.loginFieldIsVisible();
         loginPage.signInButtonIsVisible();

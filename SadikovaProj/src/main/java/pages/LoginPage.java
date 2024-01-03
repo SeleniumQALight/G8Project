@@ -2,7 +2,6 @@ package pages;
 
 
 import libs.Urls;
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -68,17 +67,17 @@ public class LoginPage extends ParentPage {
      */
 
     public LoginPage loginFieldNotVisible() {
-        checkIsNotElementDisplayed(loginField);
+        checkElementIsNotDisplayed(loginField);
         return this;
     }
 
     public LoginPage passwordFieldNotVisible() {
-        checkIsNotElementDisplayed(passwordField);
+        checkElementIsNotDisplayed(passwordField);
         return this;
     }
 
     public LoginPage signInButtonIsNotVisible() {
-        checkIsNotElementDisplayed(signInButton);
+        checkElementIsNotDisplayed(signInButton);
         return this;
     }
 

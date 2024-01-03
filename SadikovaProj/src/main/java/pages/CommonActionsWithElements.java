@@ -73,7 +73,7 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void checkIsNotElementDisplayed(WebElement element) {
+    protected void checkElementIsNotDisplayed(WebElement element) {
         Assert.assertFalse(isElementDisplayed(element));
     }
 
