@@ -112,7 +112,7 @@ public class HeaderElement extends CommonActionsWithElements {
 
 
     @Description("Проверить отображение всех элементов для пользователя в хедере")
-    public HeaderElement assertUserLoginHasElements() {
+    public HeaderElement assertUserLoginHeaderElements() {
         searchLinkIsVisible();
         chatIconIsVisible();
         userNameIsVisible();
@@ -126,7 +126,7 @@ public class HeaderElement extends CommonActionsWithElements {
     }
 
     @Description("Проверить отображение всех элементов для гостя в хедере")
-    public HeaderElement assertGuestLoginHasElements() {
+    public HeaderElement assertGuestHeaderHasElements() {
         searchLinkIsNotVisible();
         chatIconIsNotVisible();
         userNameIsNotVisible();
