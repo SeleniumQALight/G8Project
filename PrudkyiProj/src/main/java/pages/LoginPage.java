@@ -28,14 +28,14 @@ public class LoginPage extends ParentPage {
         }
     }
 
-    public void enterTextIntoInputLogin(String login) {
+    public void enterTextIntoInput(String login) {
         //WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
-        enterTextIntoInputLogin(inputLogin, login);
+        enterTextIntoInput(inputLogin, login);
     }
 
     public void enterTextIntoInputPassword(String password) {
         //WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
-        enterTextIntoInputLogin(inputPassword, password);
+        enterTextIntoInput(inputPassword, password);
     }
 
     public void clickOnButtonSignIn() {
@@ -54,7 +54,7 @@ public class LoginPage extends ParentPage {
 
     public HomePages openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
-        enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
+        enterTextIntoInput(TestData.VALID_LOGIN_UI);
         enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
         clickOnButtonSignIn();
         return new HomePages(webDriver);
