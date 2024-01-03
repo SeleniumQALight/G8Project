@@ -2,25 +2,27 @@ package loginTests;
 
 import baseTast.BaseTest;
 import org.junit.Test;
+import pages.elements.HeaderElement;
 
 public class SignOutTest extends BaseTest {
 
     @Test
     public void signOut() {
-//        pageProvider.loginPage()
-//                .openLoginPageAndFillLoginFormWithValidCred()
-//                .checkIsRedirectToHomePage()
-//                .getHeader().isSearchButtonVisible()
-//
-//                .checkAvatarIsVisible()
-//                .checkCreatePostButtonIsVisible()
-//                .checkSignOutButtonIsVisible()
-//                .checkLoginInputIsNotVisible()
-//                .checkPasswordInputIsNotVisible()
-//                .checkSignInButtonIsNotVisible()
-//
-//
-//        ;
+
+        HeaderElement header = pageProvider.loginPage()
+                .openLoginPageAndFillLoginFormWithValidCred()
+                .checkIsRedirectToHomePage()
+                .getHeader()
+                .checkSearchButtonIsVisible()
+                .checkChatButtonIsVisible()
+                .checkAvatarIsVisible()
+                .checkCreatePostButtonIsVisible()
+                .checkSignOutButtonIsVisible()
+                .checkLoginInputIsNotVisible()
+                .checkPasswordInputIsNotVisible()
+                .checkSignInButtonIsNotVisible();
+
+
     }
 
 

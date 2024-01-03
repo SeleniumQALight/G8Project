@@ -1,5 +1,6 @@
 package pages.elements;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -60,39 +61,46 @@ public class HeaderElement extends CommonActionsWithElements {
 
     //Checking the presence of elements in the header after login
 
-    public boolean isSearchButtonVisible() {
-        return isElementDisplayed(searchButton);
+    public HeaderElement checkSearchButtonIsVisible() {
+     Assert.assertTrue("Search button is not displayed", isElementDisplayed(searchButton));
+        return this;
     }
 
-    public boolean isChatButtonVisible() {
-        return isElementDisplayed(chatButton);
+    public HeaderElement checkChatButtonIsVisible() {
+        Assert.assertTrue("Chat button is not displayed", isElementDisplayed(chatButton));
+        return this;
     }
 
-    public boolean isAvatarVisible() {
-        return isElementDisplayed(avatar);
+    public HeaderElement checkAvatarIsVisible() {
+        Assert.assertTrue("Avatar is not displayed", isElementDisplayed(avatar));
+        return this;
     }
 
-    public boolean isCreatePostButtonVisible() {
-        return isElementDisplayed(createPostButton);
+    public HeaderElement checkCreatePostButtonIsVisible() {
+        Assert.assertTrue("Create Post button is not displayed", isElementDisplayed(createPostButton));
+        return this;
     }
 
 
-    public boolean isSignOutButtonVisible() {
-        return isElementDisplayed(signOutButton);
+    public HeaderElement checkSignOutButtonIsVisible() {
+        Assert.assertTrue("Sign Out button is not displayed", isElementDisplayed(signOutButton));
+        return this;
     }
 
-    public boolean isLoginInputVisible() {
-        return isElementDisplayed(loginInput);
+    public HeaderElement checkLoginInputIsNotVisible() {
+        Assert.assertFalse("Login input is displayed", isElementDisplayed(loginInput));
+        return this;
     }
 
-    public boolean isPasswordInputVisible() {
-        return isElementDisplayed(passwordInput);
+    public HeaderElement checkPasswordInputIsNotVisible() {
+        Assert.assertFalse("Password input is displayed", isElementDisplayed(passwordInput));
+        return this;
     }
 
-    public boolean isSignInButtonVisible() {
-        return isElementDisplayed(signInButton);
+    public HeaderElement checkSignInButtonIsNotVisible() {
+        Assert.assertFalse("Sign In button is displayed", isElementDisplayed(signInButton));
+        return this;
     }
-
 
 
 }
