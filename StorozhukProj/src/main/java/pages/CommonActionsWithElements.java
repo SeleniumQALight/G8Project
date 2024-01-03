@@ -12,6 +12,7 @@ public class CommonActionsWithElements {
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
+
     protected void enterTextIntoInputLogin(WebElement input, String text) {
         try {
             input.clear();
@@ -22,6 +23,7 @@ public class CommonActionsWithElements {
             Assert.fail("Can not work with element");
         }
     }
+
     protected void clickOnElement(WebElement element) {
         try {
             element.click();
@@ -40,6 +42,15 @@ public class CommonActionsWithElements {
         } catch (Exception e) {
             logger.info("Element is not displayed");
             return false;
+        }
+    }
+
+    protected WebElement findElementByXpath(String xpath) {
+        try {
+            WebElement element = webDriver.findElement(org.openqa.selenium.By.xpath(xpath));
+            return element;
+        } catch (Exception e) {
+            return null;
         }
     }
 }

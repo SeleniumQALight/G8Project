@@ -11,8 +11,16 @@ public class HomePage extends ParentPage{
     }
 
     public boolean isButtonSignOutVisible() {
-        WebElement buttonSignOut = webDriver.findElement(
-                By.xpath("//button[text()='Sign Out']"));
+        //WebElement buttonSignOut = webDriver.findElement(
+        //        By.xpath("//button[text()='Sign Out']"));
+        WebElement buttonSignOut = findElementByXpath("//button[text()='Sign Out']");
         return isElementDisplayed(buttonSignOut);
+    }
+
+    public boolean isButtonSignInVisible() {
+        //WebElement buttonSignIn = webDriver.findElement(
+        //        By.xpath("//button[text()='Sign In']"));
+        WebElement buttonSignIn = findElementByXpath("//button[text()='Sign In']");
+        return isElementDisplayed(buttonSignIn);
     }
 }
