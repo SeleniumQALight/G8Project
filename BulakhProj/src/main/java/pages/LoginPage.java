@@ -26,6 +26,27 @@ public class LoginPage  extends ParentPage{
     @FindBy(xpath = "//div[@class=\"alert alert-danger text-center\" and contains(text(),\"Invalid username/password.\")]")
     private WebElement invalidLoginMessage;
 
+    @FindBy(xpath = "//input[@id='username-register']")
+    private WebElement inputUserName;
+
+    @FindBy(xpath = "//input[@id='email-register']")
+    private WebElement inputEmail;
+
+    @FindBy(xpath = "//input[@id='password-register']")
+    private WebElement inputPassword1;
+
+    @FindBy(xpath = "//div[contains(text(), 'Username must be at least 3 characters.')]")
+    private WebElement validationMessageUsername;
+
+    @FindBy(xpath = "//div[contains(text(), 'You must provide a valid email address.')]")
+    private WebElement validationMessageEmail;
+
+    @FindBy(xpath = "//div[contains(text(), 'Password must be at least 12 characters.')]")
+    private WebElement validationMessagePassword;
+
+    @FindBy(xpath = "//button[contains(text(),'Sign up for OurApp')]")
+    private WebElement buttonSignUp1;
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -84,5 +105,25 @@ public class LoginPage  extends ParentPage{
     public boolean isInvalidLoginMessageDisplayed(){
 //        WebElement invalidLoginMessage = webDriver.findElement(By.xpath("//div[@class=\"alert alert-danger text-center\" and contains(text(),\"Invalid username/password.\")]"));
         return isElementDisplayed(invalidLoginMessage);
+    }
+
+    public LoginPage fillRegistrationForm(String userName, String Email, String Password) {
+        enterTextInToInput(inputUserName, userName);
+        enterTextInToInput(inputEmail, Email);
+        enterTextInToInput(inputPassword1, Password);
+        return this;
+
+    }
+
+    public LoginPage clickOnButtonSingUp() {
+        clickOnElement(buttonSignUp1);
+        return this;
+    }
+
+    public LoginPage checkErrorsMessages(String text) {
+        checkTextInElement(validationMessageUsername, "Username must be at least 3 characters.");
+        checkTextInElement(validationMessageEmail, "You must provide a valid email address.");
+        checkTextInElement(validationMessagePassword, "Password must be at least 12 characters.");
+        return this;
     }
 }
