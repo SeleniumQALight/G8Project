@@ -63,12 +63,17 @@ public class LoginPage extends ParentPage {
 
     }
 
-
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
         enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+
+    public void checkIsLoginFieldIsNotVisible() {
+        checkIsElementNotVisible(inputLogin);
+        checkIsElementNotVisible(inputPassword);
+        logger.info("Login field is not visible");
     }
 }

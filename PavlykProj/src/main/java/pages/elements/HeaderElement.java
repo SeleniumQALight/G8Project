@@ -17,6 +17,15 @@ public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = ".//button[text()='Sign Out']")
     private WebElement buttonSignOut;
 
+    @FindBy(xpath = ".//a[text()='Create Post']")
+    private WebElement createPostLink;
+
+    @FindBy(xpath = ".//img[@data-original-title='My Profile']/..")
+    private WebElement myProfileLink;
+
+    @FindBy(xpath = ".//span[contains(@class,'text-white')and not(@data-original-title)]")
+    private WebElement userNameIcon;
+
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
     }
@@ -26,8 +35,37 @@ public class HeaderElement extends CommonActionsWithElements {
         return new CreatePostPage(webDriver);
     }
 
-    public boolean isButtonSignOutVisible() {
+    public boolean isButtonSignOutDisplayed() {
 //        WebElement buttonSignOut = webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
         return isElementDisplayed(buttonSignOut);
+    }
+
+    public HeaderElement isButtonSignOutVisible() {
+        checkIsElementVisible(buttonSignOut);
+        return this;
+    }
+
+    public HeaderElement isButtonCreatePostVisible() {
+        checkIsElementVisible(buttonCreatePost);
+        return this;
+    }
+
+    public HeaderElement isMyProfileLinkVisible() {
+        checkIsElementVisible(myProfileLink);
+        return this;
+    }
+
+    public HeaderElement isUserNameIconVisible() {
+        checkIsElementVisible(userNameIcon);
+        return this;
+    }
+
+    public HeaderElement checkIsHeaderForUserVisible() {
+        isButtonSignOutVisible();
+        isButtonCreatePostVisible();
+        isMyProfileLinkVisible();
+        isUserNameIconVisible();
+        logger.info("Header for user is visible");
+        return this;
     }
 }
