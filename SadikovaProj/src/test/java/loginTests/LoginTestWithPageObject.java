@@ -4,8 +4,7 @@ import baseTest.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static libs.TestData.VALID_LOGIN_UI;
-import static libs.TestData.VALID_PASSWORD;
+import static libs.TestData.*;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
@@ -15,7 +14,18 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD);
         pageProvider.loginPage().clickOnButtonSingIn();
         Assert.assertTrue("Button SignOut is not visible",
-                pageProvider.homePage().isButtonSignOutVisible());
+                pageProvider.headerElement().isButtonSignOutVisible());
+    }
+
+    @Test
+    public void invalidLogin(){
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputLogin(WRONG_LOGIN);
+        pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD);
+        pageProvider.loginPage().clickOnButtonSingIn();
+        Assert.assertFalse("Button SignOut is not visible", pageProvider.headerElement().isButtonSignOutVisible());
+        Assert.assertTrue("Button 'Sign In' is visible", pageProvider.loginPage().isButtonSignInVisible());
+        Assert.assertTrue("Warning button Invalid username/password is visible", pageProvider.loginPage().isWarningMessageVisible());
     }
 
 }
