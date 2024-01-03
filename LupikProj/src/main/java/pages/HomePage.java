@@ -1,23 +1,27 @@
 package pages;
 
-import org.openqa.selenium.By;
+
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import pages.elements.HeaderElement;
 
 public class HomePage extends ParrentPage {
+    private HeaderElement headerElement;
 
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public boolean isButtonSignOutVisible() {
-        try{WebElement buttonSignOut = webDriver.findElement(
-                By.xpath(".//button[text()='Sign Out']"));
-        return isElementDisplayed(buttonSignOut);}
-        catch (Exception e){
-            logger.info("Element button SignOut is displayed -> false");
-            return false;
-        }
+
+    public HomePage checkIsRedirectToHomePage() {
+        // TODO check url
+        Assert.assertTrue("Invalid page - not Home Page"
+                , getHeader().isButtonSignOutVisible());
+        return this;
+    }
+
+    public HeaderElement getHeader() {
+        return new HeaderElement(webDriver);
     }
 }
