@@ -96,4 +96,8 @@ public class CommonActionsWithElements {
             Assert.fail("Can not get text from element ");
         }
     }
+
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementDisplayed(webElement));
+    }
 }
