@@ -13,7 +13,7 @@ public class HeaderElement extends CommonActionsWhithElements {
     private WebElement buttonCreatePost;
 
     @FindBy(xpath = "//button[text()='Sign Out']")
-    private WebElement buttonSignOut;
+    protected WebElement buttonSignOut;
     @FindBy(xpath = ".//img[@alt='My profile']")
     private WebElement buttonMyProfile;
     @FindBy(xpath = ".//span[@class='text-white mr-2']")
@@ -61,5 +61,9 @@ public class HeaderElement extends CommonActionsWhithElements {
 
     public boolean isAvatarVisible() {
         return isElementDisplayed(avatarka);
+    }
+
+    public void clickOnButtonSignOut() {
+        clickOnElement(buttonSignOut);
     }
 }

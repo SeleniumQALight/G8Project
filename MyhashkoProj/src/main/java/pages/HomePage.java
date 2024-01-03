@@ -8,8 +8,7 @@ import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
     private HeaderElement headerElement;
-    @FindBy(xpath = ".//button[text()='Sign Out']")
-    private WebElement SignOut;
+
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -26,7 +25,4 @@ public class HomePage extends ParentPage {
         return new HeaderElement(webDriver);
     }
 
-    public void clickOnButtonSignOut() {
-        clickOnElement(SignOut);
-    }
 }

@@ -25,7 +25,7 @@ public class SignOutTest extends baseTest.BaseTest {
         Assert.assertFalse("Field for input login is not visible", pageProvider.loginPage().isInputLoginVisible());
         Assert.assertFalse("Field for input password is not visible", pageProvider.loginPage().isInputPasswordVisible());
 
-        pageProvider.homePage().clickOnButtonSignOut();
+        pageProvider.homePage().getHeader().clickOnButtonSignOut();
 
         Assert.assertFalse("Button Search is not visible", pageProvider.homePage().getHeader().isButtonSearchVisble());
         Assert.assertFalse("Button Chat is not visible", pageProvider.homePage().getHeader().isButtonChatVisble());

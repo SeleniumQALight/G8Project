@@ -112,5 +112,9 @@ public class LoginPage extends ParentPage{
     public boolean isErrorMessageVisibleForPasswordInput() {
         return isElementDisplayed(errorMessageForPasswordInput);
     }
+
+    public boolean isButtonSignUpVisible() {
+        return isElementDisplayed(buttonSignUp);
+    }
 }
 
