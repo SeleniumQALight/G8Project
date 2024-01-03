@@ -8,7 +8,7 @@ public class CreateNewPostTest extends BaseTest {
     @Test
     public void createNewPost() {
         pageProvider.getLoginPage()
-                .openLoginPageAndFillLoginFormWithValidCreat()
+                .openLoginPageAndFillLoginFormWithValidCreate()
                 .checkIsRedirectToHomePage()
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()

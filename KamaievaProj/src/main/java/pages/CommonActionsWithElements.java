@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -20,7 +21,7 @@ public class CommonActionsWithElements {
         try {
             input.clear();
             input.sendKeys(text);
-            logger.info(text + " was inputted into input" + getElementName(input));
+            logger.info(text + " was inputted into input " + getElementName(input));
         } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
@@ -39,7 +40,7 @@ public class CommonActionsWithElements {
         try {
             String elementName = getElementName(element);
             element.click();
-            logger.info("Element was clicked" + elementName);
+            logger.info("Element was clicked " + elementName);
         } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
@@ -49,7 +50,7 @@ public class CommonActionsWithElements {
     protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
-            logger.info("Element" + getElementName(element) + " is displayed -> " + state);
+            logger.info("Element '" + getElementName(element) + "' is displayed -> " + state);
             return state;
         } catch (Exception e) {
             logger.error("Can not work with element");
@@ -83,6 +84,22 @@ public class CommonActionsWithElements {
 
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
+    }
+
+    protected void checkIsElementNotVisible1(WebElement webElement) {
+        Assert.assertFalse(webElement + "Element is not visible", isElementDisplayed(webElement));
+    }
+
+    public boolean checkIsElementNotVisible(WebElement webElement, String elementName) {
+        try {
+            //String element = String.valueOf(webElement);
+            boolean state = webDriver.findElement(By.xpath(String.valueOf(webElement))).isDisplayed();
+            logger.info(elementName + " is displayed -> " + state);
+            return state;
+        } catch (Exception e) {
+            logger.info(elementName + " is not displayed");
+            return false;
+        }
     }
 
     //check text in element

@@ -38,4 +38,35 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertTrue("Button 'Sign In' is not visible", pageProvider.getLoginPage().isButtonSignInVisible());
         Assert.assertTrue("Alert is not visible", pageProvider.getLoginPage().isAlertInvalidUsernamePasswordVisible());
     }
+
+    @Test
+    @Description("Check that user can logout")
+    public void logoutTest(){
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputLogin(VALID_LOGIN_UI);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+
+        Assert.assertTrue("Button 'Search' is not visible", pageProvider.getHomePage().getHeader().isButtonSearchVisible());
+        Assert.assertTrue("Button 'Chat' is not visible",pageProvider.getHomePage().getHeader().isButtonChatVisible());
+        Assert.assertTrue("Button 'My profile' is not visible", pageProvider.getHomePage().getHeader().isButtonMyProfileVisible());
+        Assert.assertTrue("Button 'Create post' is not visible", pageProvider.getHomePage().getHeader().isButtonCreatePostVisible());
+        Assert.assertTrue("Button 'Sign out' is not visible", pageProvider.getHomePage().getHeader().isButtonSignOutVisible());
+
+        pageProvider.getLoginPage()
+                .isInputPasswordNotVisible()
+                .isInputUsernameNotVisible()
+                .isButtonSignInNotVisible();
+
+        pageProvider.getHomePage().getHeader().clickOnButtonSignOut().checkIsRedirectToLoginPage();
+
+        pageProvider.getLoginPage().getHeader().isButtonSearchNotVisible();
+        pageProvider.getLoginPage().getHeader().isButtonChatNotVisible();
+        pageProvider.getLoginPage().getHeader().isButtonMyProfileNotVisible();
+        pageProvider.getLoginPage().getHeader().isButtonCreatePostNotVisible();
+        pageProvider.getLoginPage().getHeader().isButtonSignOutNotVisible();
+
+        Assert.assertTrue("Input 'Username' is not visible", pageProvider.getLoginPage().isInputLoginVisible());
+        Assert.assertTrue("Input 'Password' is not visible", pageProvider.getLoginPage().isInputPasswordVisible());
+    }
 }
