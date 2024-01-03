@@ -11,11 +11,32 @@ import pages.elements.HeaderElement;
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[contains(text(),'Sign In')]")//цей елемент створиться PageFactory в CommonActionsWithElements
     public static WebElement buttonSignIn;
+
     @FindBy(xpath = ".//input[@placeholder='Username']")
     public static WebElement inputLogin;
+
     @FindBy(xpath = ".//input[@placeholder='Password']")
     public static WebElement inputPassword;
 
+    @FindBy(xpath = "//input[@id='username-register']")
+    public static WebElement inputUserNameForSignUp;
+
+    @FindBy(xpath = "//input[@id='email-register']")
+    public static WebElement inputEmailForSignUp;
+
+    @FindBy(xpath = "//input[@id='password-register']")
+    public static WebElement inputPasswordForSignUp;
+
+    @FindBy(xpath = "//button [@type='submit']")
+    public static WebElement buttonSignUp;
+    @FindBy(xpath = ".//div[text()='Username must be at least 3 characters.']")
+    private WebElement validationMessageForUserNameField;
+
+    @FindBy(xpath = ".//div[text()='You must provide a valid email address.']")
+    private WebElement validationMessageForEmailField;
+
+    @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
+    private WebElement validationMessageForPasswordField;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -112,5 +133,36 @@ public class LoginPage extends ParentPage {
 
     public HeaderElement getHeader() {
         return new HeaderElement(webDriver);
+    }
+
+    public void enterTextInToInputUserName(String login) {
+        enterTextInToInput(inputUserNameForSignUp, login);
+    }
+
+    public void enterTextInToInputEmail(String email) {
+        enterTextInToInput(inputEmailForSignUp, email);
+    }
+
+    public void enterTextInToInputPasswordForSignUp(String password) {
+        enterTextInToInput(inputPasswordForSignUp, password);
+    }
+
+    public void clickOnButtonSignUp() {
+        clickOnElement(buttonSignUp);
+    }
+
+    public LoginPage isValidationMessageForUserNameFieldVisible() {
+        checkIsElementVisible(validationMessageForUserNameField);
+        return this;
+    }
+
+    public LoginPage isValidationMessageForEmailFieldVisible() {
+        checkIsElementVisible(validationMessageForEmailField);
+        return this;
+    }
+
+    public LoginPage isValidationMessageForPasswordFieldVisible() {
+        checkIsElementVisible(validationMessageForPasswordField);
+        return this;
     }
 }
