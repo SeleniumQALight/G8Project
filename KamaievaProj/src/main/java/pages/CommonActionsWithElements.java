@@ -2,7 +2,6 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -57,8 +56,8 @@ public class CommonActionsWithElements {
             return false;
         }
     }
-    //select Text in dropdown
 
+    //select Text in dropdown
     protected void selectTextInDropdown(WebElement dropDown, String text) {
         try {
             Select select = new Select(dropDown);
@@ -86,18 +85,24 @@ public class CommonActionsWithElements {
         Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
     }
 
-    protected void checkIsElementNotVisible1(WebElement webElement) {
-        Assert.assertFalse(webElement + "Element is not visible", isElementDisplayed(webElement));
-    }
-
     public boolean checkIsElementNotVisible(WebElement webElement, String elementName) {
         try {
-            //String element = String.valueOf(webElement);
-            boolean state = webDriver.findElement(By.xpath(String.valueOf(webElement))).isDisplayed();
+            boolean state = webElement.isDisplayed();
             logger.info(elementName + " is displayed -> " + state);
             return state;
         } catch (Exception e) {
             logger.info(elementName + " is not displayed");
+            return false;
+        }
+    }
+
+    public boolean checkIsValidationMessageVisible(WebElement webElement) {
+        try {
+            boolean state = webElement.isDisplayed();
+            logger.info(webElement.getText() + " is displayed -> " + state);
+            return state;
+        } catch (Exception e) {
+            logger.info(webElement.getText() + " is not displayed");
             return false;
         }
     }

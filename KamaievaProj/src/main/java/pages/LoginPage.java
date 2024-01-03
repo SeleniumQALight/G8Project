@@ -20,6 +20,27 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = "//input[@placeholder='Password']")
     private WebElement inputPassword;
 
+    @FindBy(xpath = "//input[@id = 'username-register']")
+    private WebElement inputUsernameRegister;
+
+    @FindBy(xpath = "//input[@id = 'email-register']")
+    private WebElement inputEmailRegister;
+
+    @FindBy(xpath = "//input[@id = 'password-register']")
+    private WebElement inputPasswordRegister;
+
+    @FindBy(xpath = "//button[contains(text(), 'Sign up')]")
+    private WebElement buttonSignUp;
+
+    @FindBy(xpath = "//div[text() = 'Username must be at least 3 characters.']")
+    private WebElement validationMessageUsernameRegister;
+
+    @FindBy(xpath = "//div[text() = 'You must provide a valid email address.']")
+    private WebElement validationMessageEmailRegister;
+
+    @FindBy(xpath = "//div[text() = 'Password must be at least 12 characters.']")
+    private WebElement validationMessagePasswordRegister;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -40,6 +61,22 @@ public class LoginPage extends ParentPage {
 
     public void enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
+    }
+
+    public void enterTextIntoInputUsernameRegister(String username) {
+        enterTextIntoInput(inputUsernameRegister, username);
+    }
+
+    public void enterTextIntoInputEmailRegister(String email) {
+        enterTextIntoInput(inputEmailRegister, email);
+    }
+
+    public void enterTextIntoInputPasswordRegister(String password) {
+        enterTextIntoInput(inputPasswordRegister, password);
+    }
+
+    public void clickOnButtonSignUp() {
+        clickOnElement(buttonSignUp);
     }
 
     public boolean isInputLoginVisible() {
@@ -113,5 +150,34 @@ public class LoginPage extends ParentPage {
 
     public HeaderElement getHeader() {
         return new HeaderElement(webDriver);
+    }
+
+    public boolean isValidationMessageUsernameRegisterVisible() {
+       return checkIsValidationMessageVisible(validationMessageUsernameRegister);
+    }
+
+    public boolean isValidationMessageEmailRegisterVisible() {
+        checkIsValidationMessageVisible(validationMessageEmailRegister);
+        return true;
+    }
+
+    public boolean isValidationMessagePasswordRegisterVisible() {
+        checkIsValidationMessageVisible(validationMessagePasswordRegister);
+        return true;
+    }
+
+    public LoginPage checkTextInValidationMessageUsernameRegister(String text) {
+        Assert.assertEquals("Text in validation message is not expected", text, validationMessageUsernameRegister.getText());
+        return this;
+    }
+
+    public LoginPage checkTextInValidationMessageEmailRegister(String text) {
+        Assert.assertEquals("Text in validation message is not expected", text, validationMessageEmailRegister.getText());
+        return this;
+    }
+
+    public LoginPage checkTextInValidationMessagePasswordRegister(String text) {
+        Assert.assertEquals("Text in validation message is not expected", text, validationMessagePasswordRegister.getText());
+        return this;
     }
 }
