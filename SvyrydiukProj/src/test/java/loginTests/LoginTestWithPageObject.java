@@ -3,6 +3,9 @@ package loginTests;
 import baseTest.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
+import pages.PageProvider;
+import pages.elements.HeaderElement;
+
 import static libs.TestData.VALID_LOGIN_UI;
 import static libs.TestData.VALID_PASSWORD_UI;
 
@@ -15,7 +18,13 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
         pageProvider.loginPage().clickOnButtonSignIn();
 
+        pageProvider.loginPage().checkUsernameFieldNotVisible();
+        pageProvider.loginPage().checkPasswordFieldNotVisible();
         Assert.assertTrue("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+        Assert.assertTrue("Username is not visible", pageProvider.homePage().getHeader().isUsernameVisible());
+        pageProvider.homePage().getHeader().checkTextInUsername(VALID_LOGIN_UI);
+        Assert.assertTrue("Profile image is not visible", pageProvider.homePage().getHeader().isProfileButtonVisible());
+        Assert.assertTrue("Button Create Post is not visible", pageProvider.homePage().getHeader().isButtonCreatePostVisible());
     }
 
     @Test

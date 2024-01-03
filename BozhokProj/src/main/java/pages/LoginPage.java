@@ -1,11 +1,21 @@
 package pages;
 
+import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParentPage {
+    @FindBy(xpath = " .//button[text()='Sign In']") // цей елемент створюється в CommonActionWithElements
+    private WebElement buttonSignIn;
+
+    @FindBy(xpath = ".//input[@placeholder='Username']")
+    private WebElement inputLogin;
+
+    @FindBy(xpath = ".//input[@placeholder='Password']")
+    private WebElement inputPassword;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -20,37 +30,25 @@ public class LoginPage extends ParentPage {
             logger.error("Can not open Login Page");
             Assert.fail("Can not open Login Page");
         }
-
     }
 
     public void enterTextIntoInputLogin(String login) {
-        WebElement inputLogin = webDriver.findElement(
-                By.xpath(".//input[@placeholder='Username']"));
         enterTextIntoInput(inputLogin, login);
     }
 
     public void enterTextIntoInputPassword(String password) {
-        WebElement inputPassword = webDriver.findElement(
-                By.xpath(".//input[@placeholder='Password']"));
         enterTextIntoInput(inputPassword, password);
     }
 
     public void clickOnButtonSignIn() {
-        WebElement buttonSignIn = webDriver.findElement(
-                By.xpath("//button[contains(text(),'Sign In')]"));
+//        WebElement buttonSignIn = webDriver.findElement(
+//                By.xpath("//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignIn);
     }
 
-
+    // is button Sign In visible
     public boolean isButtonSignInVisible() {
-        try {
-            boolean state = webDriver.findElement(By.xpath("//button[text()='Sign In']")).isDisplayed();
-            logger.info(state + " is button visible");
-            return state;
-        } catch (Exception e) {
-            logger.info("Button Sign In is displayed");
-            return false;
-        }
+        return isElementDisplayed(buttonSignIn);
     }
 
     public boolean isMessageInvalidUsernamePasswordInVisible() {
@@ -74,5 +72,13 @@ public class LoginPage extends ParentPage {
             logger.info("Button Sign Out is not displayed");
             return false;
         }
+    }
+
+    public HomePage openLoginPageAndFillLoginFormWithValidCred() {
+        openLoginPage();
+        enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
+        enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
     }
 }

@@ -16,7 +16,6 @@ public class CommonActionsWithElements {
         PageFactory.initElements(webDriver, this); // ініцйалізуємо елементи сторінки опираючись на анотації @FindBy
     }
 
-
     protected void enterTextInToInput(WebElement element, String text) {
         try {
             element.clear();
