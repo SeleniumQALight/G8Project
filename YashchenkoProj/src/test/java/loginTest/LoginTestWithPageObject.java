@@ -68,4 +68,19 @@ public class LoginTestWithPageObject extends BaseTest {
                 .checkIsButtonChatNotVisible()
                 .checkIsButtonSearchNotVisible();
     }
+
+    @Test
+    public void validationMessages() {
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoRegistrationInputLogin("ty");
+        pageProvider.getLoginPage().enterTextIntoRegistrationInputPassword("ty");
+        pageProvider.getLoginPage().enterTextIntoRegistrationInputEmail("ty");
+        pageProvider.getLoginPage().clickOnButtonSignUp();
+        pageProvider.getLoginPage().checkIsValidationMessageForRegistrationInputLoginVisible()
+                .checkTextInRegistrationInputLogin("Username must be at least 3 characters.")
+                .checkIsValidationMessageForRegistrationInputEmailVisible()
+                .checkTextInRegistrationInputEmail("You must provide a valid email address.")
+                .checkIsValidationMessageForRegistrationInputPasswordVisible()
+                .checkTextInRegistrationInputPassword("Password must be at least 12 characters.");
+    }
 }
