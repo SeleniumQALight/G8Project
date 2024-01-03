@@ -118,7 +118,7 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignUp);
     }
 
-    public boolean checkIsValidationMessageForUserNameRegisterInputDisplayed() {
+    public boolean isValidationMessageForUserNameRegisterInputDisplayed() {
         return isElementDisplayed(validationMessageForUserNameRegister);
     }
 
@@ -127,7 +127,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public boolean checkIsValidationMessageForEmailRegisterInputDisplayed() {
+    public boolean isValidationMessageForEmailRegisterInputDisplayed() {
         return isElementDisplayed(validationMessageForEmailRegister);
     }
 
@@ -136,7 +136,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public boolean checkIsValidationMessageForPasswordRegisterInputDisplayed() {
+    public boolean isValidationMessageForPasswordRegisterInputDisplayed() {
         return isElementDisplayed(validationMessageForPasswordRegister);
     }
 
