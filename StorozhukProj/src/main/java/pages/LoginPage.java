@@ -2,7 +2,6 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,12 +28,12 @@ public class LoginPage  extends ParentPage {
         }
     }
 
-    public void enterTextIntoInputLogin(String login) {
-        enterTextIntoInputLogin(inputLogin, login); // WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
+    public void enterTextIntoInput(String login) {
+        enterTextIntoInput(inputLogin, login); // WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
     }
 
     public void enterTextIntoInputPassword(String password) {
-        enterTextIntoInputLogin(inputPassword, password); // WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        enterTextIntoInput(inputPassword, password); // WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
     }
 
     public void clickOnButtonSignIn() {
@@ -48,7 +47,7 @@ public class LoginPage  extends ParentPage {
 
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
-        enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
+        enterTextIntoInput(TestData.VALID_LOGIN_UI);
         enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
