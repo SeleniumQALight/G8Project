@@ -3,7 +3,7 @@ input_username = .//input[@id="username-register"]
 input Email =.//input[@id="email-register"]
 input password = .//input[@id="password-register"]
 button = .//button[@type="submit"]
-input username in sign in = .//input[@id="username3"]
+input username in sign in = .//input[@placeholder='Username']
 input password in sign in = .//*[(@name='password') and not(@id="password-register")]
 button Sign In = .//*[contains(text(),'Sign In')]
 
