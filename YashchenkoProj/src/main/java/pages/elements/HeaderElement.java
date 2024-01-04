@@ -29,12 +29,12 @@ public class HeaderElement extends CommonActionsWithElements {
     private WebElement buttonSearch;
 
 
-    public boolean IsButtonSignOutVisible() {
+    public boolean isButtonSignOutVisible() {
         return isElementDisplayed(buttonSignOut);
     }
 
     public HeaderElement checkIsButtonSignOutVisible() {
-        isElementDisplayed(buttonSignOut);
+        checkIsElementVisible(buttonSignOut);
         return this;
     }
 
