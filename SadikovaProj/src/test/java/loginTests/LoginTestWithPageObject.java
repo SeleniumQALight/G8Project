@@ -13,13 +13,13 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().enterTextIntoInputLogin(VALID_LOGIN_UI);
         pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD);
         pageProvider.loginPage().clickOnButtonSingIn();
-        pageProvider.headerElement().signOutButtonIsVisible();
-        pageProvider.headerElement().createPostButtonIsVisible();
-        pageProvider.headerElement().userNameIsVisible();
-        pageProvider.headerElement().myProfileIconIsVisible();
-        pageProvider.loginPage().loginFieldNotVisible();
-        pageProvider.loginPage().passwordFieldNotVisible();
-        pageProvider.loginPage().signInButtonIsNotVisible();
+        pageProvider.headerElement().checkSignOutButtonIsVisible();
+        pageProvider.headerElement().checkCreatePostButtonIsVisible();
+        pageProvider.headerElement().checkUserNameIsVisible();
+        pageProvider.headerElement().checkMyProfileIconIsVisible();
+        pageProvider.loginPage().checkLoginFieldNotVisible();
+        pageProvider.loginPage().checkPasswordFieldNotVisible();
+        pageProvider.loginPage().checkSignInButtonIsNotVisible();
     }
 
     @Test
@@ -28,8 +28,8 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().enterTextIntoInputLogin(WRONG_LOGIN);
         pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD);
         pageProvider.loginPage().clickOnButtonSingIn();
-        pageProvider.headerElement().signOutButtonIsVisible();
-        pageProvider.loginPage().signInButtonIsVisible();
+        pageProvider.headerElement().checkSignOutButtonIsVisible();
+        pageProvider.loginPage().checkSignInButtonIsVisible();
         Assert.assertTrue("Warning button Invalid username/password is visible", pageProvider.loginPage().isWarningMessageVisible());
     }
 

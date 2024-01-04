@@ -16,7 +16,7 @@ public class HomePage extends ParentPage {
 
     public HomePage checkIsRedirectToHomePage(String url) {
         assertUrl(url);
-        headerElement().signOutButtonIsVisible();
+        headerElement().checkSignOutButtonIsVisible();
         return this;
     }
 

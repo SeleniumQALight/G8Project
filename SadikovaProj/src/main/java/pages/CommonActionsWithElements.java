@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 
 public class CommonActionsWithElements {
@@ -74,16 +75,18 @@ public class CommonActionsWithElements {
     }
 
     protected void checkElementIsNotDisplayed(WebElement element) {
-        Assert.assertFalse(isElementDisplayed(element));
+        Assert.assertFalse("Element is not visible", isElementDisplayed(element));
     }
 
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue(isElementDisplayed(webElement));
     }
 
-    protected void assertUrl(String url) {
-        Assert.assertTrue(webDriver.getCurrentUrl().equals(url));
-        logger.info("Url is correct: " + url);
+    protected void assertUrl(String exepectedUrl) {
+        String actualUrl = webDriver.getCurrentUrl();
+        logger.info("Current url is: " + actualUrl);
+        Assert.assertEquals(actualUrl, exepectedUrl);
+        logger.info("Url is correct: " + exepectedUrl);
     }
 
 

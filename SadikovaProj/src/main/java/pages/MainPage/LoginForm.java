@@ -1,12 +1,14 @@
-package pages;
+package pages.MainPage;
 
 
 import libs.Urls;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.HomePage;
+import pages.ParentPage;
 
-public class LoginPage extends ParentPage {
+public class LoginForm extends ParentPage {
 
     @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement signInButton;
@@ -18,7 +20,7 @@ public class LoginPage extends ParentPage {
     private WebElement loginField;
 
 
-    public LoginPage(WebDriver webDriver) {
+    public LoginForm(WebDriver webDriver) {
         super(webDriver);
     }
 
@@ -45,18 +47,18 @@ public class LoginPage extends ParentPage {
     /**
      * VISIBLE
      */
-    public LoginPage loginFieldIsVisible() {
+    public LoginForm checkLoginFieldIsVisible() {
         checkIsElementVisible(loginField);
         return this;
     }
 
 
-    public LoginPage passwordFieldIsVisible() {
+    public LoginForm checkPasswordFieldIsVisible() {
         checkIsElementVisible(passwordField);
         return this;
     }
 
-    public LoginPage signInButtonIsVisible() {
+    public LoginForm checkSignInButtonIsVisible() {
         checkIsElementVisible(signInButton);
         return this;
     }
@@ -66,17 +68,17 @@ public class LoginPage extends ParentPage {
      * NOT visible elements
      */
 
-    public LoginPage loginFieldNotVisible() {
+    public LoginForm checkLoginFieldNotVisible() {
         checkElementIsNotDisplayed(loginField);
         return this;
     }
 
-    public LoginPage passwordFieldNotVisible() {
+    public LoginForm checkPasswordFieldNotVisible() {
         checkElementIsNotDisplayed(passwordField);
         return this;
     }
 
-    public LoginPage signInButtonIsNotVisible() {
+    public LoginForm checkSignInButtonIsNotVisible() {
         checkElementIsNotDisplayed(signInButton);
         return this;
     }

@@ -6,13 +6,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.CommonActionsWithElements;
 import pages.CreatePostPage;
-import pages.LoginPage;
+import pages.MainPage.LoginForm;
 
 // описание элементов в хедере
 
 public class HeaderElement extends CommonActionsWithElements {
 
-    LoginPage loginPage = new LoginPage(webDriver);
+    LoginForm loginForm = new LoginForm(webDriver);
 
     /**
      * User
@@ -33,32 +33,32 @@ public class HeaderElement extends CommonActionsWithElements {
     /**
      *VISIBLE
      */
-    public HeaderElement signOutButtonIsVisible() {
+    public HeaderElement checkSignOutButtonIsVisible() {
         checkIsElementVisible(signOutButton);
         return this;
     }
 
-    public HeaderElement searchLinkIsVisible() {
+    public HeaderElement checkSearchLinkIsVisible() {
         checkIsElementVisible(searchLink);
         return this;
     }
 
-    public HeaderElement chatIconIsVisible() {
+    public HeaderElement checkChatIconIsVisible() {
         checkIsElementVisible(chatIcon);
         return this;
     }
 
-    public HeaderElement createPostButtonIsVisible() {
+    public HeaderElement checkCreatePostButtonIsVisible() {
         checkIsElementVisible(createPostButton);
         return this;
     }
 
-    public HeaderElement myProfileIconIsVisible() {
+    public HeaderElement checkMyProfileIconIsVisible() {
         checkIsElementVisible(myProfileIcon);
         return this;
     }
 
-    public HeaderElement userNameIsVisible() {
+    public HeaderElement checkUserNameIsVisible() {
         checkIsElementVisible(userName);
         return this;
     }
@@ -66,32 +66,32 @@ public class HeaderElement extends CommonActionsWithElements {
     /**
      * NOT visible
      */
-    public HeaderElement signOutButtonIsNotVisible() {
+    public HeaderElement checkSignOutButtonIsNotVisible() {
         checkElementIsNotDisplayed(signOutButton);
         return this;
     }
 
-    public HeaderElement searchLinkIsNotVisible() {
+    public HeaderElement checkSearchLinkIsNotVisible() {
         checkElementIsNotDisplayed(searchLink);
         return this;
     }
 
-    public HeaderElement chatIconIsNotVisible() {
+    public HeaderElement checkChatIconIsNotVisible() {
         checkElementIsNotDisplayed(chatIcon);
         return this;
     }
 
-    public HeaderElement createPostButtonIsNotVisible() {
+    public HeaderElement checkCreatePostButtonIsNotVisible() {
         checkElementIsNotDisplayed(createPostButton);
         return this;
     }
 
-    public HeaderElement myProfileIconIsNotVisible() {
+    public HeaderElement checkMyProfileIconIsNotVisible() {
         checkElementIsNotDisplayed(myProfileIcon);
         return this;
     }
 
-    public HeaderElement userNameIsNotVisible() {
+    public HeaderElement checkUserNameIsNotVisible() {
         checkElementIsNotDisplayed(userName);
         return this;
     }
@@ -113,29 +113,29 @@ public class HeaderElement extends CommonActionsWithElements {
 
     @Description("Проверить отображение всех элементов для пользователя в хедере")
     public HeaderElement assertUserLoginHeaderElements() {
-        searchLinkIsVisible();
-        chatIconIsVisible();
-        userNameIsVisible();
-        myProfileIconIsVisible();
-        createPostButtonIsVisible();
+        checkSearchLinkIsVisible();
+        checkChatIconIsVisible();
+        checkUserNameIsVisible();
+        checkMyProfileIconIsVisible();
+        checkCreatePostButtonIsVisible();
         checkIsElementVisible(signOutButton);
-        loginPage.loginFieldNotVisible();
-        loginPage.passwordFieldNotVisible();
-        loginPage.signInButtonIsNotVisible();
+        loginForm.checkLoginFieldNotVisible();
+        loginForm.checkPasswordFieldNotVisible();
+        loginForm.checkSignInButtonIsNotVisible();
         return this;
     }
 
     @Description("Проверить отображение всех элементов для гостя в хедере")
     public HeaderElement assertGuestHeaderHasElements() {
-        searchLinkIsNotVisible();
-        chatIconIsNotVisible();
-        userNameIsNotVisible();
-        myProfileIconIsNotVisible();
-        createPostButtonIsNotVisible();
+        checkSearchLinkIsNotVisible();
+        checkChatIconIsNotVisible();
+        checkUserNameIsNotVisible();
+        checkMyProfileIconIsNotVisible();
+        checkCreatePostButtonIsNotVisible();
         checkElementIsNotDisplayed(signOutButton);
-        loginPage.passwordFieldIsVisible();
-        loginPage.loginFieldIsVisible();
-        loginPage.signInButtonIsVisible();
+        loginForm.checkPasswordFieldIsVisible();
+        loginForm.checkLoginFieldIsVisible();
+        loginForm.checkSignInButtonIsVisible();
         return this;
     }
 

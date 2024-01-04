@@ -1,6 +1,8 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
+import pages.MainPage.LoginForm;
+import pages.MainPage.RegistrationForm;
 import pages.elements.HeaderElement;
 
 public class PageProvider {
@@ -11,8 +13,8 @@ public class PageProvider {
         this.webDriver = webDriver;
     }
 
-    public LoginPage loginPage() {
-        return new LoginPage(webDriver);
+    public LoginForm loginPage() {
+        return new LoginForm(webDriver);
     }
 
     public HeaderElement headerElement() {
