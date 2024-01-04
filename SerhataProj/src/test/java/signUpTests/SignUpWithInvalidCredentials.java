@@ -13,8 +13,8 @@ public class SignUpWithInvalidCredentials extends BaseTest {
         pageProvider.loginPage().enterTextInToInputEmail(INVALID_DATA_FOR_SIGN_IN);
         pageProvider.loginPage().enterTextInToInputPasswordForSignUp(INVALID_DATA_FOR_SIGN_IN);
         pageProvider.loginPage().clickOnButtonSignUp();
-        pageProvider.loginPage().isValidationMessageForUserNameFieldVisible();
-        pageProvider.loginPage().isValidationMessageForEmailFieldVisible();
-        pageProvider.loginPage().isValidationMessageForPasswordFieldVisible();
+        pageProvider.loginPage().checkIsValidationMessageForUserNameFieldVisible();
+        pageProvider.loginPage().checkIsValidationMessageForEmailFieldVisible();
+        pageProvider.loginPage().checkIsValidationMessageForPasswordFieldVisible();
     }
 }

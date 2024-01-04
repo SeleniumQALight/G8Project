@@ -6,7 +6,7 @@ import org.junit.Test;
 public class LogOutTest extends BaseTest {
     @Test
     public void LogOutTest() {
-        pageProvider.getLoginPage()
+        pageProvider.loginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
                 .getHeader().clickOnButtonSignOut()
