@@ -1,6 +1,7 @@
 package postsTests;
 
 import baseTest.BaseTest;
+import org.junit.After;
 import org.junit.Test;
 
 import static libs.Util.getDateAndTimeFormatted;
@@ -30,6 +31,13 @@ public class CreateNewPostTest extends BaseTest {
                 .chckIsRedirectToMyProfilePage()
                 .checkPostWithTitleIsPresent(POST_TITLE);
 
+    }
+
+    @After
+    public void deletePost() {
+        pageProvider.homePage()
+                .openHomePageAndLoginIfNeeded()
+        ;
     }
 
 }
