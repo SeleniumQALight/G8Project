@@ -1,17 +1,19 @@
 package postsTests;
 
 import baseTest.BaseTest;
+import libs.Util;
 import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
+    final String POST_TITLE = "TC_001_tepliuk" + Util.getDateAndTimeFormatted();
     @Test
 
-    public void createNewPost() {
+    public void TC_001_createNewPost() {
         pageProvider.loginPage().openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
-                .enterTitleIntoInputTitle("tepliuk title")
+                .enterTitleIntoInputTitle(POST_TITLE)
                 .enterTextIntoInputBody("body text")
                 //.selectTextInDropDown("Приватне повідомлення");
                 .selectValueInDropDown("One Person")
@@ -19,7 +21,11 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
-
         ;
+
+        pageProvider.getpostPage().getHeader().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .checkPostWithTitleIsPresent(POST_TITLE)
+                ;
     }
 }
