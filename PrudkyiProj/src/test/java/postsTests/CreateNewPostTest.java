@@ -1,25 +1,31 @@
 package postsTests;
 
 import baseTest.BaseTest;
+import libs.Util;
 import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
+    final String POST_TITLE = "TC_001_prudkyi " + Util.getDateAndTimeFormatted();
     @Test
-    public void createNewPost(){
-pageProvider.loginPage()
-        .openLoginPageAndFillLoginFormWithValidCred()
-        .checkIsRedirectToHomePage()
-        .getHeader()
-        .clickOnButtonCreatePost()
-        .checkIsRedirectToCreatePostPage()
-        .enterTextIntoTitleField("prudkyi title")
-        .enterTextIntoBodyField("prudkyi body")
-        //.selectTextInDropDown("Приватне повідомлення")
-        .selectValueInDropDown("One Person")
-        .clickOnSaveNewPostButton()
-        .checkIsRedirectToPostPage()
-        .checkIsSuccessMessageDisplayed()
-        .checkTextInSuccessMessage("New post successfully created.");
+    public void TC_001_createNewPost() {
+        pageProvider.loginPage()
+                .openLoginPageAndFillLoginFormWithValidCred()
+                .checkIsRedirectToHomePage()
+                .getHeader()
+                .clickOnButtonCreatePost()
+                .checkIsRedirectToCreatePostPage()
+                .enterTextIntoTitleField(POST_TITLE)
+                .enterTextIntoBodyField("prudkyi body")
+                //.selectTextInDropDown("Приватне повідомлення")
+                .selectValueInDropDown("One Person")
+                .clickOnSaveNewPostButton()
+                .checkIsRedirectToPostPage()
+                .checkIsSuccessMessageDisplayed()
+                .checkTextInSuccessMessage("New post successfully created.");
+
+        pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .checkPostWithTitleIsPresent(POST_TITLE);
     }
 
 }

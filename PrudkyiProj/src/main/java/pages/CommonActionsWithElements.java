@@ -21,7 +21,7 @@ public class CommonActionsWithElements {
         try {
             input.clear();
             input.sendKeys(text);
-            logger.info(text + " was inputted into input" + getElementName(input));
+            logger.info(text + " was inputted into input " + getElementName(input));
         } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
@@ -40,7 +40,7 @@ public class CommonActionsWithElements {
         try {
             String elementName = getElementName(element);
             element.click();
-            logger.info("Element was clicked" + elementName);
+            logger.info("Element was clicked " + elementName);
         } catch (Exception e) {
             logger.error("Can not work with element" + getElementName(element));
             Assert.fail("Can not work with element");
