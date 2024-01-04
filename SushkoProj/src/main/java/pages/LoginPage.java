@@ -1,8 +1,6 @@
 package pages;
 
-import libs.TestData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -50,6 +48,14 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSingIn);
     }
 
+    public boolean isInputLoginIsVisible() {
+        return isElementDisplayed(inputLogin);
+    }
+
+    public boolean isInputPasswordIsVisible() {
+        return isElementDisplayed(inputPassword);
+    }
+
     public boolean isButtonSignInIsVisible(){
         return isElementDisplayed(buttonSingIn);
     }
@@ -64,5 +70,17 @@ public class LoginPage extends ParentPage{
         enterTextIntoInputPassword(VALID_PASSWORD_UI);
         clickOnButtonSingIn();
         return new HomePage(webDriver);
+    }
+
+    public void checkAllElementsFromLoginFormAreVisible() {
+        isInputLoginIsVisible();
+        isInputPasswordIsVisible();
+        isButtonSignInIsVisible();
+
+    }
+    public void checkAllElementsFromLoginFormAreInvisible() {
+        checkIsElementNotVisible(inputLogin);
+        checkIsElementNotVisible(inputPassword);
+        checkIsElementNotVisible(buttonSingIn);
     }
 }

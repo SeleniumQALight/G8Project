@@ -8,7 +8,7 @@ public class CreateNewPostTest extends BaseTest {
     public void createNewPost(){
         pageProvider.loginPage()
                 .openLoginPageAndFillLoginFormWithValidCreds()
-                .checkIsRedirectToHimePage()
+                .checkIsRedirectToHomePage()
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
                 .enterTitleInToInputTitle("Sushko post title")
