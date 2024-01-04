@@ -30,4 +30,6 @@ public class PageProvider {
     public PostPage postPage() {
         return new PostPage(webDriver);
     }
+
+    public MyProfilePage myProfilePage(){return new MyProfilePage(webDriver);}
 }
