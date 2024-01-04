@@ -8,6 +8,7 @@ input_password_signin = ".//input[@placeholder='Password']"
 
 button_signup = ".//button[@type='submit']"
 button_signin = ".//button[@class='btn btn-primary btn-sm']"
+div_failSignIn = ".//div[@class="alert alert-danger text-center" and contains(text(),"Invalid username/password.")]"
 
 
 #HomePage
