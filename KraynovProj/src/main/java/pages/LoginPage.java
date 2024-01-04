@@ -49,7 +49,7 @@ public class LoginPage extends ParentPage{
     public HomePage openLoginPageFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
-        enterTextIntoInputLogin(TestData.VALID_PASSWORD_UI);
+        enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
