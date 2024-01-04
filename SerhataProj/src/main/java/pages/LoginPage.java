@@ -95,28 +95,6 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
-    public boolean isInputLoginPresent() {
-        try {
-            boolean state = inputLogin.isDisplayed();
-            logger.info(state + " is input Login visible");
-            return state;
-        } catch (Exception e){
-            logger.info("Input Login is not displayed");
-            return false;
-        }
-    }
-
-    public boolean isInputPasswordPresent() {
-        try {
-            boolean state = inputPassword.isDisplayed();
-            logger.info(state + " is input Password visible");
-            return state;
-        } catch (Exception e){
-            logger.info("Input Password is not displayed");
-            return false;
-        }
-    }
-
     public LoginPage checkIsRedirectToLoginPage() {
         Assert.assertTrue("Invalid page - not Login Page", isElementDisplayed(buttonSignIn));
         Assert.assertTrue("Invalid page - not Login Page", isElementDisplayed(inputLogin));
