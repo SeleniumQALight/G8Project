@@ -18,6 +18,9 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//*[@placeholder='Password']")
     private WebElement inputPassword;
 
+    @FindBy(xpath = ".//div[text()='Invalid username/password.']")
+    private WebElement invalidMassage;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -58,4 +61,18 @@ public class LoginPage extends ParentPage{
         clickOnButtonSingIn();
         return new HomePage(webDriver);
     }
+
+   // public boolean isButtonSignInVisible() {
+   //   try {
+       //     WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[text()='Sign In']"));
+         //   return isElementDisplayed(buttonSignIn);
+        //} catch (Exception e) {
+          //  return false;
+       // }
+    //}
+    public boolean isInvalidUserNamePasswordMessageVisible() {
+        //WebElement invalidMassage = webDriver.findElement(By.xpath("//div[contains(text(),'Invalid username/password.')]"));
+        return isElementDisplayed(invalidMassage);
+    }
 }
+
