@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
@@ -11,7 +12,9 @@ public class CommonActionsWithElements {
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
+        PageFactory.initElements(webDriver, this);//ініціалізує всі елементи сторінки опираючись на анотації @FindBy
     }
+
     protected void enterTextIntoInput(WebElement input, String text) {
         try {
             input.clear();
@@ -32,6 +35,7 @@ public class CommonActionsWithElements {
             Assert.fail("Can not work with element");
         }
     }
+
     protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
