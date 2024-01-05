@@ -34,4 +34,9 @@ public class LoginTestWithPageObject  extends BaseTest {
         Assert.assertTrue("Message is not visible",
                 pageProvider.loginPage().isMessageInvalidUsernamePasswordInVisible());
     }
+    // check enty of short data in the registration form
+    @Test
+    public void shortDataInRegistrationForm() {
+        pageProvider.loginPage().fillOutTheLoginFormRegistration();
+    }
 }
