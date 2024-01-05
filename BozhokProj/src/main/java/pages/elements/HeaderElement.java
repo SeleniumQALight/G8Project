@@ -19,8 +19,11 @@ public class HeaderElement extends CommonActionWithElements {
     @FindBy(xpath = "//a[@class ='mr-2']")
     private WebElement buttonProfile;
 
+    @FindBy(xpath = "//span[@class='text-white mr-2']")
+    private WebElement ProfileName;
+
     @FindBy(xpath = ".//input[@placeholder='Username']")
-    private WebElement inputLogin;
+    private WebElement successProfileName;
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPassword;
@@ -38,11 +41,18 @@ public class HeaderElement extends CommonActionWithElements {
         return new CreatePostPage(webDriver);
     }
 
-    public boolean isInputLoginVisible() {
-        return isElementDisplayed(inputLogin);
+    // check is button Create Post visible
+    public boolean isButtonCreatePostVisible() {
+        return isElementDisplayed(buttonCreatePost);
     }
 
-    public boolean isInputPasswordVisible() {
-        return isElementDisplayed(inputPassword);
+    // check is button Profile visible
+    public boolean isButtonProfileVisible() {
+        return isElementDisplayed(buttonProfile);
+    }
+
+//    // check login input field
+    public boolean isInputLoginVisible() {
+        return isElementDisplayed(successProfileName);
     }
 }

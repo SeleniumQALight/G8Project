@@ -13,17 +13,9 @@ public class HomePage extends ParentPage {
     @FindBy(xpath = ".//*[@class ='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
 
-    @FindBy(xpath = ".//a[@class='mr-2']")
-    private WebElement buttonProfile;
 
     @FindBy(xpath = "//span[@class='text-white mr-2']")
     private WebElement successProfileName;
-
-    @FindBy(xpath = ".//input[@placeholder='Username']")
-    private WebElement inputLogin;
-
-    @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPassword;
 
 
     public HomePage(WebDriver webDriver) {
@@ -40,23 +32,14 @@ public class HomePage extends ParentPage {
         return new HeaderElement(webDriver);
     }
 
-    public HomePage checkIsButtonCreatePostVisible() {
-        checkIsElementVisible(buttonCreatePost);
+
+    // check is Profile Name visible
+    public HomePage checkIsProfileNameVisible(String profileName) {
+        Assert.assertEquals("Profile Name is not visible", profileName, successProfileName.getText());
         return this;
     }
 
-    public HomePage checkIsButtonProfileVisible() {
-        checkIsElementVisible(buttonProfile);
-        return this;
-    }
-
-    public HomePage checkIsProfileNameVisible(String text) {
-        checkTextInElement(successProfileName, text);
-        return this;
-    }
-
-
-
-
-
+//    public boolean isInputLoginVisible() {
+//        return isElementDisplayed(successProfileName);
+//    }
 }
