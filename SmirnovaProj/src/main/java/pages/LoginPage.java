@@ -60,7 +60,7 @@ public class LoginPage extends ParentPage {
     public boolean isInvalidLoginMessageDisplayed() {
         try {
             WebElement invalidLoginMessage =
-                    webDriver.findElement(By.xpath("//div[text()='Invalid username / password']"));
+                    webDriver.findElement(By.xpath("//div[text()='Invalid username/password.']"));
             return isElementDisplayed(invalidLoginMessage);
         } catch (Exception e) {
             return false;

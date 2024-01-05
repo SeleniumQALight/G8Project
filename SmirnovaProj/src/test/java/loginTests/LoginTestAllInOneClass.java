@@ -88,7 +88,7 @@ public class LoginTestAllInOneClass {
         try {
             boolean state =
                     webDriver.findElement(By.xpath
-                            ("//div[text()='Invalid username / password']")).isDisplayed();
+                            ("//div[text()='Invalid username/password.']")).isDisplayed();
             logger.info(state + " is button visible");
             return state;
         } catch (Exception e) {
