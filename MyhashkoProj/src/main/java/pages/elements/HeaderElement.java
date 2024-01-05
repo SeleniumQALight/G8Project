@@ -5,6 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebElement;
 import pages.CommonActionsWhithElements;
 import pages.CreatePostPage;
+import pages.MyProfilePage;
 
 // описує елементи які є в хедері залогіненого юзера
 public class HeaderElement extends CommonActionsWhithElements {
@@ -24,6 +25,9 @@ public class HeaderElement extends CommonActionsWhithElements {
     private WebElement buttonChatCall;
     @FindBy(xpath = ".//*[@alt='My profile']")
     private WebElement avatarka;
+    //my profile button
+    @FindBy(xpath = "//img[@alt='My profile']")
+    private WebElement buttonMyProfile1;
 
 
     public HeaderElement(WebDriver webDriver) {
@@ -66,4 +70,9 @@ public class HeaderElement extends CommonActionsWhithElements {
     public void clickOnButtonSignOut() {
         clickOnElement(buttonSignOut);
     }
+
+    public MyProfilePage clickOnButtonMyProfile() { clickOnElement(buttonMyProfile1);
+        return new MyProfilePage(webDriver);
+    }
 }
+
