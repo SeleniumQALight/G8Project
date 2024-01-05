@@ -106,6 +106,7 @@ public class LoginTestAllInOneClass {
             logger.info("Element is not displayed");
             return false;
         }
+
     }
     private boolean isInvalidUsernameOrPasswordMessageVisible() {
         try {

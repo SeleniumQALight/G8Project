@@ -16,6 +16,11 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().clickOnButtonSignIn();
 
        Assert.assertTrue("Button SignOut is visible", pageProvider.homePage().getHeader().isButtonSignOutVisble());
+       Assert.assertTrue("Button Create Post is visible", pageProvider.homePage().getHeader().isButtonCreatePostVisble());
+       Assert.assertTrue("Button MyProfile is visible", pageProvider.homePage().getHeader().isButtonMyProfileVisble());
+       Assert.assertTrue("Login is visible", pageProvider.homePage().getHeader().isLoginVisible());
+       Assert.assertFalse("Field for input login is not visible", pageProvider.loginPage().isInputLoginVisible());
+       Assert.assertFalse("Field for input password is not visible", pageProvider.loginPage().isInputPasswordVisible());
     }
     @Test
     public void invalidLogin() {
