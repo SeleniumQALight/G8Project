@@ -21,7 +21,7 @@ public class HeaderElement extends CommonActionWithElements {
     private WebElement buttonMyProfile;
 
     @FindBy(xpath = "//span[@class='text-white mr-2']")
-    private WebElement ProfileName;
+    private WebElement profileName;
 
     @FindBy(xpath = ".//input[@placeholder='Username']")
     private WebElement successProfileName;
@@ -52,11 +52,10 @@ public class HeaderElement extends CommonActionWithElements {
         return new MyProfilePage(webDriver);
     }
 
-}
 
     // check is button Profile visible
     public boolean isButtonProfileVisible() {
-        return isElementDisplayed(buttonProfile);
+        return isElementDisplayed(buttonMyProfile);
     }
 
 //    // check login input field
