@@ -1,19 +1,21 @@
 package postsTests;
 
 import baseTest.BaseTest;
-import org.junit.Ignore;
+import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
+    final String POST_TITLE = "TC_001_Myhashko " + Util.getDateAndTimeFormatted();
+
     @Test
-    @Ignore
     public void createNewPost() {
         pageProvider.loginPage()
                 .openLoginPageAndFillLoginFormWhithValidCred()
                 .checkIsRedirectToHomePage()
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
-                .enterTextIntoTitleField("Myhashko title")
+                .enterTextIntoTitleField(POST_TITLE)
                 .enterTextIntoInputBody("Myhashko body")
                 //.selectTextInDropDown("Приватне повідомлення")
                 .selectValueInDropDown("One Person")
@@ -24,8 +26,16 @@ public class CreateNewPostTest extends BaseTest {
 
         ;
 
-
-
+        pageProvider.getPostPage().getHeader().clickOnButtonMyProfile()
+                .checkIsRedirectToMyProfilePage()
+                .checkPostWithTitleIsPresent(POST_TITLE)
+        ;
     }
 
+    @After
+    public void deletePost() {
+        pageProvider.homePage()
+                .openHomePageAndLoginIfNeeded()
+        ;
+    }
 }
