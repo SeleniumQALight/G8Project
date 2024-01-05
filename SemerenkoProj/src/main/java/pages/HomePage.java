@@ -1,15 +1,11 @@
 package pages;
 
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
     private HeaderElement headerElement;
-
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -19,38 +15,38 @@ public class HomePage extends ParentPage {
         return new HeaderElement(webDriver);
     }
 
-    public HomePage checkIsButtonCreateNewPostVisibe() {
-        Assert.assertTrue("CreatePostButton is absent", getHeader().isButtonCreatePostVisible());
+    public HomePage checkIsButtonCreateNewPostVisible() {
+        getHeader().checkIsElementButtonCreateNewPostVisible();
         return this;
     }
 
-    public HomePage checkIsButtonSignOutVisible(){
-        Assert.assertTrue("SignOutButton is absent", getHeader().isButtonSignOutVisible());
-        return this;
-    }
-    public HomePage checkIsLinkMyProfileVisible(){
-        Assert.assertTrue("MyProfile is absent", getHeader().isLinkMyProfileVisible());
+    public HomePage checkIsButtonSignOutVisible() {
+        getHeader().checkIsElementButtonSignOutVisible();
         return this;
     }
 
-    public HomePage checkIsSpanUserNameVisible(){
-        Assert.assertTrue("SpanUserName is absent", getHeader().isSpanUserNameVisible());
+    public HomePage checkIsLinkMyProfileVisible() {
+        getHeader().checkIsElementLinkMyProfileVisible();
         return this;
     }
 
-    public HomePage checkIsInputUsernameUnvisible(){
-        Assert.assertFalse("Input Username is visible", getHeader().isInputUsernameVisible());
+    public HomePage checkIsSpanUserNameVisible() {
+        getHeader().checkIsElementSpanUserNameVisible();
         return this;
     }
 
-    public HomePage checkIsInputPasswordUnvisible(){
-        Assert.assertFalse("Input Password is visible", getHeader().isInputPasswordVisible());
+    public HomePage checkIsInputUsernameUnvisible() {
+        getHeader().checkIsElementInputUsernameUnvisible();
         return this;
     }
 
+    public HomePage checkIsInputPasswordUnvisible() {
+        getHeader().checkIsElementInputPasswordUnvisible();
+        return this;
+    }
 
     public HomePage checkIsRedirectToHomePage() {
-        Assert.assertTrue("Invalid page - not Home Page", getHeader().isButtonSignOutVisible());
+        getHeader().checkIsElementButtonSignOutVisible();
         return this;
     }
 }

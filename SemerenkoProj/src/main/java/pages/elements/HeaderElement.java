@@ -17,7 +17,7 @@ public class HeaderElement extends CommonActionsWithElements {
     private WebElement buttonSignOut;
 
     @FindBy(xpath = ".//a[@href='/profile/" + TestData.VALID_LOGIN_UI + "']")
-    private WebElement linkMyProfile;
+    private WebElement buttonMyProfile;
 
     @FindBy(xpath = ".//span[contains (text(), 'qaauto')]")
     private WebElement spanUserName;
@@ -37,29 +37,33 @@ public class HeaderElement extends CommonActionsWithElements {
         return isElementDisplayed(buttonSignOut);
     }
 
-    public boolean isButtonCreatePostVisible() {
-        return isElementDisplayed(buttonCreatePost);
-    }
-
-    public boolean isLinkMyProfileVisible() {
-        return isElementDisplayed(linkMyProfile);
-    }
-
-    public boolean isSpanUserNameVisible() {
-        return isElementDisplayed(spanUserName);
-    }
-
-    public boolean isInputUsernameVisible(){
-        return isElementDisplayed(inputUsername);
-    }
-
-    public boolean isInputPasswordVisible(){
-        return isElementDisplayed(inputPassword);
-    }
-
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
+    }
+
+    public void checkIsElementButtonCreateNewPostVisible() {
+        checkIsElementVisible(buttonCreatePost, "buttonCreatePost");
+    }
+
+    public void checkIsElementButtonSignOutVisible() {
+        checkIsElementVisible(buttonSignOut, "buttonSignOut");
+    }
+
+    public void checkIsElementLinkMyProfileVisible() {
+        checkIsElementVisible(buttonMyProfile, "buttonMyProfile");
+    }
+
+    public void checkIsElementSpanUserNameVisible() {
+        checkIsElementVisible(spanUserName, "spanUserName");
+    }
+
+    public void checkIsElementInputUsernameUnvisible() {
+        checkIsElementUnvisible(inputUsername, "inputUsername");
+    }
+
+    public void checkIsElementInputPasswordUnvisible() {
+        checkIsElementUnvisible(inputPassword, "inputPassword");
     }
 
 

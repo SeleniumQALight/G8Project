@@ -12,7 +12,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
                 .checkIsButtonSignOutVisible()
-                .checkIsButtonCreateNewPostVisibe()
+                .checkIsButtonCreateNewPostVisible()
                 .checkIsLinkMyProfileVisible()
                 .checkIsSpanUserNameVisible()
                 .checkIsInputUsernameUnvisible()
