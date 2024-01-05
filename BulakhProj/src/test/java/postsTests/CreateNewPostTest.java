@@ -2,6 +2,7 @@ package postsTests;
 
 import baseTast.BaseTest;
 import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 
@@ -33,5 +34,12 @@ public class CreateNewPostTest  extends BaseTest {
         ;
 
 
+    }
+
+    @After
+    public void deletePost(){
+        pageProvider.homePage()
+                .openHomePageAndLoginIfNeeded()
+        ;
     }
 }
