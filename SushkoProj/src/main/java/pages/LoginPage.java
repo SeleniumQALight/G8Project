@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.RegistrationFormElement;
 
 import static libs.TestData.*;
 
@@ -20,11 +21,17 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//div[text() = 'Invalid username/password.']")
     private WebElement validationMessage;
 
+    private RegistrationFormElement registrationFormElement;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public void openLoginPage() {
+    public RegistrationFormElement getRegistrationForm() {
+        return registrationFormElement = new RegistrationFormElement(webDriver);
+    }
+
+    public LoginPage openLoginPage() {
         try{
             webDriver.get("https://aqa-complexapp.onrender.com");
             logger.info("Login page was opened");
@@ -32,6 +39,7 @@ public class LoginPage extends ParentPage{
             logger.error("Can not open login page");
             Assert.fail("Can not open login page");
         }
+        return this;
     }
 
     public void enterTextIntoInputLogin(String login) {

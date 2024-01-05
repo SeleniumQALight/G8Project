@@ -1,10 +1,11 @@
-package pages;
+package pages.elements;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.CommonActionsWithElements;
 
-public class RegistrationPage extends ParentPage{
+public class RegistrationFormElement extends CommonActionsWithElements {
     @FindBy(xpath = ".//input[@id='username-register']")
     private WebElement inputUsername;
 
@@ -26,7 +27,7 @@ public class RegistrationPage extends ParentPage{
     @FindBy(xpath = ".//div[text() = 'Password must be at least 12 characters.']")
     private WebElement divValidationMessageForPassword;
 
-    public RegistrationPage(WebDriver webDriver) {
+    public RegistrationFormElement(WebDriver webDriver) {
         super(webDriver);
     }
 
@@ -46,7 +47,7 @@ public class RegistrationPage extends ParentPage{
         clickOnElement(buttonSignUp);
     }
 
-    public RegistrationPage fillRegistrationFormWithInvalidCreds() {
+    public RegistrationFormElement fillRegistrationFormWithInvalidCreds() {
         enterTextIntoInputUsername("sv");
         enterTextIntoInputEmail("sv");
         enterTextIntoInputPassword("sv");
@@ -54,17 +55,17 @@ public class RegistrationPage extends ParentPage{
         return this;
     }
 
-    public RegistrationPage checkIsValidationMessageDisplayedForUsernameField() {
+    public RegistrationFormElement checkIsValidationMessageDisplayedForUsernameField() {
         checkIsElementVisible(divValidationMessageForUsername);
         return this;
     }
 
-    public RegistrationPage checkIsValidationMessageDisplayedForEmailField() {
+    public RegistrationFormElement checkIsValidationMessageDisplayedForEmailField() {
         checkIsElementVisible(divValidationMessageForEmail);
         return this;
     }
 
-    public RegistrationPage checkIsValidationMessageDisplayedForPasswordField() {
+    public RegistrationFormElement checkIsValidationMessageDisplayedForPasswordField() {
         checkIsElementVisible(divValidationMessageForPassword);
         return this;
     }

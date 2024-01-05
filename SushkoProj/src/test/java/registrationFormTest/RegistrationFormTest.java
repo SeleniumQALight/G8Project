@@ -6,8 +6,10 @@ import org.junit.Test;
 public class RegistrationFormTest extends BaseTest {
     @Test
     public void checkIsValidationMessagesArePresent(){
-        pageProvider.loginPage().openLoginPage();
-        pageProvider.registrationPage().fillRegistrationFormWithInvalidCreds()
+        pageProvider.loginPage()
+                .openLoginPage()
+                .getRegistrationForm()
+                .fillRegistrationFormWithInvalidCreds()
                 .checkIsValidationMessageDisplayedForUsernameField()
                 .checkIsValidationMessageDisplayedForEmailField()
                 .checkIsValidationMessageDisplayedForPasswordField();
