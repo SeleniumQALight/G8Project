@@ -17,6 +17,9 @@ public class CreatePostPage extends ParentPage {
 
     @FindBy(xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
+
+    @FindBy(xpath = "//input[@type='checkbox']")
+    private WebElement checkbox;
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -55,5 +58,35 @@ public class CreatePostPage extends ParentPage {
     public PostPage clickOnSaveNewPostButton() {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
+    }
+
+    public PostPage setCheckboxChecked() {
+        if (!checkbox.isSelected()) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox was checked");
+        }
+        logger.info("Checkbox already checked");
+        return new PostPage(webDriver);
+    }
+
+    public PostPage setCheckboxUnchecked() {
+        if (checkbox.isSelected()) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox was unchecked");
+        }
+        logger.info("Checkbox already unchecked");
+        return new PostPage(webDriver);
+    }
+
+    public CreatePostPage setCheckbox(String checked) {
+        if (checked.equals("checked")) {
+            setCheckboxChecked();
+        } else if (checked.equals("unchecked")) {
+            setCheckboxUnchecked();
+        } else {
+            logger.error("Checkbox status should be 'checked' or 'unchecked'");
+            Assert.fail("Checkbox status should be 'checked' or 'unchecked'");
+        }
+        return this;
     }
 }
