@@ -20,9 +20,9 @@ public class LoginPageWithPageObject extends BaseTest {
 
         // check button Create Post, MyProfile, UserName are not visible
         Assert.assertTrue("Button Create Post is not visible",
-                pageProvider.homePage().isButtonCreatePostVisible());
-        Assert.assertTrue("Button My Profile is not visible",pageProvider.homePage().isButtonMyProfileVisible());
-        Assert.assertTrue("User name is not visible",pageProvider.homePage().isUserNameVisible());
+                pageProvider.homePage().getHeader().isButtonCreatePostVisible());
+        Assert.assertTrue("Button My Profile is not visible",pageProvider.homePage().getHeader().isButtonMyProfileVisible());
+        Assert.assertTrue("User name is not visible",pageProvider.homePage().getHeader().isUserNameVisible());
 
         // check input Login and Password are not visible
         Assert.assertFalse("Input Login is visible",pageProvider.loginPage().isInputLoginVisible());

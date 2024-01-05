@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+
 public class LoginPage  extends ParentPage{
 
     @FindBy(xpath = "//button[contains(text(),'Sign In')]")
@@ -17,11 +18,6 @@ public class LoginPage  extends ParentPage{
 
     @FindBy(xpath = "//input[@placeholder='Password']")
     private WebElement inputPassword;
-
-    @FindBy(xpath = "//button[contains(text(),'Sign In')]")
-    private WebElement buttonSignIn;
-
-
 
     @FindBy(xpath = "//div[@class=\"alert alert-danger text-center\" and contains(text(),\"Invalid username/password.\")]")
     private WebElement invalidLoginMessage;
@@ -46,6 +42,15 @@ public class LoginPage  extends ParentPage{
 
     @FindBy(xpath = "//button[contains(text(),'Sign up for OurApp')]")
     private WebElement buttonSignUp1;
+
+    @FindBy(xpath = "//input[@placeholder='Username']")
+    private WebElement loginInput;
+
+    @FindBy(xpath = "//input[@placeholder='Password']")
+    private WebElement passwordInput;
+
+    @FindBy(xpath = "//button[text()='Sign In']")
+    private WebElement signInButton;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -115,15 +120,40 @@ public class LoginPage  extends ParentPage{
 
     }
 
+    public LoginPage checkLoginInputIsNotVisible() {
+        Assert.assertFalse("Login input is displayed", isElementDisplayed(loginInput));
+        return this;
+    }
+
+    public LoginPage checkPasswordInputIsNotVisible() {
+        Assert.assertFalse("Password input is displayed", isElementDisplayed(passwordInput));
+        return this;
+    }
+
+    public LoginPage checkSignInButtonIsNotVisible() {
+        Assert.assertFalse("Sign In button is displayed", isElementDisplayed(signInButton));
+        return this;
+    }
+
     public LoginPage clickOnButtonSingUp() {
         clickOnElement(buttonSignUp1);
         return this;
     }
 
-    public LoginPage checkErrorsMessages(String text) {
+    public LoginPage checkValidationMessageForUsername() {
         checkTextInElement(validationMessageUsername, "Username must be at least 3 characters.");
+        return this;
+    }
+
+    public LoginPage checkValidationMessageForEmail() {
         checkTextInElement(validationMessageEmail, "You must provide a valid email address.");
+        return this;
+    }
+
+    public LoginPage checkValidationMessageForPassword() {
         checkTextInElement(validationMessagePassword, "Password must be at least 12 characters.");
         return this;
     }
+
+
 }

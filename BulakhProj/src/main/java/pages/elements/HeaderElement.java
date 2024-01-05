@@ -35,14 +35,11 @@ public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = "//button[@class='btn btn-sm btn-secondary']")
     private WebElement signOutButton;
 
-    @FindBy(xpath = "//input[@placeholder='Username']")
-    private WebElement loginInput;
+    @FindBy(xpath = "//a[@class=\"mr-2\"]")
+    private WebElement buttonMyProfile;
 
-    @FindBy(xpath = "//input[@placeholder='Password']")
-    private WebElement passwordInput;
-
-    @FindBy(xpath = "//button[text()='Sign In']")
-    private WebElement signInButton;
+    @FindBy(xpath = "//span[@class='text-white mr-2']")
+    private WebElement userName;
 
 
     public boolean isButtonSignOutVisible() {
@@ -87,20 +84,26 @@ public class HeaderElement extends CommonActionsWithElements {
         return this;
     }
 
-    public HeaderElement checkLoginInputIsNotVisible() {
-        Assert.assertFalse("Login input is displayed", isElementDisplayed(loginInput));
-        return this;
+
+    // Sing out button
+    public void clickOnButtonSignOut() {
+        HeaderElement headerElement = new HeaderElement(webDriver);
+        headerElement.clickOnButtonSignOut();
     }
 
-    public HeaderElement checkPasswordInputIsNotVisible() {
-        Assert.assertFalse("Password input is displayed", isElementDisplayed(passwordInput));
-        return this;
+    public boolean isButtonCreatePostVisible() {
+        return isElementDisplayed(buttonCreatePost);
+
     }
 
-    public HeaderElement checkSignInButtonIsNotVisible() {
-        Assert.assertFalse("Sign In button is displayed", isElementDisplayed(signInButton));
-        return this;
+    public boolean isButtonMyProfileVisible() {
+        return isElementDisplayed(buttonMyProfile);
     }
+
+    public boolean isUserNameVisible() {
+        return isElementDisplayed(userName);
+    }
+
 
 
 }

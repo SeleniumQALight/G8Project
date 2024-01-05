@@ -17,8 +17,8 @@ public class SignOutTest extends BaseTest {
                 .checkChatButtonIsVisible()
                 .checkAvatarIsVisible()
                 .checkCreatePostButtonIsVisible()
-                .checkSignOutButtonIsVisible()
-                .checkLoginInputIsNotVisible()
+                .checkSignOutButtonIsVisible();
+                pageProvider.loginPage().checkLoginInputIsNotVisible()
                 .checkPasswordInputIsNotVisible()
                 .checkSignInButtonIsNotVisible();
 
