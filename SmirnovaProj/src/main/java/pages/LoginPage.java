@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static libs.TestData.VALID_LOGIN_UI;
+import static libs.TestData.VALID_PASSWORD_UI;
+
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[contains(text(),'Sign In')]")
 //цей елемент створиться PageFactory в CommonActionsWithElements
@@ -44,5 +47,13 @@ public class LoginPage extends ParentPage {
 
     public boolean isButtonSignInPresent() {
         return isElementDisplayed(buttonSignIn);
+    }
+
+    public HomePage openLoginPageAndFillLoginFormWithValidCred() {
+        openLoginPage();
+        enterTextIntoInputLogin(VALID_LOGIN_UI);
+        enterTextIntoInputPassword(VALID_PASSWORD_UI);
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
     }
 }
