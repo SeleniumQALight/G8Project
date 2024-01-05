@@ -16,6 +16,20 @@ public class LoginPage extends ParentPage {
     private WebElement inputLogin;
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPassword;
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private WebElement inputUsernameRegister;
+    @FindBy(xpath = ".//input[@id='email-register']")
+    private WebElement inputEmailRegister;
+    @FindBy(xpath = ".//input[@id='password-register']")
+    private WebElement inputPasswordRegister;
+    @FindBy(xpath = ".//button[@type='submit']")
+    private WebElement buttonSignUp;
+    @FindBy(xpath = ".//div[text()='Username must be at least 3 characters.']")
+    private WebElement usernameValidationMessage;
+    @FindBy(xpath = ".//div[text()='You must provide a valid email address.']")
+    private WebElement emailValidationMessage;
+    @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
+    private WebElement passwordValidationMessage;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -37,6 +51,25 @@ public class LoginPage extends ParentPage {
 
     public void enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
+    }
+
+    public LoginPage enterTextIntoInputUsernameRegister(String username) {
+        enterTextIntoInput(inputUsernameRegister, username);
+        return this;
+    }
+
+    public LoginPage enterTextIntoInputEmailRegister(String email) {
+        enterTextIntoInput(inputEmailRegister, email);
+        return this;
+    }
+
+    public LoginPage enterTextIntoInputPasswordRegister(String password) {
+        enterTextIntoInput(inputPasswordRegister, password);
+        return this;
+    }
+
+    public void clickOnButtonSignUp() {
+        clickOnElement(buttonSignUp);
     }
 
     public void clickOnButtonSignIn() {
@@ -90,5 +123,20 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+
+    public LoginPage checkUsernameValidationMessage(String text) {
+        checkTextInElement(usernameValidationMessage, text);
+        return this;
+    }
+
+    public LoginPage checkEmailValidationMessage(String text) {
+        checkTextInElement(emailValidationMessage, text);
+        return this;
+    }
+
+    public LoginPage checkPasswordValidationMessage(String text) {
+        checkTextInElement(passwordValidationMessage, text);
+        return this;
+    }
 
 }
