@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.CommonActionWithElements;
 import pages.CreatePostPage;
+import pages.MyProfilePage;
 
 // опишемо елементи які є в хедері залогіненого юзера
 public class HeaderElement extends CommonActionWithElements {
@@ -16,8 +17,8 @@ public class HeaderElement extends CommonActionWithElements {
     @FindBy(xpath = "//button[text()='Sign Out']")
     private WebElement buttonSignOut;
 
-    @FindBy(xpath = "//a[@class ='mr-2']")
-    private WebElement buttonProfile;
+    @FindBy(xpath = "//img[@alt='My profile']")
+    private WebElement buttonMyProfile;
 
     @FindBy(xpath = "//span[@class='text-white mr-2']")
     private WebElement ProfileName;
@@ -45,6 +46,13 @@ public class HeaderElement extends CommonActionWithElements {
     public boolean isButtonCreatePostVisible() {
         return isElementDisplayed(buttonCreatePost);
     }
+
+    public MyProfilePage clickOnMyProfileButton() {
+        clickOnElement(buttonMyProfile);
+        return new MyProfilePage(webDriver);
+    }
+
+}
 
     // check is button Profile visible
     public boolean isButtonProfileVisible() {

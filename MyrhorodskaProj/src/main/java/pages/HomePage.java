@@ -15,10 +15,6 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
-    public boolean isButtonSignOutVisible() {
-     //   WebElement buttonSignOut = webDriver.findElement(By.xpath("//button[contains(text(),'Sign Out')]"));
-        return isElementDisplayed(buttonSignOut);
-    }
 
     public HomePage checkIsredirectToHomePage() {
         //TODO check url
