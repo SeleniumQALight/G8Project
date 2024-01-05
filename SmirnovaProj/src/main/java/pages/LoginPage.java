@@ -45,8 +45,34 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignIn);
     }
 
-    public boolean isButtonSignInPresent() {
-        return isElementDisplayed(buttonSignIn);
+    public LoginPage isInputPasswordPresent() {
+        isElementDisplayed(inputPassword);
+        return this;
+    }
+
+    public LoginPage isInputUsernamePresent() {
+        isElementDisplayed(inputLogin);
+        return this;
+    }
+
+    public LoginPage isButtonSignInPresent() {
+        isElementDisplayed(buttonSignIn);
+        return this;
+    }
+
+    public LoginPage isInputUsernameNotPresent() {
+        checkElementIsNotVisible(inputLogin);
+        return this;
+    }
+
+    public LoginPage isInputPasswordNotPresent() {
+        checkElementIsNotVisible(inputPassword);
+        return this;
+    }
+
+    public LoginPage isButtonSignInNotPresent() {
+        checkElementIsNotVisible(buttonSignIn);
+        return this;
     }
 
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
@@ -56,4 +82,13 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
+
+    public LoginPage checkIsRedirectToLoginPage() {
+        //TODO check url
+        Assert.assertTrue("Invalid page - not Login Page"
+                , isElementDisplayed(buttonSignIn));
+        return this;
+    }
+
+
 }
