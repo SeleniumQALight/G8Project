@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import pages.CommonActionsWithElements;
 import pages.CreatePostPage;
 import pages.LoginPage;
+import pages.MyProfilePage;
 
 //This class is for elements that are present on all pages of the logged user
 public class HeaderElement extends CommonActionsWithElements {
@@ -105,5 +106,10 @@ public class HeaderElement extends CommonActionsWithElements {
     public LoginPage clickOnButtonSignOut() {
         clickOnElement(buttonSignOut);
         return new LoginPage(webDriver);
+    }
+
+    public MyProfilePage clickOnButtonMyProfile() {
+        clickOnElement(buttonMyProfile);
+        return new MyProfilePage(webDriver);
     }
 }

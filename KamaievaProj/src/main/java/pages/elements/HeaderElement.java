@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.CommonActionsWithElements;
 import pages.CreatePostPage;
+import pages.MyProfilePage;
 import pages.LoginPage;
 
 //Discribe elements which present in header of page for user who was logined
@@ -84,6 +85,11 @@ public class HeaderElement extends CommonActionsWithElements{
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
+    }
+
+    public MyProfilePage clickOnButtonMyProfile() {
+        clickOnElement(buttonMyProfile);
+        return new MyProfilePage(webDriver);
     }
 
     public LoginPage clickOnButtonSignOut() {

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.CommonActionsWithElements;
 import pages.CreatePostPage;
+import pages.MyProfilePage;
 
 //describe header element for all pages logged in user
 public class HeaderElement extends CommonActionsWithElements {
@@ -23,6 +24,9 @@ public class HeaderElement extends CommonActionsWithElements {
     private WebElement searchButton;
     @FindBy(xpath = ".//span[@class='text-white mr-2 header-chat-icon']")
     private WebElement chatButton;
+
+    @FindBy(xpath = "//img[@alt='My profile']")
+    private WebElement buttonMyProfile;
 
 
     public HeaderElement(WebDriver webDriver) {
@@ -90,5 +94,10 @@ public class HeaderElement extends CommonActionsWithElements {
 
     public void isSearchButtonNotVisible() {
         checkIsElementNotVisible(searchButton);
+    }
+
+    public MyProfilePage clickOnButtonMyProfile() {
+        clickOnElement(buttonMyProfile);
+        return new MyProfilePage(webDriver);
     }
 }

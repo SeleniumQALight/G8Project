@@ -3,11 +3,13 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class PostPage  extends ParrentPage{
     @FindBy (xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
 
+     HeaderElement headerElement;
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -30,4 +32,7 @@ public class PostPage  extends ParrentPage{
     }
 
 
+    public HeaderElement getHeader() {
+        return headerElement =  new HeaderElement(webDriver);
+    }
 }
