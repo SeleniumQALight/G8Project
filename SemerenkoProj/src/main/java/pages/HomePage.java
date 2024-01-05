@@ -35,6 +35,11 @@ public class HomePage extends ParentPage {
         return this;
     }
 
+    public HomePage checkIsButtonChatVisible(){
+        getHeader().checkIsElementButtonChatVisible();
+        return this;
+    }
+
     public HomePage checkIsInputUsernameUnvisible() {
         getHeader().checkIsElementInputUsernameUnvisible();
         return this;
@@ -42,6 +47,11 @@ public class HomePage extends ParentPage {
 
     public HomePage checkIsInputPasswordUnvisible() {
         getHeader().checkIsElementInputPasswordUnvisible();
+        return this;
+    }
+
+    public HomePage checkIsButtonSignInUnvisible(){
+        getHeader().checkIsElementButtonSignInUnvisible();
         return this;
     }
 

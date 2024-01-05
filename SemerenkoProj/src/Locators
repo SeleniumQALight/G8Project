@@ -14,6 +14,7 @@ div_failSignIn = ".//div[@class="alert alert-danger text-center" and contains(te
 #HomePage
 button_signout = ".//button[@class='btn btn-sm btn-secondary']"
 button_createPost = ".// a [@href='/create-post']"
+button_chat = ".//span[@data-original-title='Chat']"
 
 a_my_profile = ".//a[@href='/profile/qaauto']"
 a_search = ".//a[@data-original-title='Search']"

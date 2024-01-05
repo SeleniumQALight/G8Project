@@ -6,10 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class LoginPage extends ParentPage {
-    @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
-    private WebElement buttonSignIn;
     @FindBy(xpath = ".//input[@placeholder='Username']")
     private WebElement inputUsername;
     @FindBy(xpath = ".//input[@placeholder='Password']")
@@ -19,6 +18,12 @@ public class LoginPage extends ParentPage {
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    public HeaderElement headerElement;
+
+    public HeaderElement getHeader() {
+        return new HeaderElement(webDriver);
     }
 
     public void openLoginPage() {
@@ -40,7 +45,7 @@ public class LoginPage extends ParentPage {
     }
 
     public void clickOnButtonSignIn() {
-        clickOnElement(buttonSignIn);
+        clickOnElement(getHeader().buttonSignIn);
     }
 
     public boolean isMessageFailLogin() {
@@ -55,7 +60,50 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
-    //is button SignIn
+    public LoginPage checkIsRedirectOnLoginPage() {
+        getHeader().checkIsElementButtonSignInVisible();
+        return this;
+    }
+
+    public LoginPage checkIsInputUsernameVisible(){
+        getHeader().checkIsElementInputUsernameVisible();
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordVisible(){
+        getHeader().checkIsElementInputPasswordVisible();
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInVisible(){
+        getHeader().checkIsElementButtonSignInVisible();
+        return this;
+    }
+
+    public LoginPage checkIsButtonSearchUnvisible() {
+        getHeader().checkIsElementButtonSearchUnvisible();
+        return this;
+    }
+
+    public LoginPage checkIsButtonChatUnvisible() {
+        getHeader().checkIsElementButtonChatUnvisible();
+        return this;
+    }
+
+    public LoginPage checkIsButtonProfileUnvisible() {
+        getHeader().checkIsElementLinkMyProfileUnvisible();
+        return this;
+    }
+
+    public LoginPage checkIsButtonCreatePostUnvisible() {
+        getHeader().checkIsElementButtonCreateNewPostUnvisible();
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignOutUnvisible(){
+        getHeader().checkIsElementButtonSignOutUnvisible();
+        return this;
+    }
 
 
 }
