@@ -63,7 +63,7 @@ public class LoginPage extends ParentPage {
         enterTextIntoInput(inputLogin, login);
     }
 
-    public LoginPage isInputLoginVisible() {
+    public LoginPage checkIsInputLoginVisible() {
         checkIsElementVisible(inputLogin);
         return this;
     }
@@ -73,7 +73,7 @@ public class LoginPage extends ParentPage {
         enterTextIntoInput(inputPassword, password);
     }
 
-    public void isInputPasswordVisible() {
+    public void checkIsInputPasswordVisible() {
         checkIsElementVisible(inputPassword);
     }
 
@@ -99,45 +99,45 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignUp);
     }
 
-    public boolean isWarningMessageVisible() {
+    public boolean checkIsWarningMessageVisible() {
 //        WebElement warningMessage = webDriver.findElement(By.xpath(".//div[text()='Invalid username/password.']"));
         return isElementDisplayed(warningMessage);
 
     }
 
     // is button Sign in visible
-    public boolean isButtonSignInVisible() {
+    public boolean checkIsButtonSignInVisible() {
 //        WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         return isElementDisplayed(buttonSignIn);
     }
 
-    public LoginPage isValidationMessageForUserNameFieldVisible() {
+    public LoginPage checkIsValidationMessageForUserNameFieldVisible() {
         checkIsElementVisible(validationMessageForUserNameField);
         return this;
     }
 
-    public LoginPage isValidationMessageForEmailFieldVisible() {
+    public LoginPage checkIsValidationMessageForEmailFieldVisible() {
         checkIsElementVisible(validationMessageForEmailField);
         return this;
     }
 
-    public LoginPage isValidationMessageForPasswordFieldVisible() {
+    public LoginPage checkIsValidationMessageForPasswordFieldVisible() {
         checkIsElementVisible(validationMessageForPasswordField);
         return this;
     }
 
     // input Login is not visible
-    public void isInputLoginNotVisible() {
+    public void checkIsInputLoginNotVisible() {
         checkIsElementNotVisible(inputLogin);
     }
 
     // input Password is not visible
-    public void isInputPasswordNotVisible() {
+    public void checkIsInputPasswordNotVisible() {
         checkIsElementNotVisible(inputPassword);
     }
 
     // button Sign in is not visible
-    public void isButtonSignInNotVisible() {
+    public void checkIsButtonSignInNotVisible() {
         checkIsElementNotVisible(buttonSignIn);
     }
 
@@ -159,18 +159,18 @@ public class LoginPage extends ParentPage {
     }
 
     public void checkIsLoginFieldIsNotVisible() {
-        isInputLoginNotVisible();
-        isInputPasswordNotVisible();
-        isButtonSignInNotVisible();
+        checkIsInputLoginNotVisible();
+        checkIsInputPasswordNotVisible();
+        checkIsButtonSignInNotVisible();
         logger.info("Login field is not visible");
     }
 
     public LoginPage checkIsRedirectToHomePage() {
         //TODO check url
         getHeader().checkIsHeaderForGuestVisible();
-        isInputLoginVisible();
-        isInputPasswordVisible();
-        isButtonSignInVisible();
+        checkIsInputLoginVisible();
+        checkIsInputPasswordVisible();
+        checkIsButtonSignInVisible();
         logger.info("Header for guest is visible");
         return this;
     }

@@ -11,8 +11,8 @@ public class SignUpTest extends BaseTest {
     public void signUpTestCheckValidationMessage() {
         pageProvider.loginPage()
                 .enterInvalidTextInRegistrationFieldsAndClickButtonSignUp(SMALL_INVALID_TEXT)
-                .isValidationMessageForUserNameFieldVisible()
-                .isValidationMessageForEmailFieldVisible()
-                .isValidationMessageForPasswordFieldVisible();
+                .checkIsValidationMessageForUserNameFieldVisible()
+                .checkIsValidationMessageForEmailFieldVisible()
+                .checkIsValidationMessageForPasswordFieldVisible();
     }
 }

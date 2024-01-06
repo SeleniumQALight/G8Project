@@ -22,9 +22,6 @@ public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = ".//a[text()='Create Post']")
     private WebElement linkCreatePost;
 
-    @FindBy(xpath = ".//img[@data-original-title='My Profile']/..")
-    private WebElement linkMyProfile;
-
     @FindBy(xpath = ".//span[contains(@class,'text-white')and not(@data-original-title)]")
     private WebElement userName;
 
@@ -35,7 +32,7 @@ public class HeaderElement extends CommonActionsWithElements {
     private WebElement iconChat;
 
     //myProfile button
-    @FindBy(xpath = "//img[@alt='My profile']")
+    @FindBy(xpath = ".//img[@data-original-title='My Profile']/..")
     private WebElement buttonMyProfile;
 
     public HeaderElement(WebDriver webDriver) {
@@ -52,42 +49,42 @@ public class HeaderElement extends CommonActionsWithElements {
         return new LoginPage(webDriver);
     }
 
-    public boolean isButtonSignOutDisplayed() {
+    public boolean checkIsButtonSignOutDisplayed() {
 //        WebElement buttonSignOut = webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
         return isElementDisplayed(buttonSignOut);
     }
 
-    public HeaderElement isButtonSignOutVisible() {
+    public HeaderElement checkIsButtonSignOutVisible() {
         checkIsElementVisible(buttonSignOut);
         return this;
     }
 
-    public HeaderElement isButtonSignOutNotVisible() {
+    public HeaderElement checkIsButtonSignOutNotVisible() {
         checkIsElementNotVisible(buttonSignOut);
         return this;
     }
 
-    public HeaderElement isButtonCreatePostVisible() {
+    public HeaderElement checkIsButtonCreatePostVisible() {
         checkIsElementVisible(buttonCreatePost);
         return this;
     }
 
-    public HeaderElement isButtonCreatePostNotVisible() {
+    public HeaderElement checkIsButtonCreatePostNotVisible() {
         checkIsElementNotVisible(buttonCreatePost);
         return this;
     }
 
-    public HeaderElement isMyProfileLinkVisible() {
-        checkIsElementVisible(linkMyProfile);
+    public HeaderElement checkIsMyProfileButtonVisible() {
+        checkIsElementVisible(buttonMyProfile);
         return this;
     }
 
-    public HeaderElement isMyProfileLinkNotVisible() {
-        checkIsElementNotVisible(linkMyProfile);
+    public HeaderElement checkIsMyProfileButtonNotVisible() {
+        checkIsElementNotVisible(buttonMyProfile);
         return this;
     }
 
-    public HeaderElement isUserNameVisible() {
+    public HeaderElement checkIsUserNameVisible() {
         checkIsElementVisible(userName);
         return this;
     }
@@ -96,41 +93,41 @@ public class HeaderElement extends CommonActionsWithElements {
         checkTextInElement(userName, text);
     }
 
-    public HeaderElement isSearchLinkVisible() {
+    public HeaderElement checkIsSearchLinkVisible() {
         checkIsElementVisible(linkSearch);
         return this;
     }
 
-    public HeaderElement isSearchLinkNotVisible() {
+    public HeaderElement checkIsSearchLinkNotVisible() {
         checkIsElementNotVisible(linkSearch);
         return this;
     }
 
-    public HeaderElement isChatIconVisible() {
+    public HeaderElement checkIsChatIconVisible() {
         checkIsElementVisible(iconChat);
         return this;
     }
 
-    public HeaderElement isChatIconNotVisible() {
+    public HeaderElement checkIsChatIconNotVisible() {
         checkIsElementNotVisible(iconChat);
         return this;
     }
 
     public void checkIsHeaderForUserVisible() {
-        isSearchLinkVisible();
-        isChatIconVisible();
-        isMyProfileLinkVisible();
-        isButtonCreatePostVisible();
-        isButtonSignOutVisible();
+        checkIsSearchLinkVisible();
+        checkIsChatIconVisible();
+        checkIsMyProfileButtonVisible();
+        checkIsButtonCreatePostVisible();
+        checkIsButtonSignOutVisible();
         logger.info("Header for user is visible");
     }
 
     public void checkIsHeaderForGuestVisible() {
-        isSearchLinkNotVisible();
-        isChatIconNotVisible();
-        isMyProfileLinkNotVisible();
-        isButtonCreatePostNotVisible();
-        isButtonSignOutNotVisible();
+        checkIsSearchLinkNotVisible();
+        checkIsChatIconNotVisible();
+        checkIsMyProfileButtonNotVisible();
+        checkIsButtonCreatePostNotVisible();
+        checkIsButtonSignOutNotVisible();
     }
 
     public MyProfilePage clickOnMyProfileButton() {

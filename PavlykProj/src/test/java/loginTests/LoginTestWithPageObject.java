@@ -17,13 +17,13 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
         pageProvider.loginPage().clickOnButtonSignIn();
 
-        pageProvider.homePage().getHeader().isButtonSignOutVisible();
-        pageProvider.homePage().getHeader().isButtonCreatePostVisible();
-        pageProvider.homePage().getHeader().isMyProfileLinkVisible();
-        pageProvider.homePage().getHeader().isUserNameVisible();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
+        pageProvider.homePage().getHeader().checkIsButtonCreatePostVisible();
+        pageProvider.homePage().getHeader().checkIsMyProfileButtonVisible();
+        pageProvider.homePage().getHeader().checkIsUserNameVisible();
         pageProvider.homePage().getHeader().checkTextInUsername(VALID_LOGIN_UI);
-        pageProvider.loginPage().isInputLoginNotVisible();
-        pageProvider.loginPage().isInputPasswordNotVisible();
+        pageProvider.loginPage().checkIsInputLoginNotVisible();
+        pageProvider.loginPage().checkIsInputPasswordNotVisible();
     }
 
     @Test
@@ -33,8 +33,8 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI + ExtraOptions.getFormattedDate());
         pageProvider.loginPage().clickOnButtonSignIn();
 
-        Assert.assertFalse("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutDisplayed());
-        Assert.assertTrue("Button 'Sign In' is visible", pageProvider.loginPage().isButtonSignInVisible());
-        Assert.assertTrue("Warning message Invalid username/password is visible", pageProvider.loginPage().isWarningMessageVisible());
+        Assert.assertFalse("Button SignOut is not visible", pageProvider.homePage().getHeader().checkIsButtonSignOutDisplayed());
+        Assert.assertTrue("Button 'Sign In' is visible", pageProvider.loginPage().checkIsButtonSignInVisible());
+        Assert.assertTrue("Warning message Invalid username/password is visible", pageProvider.loginPage().checkIsWarningMessageVisible());
     }
 }
