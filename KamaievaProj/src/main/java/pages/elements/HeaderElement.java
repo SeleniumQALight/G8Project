@@ -1,6 +1,5 @@
 package pages.elements;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,7 +9,7 @@ import pages.MyProfilePage;
 import pages.LoginPage;
 
 //Discribe elements which present in header of page for user who was logined
-public class HeaderElement extends CommonActionsWithElements{
+public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = "//a[contains(text(), 'Create Post')]")
     private WebElement buttonCreatePost;
 
@@ -37,48 +36,27 @@ public class HeaderElement extends CommonActionsWithElements{
         return isElementDisplayed(buttonSignOut);
     }
 
-    public boolean isButtonCreatePostVisible(){
+    public boolean isButtonCreatePostVisible() {
         return isElementDisplayed(buttonCreatePost);
     }
 
-    public boolean isButtonMyProfileVisible(){
+    public boolean isButtonMyProfileVisible() {
         return isElementDisplayed(buttonMyProfile);
     }
 
-    public boolean isButtonSearchVisible(){
-        try {
-            boolean state = webDriver.findElement(By.xpath("//a[@data-original-title= 'Search']")).isDisplayed();
-            logger.info("Element 'Search' is displayed -> " + state);
-            return state;
-        } catch (Exception e) {
-            logger.info("Element 'Search' is not displayed");
-            return false;
-        }
+    public boolean isButtonSearchVisible(String elementName) {
+        return isElementDisplayed(buttonSearch, elementName);
     }
 
-    public boolean isButtonChatVisible(){
-        try{
-            boolean state = webDriver.findElement(By.xpath("//span[@data-original-title= 'Chat']")).isDisplayed();
-            logger.info("Element 'Chat' is displayed -> " + state);
-            return state;
-        } catch (Exception e){
-            logger.info("Element 'Chat' is not displayed");
-            return false;
-        }
+    public boolean isButtonChatVisible(String elementName) {
+        return isElementDisplayed(buttonChat, elementName);
     }
 
     public boolean isUserNameVisible() {
-        try {
-            boolean state = webDriver.findElement(By.xpath("//span[@class='text-white mr-2']")).isDisplayed();
-            logger.info("Element 'User Name' is displayed -> " + state);
-            return state;
-        } catch (Exception e) {
-            logger.info("User Name is not displayed");
-            return false;
-        }
+        return isElementDisplayed(userName);
     }
 
-    public Object getUserName(){
+    public Object getUserName() {
         return userName.getText();
     }
 
@@ -97,23 +75,23 @@ public class HeaderElement extends CommonActionsWithElements{
         return new LoginPage(webDriver);
     }
 
-    public void isButtonChatNotVisible() {
+    public void checkIsButtonChatNotVisible() {
         checkIsElementNotVisible(buttonChat, "Button Chat");
     }
 
-    public void isButtonSearchNotVisible() {
+    public void checkIsButtonSearchNotVisible() {
         checkIsElementNotVisible(buttonSearch, "Button Search");
     }
 
-    public void isButtonMyProfileNotVisible() {
+    public void checkIsButtonMyProfileNotVisible() {
         checkIsElementNotVisible(buttonMyProfile, "Button My Profile");
     }
 
-    public void isButtonCreatePostNotVisible() {
+    public void checkIsButtonCreatePostNotVisible() {
         checkIsElementNotVisible(buttonCreatePost, "Button Create Post");
     }
 
-    public void isButtonSignOutNotVisible() {
+    public void checkIsButtonSignOutNotVisible() {
         checkIsElementNotVisible(buttonSignOut, "Button Sign Out");
     }
 }

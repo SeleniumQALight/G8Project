@@ -49,7 +49,25 @@ public class CommonActionsWithElements {
     protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
-            logger.info("Element '" + getElementName(element) + "' is displayed -> " + state);
+            String elementText = element.getText();
+            String logMessage;
+            if (!elementText.isEmpty()) {
+                logMessage = "Element '" + elementText + "' is displayed -> " + state;
+            } else {
+                logMessage = "Element '" + getElementName(element) + "' is displayed -> " + state;
+            }
+            logger.info(logMessage);
+            return state;
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            return false;
+        }
+    }
+
+    protected boolean isElementDisplayed(WebElement element, String elementName) {
+        try {
+            boolean state = element.isDisplayed();
+            logger.info("Element '" + elementName + "' is displayed -> " + state);
             return state;
         } catch (Exception e) {
             logger.error("Can not work with element");

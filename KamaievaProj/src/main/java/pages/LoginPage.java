@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.elements.HeaderElement;
 
 public class LoginPage extends ParentPage {
 
@@ -80,25 +79,11 @@ public class LoginPage extends ParentPage {
     }
 
     public boolean isInputLoginVisible() {
-        try {
-            boolean state = webDriver.findElement(By.xpath("//input[@placeholder='Username']")).isDisplayed();
-            logger.info("Input 'Username' is displayed -> " + state);
-            return state;
-        } catch (Exception e) {
-            logger.info("Input 'Username' is not displayed");
-            return false;
-        }
+        return isElementDisplayed(inputLogin);
     }
 
     public boolean isInputPasswordVisible() {
-        try {
-            boolean state = webDriver.findElement(By.xpath("//input[@placeholder='Password']")).isDisplayed();
-            logger.info("Input 'Password' is displayed -> " + state);
-            return state;
-        } catch (Exception e) {
-            logger.info("Input 'Password' is not displayed");
-            return false;
-        }
+        return isElementDisplayed(inputPassword);
     }
 
     public void clickOnButtonSignIn() {
@@ -128,17 +113,17 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
-    public LoginPage isInputUsernameNotVisible() {
+    public LoginPage checkIsInputUsernameNotVisible() {
         checkIsElementNotVisible(inputLogin, "Input Username");
         return this;
     }
 
-    public LoginPage isInputPasswordNotVisible() {
+    public LoginPage checkIsInputPasswordNotVisible() {
         checkIsElementNotVisible(inputPassword, "Input Password");
         return this;
     }
 
-    public LoginPage isButtonSignInNotVisible() {
+    public LoginPage checkIsButtonSignInNotVisible() {
         checkIsElementNotVisible(buttonSignIn, "Button Sign In");
         return this;
     }
@@ -148,36 +133,15 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public HeaderElement getHeader() {
-        return new HeaderElement(webDriver);
-    }
-
     public boolean isValidationMessageUsernameRegisterVisible() {
-       return checkIsValidationMessageVisible(validationMessageUsernameRegister);
+        return checkIsValidationMessageVisible(validationMessageUsernameRegister);
     }
 
     public boolean isValidationMessageEmailRegisterVisible() {
-        checkIsValidationMessageVisible(validationMessageEmailRegister);
-        return true;
+        return checkIsValidationMessageVisible(validationMessageEmailRegister);
     }
 
     public boolean isValidationMessagePasswordRegisterVisible() {
-        checkIsValidationMessageVisible(validationMessagePasswordRegister);
-        return true;
-    }
-
-    public LoginPage checkTextInValidationMessageUsernameRegister(String text) {
-        Assert.assertEquals("Text in validation message is not expected", text, validationMessageUsernameRegister.getText());
-        return this;
-    }
-
-    public LoginPage checkTextInValidationMessageEmailRegister(String text) {
-        Assert.assertEquals("Text in validation message is not expected", text, validationMessageEmailRegister.getText());
-        return this;
-    }
-
-    public LoginPage checkTextInValidationMessagePasswordRegister(String text) {
-        Assert.assertEquals("Text in validation message is not expected", text, validationMessagePasswordRegister.getText());
-        return this;
+        return checkIsValidationMessageVisible(validationMessagePasswordRegister);
     }
 }
