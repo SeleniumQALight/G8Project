@@ -30,4 +30,16 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertFalse("Button SignOut is displayed", pageProvider.homePage().getHeader().isButtonSignOutVisible());
         Assert.assertTrue("Invalid Login massage is absent", pageProvider.loginPage().isMessageFailLogin());
     }
+
+    @Test
+    public void loginValidation(){
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterIntoUsernameRegistration("tr")
+                .enterIntoEmailRegistration("tr")
+                .enterIntoPasswordRegistration("tr")
+                .clickOnButtonSignup()
+                .checkIsWarningUsernameRegistrationVisible()
+                .checkIsWarningEmailRegistrationVisible()
+                .checkIsWarningPasswordRegistrationVisible();
+    }
 }

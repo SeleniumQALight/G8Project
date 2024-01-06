@@ -1,6 +1,7 @@
 package pages;
 
 import libs.TestData;
+import org.apache.commons.logging.Log;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,20 @@ public class LoginPage extends ParentPage {
     private WebElement inputPassword;
     @FindBy(xpath = ".//div[@class='alert alert-danger text-center' and contains(text(),'Invalid username/password.')]")
     private WebElement divFailSignIn;
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private WebElement inputUsernameRegistration;
+    @FindBy(xpath = ".//input[@id='email-register']")
+    private WebElement inputEmailRegistration;
+    @FindBy(xpath = ".//input[@id='password-register']")
+    private WebElement inputPasswordRegistration;
+    @FindBy(xpath = ".//input[@id='username-register']//../div")
+    private WebElement divWarningUsernameRegistration;
+    @FindBy(xpath = ".//input[@id='email-register']//../div")
+    private WebElement divWarningEmailRegistration;
+    @FindBy(xpath = ".//input[@id='password-register']//../div")
+    private WebElement divWarningPasswordRegistration;
+    @FindBy(xpath = ".//button[@type='submit']")
+    private WebElement buttonSignUp;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -48,6 +63,15 @@ public class LoginPage extends ParentPage {
         clickOnElement(getHeader().buttonSignIn);
     }
 
+    public void clickOnButtonSingUp(){
+        clickOnElement(buttonSignUp);
+    }
+
+    public LoginPage clickOnButtonSignup(){
+        clickOnElement(buttonSignUp);
+        return this;
+    }
+
     public boolean isMessageFailLogin() {
         return isElementDisplayed(divFailSignIn);
     }
@@ -60,23 +84,53 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    public LoginPage enterIntoUsernameRegistration(String username) {
+        enterTextIntoInput(inputUsernameRegistration, username);
+        return this;
+    }
+
+    public LoginPage enterIntoEmailRegistration(String email){
+        enterTextIntoInput(inputEmailRegistration, email);
+        return this;
+    }
+
+    public LoginPage enterIntoPasswordRegistration(String pass){
+        enterTextIntoInput(inputPasswordRegistration, pass);
+        return this;
+    }
+
     public LoginPage checkIsRedirectOnLoginPage() {
         getHeader().checkIsElementButtonSignInVisible();
         return this;
     }
 
-    public LoginPage checkIsInputUsernameVisible(){
+    public LoginPage checkIsInputUsernameVisible() {
         getHeader().checkIsElementInputUsernameVisible();
         return this;
     }
 
-    public LoginPage checkIsInputPasswordVisible(){
+    public LoginPage checkIsInputPasswordVisible() {
         getHeader().checkIsElementInputPasswordVisible();
         return this;
     }
 
-    public LoginPage checkIsButtonSignInVisible(){
+    public LoginPage checkIsButtonSignInVisible() {
         getHeader().checkIsElementButtonSignInVisible();
+        return this;
+    }
+
+    public LoginPage checkIsWarningUsernameRegistrationVisible(){
+        checkIsElementVisible(divWarningUsernameRegistration, "divWarningUsernameRegistration");
+        return this;
+    }
+
+    public LoginPage checkIsWarningEmailRegistrationVisible(){
+        checkIsElementVisible(divWarningEmailRegistration, "divWarningEmailRegistration");
+        return this;
+    }
+
+    public LoginPage checkIsWarningPasswordRegistrationVisible(){
+        checkIsElementVisible(divWarningPasswordRegistration, "divWarningPasswordRegistration");
         return this;
     }
 
@@ -100,7 +154,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public LoginPage checkIsButtonSignOutUnvisible(){
+    public LoginPage checkIsButtonSignOutUnvisible() {
         getHeader().checkIsElementButtonSignOutUnvisible();
         return this;
     }
