@@ -96,4 +96,40 @@ public class CommonActionsWithElements {
         }
     }
 
+    public boolean isCheckboxSelected(WebElement checkbox){
+        boolean checkboxStatus = checkbox.isSelected();
+        return checkboxStatus;
+    }
+
+    public void setCheckboxSelected(WebElement checkbox){
+        if (!isCheckboxSelected(checkbox)) {
+            checkbox.click();
+            logger.info("Checkbox is selected");
+
+        } else {
+            logger.info("Checkbox already was selected");
+        }
+    }
+
+    public void setCheckboxUnSelected(WebElement checkbox){
+        if (isCheckboxSelected(checkbox)) {
+            checkbox.click();
+            logger.info("Checkbox is unselected");
+
+        } else {
+            logger.info("Checkbox already was unselected");
+        }
+    }
+
+    public void setStatusForCheckbox(WebElement checkbox, String checkboxStatus){
+        if (checkboxStatus.equals("check")) {
+            setCheckboxSelected(checkbox);
+        } else if (checkboxStatus.equals("uncheck")) {
+            setCheckboxUnSelected(checkbox);
+        } else {
+            logger.info("Wrong status for checkbox is passed");
+            Assert.fail("Wrong status for checkbox is passed");
+        }
+    }
+
 }
