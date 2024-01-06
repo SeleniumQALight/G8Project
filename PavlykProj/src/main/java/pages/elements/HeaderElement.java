@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import pages.CommonActionsWithElements;
 import pages.CreatePostPage;
 import pages.LoginPage;
+import pages.MyProfilePage;
 
 // описывает элементы, которые есть в хедере залогиненного пользователя
 public class HeaderElement extends CommonActionsWithElements {
@@ -32,6 +33,10 @@ public class HeaderElement extends CommonActionsWithElements {
 
     @FindBy(xpath = ".//span[@data-original-title='Chat']")
     private WebElement iconChat;
+
+    //myProfile button
+    @FindBy(xpath = "//img[@alt='My profile']")
+    private WebElement buttonMyProfile;
 
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
@@ -126,5 +131,10 @@ public class HeaderElement extends CommonActionsWithElements {
         isMyProfileLinkNotVisible();
         isButtonCreatePostNotVisible();
         isButtonSignOutNotVisible();
+    }
+
+    public MyProfilePage clickOnMyProfileButton() {
+        clickOnElement(buttonMyProfile);
+        return new MyProfilePage(webDriver);
     }
 }
