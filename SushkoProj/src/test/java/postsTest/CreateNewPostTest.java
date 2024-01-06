@@ -7,6 +7,7 @@ import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "TC_001_Sushko " + Util.getDateAndTimeFormatted();
+    final String POST_BODY = "Sushko content body text";
     @Test
     public void TC_001_createNewPost(){
         pageProvider.loginPage()
@@ -15,7 +16,7 @@ public class CreateNewPostTest extends BaseTest {
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
                 .enterTitleInToInputTitle(POST_TITLE)
-                .enterTextIntoInputBody("body text")
+                .enterTextIntoInputBody(POST_BODY)
                 //.selectTextInDropDown("Приватне повідомлення")
                 .setUniquePostCheckboxSelected()
                 .selectValueInDropDown("One Person")
@@ -23,7 +24,10 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
-                .checkTextThisPostUnique()
+                .checkTextThisPostUnique("yes")
+                .checkTitleIsPresentInPost(POST_TITLE)
+                .checkBodyContentIsPresentInPost(POST_BODY)
+                .checkCorrectNoteInPost("One Person")
         ;
 
         pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
@@ -39,8 +43,3 @@ public class CreateNewPostTest extends BaseTest {
         ;
     }
 }
-
-//        4. Зробити перевірку на сторінці postPage що ми бачимо текст тайтла, боді - такіж, з якими ми створювали пост
-//        (порівняти текс з них з очикуваним, тим який передавали при створені).
-//        А також перевірити що бачите текст Note: This post was written for One Person і Is this post unique? : yes/no
-//        — це зробити параметризованим локатором (параметр буде yes чи no).

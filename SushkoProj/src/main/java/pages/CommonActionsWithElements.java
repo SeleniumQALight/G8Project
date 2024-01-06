@@ -131,5 +131,4 @@ public class CommonActionsWithElements {
             Assert.fail("Wrong status for checkbox is passed");
         }
     }
-
 }
