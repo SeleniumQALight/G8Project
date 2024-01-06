@@ -99,4 +99,50 @@ public class CommonActionsWithElements {
             Assert.fail("Can not work with element");
         }
     }
+
+    protected void setCheckBox(WebElement checkBox) {
+        try {
+            if (!checkBox.isSelected()) {
+                checkBox.click();
+            }
+            logger.info(getElementName(checkBox) + " was checked");
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void unSetCheckBox(WebElement checkBox) {
+        try {
+            if (checkBox.isSelected()) {
+                checkBox.click();
+            }
+            logger.info(getElementName(checkBox) + " was unchecked");
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void setStateToCheckBox(WebElement checkBox, String state) {
+        try {
+            if (state.toLowerCase().equals("check")) {
+                if (!checkBox.isSelected()) {
+                    checkBox.click();
+                }
+                logger.info(getElementName(checkBox) + " was checked");
+            } else if (state.toLowerCase().equals("uncheck")) {
+                if (checkBox.isSelected()) {
+                    checkBox.click();
+                }
+                logger.info(getElementName(checkBox) + " was unchecked");
+            } else {
+                logger.error("State should be 'check' or 'uncheck'");
+                Assert.fail("State should be 'check' or 'uncheck'");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
 }
