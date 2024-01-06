@@ -7,7 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParrentPage {
-    @FindBy(xpath = ".//button[contains(text(),'Sign In')]")//цей елементствориться PageFactory в CommonActionsWithElements
+    @FindBy(xpath = ".//button[contains(text(),'Sign In')]")
+//цей елементствориться PageFactory в CommonActionsWithElements
     private WebElement buttonSignIn;
 
     @FindBy(xpath = "//input[@placeholder='Username']")
@@ -34,39 +35,68 @@ public class LoginPage extends ParrentPage {
     }
 
     public void enterTextInToInputLogin(String login) {
-       // WebElement inputLogin = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
+        // WebElement inputLogin = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
         enterTextInToInput(inputLogin, login);
     }
 
     public void enterTextInToInputPassword(String password) {
-      //  WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        //  WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         enterTextInToInput(inputPassword, password);
     }
 
     public void clickOnButtonSignIn() {
-       // WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));
+        // WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignIn);
     }
 
+
     public boolean isButtonSignInVisible() {
         try {
-         //   WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));
+            //   WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));
             return isElementDisplayed(buttonSignIn);
         } catch (Exception e) {
             logger.info("Element button SignIn is displayed -> false");
             return false;
         }
     }
-        public boolean isTextInvalidLoginOrPasswordDisplayed () {
-           try {
-             //  WebElement textInvalidLoginOrPassword = webDriver.findElement(By.xpath(".//div[contains(text(),'Invalid username/password')]"));
 
-            return isElementDisplayed(textInvalidLoginOrPassword);}
-              catch (Exception e){
-                logger.info("Element text Invalid Login Or Password is displayed -> false");
-                return false;
+
+    public boolean isTextInvalidLoginOrPasswordDisplayed() {
+        try {
+            //  WebElement textInvalidLoginOrPassword = webDriver.findElement(By.xpath(".//div[contains(text(),'Invalid username/password')]"));
+
+            return isElementDisplayed(textInvalidLoginOrPassword);
+        } catch (Exception e) {
+            logger.info("Element text Invalid Login Or Password is displayed -> false");
+            return false;
         }
     }
+
+    public boolean isInputLoginFieldVisible() {
+
+        return isElementDisplayed(inputLogin);
+
+    }
+
+    public boolean isInputLoginFieldNotVisible() {
+
+        return isElementNotDisplayed(inputLogin);
+
+    }
+
+
+    public boolean isInputPasswordFieldVisible() {
+
+        return isElementDisplayed(inputPassword);
+
+    }
+
+    public boolean isInputPasswordFieldNotVisible() {
+
+        return isElementNotDisplayed(inputPassword);
+
+    }
+
 
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
@@ -76,4 +106,11 @@ public class LoginPage extends ParrentPage {
         return new HomePage(webDriver);
 
     }
+
+
+    public boolean isButtonSignInIsNotVisible() {
+        return isElementNotDisplayed(buttonSignIn);
+    }
+
+
 }

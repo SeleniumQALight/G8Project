@@ -59,6 +59,19 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected boolean isElementNotDisplayed(WebElement element) {
+        try {
+            boolean state = element.isDisplayed();
+            logger.info("Element is displayed -> " + state + "not expected result");
+            return false;
+
+        } catch (Exception e) {
+            logger.info("Element is displayed -> false (expected result)");
+            return true;
+
+        }
+    }
+
     // select Text in dropDown
 
     protected void selectTextInDropDown(WebElement dropDown, String text) {
