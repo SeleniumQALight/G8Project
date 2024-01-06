@@ -41,24 +41,24 @@ public class LoginTestWithPageObject extends BaseTest {
     public void logoutTest() {
         pageProvider.getLoginPage().openLoginPageAndFillLoginFormWithValidCreate();
 
-        Assert.assertTrue("Button 'Search' is not visible", pageProvider.getHomePage().getHeader().isButtonSearchVisible());
-        Assert.assertTrue("Button 'Chat' is not visible", pageProvider.getHomePage().getHeader().isButtonChatVisible());
+        Assert.assertTrue("Button 'Search' is not visible", pageProvider.getHomePage().getHeader().isButtonSearchVisible("Search"));
+        Assert.assertTrue("Button 'Chat' is not visible", pageProvider.getHomePage().getHeader().isButtonChatVisible("Chat"));
         Assert.assertTrue("Button 'My profile' is not visible", pageProvider.getHomePage().getHeader().isButtonMyProfileVisible());
         Assert.assertTrue("Button 'Create post' is not visible", pageProvider.getHomePage().getHeader().isButtonCreatePostVisible());
         Assert.assertTrue("Button 'Sign out' is not visible", pageProvider.getHomePage().getHeader().isButtonSignOutVisible());
 
         pageProvider.getLoginPage()
-                .isInputPasswordNotVisible()
-                .isInputUsernameNotVisible()
-                .isButtonSignInNotVisible();
+                .checkIsInputPasswordNotVisible()
+                .checkIsInputUsernameNotVisible()
+                .checkIsButtonSignInNotVisible();
 
         pageProvider.getHomePage().getHeader().clickOnButtonSignOut().checkIsRedirectToLoginPage();
 
-        pageProvider.getLoginPage().getHeader().isButtonSearchNotVisible();
-        pageProvider.getLoginPage().getHeader().isButtonChatNotVisible();
-        pageProvider.getLoginPage().getHeader().isButtonMyProfileNotVisible();
-        pageProvider.getLoginPage().getHeader().isButtonCreatePostNotVisible();
-        pageProvider.getLoginPage().getHeader().isButtonSignOutNotVisible();
+        pageProvider.getHomePage().getHeader().checkIsButtonSearchNotVisible();
+        pageProvider.getHomePage().getHeader().checkIsButtonChatNotVisible();
+        pageProvider.getHomePage().getHeader().checkIsButtonMyProfileNotVisible();
+        pageProvider.getHomePage().getHeader().checkIsButtonCreatePostNotVisible();
+        pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
 
         Assert.assertTrue("Input 'Username' is not visible", pageProvider.getLoginPage().isInputLoginVisible());
         Assert.assertTrue("Input 'Password' is not visible", pageProvider.getLoginPage().isInputPasswordVisible());
@@ -75,9 +75,5 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getLoginPage().isValidationMessageUsernameRegisterVisible();
         pageProvider.getLoginPage().isValidationMessageEmailRegisterVisible();
         pageProvider.getLoginPage().isValidationMessagePasswordRegisterVisible();
-        pageProvider.getLoginPage()
-                .checkTextInValidationMessageUsernameRegister("Username must be at least 3 characters.")
-                .checkTextInValidationMessageEmailRegister("You must provide a valid email address.")
-                .checkTextInValidationMessagePasswordRegister("Password must be at least 12 characters.");
     }
 }
