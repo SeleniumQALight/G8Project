@@ -20,6 +20,27 @@ public class LoginPage extends ParrentPage {
     @FindBy(xpath = ".//div[contains(text(),'Invalid username/password')]")
     private WebElement textInvalidLoginOrPassword;
 
+    @FindBy(xpath = ".//input[@id='username-register']")
+    WebElement registerLogin;
+
+    @FindBy(xpath = ".//input[@id='password-register']")
+    WebElement registerPassword;
+
+    @FindBy(xpath = ".//input[@name='email']")
+    WebElement registerEmail;
+
+    @FindBy(xpath = ".//button[@type='submit']")
+    WebElement buttonSignUp;
+
+    @FindBy(xpath = ".//div[text()='Username must be at least 3 characters.']")
+    WebElement errorMessageInRegisterUsernameField;
+
+    @FindBy(xpath = ".//div[text()='You must provide a valid email address.']")
+    WebElement errorMessageInRegisterEmailField;
+
+    @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
+    WebElement errorMessageInRegisterPasswordField;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -48,6 +69,12 @@ public class LoginPage extends ParrentPage {
         // WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignIn);
     }
+
+    public  void enterTextIntoRegisterLogin (String login){
+
+        enterTextInToInput(registerLogin,login);
+    }
+
 
 
     public boolean isButtonSignInVisible() {
@@ -113,4 +140,31 @@ public class LoginPage extends ParrentPage {
     }
 
 
+    public void enterTextIntoRegisterPassword(String password){
+
+        enterTextInToInput(registerPassword,password);
+    }
+
+    public void enterTextIntoRegisterEmail(String email) {
+        enterTextInToInput(registerEmail,email);
+    }
+
+    public void clickOnButtonSignUp() {
+        clickOnElement(buttonSignUp);
+    }
+
+    public boolean  isTextInErrorMessageInRegisterUsernameIsVisible() {
+      return isElementDisplayed(errorMessageInRegisterUsernameField);
+    }
+
+    public boolean isTextInErrorMessageInRegisterEmailIsVisible() {
+       return isElementDisplayed(errorMessageInRegisterEmailField);
+    }
+
+    public boolean isTextInErrorMessageInRegisterPasswordIsVisible() {
+       return isElementDisplayed(errorMessageInRegisterPasswordField);
+    }
+
+
 }
+
