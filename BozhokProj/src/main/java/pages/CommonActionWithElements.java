@@ -98,7 +98,7 @@ public class CommonActionWithElements {
         }
     }
 
-//    check Profile Name
+    //    check Profile Name
     protected void checkUserNameInProfile(WebElement element, String expectedName) {
         try {
             String textFromElement = element.getText();
@@ -109,4 +109,14 @@ public class CommonActionWithElements {
         }
     }
 
+    // metod to check for absence button Sign In, input Login, input Password
+    protected boolean isElementNotDisplayed(WebElement element) {
+        try {
+            String elementName = getElementName(element);
+            Assert.assertFalse("Element is visible " + elementName, element.isDisplayed());
+        } catch (Exception e) {
+            logger.error("Element is visible");
+        }
+        return false;
+    }
 }

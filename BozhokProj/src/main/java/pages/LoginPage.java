@@ -29,14 +29,26 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@type='submit']")
     private WebElement buttonSignUpForOurApp;
 
-    @FindBy(xpath ="//*[@id='registration-form']/div[1]/div")
+    @FindBy(xpath = "//*[@id='registration-form']/div[1]/div")
     private WebElement successUsernameMessage;
 
-    @FindBy(xpath ="//*[@id='registration-form']/div[2]/div")
+    @FindBy(xpath = "//*[@id='registration-form']/div[2]/div")
     private WebElement successEmailMassage;
 
-    @FindBy(xpath ="//*[@id='registration-form']/div[3]/div")
+    @FindBy(xpath = "//*[@id='registration-form']/div[3]/div")
     private WebElement successPasswordMassage;
+
+    @FindBy(xpath = "//a[@data-original-title='Search']")
+    private WebElement buttonSearch;
+
+    @FindBy(xpath = "//span[@data-original-title='Chat']")
+    private WebElement buttonChat;
+
+    @FindBy(xpath = "//img[@alt='My profile']")
+    private WebElement buttonMyProfile;
+
+    @FindBy(xpath = "//*[@class ='btn btn-sm btn-success mr-2']")
+    private WebElement buttonCreatePost;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -62,7 +74,7 @@ public class LoginPage extends ParentPage {
     }
 
     // input Username Login Register
-   public void enterTextIntoInputUsernameLoginRegister(String usernameLoginRegister) {
+    public void enterTextIntoInputUsernameLoginRegister(String usernameLoginRegister) {
         enterTextIntoInput(inputLoginRegister, usernameLoginRegister);
     }
 
@@ -70,6 +82,7 @@ public class LoginPage extends ParentPage {
     public void enterTextIntoInputEmailRegister(String emailLoginRegister) {
         enterTextIntoInput(inputEmailRegister, emailLoginRegister);
     }
+
     // input Password Login Register
     public void enterTextIntoInputPasswordRegister(String passwordLoginRegister) {
         enterTextIntoInput(inputPasswordRegister, passwordLoginRegister);
@@ -83,8 +96,6 @@ public class LoginPage extends ParentPage {
 
     // click on button Sign Up For Our App
     private void clickOnButtonSignUpForOurApp() {
-//        WebElement buttonSignUpForOurApp = webDriver.findElement(
-//                By.xpath("//button[contains(text(),'Sign Up For Our App')]"));
         clickOnElement(buttonSignUpForOurApp);
     }
 
@@ -155,5 +166,56 @@ public class LoginPage extends ParentPage {
         checkTextInElement(successPasswordMassage, text);
         logger.info("Message about short password in the registration form is visible");
         return this;
+    }
+
+    public LoginPage checkIsRedirectOnLoginPage() {
+        // TODO check url
+        // TODO Check element
+        return this;
+    }
+
+
+    public LoginPage isButtonSearchVisible() {
+        try {
+            Assert.assertFalse("Button Search is visible", buttonSearch.isDisplayed());
+        } catch (Exception e) {
+            logger.info("Button Search is not visible");
+        }
+        return this;
+    }
+
+    public LoginPage isButtonChatVisible() {
+        try {
+            Assert.assertFalse("Button Chat is visible", buttonChat.isDisplayed());
+        } catch (Exception e) {
+            logger.info("Button Chat is not visible");
+        }
+        return this;
+    }
+
+    public LoginPage isButtonAvatarVisible() {
+        try {
+            Assert.assertFalse("Button Avatar is visible", buttonMyProfile.isDisplayed());
+        } catch (Exception e) {
+            logger.info("Button Avatar is not visible");
+        }
+        return this;
+    }
+
+    public LoginPage isButtonCreatePostVisible() {
+        try {
+            Assert.assertFalse("Button Create Post is visible", buttonCreatePost.isDisplayed());
+        } catch (Exception e) {
+            logger.info("Button Create Post is not visible");
+        }
+        return this;
+    }
+
+    public boolean isInputPasswordVisible() {
+        return isElementDisplayed(inputPassword);
+    }
+
+    public boolean isInputLoginVisible() {
+        return isElementDisplayed(inputLogin);
     }
 }

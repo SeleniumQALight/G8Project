@@ -14,9 +14,11 @@ public class HomePage extends ParentPage {
     @FindBy(xpath = ".//*[@class ='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
 
-
     @FindBy(xpath = "//span[@class='text-white mr-2']")
     private WebElement successProfileName;
+
+    @FindBy(xpath = ".//input[@placeholder='Username']")
+    private WebElement inputLogin;
 
 
     public HomePage(WebDriver webDriver) {
@@ -40,15 +42,11 @@ public class HomePage extends ParentPage {
         return this;
     }
 
-//    public boolean isInputLoginVisible() {
-//        return isElementDisplayed(successProfileName);
-//    }
-
     public HomePage openHomePageAndLoginIfNeeded() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openLoginPage();
         if (this.getHeader().isButtonSignOutVisible()) {
-           logger.info("User is already logged in");
+            logger.info("User is already logged in");
         } else {
             loginPage.enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
             loginPage.enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
@@ -58,4 +56,25 @@ public class HomePage extends ParentPage {
         }
         return this;
     }
+
+    // check is input Login visible
+    public HomePage isInputLoginVisible() {
+        try {
+            Assert.assertFalse("Input Login is visible", inputLogin.isDisplayed());
+        } catch (Exception e) {
+            logger.info("Input Login is not visible");
+        }
+        return this;
+    }
+
+    // check is input Password visible
+    public HomePage isInputPasswordVisible() {
+        try {
+            Assert.assertFalse("Input Password is visible", inputLogin.isDisplayed());
+        } catch (Exception e) {
+            logger.info("Input Password is not visible");
+        }
+        return this;
+    }
+
 }
