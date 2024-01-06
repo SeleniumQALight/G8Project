@@ -22,11 +22,11 @@ public class LoginPage extends ParentPage {
     private WebElement inputEmailRegistration;
     @FindBy(xpath = ".//input[@id='password-register']")
     private WebElement inputPasswordRegistration;
-    @FindBy(xpath = ".//input[@id='username-register']//../div")
+    @FindBy(xpath = ".//div[contains(text(), 'Username must be at least 3 characters.')]")
     private WebElement divWarningUsernameRegistration;
-    @FindBy(xpath = ".//input[@id='email-register']//../div")
+    @FindBy(xpath = ".//div[contains(text(), 'You must provide a valid email address.')]")
     private WebElement divWarningEmailRegistration;
-    @FindBy(xpath = ".//input[@id='password-register']//../div")
+    @FindBy(xpath = ".//div[contains(text(), 'Password must be at least 12 characters.')]")
     private WebElement divWarningPasswordRegistration;
     @FindBy(xpath = ".//button[@type='submit']")
     private WebElement buttonSignUp;

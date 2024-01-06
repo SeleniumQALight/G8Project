@@ -3,9 +3,9 @@ input_username_register =  ".//input[@id='username-register']"
 input_email_register =  ".//input[@id='email-register']"
 input_password_register =  ".//input[@id='password-register']"
 
-div_username_worning_messege = ".//input[@id='username-register']//../div"
-div_email_worning_messege = ".//input[@id='email-register']//../div"
-div_password_worning_messege = ".//input[@id='password-register']//../div"
+div_username_worning_messege = ".//input[@id='username-register']//../div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"
+div_email_worning_messege = ".//input[@id='email-register']//../div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"
+div_password_worning_messege = ".//input[@id='password-register']//../div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"
 
 input_username_signin = ".//input[@placeholder='Username']"
 input_password_signin = ".//input[@placeholder='Password']"
