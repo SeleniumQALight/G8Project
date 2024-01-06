@@ -7,6 +7,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
+import static libs.TestData.VALID_LOGIN_UI;
+import static libs.TestData.VALID_PASSWORD_UI;
+
+
 public class HomePage extends ParentPage {
     private HeaderElement headerElement;
     @FindBy(xpath = "//button[contains(text(),'Sign Out')]")
@@ -23,5 +27,19 @@ public class HomePage extends ParentPage {
     }
     public HeaderElement getHeader() {
         return new HeaderElement(webDriver);
+    }
+    public HomePage openHomePageAndLoginIfNeed() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if (this.getHeader().isButtonSignOutVisible()) {
+            logger.info("User is already logged in");
+        } else {
+            loginPage.enterTextInToInputLogin(VALID_LOGIN_UI);
+            loginPage.enterTextInToInputPassword(VALID_PASSWORD_UI);
+            loginPage.clickOnButtonSingIn();
+           checkIsredirectToHomePage();
+            logger.info("User is logged in");
+        }
+        return this;
     }
 }
