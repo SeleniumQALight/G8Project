@@ -60,33 +60,9 @@ public class CreatePostPage extends ParentPage {
         return new PostPage(webDriver);
     }
 
-    public PostPage setCheckboxChecked() {
-        if (!checkbox.isSelected()) {
-            clickOnElement(checkbox);
-            logger.info("Checkbox was checked");
-        }
-        logger.info("Checkbox already checked");
-        return new PostPage(webDriver);
-    }
-
-    public PostPage setCheckboxUnchecked() {
-        if (checkbox.isSelected()) {
-            clickOnElement(checkbox);
-            logger.info("Checkbox was unchecked");
-        }
-        logger.info("Checkbox already unchecked");
-        return new PostPage(webDriver);
-    }
-
-    public CreatePostPage setCheckbox(String checked) {
-        if (checked.equals("checked")) {
-            setCheckboxChecked();
-        } else if (checked.equals("unchecked")) {
-            setCheckboxUnchecked();
-        } else {
-            logger.error("Checkbox status should be 'checked' or 'unchecked'");
-            Assert.fail("Checkbox status should be 'checked' or 'unchecked'");
-        }
+    public CreatePostPage setCheckbox(String status) {
+        setCheckbox(status,checkbox);
         return this;
     }
+
 }
