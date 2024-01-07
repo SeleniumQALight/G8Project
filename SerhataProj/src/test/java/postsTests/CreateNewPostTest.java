@@ -16,6 +16,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectToCreatePostPage()
                 .enterTitleIntoInputTitle(POST_TITLE)
                 .enterTextIntoInputBody("serhata_post_body")
+                .selectCheckboxUniqueState("check")
                 //.selectTextInDropDown("Приватне повідомлення")
                 .selectValueInDropDown("One Person")
                 .clickOnSaveNewPostButton()
