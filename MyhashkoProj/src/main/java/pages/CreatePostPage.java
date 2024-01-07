@@ -17,6 +17,9 @@ public class CreatePostPage extends ParentPage {
     @FindBy(xpath = "//input[@type='checkbox']")
     private WebElement checkBoxIsSelected;
 
+    private static String SavedTextOfTitleFieldWhichWasEnteredOnCreatePostPage;
+    private static String SavedTextOfBodyFieldWhichWasEnteredOnCreatePostPage;
+
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -32,12 +35,22 @@ public class CreatePostPage extends ParentPage {
     // fill the title field
     public CreatePostPage enterTextIntoTitleField(String title) {
         enterTextIntoInput(inputTitle, title);
+        this.SavedTextOfTitleFieldWhichWasEnteredOnCreatePostPage = title;
         return this;
     }
 
-    public CreatePostPage enterTextIntoInputBody(String myhashkoBody) {
-        enterTextIntoInput(inputBody, myhashkoBody);
+    public static String getEnteredTitle() {
+        return SavedTextOfTitleFieldWhichWasEnteredOnCreatePostPage;
+    }
+
+    public CreatePostPage enterTextIntoInputBody(String Body) {
+        enterTextIntoInput(inputBody, Body);
+        this.SavedTextOfBodyFieldWhichWasEnteredOnCreatePostPage = Body;
         return this;
+    }
+
+    public static String getEnteredBody() {
+        return SavedTextOfBodyFieldWhichWasEnteredOnCreatePostPage;
     }
 
     // select Text in DropDown
@@ -57,7 +70,7 @@ public class CreatePostPage extends ParentPage {
         return new PostPage(webDriver);
     }
 
-    //метод який буде робити чекбокс вибраним
+
     public CreatePostPage setStatusOfCheckBoxIsThisPostUnique(String checked) {
         if (checked.equals("check")) {
             setCheckBoxIsThisPostUniqueChecked();
