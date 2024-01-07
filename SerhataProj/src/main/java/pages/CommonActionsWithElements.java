@@ -49,11 +49,10 @@ public class CommonActionsWithElements {
     protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
-            logger.info("Element is displayed " + state);
+            logger.info(state + " Element is displayed " + getElementName(element));
             return state;
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            logger.info("Element is not displayed " + getElementName(element));
             return false;
         }
     }
@@ -99,14 +98,7 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected boolean checkIsElementNotVisible(WebElement webElement) {
-        try {
-            boolean state = webElement.isDisplayed();
-            logger.info(state + " is " + getElementName(webElement) + " visible");
-            return state;
-        } catch (Exception e){
-            logger.info("Element" + getElementName(webElement) + " is not displayed");
-            return false;
-        }
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementDisplayed(webElement));
     }
 }
