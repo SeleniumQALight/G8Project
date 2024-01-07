@@ -94,7 +94,7 @@ public class CommonActionsWithElements {
                 element.click();
                 logger.info("Element " + getElementName(element) + " was clicked. Checkbox is unselected");
             } else {
-                logger.info("Element wasn't " + getElementName(element) + " selected. Checkbox is unselected");
+                logger.info("Element wasn't " + getElementName(element) + " clicked. Checkbox is unselected");
             }
 
         } catch (Exception e) {
