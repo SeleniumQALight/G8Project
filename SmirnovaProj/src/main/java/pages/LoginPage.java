@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -55,5 +56,14 @@ public class LoginPage extends ParentPage {
         enterTextIntoInputPassword(VALID_PASSWORD_UI);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+    public boolean isInvalidLoginMessageDisplayed() {
+        try {
+            WebElement invalidLoginMessage =
+                    webDriver.findElement(By.xpath("//div[text()='Invalid username/password.']"));
+            return isElementDisplayed(invalidLoginMessage);
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
