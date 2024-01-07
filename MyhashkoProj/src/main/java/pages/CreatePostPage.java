@@ -14,6 +14,8 @@ public class CreatePostPage extends ParentPage {
     private WebElement dropDownSelectValue;
     @FindBy(xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
+    @FindBy(xpath = "//input[@type='checkbox']")
+    private WebElement checkBoxIsSelected;
 
 
     public CreatePostPage(WebDriver webDriver) {
@@ -54,4 +56,38 @@ public class CreatePostPage extends ParentPage {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
+
+    //метод який буде робити чекбокс вибраним
+    public CreatePostPage setStatusOfCheckBoxIsThisPostUnique(String checked) {
+        if (checked.equals("check")) {
+            setCheckBoxIsThisPostUniqueChecked();
+        } else if (checked.equals("uncheck")) {
+            setCheckBoxIsThisPostUniqueUnchecked();
+        } else {
+            logger.error("CheckBoxIsThisPostUnique should be check or unchecked");
+            Assert.fail("CheckBoxIsThisPostUnique should be check or unchecked");
+        }
+        return this;
+    }
+
+    private PostPage setCheckBoxIsThisPostUniqueChecked() {
+        if (!checkBoxIsSelected.isSelected()) {
+            clickOnElement(checkBoxIsSelected);
+            logger.info("CheckBoxIsThisPostUnique was checked");
+        } else {
+        logger.info("CheckBoxIsThisPostUnique is already checked");
+        }
+        return new PostPage(webDriver);
+    }
+
+    private PostPage setCheckBoxIsThisPostUniqueUnchecked() {
+        if (checkBoxIsSelected.isSelected()) {
+            clickOnElement(checkBoxIsSelected);
+            logger.info("CheckBoxIsThisPostUnique was unchecked");
+        } else {
+            logger.info("CheckBoxIsThisPostUnique is already unchecked");
+        }
+        return new PostPage(webDriver);
+    }
+
 }

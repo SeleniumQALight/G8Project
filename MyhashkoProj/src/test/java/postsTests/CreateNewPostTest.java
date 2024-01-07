@@ -19,10 +19,12 @@ public class CreateNewPostTest extends BaseTest {
                 .enterTextIntoInputBody("Myhashko body")
                 //.selectTextInDropDown("Приватне повідомлення")
                 .selectValueInDropDown("One Person")
+                .setStatusOfCheckBoxIsThisPostUnique("check")
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .chekStatusOfCheckBoxIsThisPostUniqueOnPostPage("yes")
 
         ;
 
