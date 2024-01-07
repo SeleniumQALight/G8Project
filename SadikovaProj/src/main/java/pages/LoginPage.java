@@ -56,11 +56,20 @@ public class LoginPage extends ParentPage {
         clickOnElement(signInButton);
     }
 
-    public HomePage loginToProfile(String login, String password) {
-        openLoginPage();
+        public HomePage loginToProfile(String login, String password) {
         enterTextIntoInputLogin(login);
         enterTextIntoInputPassword(password);
         clickOnButtonSingIn();
         return new HomePage(webDriver);
     }
+
+    public HomePage goToPageAndLoginToProfile(String login, String password) {
+        openLoginPage();
+        loginToProfile(login, password);
+        return new HomePage(webDriver);
+    }
+
+
+
+
 }

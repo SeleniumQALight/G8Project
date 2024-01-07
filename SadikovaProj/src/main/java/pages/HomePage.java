@@ -1,9 +1,8 @@
 package pages;
 
+import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
@@ -23,5 +22,19 @@ public class HomePage extends ParentPage {
 
     public HeaderElement headerElement(){
         return new HeaderElement(webDriver);
+    }
+
+
+    public HomePage openHomePageAndLoginIfNeeded(){
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if(this.headerElement().isButtonSignOutVisible()){
+            logger.info("User is already logged in");
+        }else {
+            loginPage.loginToProfile(TestData.VALID_LOGIN_UI, TestData.VALID_PASSWORD);
+            checkIsRedirectToHomePage();
+            logger.info("User is logged in");
+        }
+        return this;
     }
 }
