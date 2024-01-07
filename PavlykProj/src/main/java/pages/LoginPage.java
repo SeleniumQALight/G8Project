@@ -99,16 +99,21 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignUp);
     }
 
-    public boolean checkIsWarningMessageVisible() {
+    public boolean isWarningMessageVisible() {
 //        WebElement warningMessage = webDriver.findElement(By.xpath(".//div[text()='Invalid username/password.']"));
         return isElementDisplayed(warningMessage);
 
     }
 
     // is button Sign in visible
-    public boolean checkIsButtonSignInVisible() {
+    public boolean isButtonSignInVisible() {
 //        WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         return isElementDisplayed(buttonSignIn);
+    }
+
+    public LoginPage checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn);
+        return this;
     }
 
     public LoginPage checkIsValidationMessageForUserNameFieldVisible() {

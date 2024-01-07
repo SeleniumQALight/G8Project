@@ -49,7 +49,7 @@ public class HeaderElement extends CommonActionsWithElements {
         return new LoginPage(webDriver);
     }
 
-    public boolean checkIsButtonSignOutDisplayed() {
+    public boolean isButtonSignOutVisible() {
 //        WebElement buttonSignOut = webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
         return isElementDisplayed(buttonSignOut);
     }
