@@ -2,6 +2,7 @@ package pages;
 
 import libs.Urls;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,10 +17,14 @@ public class CreatePostPage extends ParentPage {
     private WebElement dropdown;
     @FindBy(xpath = "//button[text()='Save New Post']")
     private WebElement saveNewPostButton;
+    @FindBy(xpath = "//input[@name='uniquePost']")
+    private WebElement checkbox;
+
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
+
 
     // check if we are on the Create Post page
     public CreatePostPage checkIsRedirectToCreatePostPage() {
@@ -48,7 +53,10 @@ public class CreatePostPage extends ParentPage {
         return this;
     }
 
-
+    public CreatePostPage checkSetStateCheckbox(String state){
+        selectCheckbox(checkbox, state);
+        return this;
+    }
 
 
 }

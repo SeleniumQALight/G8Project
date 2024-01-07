@@ -31,6 +31,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.mainPage().checkSignInButtonIsVisible();
         pageProvider.mainPage().checkSignInButtonIsVisible();
         Assert.assertTrue("Warning button Invalid username/password is visible", pageProvider.mainPage().isWarningMessageVisible());
+
     }
 
 }
