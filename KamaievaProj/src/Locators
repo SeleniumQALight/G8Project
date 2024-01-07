@@ -20,6 +20,7 @@ buttonMyProfile = "//img[@data-original-title= 'My Profile']",
 userName = "//span[contains(text(), '%s')]",
 buttonCreatePost = "//a[contains(text(), 'Create Post')]",
 buttonSignOut = "//button[contains(text(), 'Sign Out')]",
+buttonChat = "//span[@data-original-title= 'Chat']",
 
 #HomePage
 buttonHomePage = "//a[contains(text(),'Complex app for testing - QA')]",
