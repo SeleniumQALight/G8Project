@@ -12,7 +12,7 @@ public class CreateNewPostTest extends BaseTest {
     @Test
     public void TC_001_createNewPost() {
         pageProvider.getLoginPage()
-                .openLoginPageAndFillLoginFormWithValidCreat()
+                .openLoginPageAndFillLoginFormWithValidCreate()
                 .checkIsRedirectToHomePage()
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()

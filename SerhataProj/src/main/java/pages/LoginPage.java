@@ -6,15 +6,37 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[contains(text(),'Sign In')]")//цей елемент створиться PageFactory в CommonActionsWithElements
     private WebElement buttonSignIn;
+
     @FindBy(xpath = ".//input[@placeholder='Username']")
     private WebElement inputLogin;
+
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPassword;
 
+    @FindBy(xpath = "//input[@id='username-register']")
+    private WebElement inputUserNameForSignUp;
+
+    @FindBy(xpath = "//input[@id='email-register']")
+    private WebElement inputEmailForSignUp;
+
+    @FindBy(xpath = "//input[@id='password-register']")
+    private WebElement inputPasswordForSignUp;
+
+    @FindBy(xpath = "//button [@type='submit']")
+    private WebElement buttonSignUp;
+    @FindBy(xpath = ".//div[text()='Username must be at least 3 characters.']")
+    private WebElement validationMessageForUserNameField;
+
+    @FindBy(xpath = ".//div[text()='You must provide a valid email address.']")
+    private WebElement validationMessageForEmailField;
+
+    @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
+    private WebElement validationMessageForPasswordField;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -44,7 +66,14 @@ public class LoginPage extends ParentPage {
     }
 
     public boolean isButtonSignInPresent() {
-      return isElementDisplayed(buttonSignIn);
+        try {
+            boolean state = buttonSignIn.isDisplayed();
+            logger.info(state + " is input Password visible");
+            return state;
+        } catch (Exception e){
+            logger.info("Input Password is not displayed");
+            return false;
+        }
     }
 
     public boolean isErrorMessagePresent() {
@@ -64,5 +93,59 @@ public class LoginPage extends ParentPage {
         enterTextInToInputPassword(TestData.VALID_PASSWORD_UI);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+
+    public LoginPage checkIsRedirectToLoginPage() {
+        Assert.assertTrue("Invalid page - not Login Page", isElementDisplayed(buttonSignIn));
+        Assert.assertTrue("Invalid page - not Login Page", isElementDisplayed(inputLogin));
+        Assert.assertTrue("Invalid page - not Login Page", isElementDisplayed(inputPassword));
+        return this;
+    }
+
+    public void checkIsLoginFieldIsNotVisible() {
+        checkIsElementNotVisible(inputLogin);
+        checkIsElementNotVisible(inputPassword);
+        checkIsElementNotVisible(buttonSignIn);
+        logger.info("Login fields are not visible");
+    }
+
+    public HeaderElement getHeader() {
+        return new HeaderElement(webDriver);
+    }
+
+    public LoginPage enterTextInToInputUserName(String login) {
+        enterTextInToInput(inputUserNameForSignUp, login);
+        return this;
+    }
+
+    public LoginPage enterTextInToInputEmail(String email) {
+        enterTextInToInput(inputEmailForSignUp, email);
+        return this;
+    }
+
+    public LoginPage enterTextInToInputPasswordForSignUp(String password) {
+        enterTextInToInput(inputPasswordForSignUp, password);
+        return this;
+    }
+
+    public LoginPage clickOnButtonSignUp() {
+        clickOnElement(buttonSignUp);
+        return this;
+    }
+
+    public LoginPage checkIsValidationMessageForUserNameFieldVisible() {
+        checkIsElementVisible(validationMessageForUserNameField);
+        return this;
+    }
+
+
+    public LoginPage checkIsValidationMessageForEmailFieldVisible() {
+        checkIsElementVisible(validationMessageForEmailField);
+        return this;
+    }
+
+    public LoginPage checkIsValidationMessageForPasswordFieldVisible() {
+        checkIsElementVisible(validationMessageForPasswordField);
+        return this;
     }
 }
