@@ -14,7 +14,7 @@ public class CreatePostPage extends ParentPage {
 
     @FindBy(tagName = "select")// xpath = ".//.select"
     private WebElement dropDownSelectValue;
-    
+
     @FindBy(xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
