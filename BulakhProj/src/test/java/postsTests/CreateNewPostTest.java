@@ -25,7 +25,6 @@ public class CreateNewPostTest  extends BaseTest {
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
 
-
         ;
 
         pageProvider.getPostPage().getHeader().clickOnMyProfileButton()

@@ -85,6 +85,10 @@ public class CommonActionsWithElements {
         Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
     }
 
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementDisplayed(webElement));
+    }
+
     //check text in element
     protected void checkTextInElement(WebElement element, String expectedText) {
         try{
@@ -95,5 +99,4 @@ public class CommonActionsWithElements {
             Assert.fail("Can not work with element");
         }
     }
-
 }
