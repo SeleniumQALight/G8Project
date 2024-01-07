@@ -116,7 +116,6 @@ public class HeaderElement extends CommonActionsWithElements {
     }
 
     public boolean isButtonSignOutVisible() {
-//        WebElement buttonSignOut = webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
         return isElementDisplayed(signOutButton);
     }
 

@@ -74,12 +74,40 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected void selectCheckbox(WebElement element) {
+        try {
+            if (!element.isSelected()) {
+                element.click();
+                logger.info("Element " + getElementName(element) + " was clicked. Checkbox is selected");
+            } else {
+                logger.info("Element " + getElementName(element) + " is selected");
+            }
+
+        } catch (Exception e) {
+            logger.error("Error: " + e);
+        }
+    }
+
+    protected void unselectCheckbox(WebElement element) {
+        try {
+            if (element.isSelected()) {
+                element.click();
+                logger.info("Element " + getElementName(element) + " was clicked. Checkbox is unselected");
+            } else {
+                logger.info("Element wasn't " + getElementName(element) + " selected. Checkbox is unselected");
+            }
+
+        } catch (Exception e) {
+            logger.error("Error: " + e);
+        }
+    }
+
     protected void checkElementIsNotDisplayed(WebElement element) {
         Assert.assertFalse("Element is not visible", isElementDisplayed(element));
     }
 
     protected void checkIsElementVisible(WebElement webElement) {
-        Assert.assertTrue("Element is visible",isElementDisplayed(webElement));
+        Assert.assertTrue("Element is visible", isElementDisplayed(webElement));
     }
 
     protected void assertUrl(String exepectedUrl) {
@@ -118,6 +146,19 @@ public class CommonActionsWithElements {
         String actualText = element.getText();
         Assert.assertEquals(actualText, expectedText);
         logger.info("Text visible: " + expectedText);
+
+    }
+
+    public void selectCheckbox(WebElement element, String exectedState) {
+        if (exectedState.equals("check")) {
+            selectCheckbox(element);
+        } else {
+            if (exectedState.equals("uncheck")) {
+                unselectCheckbox(element);
+
+            }
+        }
+
 
     }
 }
