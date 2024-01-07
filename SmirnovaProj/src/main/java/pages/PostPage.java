@@ -8,6 +8,10 @@ import pages.elements.HeaderElement;
 public class PostPage extends ParentPage {
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
+    @FindBy(xpath = ".//h2")
+    private WebElement titleText;
+    @FindBy(xpath = "(//div[@class='body-content']//p)[2]")
+    private WebElement bodyText;
 
     private HeaderElement headerElement;
 
@@ -28,6 +32,18 @@ public class PostPage extends ParentPage {
 
     public PostPage checkTextInSuccessMessage(String text) {
         checkTextInElement(successMessage, text);
+        return this;
+    }
+
+    public PostPage checkTextInPostTitle(String text) {
+        checkIsElementVisible(titleText);
+        checkTextInElement(titleText, text);
+        return this;
+    }
+
+    public PostPage checkTextInPostBody(String text) {
+        checkIsElementVisible(bodyText);
+        checkTextInElement(bodyText, text);
         return this;
     }
 

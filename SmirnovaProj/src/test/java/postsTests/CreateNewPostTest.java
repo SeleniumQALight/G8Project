@@ -7,6 +7,7 @@ import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "TC_001_Smirnova" + Util.getDateAndTimeFormatted();
+    final String POST_BODY = "Post body";
 
     @Test
     public void TC_001_createNewPost() {
@@ -16,7 +17,7 @@ public class CreateNewPostTest extends BaseTest {
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
                 .enterTitleIntoInput(POST_TITLE)
-                .enterTextIntoInputBody("test body")
+                .enterTextIntoInputBody(POST_BODY)
                 // .selectTextInDropDown("Приватне повідомлення")
                 .selectValueInDropDown("One Person")
                 .clickOnSaveNewPostButton()
@@ -26,7 +27,12 @@ public class CreateNewPostTest extends BaseTest {
         ;
         pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
-                .checkPostWithTitleIsPresent(POST_TITLE);
+                .checkPostWithTitleIsPresent(POST_TITLE)
+        ;
+        pageProvider.getMyProfilePage().clickOnPostWithTitle(POST_TITLE)
+                .checkTextInPostTitle(POST_TITLE)
+                .checkTextInPostBody(POST_BODY)
+        ;
     }
 
     @After
