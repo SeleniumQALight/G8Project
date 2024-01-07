@@ -7,6 +7,8 @@ import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "TC_001_Petriv" + Util.getDateAndTimeFormatted();
+    final String POST_BODY = "Post body text " + Util.getDateAndTimeFormatted();
+    final String DROP_DOWN_VALUE = "One Person";
     @Test
     public void TC_001_createNewPost() {
         pageProvider.loginPage()
@@ -15,13 +17,19 @@ public class CreateNewPostTest extends BaseTest {
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextIntoInputTitle(POST_TITLE)
-                .enterTextIntoInputBody("body text")
+                .enterTextIntoInputBody(POST_BODY)
                 //.selectTextInDropDown("Приватне повідомлення")
-                .selectValueInDropDown("One Person")
+                .selectValueInDropDown(DROP_DOWN_VALUE);
+        pageProvider.getCreatePostPage()
+                .setCheckBoxUniquePost("check")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .checkTextInPostTitle(POST_TITLE)
+                .checkTextInPostBody(POST_BODY)
+                .checkTextInUniquePostInfoMessage("yes")
+                .checkTextInPostNote("Note: This post was written for " + DROP_DOWN_VALUE)
         ;
 
         pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
