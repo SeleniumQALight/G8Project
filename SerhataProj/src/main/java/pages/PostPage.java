@@ -64,9 +64,9 @@ public class PostPage extends ParentPage{
     }
 
     //create method to check post unique state on post page
-    public PostPage checkPostUniqueState(String text,String state) {
-        checkTextInElement(postUniqueStateOnPostPage, state);
-        logger.info("Post unique state is" + state);
+    public PostPage checkPostUniqueState(String state) {
+        checkTextInElement(postUniqueStateOnPostPage,"Is this post unique? : " + state);
+        logger.info("Post unique state is " + state);
         return this;
     }
 }

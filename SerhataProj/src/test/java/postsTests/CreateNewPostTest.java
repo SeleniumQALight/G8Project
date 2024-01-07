@@ -27,7 +27,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkPostTitleText(POST_TITLE)
                 .checkPostBodyText(POST_BODY)
                 .checkPostNoteText("Note: This post was written for One Person")
-
+                .checkPostUniqueState("yes")
         ;
 
         pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
