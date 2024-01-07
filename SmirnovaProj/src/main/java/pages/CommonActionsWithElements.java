@@ -56,16 +56,7 @@ public class CommonActionsWithElements {
             return false;
         }
     }
-    protected boolean isElementNotDisplayed(WebElement element) {
-        try {
-            boolean state = element.isDisplayed();
-            logger.info("Element " + getElementName(element) + " is displayed -> " + state);
-            return false;
-        } catch (Exception e) {
-            logger.info("Element is displayed -> false");
-            return true;
-        }
-    }
+
     protected void selectTextInDropDown(WebElement dropDown, String text) {
         try {
             Select select = new Select(dropDown);
@@ -88,6 +79,7 @@ public class CommonActionsWithElements {
             Assert.fail("Can not work with element");
         }
     }
+
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
     }

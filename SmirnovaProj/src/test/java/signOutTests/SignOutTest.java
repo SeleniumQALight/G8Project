@@ -9,7 +9,7 @@ public class SignOutTest extends BaseTest {
         pageProvider.loginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
-                .getHeader().isHeaderOfTheLoggedInUserDisplayed();
+                .getHeader().checkIsHeaderOfTheLoggedInUserDisplayed();
         pageProvider.loginPage().checkIsInputPasswordNotPresent()
                 .checkIsInputUsernameNotPresent()
                 .checkIsButtonSignInNotPresent();
@@ -18,6 +18,6 @@ public class SignOutTest extends BaseTest {
                 .checkIsInputPasswordPresent()
                 .checkIsInputUsernamePresent()
                 .checkIsButtonSignInPresent();
-        pageProvider.homePage().getHeader().isHeaderOfTheLoggedInUserNotDisplayed();
+        pageProvider.homePage().getHeader().checkIsHeaderOfTheLoggedInUserNotDisplayed();
     }
 }

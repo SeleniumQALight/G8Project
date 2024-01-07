@@ -26,8 +26,9 @@ public class HeaderElement extends CommonActionsWithElements {
         super(webDriver);
     }
 
-    public boolean isButtonSignOutVisible() {
-        return isElementDisplayed(buttonSignOut);
+    public HeaderElement checkIsButtonSignOutVisible() {
+        checkIsElementVisible(buttonSignOut);
+        return this;
     }
 
     public CreatePostPage clickOnButtonCreatePost() {
@@ -35,67 +36,78 @@ public class HeaderElement extends CommonActionsWithElements {
         return new CreatePostPage(webDriver);
     }
 
-    public boolean isSearchIconDisplayed() {
-        return isElementDisplayed(searchIcon);
+    public HeaderElement checkIsSearchIconDisplayed() {
+        checkIsElementVisible(searchIcon);
+        return this;
     }
 
-    public boolean isChatIconDisplayed() {
-        return isElementDisplayed(chatIcon);
+    public HeaderElement checkIsChatIconDisplayed() {
+        checkIsElementVisible(chatIcon);
+        return this;
     }
 
-    public boolean isAvatarDisplayed() {
-        return isElementDisplayed(userAvatar);
+    public HeaderElement checkIsAvatarDisplayed() {
+        checkIsElementVisible(userAvatar);
+        return this;
     }
 
-    public boolean isUserNameDisplayed() {
-        return isElementDisplayed(linkUserName);
+    public HeaderElement checkIsUserNameDisplayed() {
+        checkIsElementVisible(linkUserName);
+        return this;
     }
 
-    public boolean isButtonCreatePostVisible() {
-        return isElementDisplayed(buttonCreatePost);
+    public HeaderElement checkIsButtonCreatePostVisible() {
+        checkIsElementVisible(buttonCreatePost);
+        return this;
     }
 
-    public boolean isHeaderOfTheLoggedInUserDisplayed() {
-        isSearchIconDisplayed();
-        isChatIconDisplayed();
-        isUserNameDisplayed();
-        isAvatarDisplayed();
-        isButtonCreatePostVisible();
-        isButtonSignOutVisible();
-        return true;
+    public HeaderElement checkIsHeaderOfTheLoggedInUserDisplayed() {
+        checkIsSearchIconDisplayed();
+        checkIsChatIconDisplayed();
+        checkIsUserNameDisplayed();
+        checkIsAvatarDisplayed();
+        checkIsButtonCreatePostVisible();
+        checkIsButtonSignOutVisible();
+        return this;
     }
-    public boolean isHeaderOfTheLoggedInUserNotDisplayed() {
-        isSearchIconNotDisplayed();
-        isChatIconNotDisplayed();
-        isUserNameNotDisplayed();
-        isAvatarNotDisplayed();
-        isButtonCreatePostNotVisible();
-        isButtonSignOutNotVisible();
-        return true;
-    }
-
-    private void isButtonSignOutNotVisible() {
-        isElementNotDisplayed(buttonSignOut);
+    public HeaderElement checkIsHeaderOfTheLoggedInUserNotDisplayed() {
+        checkIsSearchIconNotDisplayed();
+        checkIsChatIconNotDisplayed();
+        checkIsUserNameNotDisplayed();
+        checkIsAvatarNotDisplayed();
+        checkIsButtonCreatePostNotVisible();
+        checkIsButtonSignOutNotVisible();
+        return this;
     }
 
-    private void isButtonCreatePostNotVisible() {
-        isElementNotDisplayed(buttonCreatePost);
+    private HeaderElement checkIsButtonSignOutNotVisible() {
+        checkElementIsNotVisible(buttonSignOut);
+        return this;
     }
 
-    private void isAvatarNotDisplayed() {
-        isElementNotDisplayed(userAvatar);
+    private HeaderElement checkIsButtonCreatePostNotVisible() {
+        checkElementIsNotVisible(buttonCreatePost);
+        return this;
     }
 
-    private void isUserNameNotDisplayed() {
-        isElementNotDisplayed(linkUserName);
+    private HeaderElement checkIsAvatarNotDisplayed() {
+        checkElementIsNotVisible(userAvatar);
+        return this;
     }
 
-    private void isChatIconNotDisplayed() {
-        isElementNotDisplayed(chatIcon);
+    private HeaderElement checkIsUserNameNotDisplayed() {
+        checkElementIsNotVisible(linkUserName);
+        return this;
     }
 
-    private void isSearchIconNotDisplayed() {
-        isElementNotDisplayed(searchIcon);
+    private HeaderElement checkIsChatIconNotDisplayed() {
+        checkElementIsNotVisible(chatIcon);
+        return this;
+    }
+
+    private HeaderElement checkIsSearchIconNotDisplayed() {
+        checkElementIsNotVisible(searchIcon);
+        return this;
     }
 
     public LoginPage clickOnButtonSignOut() {
