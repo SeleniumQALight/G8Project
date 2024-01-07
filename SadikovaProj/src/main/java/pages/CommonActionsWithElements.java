@@ -79,7 +79,7 @@ public class CommonActionsWithElements {
     }
 
     protected void checkIsElementVisible(WebElement webElement) {
-        Assert.assertTrue(isElementDisplayed(webElement));
+        Assert.assertTrue("Element is visible",isElementDisplayed(webElement));
     }
 
     protected void assertUrl(String exepectedUrl) {

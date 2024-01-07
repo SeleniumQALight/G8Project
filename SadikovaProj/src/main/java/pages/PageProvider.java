@@ -1,8 +1,6 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
-import pages.MainPage.LoginForm;
-import pages.MainPage.RegistrationForm;
 import pages.elements.HeaderElement;
 
 public class PageProvider {
@@ -13,16 +11,12 @@ public class PageProvider {
         this.webDriver = webDriver;
     }
 
-    public LoginForm loginPage() {
-        return new LoginForm(webDriver);
+    public MainPage mainPage() {
+        return new MainPage(webDriver);
     }
 
     public HeaderElement headerElement() {
         return new HeaderElement(webDriver);
-    }
-
-    public HomePage homePage() {
-        return new HomePage(webDriver);
     }
 
     public CreatePostPage createPostPage() {
@@ -33,5 +27,8 @@ public class PageProvider {
         return new PostPage(webDriver);
     }
 
-    public RegistrationForm registrationForm(){return new RegistrationForm(webDriver);}
+    public HomePage homePage() {
+        return new HomePage(webDriver);
+    }
+
 }

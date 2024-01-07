@@ -1,18 +1,15 @@
 package pages.elements;
 
-import jdk.jfr.Description;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.CommonActionsWithElements;
 import pages.CreatePostPage;
-import pages.MainPage.LoginForm;
+import pages.MainPage;
 
-// описание элементов в хедере
+// описание элементов в хедере , часть элементов в классе MainPage
 
 public class HeaderElement extends CommonActionsWithElements {
-
-    LoginForm loginForm = new LoginForm(webDriver);
 
     /**
      * User
@@ -109,36 +106,6 @@ public class HeaderElement extends CommonActionsWithElements {
         clickOnElement(signOutButton);
         return new HeaderElement(webDriver);
     }
-
-
-    @Description("Проверить отображение всех элементов для пользователя в хедере")
-    public HeaderElement assertUserLoginHeaderElements() {
-        checkSearchLinkIsVisible();
-        checkChatIconIsVisible();
-        checkUserNameIsVisible();
-        checkMyProfileIconIsVisible();
-        checkCreatePostButtonIsVisible();
-        checkIsElementVisible(signOutButton);
-        loginForm.checkLoginFieldNotVisible();
-        loginForm.checkPasswordFieldNotVisible();
-        loginForm.checkSignInButtonIsNotVisible();
-        return this;
-    }
-
-    @Description("Проверить отображение всех элементов для гостя в хедере")
-    public HeaderElement assertGuestHeaderHasElements() {
-        checkSearchLinkIsNotVisible();
-        checkChatIconIsNotVisible();
-        checkUserNameIsNotVisible();
-        checkMyProfileIconIsNotVisible();
-        checkCreatePostButtonIsNotVisible();
-        checkElementIsNotDisplayed(signOutButton);
-        loginForm.checkPasswordFieldIsVisible();
-        loginForm.checkLoginFieldIsVisible();
-        loginForm.checkSignInButtonIsVisible();
-        return this;
-    }
-
 
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
