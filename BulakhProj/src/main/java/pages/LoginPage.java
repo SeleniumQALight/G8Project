@@ -49,8 +49,6 @@ public class LoginPage  extends ParentPage{
     @FindBy(xpath = "//input[@placeholder='Password']")
     private WebElement passwordInput;
 
-    @FindBy(xpath = "//button[text()='Sign In']")
-    private WebElement signInButton;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -130,9 +128,8 @@ public class LoginPage  extends ParentPage{
         return this;
     }
 
-    public LoginPage checkSignInButtonIsNotVisible() {
-        Assert.assertFalse("Sign In button is displayed", isElementDisplayed(signInButton));
-        return this;
+    public void checkSignInButtonIsNotVisible() {
+        Assert.assertFalse("Sign In button is displayed", isElementDisplayed(buttonSingIn));
     }
 
     public LoginPage clickOnButtonSingUp() {
@@ -150,9 +147,8 @@ public class LoginPage  extends ParentPage{
         return this;
     }
 
-    public LoginPage checkValidationMessageForPassword() {
+    public void checkValidationMessageForPassword() {
         checkTextInElement(validationMessagePassword, "Password must be at least 12 characters.");
-        return this;
     }
 
 

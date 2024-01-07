@@ -89,8 +89,8 @@ public class HeaderElement extends CommonActionsWithElements {
 
     // Sing out button
     public void clickOnButtonSignOut() {
-        HeaderElement headerElement = new HeaderElement(webDriver);
-        headerElement.clickOnButtonSignOut();
+          clickOnElement(buttonSignOut);
+
     }
 
     public boolean isButtonCreatePostVisible() {
