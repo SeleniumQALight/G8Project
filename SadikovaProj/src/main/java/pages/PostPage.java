@@ -1,13 +1,9 @@
 package pages;
 
-import org.apache.hc.core5.http.Header;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
-
-import java.util.List;
 
 public class PostPage extends ParentPage {
 
@@ -33,8 +29,8 @@ public class PostPage extends ParentPage {
         return this;
     }
 
-    public HeaderElement getHeader() {
-        return headerElement = new pages.elements.HeaderElement(webDriver);
+    public HeaderElement getHeaderElement() {
+        return headerElement = new pages.elements.HeaderElement((webDriver));
     }
 
     public PostPage(WebDriver webDriver) {

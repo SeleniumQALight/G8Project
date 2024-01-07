@@ -1,5 +1,6 @@
 package pages;
 
+import libs.Urls;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,7 +23,7 @@ public class CreatePostPage extends ParentPage {
 
     // check if we are on the Create Post page
     public CreatePostPage checkIsRedirectToCreatePostPage() {
-        //TODO check url
+        assertUrl(Urls.CREATE_POST_PAGE_URL);
         Assert.assertTrue("Invalid page - not Create Post Page", isElementDisplayed(titleField));
         return this;
     }

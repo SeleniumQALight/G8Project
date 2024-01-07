@@ -1,6 +1,7 @@
 package baseTest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import libs.Urls;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
@@ -25,6 +26,7 @@ public class BaseTest {
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5)); // wait 5 seconds
         logger.info("Browser was opened");
         pageProvider = new PageProvider(webDriver);
+
     }
 
     @After
