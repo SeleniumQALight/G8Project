@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.CommonActionsWithElements;
 import pages.CreatePostPage;
-import pages.MainPage;
+import pages.MyProfilePage;
 
 // описание элементов в хедере , часть элементов в классе MainPage
 
@@ -26,6 +26,8 @@ public class HeaderElement extends CommonActionsWithElements {
     private WebElement searchLink;
     @FindBy(xpath = "//span[contains(@class,'header-chat-icon')]")
     private WebElement chatIcon;
+    @FindBy(xpath = "//img[@alt='My profile']")
+    private WebElement myProfilePageButton;
 
     /**
      *VISIBLE
@@ -68,6 +70,7 @@ public class HeaderElement extends CommonActionsWithElements {
         return this;
     }
 
+
     public HeaderElement checkSearchLinkIsNotVisible() {
         checkElementIsNotDisplayed(searchLink);
         return this;
@@ -102,12 +105,23 @@ public class HeaderElement extends CommonActionsWithElements {
         return new CreatePostPage(webDriver);
     }
 
+    public MyProfilePage clickOnMyProfilePageButton(){
+        clickOnElement(myProfilePageButton);
+        return new MyProfilePage(webDriver);
+    }
+
     public HeaderElement clickSignOutButton() {
         clickOnElement(signOutButton);
         return new HeaderElement(webDriver);
+    }
+
+    public boolean isButtonSignOutVisible() {
+//        WebElement buttonSignOut = webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
+        return isElementDisplayed(signOutButton);
     }
 
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
     }
 }
+

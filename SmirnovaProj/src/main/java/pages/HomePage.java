@@ -13,8 +13,7 @@ public class HomePage extends ParentPage {
 
     public HomePage checkIsRedirectToHomePage() {
         //TODO check url
-        Assert.assertTrue("Invalid page - not Home Page"
-                , getHeader().isButtonSignOutVisible());
+        getHeader().checkIsButtonSignOutVisible();
         return this;
     }
 
