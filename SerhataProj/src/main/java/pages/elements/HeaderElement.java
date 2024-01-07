@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import pages.CommonActionsWithElements;
 import pages.CreatePostPage;
 import pages.LoginPage;
+import pages.MyProfilePage;
 
 // описує елементи які є в хедері залогіненого юзера
 public class HeaderElement extends CommonActionsWithElements {
@@ -38,6 +39,11 @@ public class HeaderElement extends CommonActionsWithElements {
 
     public boolean isButtonSignOutPresent() {
         return isElementDisplayed(buttonSignOut);
+    }
+
+    public MyProfilePage clickOnMyProfileButton() {
+        clickOnElement(titleMyProfile);
+        return new MyProfilePage(webDriver);
     }
 
     public boolean isButtonCreatePostPresent() {return isElementDisplayed(buttonCreatePost);}
