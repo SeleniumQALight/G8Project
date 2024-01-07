@@ -12,7 +12,7 @@ public class CreateNewPostTest extends BaseTest {
     public void TC_001_createNewPost(){
         pageProvider.loginPage()
                 .openLoginPageAndFillLoginFormWithValidCreds()
-                .checkIsRedirectToHimePage()
+                .checkIsRedirectToHomePage()
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
                 .enterTitleInToInputTitle(POST_TITLE)
