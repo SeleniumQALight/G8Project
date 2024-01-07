@@ -1,7 +1,9 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
@@ -17,6 +19,7 @@ public class HomePage extends ParentPage {
                 , getHeader().isButtonSignOutVisible());
         return this;
     }
+
     public boolean isButtonSignOutVisible() {
         try {
             WebElement buttonSignOut =
@@ -25,14 +28,16 @@ public class HomePage extends ParentPage {
         } catch (Exception e) {
             return false;
         }
+    }
 
     public HeaderElement getHeader() {
         return new HeaderElement(webDriver);
     }
-    }
+
     public boolean isButtonSignInVisible() {
         WebElement buttonSignIn =
                 webDriver.findElement(By.xpath("//button[text()='Sign In']"));
         return isElementDisplayed(buttonSignIn);
     }
 }
+

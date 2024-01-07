@@ -81,7 +81,7 @@ public class LoginTestAllInOneClass {
 
         Assert.assertTrue("Button sign in is not visible", isButtonSignInVisible());
         Assert.assertFalse("Button sign out is not visible", isButtonSignOutVisible());
-        Assert.assertFalse("Invalid login message is not visible", isInvalidLoginMessageDisplayed());
+        Assert.assertTrue("Invalid login message is not visible", isInvalidLoginMessageDisplayed());
     }
 
     private boolean isInvalidLoginMessageDisplayed() {
