@@ -31,4 +31,8 @@ public class PageProvider {
         return new HomePage(webDriver);
     }
 
+
+    public MyProfilePage myProfilePage() {
+        return new MyProfilePage(webDriver);
+    }
 }
