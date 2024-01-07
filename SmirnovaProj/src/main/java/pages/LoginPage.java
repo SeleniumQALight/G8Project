@@ -79,32 +79,32 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignIn);
     }
 
-    public LoginPage isInputPasswordPresent() {
-        isElementDisplayed(inputPassword);
+    public LoginPage checkIsInputPasswordPresent() {
+        checkIsElementVisible(inputPassword);
         return this;
     }
 
-    public LoginPage isInputUsernamePresent() {
-        isElementDisplayed(inputLogin);
+    public LoginPage checkIsInputUsernamePresent() {
+        checkIsElementVisible(inputLogin);
         return this;
     }
 
-    public LoginPage isButtonSignInPresent() {
-        isElementDisplayed(buttonSignIn);
-        return this;
+    public LoginPage checkIsButtonSignInPresent() {
+       checkIsElementVisible(buttonSignIn);
+       return this;
     }
 
-    public LoginPage isInputUsernameNotPresent() {
+    public LoginPage checkIsInputUsernameNotPresent() {
         checkElementIsNotVisible(inputLogin);
         return this;
     }
 
-    public LoginPage isInputPasswordNotPresent() {
+    public LoginPage checkIsInputPasswordNotPresent() {
         checkElementIsNotVisible(inputPassword);
         return this;
     }
 
-    public LoginPage isButtonSignInNotPresent() {
+    public LoginPage checkIsButtonSignInNotPresent() {
         checkElementIsNotVisible(buttonSignIn);
         return this;
     }
@@ -116,6 +116,7 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
+
     public boolean isInvalidLoginMessageDisplayed() {
         try {
             WebElement invalidLoginMessage =

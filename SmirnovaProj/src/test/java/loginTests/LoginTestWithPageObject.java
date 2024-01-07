@@ -23,8 +23,8 @@ public class LoginTestWithPageObject extends BaseTest {
                 pageProvider.homePage().getHeader().isButtonCreatePostVisible());
         Assert.assertTrue("Avatar is not visible",
                 pageProvider.homePage().getHeader().isAvatarDisplayed());
-        pageProvider.loginPage().isInputPasswordNotPresent()
-                .isInputUsernameNotPresent();
+        pageProvider.loginPage().checkIsInputPasswordNotPresent()
+                .checkIsInputUsernameNotPresent();
     }
 
     @Test
@@ -33,9 +33,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().enterTextIntoInputLogin("qaautoinvalid");
         pageProvider.loginPage().enterTextIntoInputPassword("123456qwerty");
         pageProvider.loginPage().clickOnButtonSignIn();
-
-        Assert.assertTrue("Button SignIn is not visible",
-                pageProvider.loginPage().isButtonSignInPresent());
+        pageProvider.loginPage().checkIsButtonSignInPresent();
         Assert.assertFalse("Button SignOut is visible",
                 pageProvider.homePage().getHeader().isButtonSignOutVisible());
         Assert.assertTrue("Invalid login message is not visible",

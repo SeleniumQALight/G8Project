@@ -10,14 +10,14 @@ public class SignOutTest extends BaseTest {
                 .openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
                 .getHeader().isHeaderOfTheLoggedInUserDisplayed();
-        pageProvider.loginPage().isInputPasswordNotPresent()
-                .isInputUsernameNotPresent()
-                .isButtonSignInPresent();
+        pageProvider.loginPage().checkIsInputPasswordNotPresent()
+                .checkIsInputUsernameNotPresent()
+                .checkIsButtonSignInNotPresent();
         pageProvider.homePage().getHeader().clickOnButtonSignOut()
                 .checkIsRedirectToLoginPage()
-                .isInputPasswordPresent()
-                .isInputUsernamePresent()
-                .isButtonSignInPresent();
+                .checkIsInputPasswordPresent()
+                .checkIsInputUsernamePresent()
+                .checkIsButtonSignInPresent();
         pageProvider.homePage().getHeader().isHeaderOfTheLoggedInUserNotDisplayed();
     }
 }
