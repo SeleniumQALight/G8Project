@@ -1,6 +1,5 @@
 package pages.elements;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -50,10 +49,6 @@ public class HeaderElement extends CommonActionsWithElements {
         return isElementDisplayed(buttonCreatePost);
     }
 
-    public boolean isButtonCreatePostNotVisible() {
-
-        return isElementNotDisplayed(buttonCreatePost);
-    }
 
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
@@ -85,33 +80,57 @@ public class HeaderElement extends CommonActionsWithElements {
         return isElementDisplayed(chatIcon);
     }
 
-    public boolean isChatIconNotVisible() {
-        return isElementNotDisplayed(chatIcon);
-    }
 
     public void clickOnButtonSignOut() {
         // WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignOut);
     }
 
-    public boolean isButtonSihOutIsNotVisible() {
-        return isElementNotDisplayed(buttonSignOut);
-    }
 
     public boolean isSearchIconIsVisible() {
         return isElementDisplayed(searchIcon);
     }
 
-    public boolean isSearchIconIsNotVisible() {
-        return isElementNotDisplayed(searchIcon);
-    }
 
     public boolean isButtonAvatarVisible() {
         return isElementDisplayed(avatar);
     }
 
-    public boolean isButtonAvatarNotVisible() {
-        return isElementNotDisplayed(avatar);
+
+    //new methods:
+
+    public HeaderElement checkIsSearchIconIsNotVisible() {
+        checkIsElementNotVisible(searchIcon);
+        return this;
+    }
+
+    public HeaderElement checkIsChatIconNotVisible() {
+        checkIsElementNotVisible(chatIcon);
+        return this;
+    }
+
+    public HeaderElement checkIsButtonAvatarNotVisible() {
+        checkIsElementNotVisible(avatar);
+        return this;
+    }
+
+    public HeaderElement checkIsButtonCreatePostNotVisible() {
+        checkIsElementNotVisible(buttonCreatePost);
+        return this;
+    }
+
+    public HeaderElement checkIsButtonSihOutIsNotVisible() {
+        checkIsElementNotVisible(buttonSignOut);
+        return this;
+    }
+
+    public HeaderElement checkAllElementsInHeaderAreNotVisible() {
+        checkIsSearchIconIsNotVisible();
+        checkIsButtonAvatarNotVisible();
+        checkIsChatIconNotVisible();
+        checkIsButtonCreatePostNotVisible();
+        checkIsButtonSihOutIsNotVisible();
+        return this;
     }
 
 }

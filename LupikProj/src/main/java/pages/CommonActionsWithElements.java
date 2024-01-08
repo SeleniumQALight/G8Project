@@ -59,18 +59,6 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected boolean isElementNotDisplayed(WebElement element) {
-        try {
-            boolean state = element.isDisplayed();
-            logger.info("Element is displayed -> " + state + "not expected result");
-            return false;
-
-        } catch (Exception e) {
-            logger.info("Element is displayed -> false (expected result)");
-            return true;
-
-        }
-    }
 
     // select Text in dropDown
 
@@ -102,6 +90,10 @@ public class CommonActionsWithElements {
 
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
+    }
+
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertTrue("Element is visible", !isElementDisplayed(webElement));
     }
 
     //check text in element

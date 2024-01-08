@@ -70,11 +70,10 @@ public class LoginPage extends ParrentPage {
         clickOnElement(buttonSignIn);
     }
 
-    public  void enterTextIntoRegisterLogin (String login){
+    public void enterTextIntoRegisterLogin(String login) {
 
-        enterTextInToInput(registerLogin,login);
+        enterTextInToInput(registerLogin, login);
     }
-
 
 
     public boolean isButtonSignInVisible() {
@@ -89,14 +88,9 @@ public class LoginPage extends ParrentPage {
 
 
     public boolean isTextInvalidLoginOrPasswordDisplayed() {
-        try {
-            //  WebElement textInvalidLoginOrPassword = webDriver.findElement(By.xpath(".//div[contains(text(),'Invalid username/password')]"));
 
-            return isElementDisplayed(textInvalidLoginOrPassword);
-        } catch (Exception e) {
-            logger.info("Element text Invalid Login Or Password is displayed -> false");
-            return false;
-        }
+        return isElementDisplayed(textInvalidLoginOrPassword);
+
     }
 
     public boolean isInputLoginFieldVisible() {
@@ -105,9 +99,29 @@ public class LoginPage extends ParrentPage {
 
     }
 
-    public boolean isInputLoginFieldNotVisible() {
+    //new methods:
 
-        return isElementNotDisplayed(inputLogin);
+    public LoginPage checkIsInputLoginFieldNotVisible() {
+        checkIsElementNotVisible(inputLogin);
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordFieldNotVisible() {
+        checkIsElementNotVisible(inputPassword);
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInIsNotVisible() {
+        checkIsElementNotVisible(buttonSignIn);
+        return this;
+    }
+
+
+    public LoginPage checkAllElementsInHeaderAreNotVisible() {
+        checkIsInputLoginFieldNotVisible();
+        checkIsButtonSignInIsNotVisible();
+        checkIsInputPasswordFieldNotVisible();
+        return this;
 
     }
 
@@ -115,12 +129,6 @@ public class LoginPage extends ParrentPage {
     public boolean isInputPasswordFieldVisible() {
 
         return isElementDisplayed(inputPassword);
-
-    }
-
-    public boolean isInputPasswordFieldNotVisible() {
-
-        return isElementNotDisplayed(inputPassword);
 
     }
 
@@ -134,35 +142,29 @@ public class LoginPage extends ParrentPage {
 
     }
 
+    public void enterTextIntoRegisterPassword(String password) {
 
-    public boolean isButtonSignInIsNotVisible() {
-        return isElementNotDisplayed(buttonSignIn);
-    }
-
-
-    public void enterTextIntoRegisterPassword(String password){
-
-        enterTextInToInput(registerPassword,password);
+        enterTextInToInput(registerPassword, password);
     }
 
     public void enterTextIntoRegisterEmail(String email) {
-        enterTextInToInput(registerEmail,email);
+        enterTextInToInput(registerEmail, email);
     }
 
     public void clickOnButtonSignUp() {
         clickOnElement(buttonSignUp);
     }
 
-    public boolean  isTextInErrorMessageInRegisterUsernameIsVisible() {
-      return isElementDisplayed(errorMessageInRegisterUsernameField);
+    public boolean isTextInErrorMessageInRegisterUsernameIsVisible() {
+        return isElementDisplayed(errorMessageInRegisterUsernameField);
     }
 
     public boolean isTextInErrorMessageInRegisterEmailIsVisible() {
-       return isElementDisplayed(errorMessageInRegisterEmailField);
+        return isElementDisplayed(errorMessageInRegisterEmailField);
     }
 
     public boolean isTextInErrorMessageInRegisterPasswordIsVisible() {
-       return isElementDisplayed(errorMessageInRegisterPasswordField);
+        return isElementDisplayed(errorMessageInRegisterPasswordField);
     }
 
 

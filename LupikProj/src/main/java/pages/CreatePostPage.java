@@ -46,14 +46,14 @@ public class CreatePostPage extends ParrentPage {
     // select text from dropdown
 
 
- public CreatePostPage selectTextInDropDown(String textInDropDown){
-     selectTextInDropDown(dropDownSelectValue, textInDropDown);
-    return this;
- }
+    public CreatePostPage selectTextInDropDown(String textInDropDown) {
+        selectTextInDropDown(dropDownSelectValue, textInDropDown);
+        return this;
+    }
 
     //select value from dropdown
 
-    public CreatePostPage selectValueInDropDown(String valueInDropDown){
+    public CreatePostPage selectValueInDropDown(String valueInDropDown) {
         selectValueInDropDown(dropDownSelectValue, valueInDropDown);
         return this;
     }
@@ -63,4 +63,5 @@ public class CreatePostPage extends ParrentPage {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
+
 }
