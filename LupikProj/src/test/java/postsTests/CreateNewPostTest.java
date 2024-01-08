@@ -8,6 +8,9 @@ import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "TC_001_Lupik" + Util.getDateAndTimeFormatted();
+    final String POST_UNIQUE_CHECKBOX_STATUS = "check";
+    final String POST_BODY = "Lupik body";
+
     @Test
 
     public void TC_001_createNewPost() {
@@ -18,13 +21,18 @@ public class CreateNewPostTest extends BaseTest {
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInToInputTitle(POST_TITLE)
-                .enterTextInToInputBody("Lupik body")
+                .enterTextInToInputBody(POST_BODY)
+                .setUniquePostCheckboxSelected("Check")
                 //.selectTextInDropDown("Приватне повідомлення")
                 .selectValueInDropDown("One Person")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .checkTitleTextInCreatedPost(POST_TITLE)
+                .checktextOfVisibilityOfMessage("One Person")
+                .checkTextThisPostUnique("yes")
+                .checkBodyTextInCreatedPost(POST_BODY)
 
 
         ;
