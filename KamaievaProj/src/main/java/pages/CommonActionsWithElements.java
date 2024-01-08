@@ -20,7 +20,7 @@ public class CommonActionsWithElements {
         try {
             input.clear();
             input.sendKeys(text);
-            logger.info(text + " was inputted into input" + getElementName(input));
+            logger.info(text + " was inputted into input " + getElementName(input));
         } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
@@ -39,7 +39,7 @@ public class CommonActionsWithElements {
         try {
             String elementName = getElementName(element);
             element.click();
-            logger.info("Element was clicked" + elementName);
+            logger.info("Element was clicked " + elementName);
         } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
@@ -49,15 +49,33 @@ public class CommonActionsWithElements {
     protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
-            logger.info("Element" + getElementName(element) + " is displayed -> " + state);
+            String elementText = element.getText();
+            String logMessage;
+            if (!elementText.isEmpty()) {
+                logMessage = "Element '" + elementText + "' is displayed -> " + state;
+            } else {
+                logMessage = "Element '" + getElementName(element) + "' is displayed -> " + state;
+            }
+            logger.info(logMessage);
             return state;
         } catch (Exception e) {
             logger.error("Can not work with element");
             return false;
         }
     }
-    //select Text in dropdown
 
+    protected boolean isElementDisplayed(WebElement element, String elementName) {
+        try {
+            boolean state = element.isDisplayed();
+            logger.info("Element '" + elementName + "' is displayed -> " + state);
+            return state;
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            return false;
+        }
+    }
+
+    //select Text in dropdown
     protected void selectTextInDropdown(WebElement dropDown, String text) {
         try {
             Select select = new Select(dropDown);
@@ -83,6 +101,28 @@ public class CommonActionsWithElements {
 
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
+    }
+
+    public boolean checkIsElementNotVisible(WebElement webElement, String elementName) {
+        try {
+            boolean state = webElement.isDisplayed();
+            logger.info(elementName + " is displayed -> " + state);
+            return state;
+        } catch (Exception e) {
+            logger.info(elementName + " is not displayed");
+            return false;
+        }
+    }
+
+    public boolean checkIsValidationMessageVisible(WebElement webElement) {
+        try {
+            boolean state = webElement.isDisplayed();
+            logger.info(webElement.getText() + " is displayed -> " + state);
+            return state;
+        } catch (Exception e) {
+            logger.info(webElement.getText() + " is not displayed");
+            return false;
+        }
     }
 
     //check text in element
