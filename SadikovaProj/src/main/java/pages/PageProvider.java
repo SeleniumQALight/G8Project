@@ -11,16 +11,12 @@ public class PageProvider {
         this.webDriver = webDriver;
     }
 
-    public LoginPage loginPage() {
-        return new LoginPage(webDriver);
+    public MainPage mainPage() {
+        return new MainPage(webDriver);
     }
 
     public HeaderElement headerElement() {
         return new HeaderElement(webDriver);
-    }
-
-    public HomePage homePage() {
-        return new HomePage(webDriver);
     }
 
     public CreatePostPage createPostPage() {
@@ -29,5 +25,14 @@ public class PageProvider {
 
     public PostPage postPage() {
         return new PostPage(webDriver);
+    }
+
+    public HomePage homePage() {
+        return new HomePage(webDriver);
+    }
+
+
+    public MyProfilePage myProfilePage() {
+        return new MyProfilePage(webDriver);
     }
 }

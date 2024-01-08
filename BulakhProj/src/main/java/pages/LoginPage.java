@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+
 public class LoginPage  extends ParentPage{
 
     @FindBy(xpath = "//button[contains(text(),'Sign In')]")
@@ -20,6 +21,34 @@ public class LoginPage  extends ParentPage{
 
     @FindBy(xpath = "//div[@class=\"alert alert-danger text-center\" and contains(text(),\"Invalid username/password.\")]")
     private WebElement invalidLoginMessage;
+
+    @FindBy(xpath = "//input[@id='username-register']")
+    private WebElement inputUserName;
+
+    @FindBy(xpath = "//input[@id='email-register']")
+    private WebElement inputEmail;
+
+    @FindBy(xpath = "//input[@id='password-register']")
+    private WebElement inputPassword1;
+
+    @FindBy(xpath = "//div[contains(text(), 'Username must be at least 3 characters.')]")
+    private WebElement validationMessageUsername;
+
+    @FindBy(xpath = "//div[contains(text(), 'You must provide a valid email address.')]")
+    private WebElement validationMessageEmail;
+
+    @FindBy(xpath = "//div[contains(text(), 'Password must be at least 12 characters.')]")
+    private WebElement validationMessagePassword;
+
+    @FindBy(xpath = "//button[contains(text(),'Sign up for OurApp')]")
+    private WebElement buttonSignUp1;
+
+    @FindBy(xpath = "//input[@placeholder='Username']")
+    private WebElement loginInput;
+
+    @FindBy(xpath = "//input[@placeholder='Password']")
+    private WebElement passwordInput;
+
 
 
     public LoginPage(WebDriver webDriver) {
@@ -58,6 +87,16 @@ public class LoginPage  extends ParentPage{
         return isElementDisplayed(buttonSingIn);
     }
 
+    // is input Login visible
+    public boolean isInputLoginVisible() {
+        return isElementDisplayed(inputLogin);
+    }
+
+    // is input Password visible
+    public boolean isInputPasswordVisible() {
+        return isElementDisplayed(inputPassword);
+    }
+
 
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
@@ -70,4 +109,47 @@ public class LoginPage  extends ParentPage{
 //        WebElement invalidLoginMessage = webDriver.findElement(By.xpath("//div[@class=\"alert alert-danger text-center\" and contains(text(),\"Invalid username/password.\")]"));
         return isElementDisplayed(invalidLoginMessage);
     }
+
+    public LoginPage fillRegistrationForm(String userName, String Email, String Password) {
+        enterTextInToInput(inputUserName, userName);
+        enterTextInToInput(inputEmail, Email);
+        enterTextInToInput(inputPassword1, Password);
+        return this;
+
+    }
+
+    public LoginPage checkLoginInputIsNotVisible() {
+        Assert.assertFalse("Login input is displayed", isElementDisplayed(loginInput));
+        return this;
+    }
+
+    public LoginPage checkPasswordInputIsNotVisible() {
+        Assert.assertFalse("Password input is displayed", isElementDisplayed(passwordInput));
+        return this;
+    }
+
+    public void checkSignInButtonIsNotVisible() {
+        Assert.assertFalse("Sign In button is displayed", isElementDisplayed(buttonSingIn));
+    }
+
+    public LoginPage clickOnButtonSingUp() {
+        clickOnElement(buttonSignUp1);
+        return this;
+    }
+
+    public LoginPage checkValidationMessageForUsername() {
+        checkTextInElement(validationMessageUsername, "Username must be at least 3 characters.");
+        return this;
+    }
+
+    public LoginPage checkValidationMessageForEmail() {
+        checkTextInElement(validationMessageEmail, "You must provide a valid email address.");
+        return this;
+    }
+
+    public void checkValidationMessageForPassword() {
+        checkTextInElement(validationMessagePassword, "Password must be at least 12 characters.");
+    }
+
+
 }
