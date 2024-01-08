@@ -1,11 +1,10 @@
 package pages;
 
-import libs.TestData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.RegistrationFormElement;
 
 import static libs.TestData.*;
 
@@ -22,11 +21,17 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//div[text() = 'Invalid username/password.']")
     private WebElement validationMessage;
 
+    private RegistrationFormElement registrationFormElement;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public void openLoginPage() {
+    public RegistrationFormElement getRegistrationForm() {
+        return registrationFormElement = new RegistrationFormElement(webDriver);
+    }
+
+    public LoginPage openLoginPage() {
         try{
             webDriver.get("https://aqa-complexapp.onrender.com");
             logger.info("Login page was opened");
@@ -34,6 +39,7 @@ public class LoginPage extends ParentPage{
             logger.error("Can not open login page");
             Assert.fail("Can not open login page");
         }
+        return this;
     }
 
     public void enterTextIntoInputLogin(String login) {
@@ -50,6 +56,14 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSingIn);
     }
 
+    public boolean isInputLoginIsVisible() {
+        return isElementDisplayed(inputLogin);
+    }
+
+    public boolean isInputPasswordIsVisible() {
+        return isElementDisplayed(inputPassword);
+    }
+
     public boolean isButtonSignInIsVisible(){
         return isElementDisplayed(buttonSingIn);
     }
@@ -64,5 +78,17 @@ public class LoginPage extends ParentPage{
         enterTextIntoInputPassword(VALID_PASSWORD_UI);
         clickOnButtonSingIn();
         return new HomePage(webDriver);
+    }
+
+    public void checkAllElementsFromLoginFormAreVisible() {
+        isInputLoginIsVisible();
+        isInputPasswordIsVisible();
+        isButtonSignInIsVisible();
+
+    }
+    public void checkAllElementsFromLoginFormAreInvisible() {
+        checkIsElementNotVisible(inputLogin);
+        checkIsElementNotVisible(inputPassword);
+        checkIsElementNotVisible(buttonSingIn);
     }
 }

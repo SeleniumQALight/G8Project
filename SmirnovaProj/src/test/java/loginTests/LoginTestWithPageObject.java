@@ -4,15 +4,33 @@ import baseTest.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static libs.TestData.VALID_LOGIN_UI;
+import static libs.TestData.VALID_PASSWORD_UI;
+
 public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void validLogin() {
         pageProvider.loginPage().openLoginPage();
-        pageProvider.loginPage().enterTextIntoInputLogin("qaauto");
+        pageProvider.loginPage().enterTextIntoInputLogin(VALID_LOGIN_UI);
+        pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
+        pageProvider.loginPage().clickOnButtonSignIn();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
+        pageProvider.homePage().getHeader().checkIsUserNameDisplayed();
+        pageProvider.homePage().getHeader().checkIsButtonCreatePostVisible();
+        pageProvider.homePage().getHeader().checkIsAvatarDisplayed();
+        pageProvider.loginPage().checkIsInputPasswordNotPresent()
+                .checkIsInputUsernameNotPresent();
+    }
+
+    @Test
+    public void invalidLogin() {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputLogin("qaautoinvalid");
         pageProvider.loginPage().enterTextIntoInputPassword("123456qwerty");
         pageProvider.loginPage().clickOnButtonSignIn();
-
-        Assert.assertTrue("Button SignOut is not visible",
-                pageProvider.homePage().isButtonSignOutVisible());
+        pageProvider.loginPage().checkIsButtonSignInPresent();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
+        Assert.assertTrue("Invalid login message is not visible",
+                pageProvider.loginPage().isInvalidLoginMessageDisplayed());
     }
 }
