@@ -133,15 +133,15 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public boolean isValidationMessageUsernameRegisterVisible() {
+    public boolean checkIsValidationMessageUsernameRegisterVisible() {
         return checkIsValidationMessageVisible(validationMessageUsernameRegister);
     }
 
-    public boolean isValidationMessageEmailRegisterVisible() {
+    public boolean checkIsValidationMessageEmailRegisterVisible() {
         return checkIsValidationMessageVisible(validationMessageEmailRegister);
     }
 
-    public boolean isValidationMessagePasswordRegisterVisible() {
+    public boolean checkIsValidationMessagePasswordRegisterVisible() {
         return checkIsValidationMessageVisible(validationMessagePasswordRegister);
     }
 }
