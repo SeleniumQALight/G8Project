@@ -14,8 +14,26 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
         pageProvider.loginPage().clickOnButtonSingIn();
 
-        Assert.assertTrue("Button SignOut is not visible",
-                pageProvider.homePage().getHeader().isButtonSignOutVisible());
+        pageProvider.homePage().getHeader().checkAllElementsInHeaderAreVisible();
+        pageProvider.loginPage().checkAllElementsFromLoginFormAreInvisible();
+
+//I did it first via assert, then replaced with new created methods, but they do more checks than specified in the task.
+// it looks better through the methods, but I commented the first option just in case
+//
+//        Assert.assertTrue("Button SignOut is not visible",
+//                pageProvider.homePage().getHeader().isButtonSignOutVisible());
+//        Assert.assertTrue("Button Create Post is not visible",
+//                pageProvider.homePage().getHeader().isButtonCreatePostIsVisible());
+//        Assert.assertTrue("Button My Profile is not visible",
+//                pageProvider.homePage().getHeader().isButtonMyProfileIsVisible());
+//        Assert.assertTrue("User profile name is not visible",
+//                pageProvider.homePage().getHeader().isSpanUserProfileNameIsVisible());
+
+//        Assert.assertFalse("Field for login is visible",
+//                pageProvider.loginPage().isInputLoginIsVisible());
+//        Assert.assertFalse("Field for password is visible",
+//                pageProvider.loginPage().isInputPasswordIsVisible());
+
     }
 
     @Test

@@ -2,6 +2,7 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -50,6 +51,17 @@ public class LoginPage extends ParentPage {
     public boolean isButtonSignInVisible() {
         //WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         return isElementDisplayed(buttonSignIn);
+    }
+
+    public boolean isErrorMessageVisible() {
+        try {
+            boolean state = webDriver.findElement(By.xpath("//div[text() = 'Invalid username/password.']")).isDisplayed();
+            logger.info(state + " is alert visible");
+            return state;
+        } catch (Exception e) {
+            logger.info("Alert is not displayed");
+            return false;
+        }
     }
 
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
