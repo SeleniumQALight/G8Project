@@ -32,5 +32,29 @@ public class MyProfilePage extends ParentPage {
 
         return this;
 
-} }
+}
+
+    public MyProfilePage deletePostsTillPresent(String postTitle) {
+        List<WebElement> postList = getPostList(postTitle);
+        int counter = 0;
+        while (!postList.isEmpty() && counter < 100) {
+            clickOnElement(postList.get(0));
+            new PostPage(webDriver)
+                    .checkIsRedirectToPostPage()
+                    .clickOnDeleteButton()
+                    .checkIsRedirectToMyProfilePage();
+                     logger.info("Post with title " + postTitle + " was deleted");
+                     postList = getPostList(postTitle);
+                        counter++; // counter = counter + 1;
+
+        }
+
+        if (counter >= 100) {
+            Assert.fail("There are more than 100 posts with title " + postTitle);
+        }
+
+        return this;
+
+    }
+}
 
