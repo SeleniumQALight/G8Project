@@ -12,9 +12,14 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
 
     public HomePage checkIsRedirectToHomePage() {
-        //TODO check url
+        checkCurrentUrl();
         Assert.assertTrue("Invalid page - not Home Page",
                 getHeader().isButtonSignOutVisible());
         return this;
