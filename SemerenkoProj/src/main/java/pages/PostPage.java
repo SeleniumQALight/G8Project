@@ -8,6 +8,8 @@ import pages.elements.HeaderElement;
 public class PostPage extends ParentPage{
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
+     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+     private WebElement buttonDelete;
 
     private HeaderElement headerElement;
 
@@ -35,4 +37,8 @@ public class PostPage extends ParentPage{
     }
 
 
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
+    }
 }
