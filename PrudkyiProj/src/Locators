@@ -1,0 +1,45 @@
+#LoginPage
+
+input_username = ..//input[@placeholder = 'Username'];
+input_password = .//input[@placeholder ='Password'];
+button_sign_in = .//button[@class = 'btn btn-primary btn-sm'];
+button_sing_up = .//button[@class = 'py-3 mt-4 btn btn-lg btn-success btn-block'];
+
+#HomePage
+button_sing_out = .//button[@class = 'btn btn-sm btn-secondary'];
+icon_my_profile = .//img[@data-original-title= 'My Profile'];
+button_create_post = .//a[@href = '/create-post'];
+search_icon = .//a[@href = '#'];
+
+#MyProfilePage
+posts_counter = .//a[@class = 'profile-nav-link nav-item nav-link active'];
+followers_counter = .//a[contains(text(),'Followers:')];
+following_counter = .//a[contains(text(),'Following:')];
+
+#CreatePostPage
+input_title = .//input[@id='post-title'];
+textarea_body_content = .//textarea[@id ='post-body'];
+checkbox = .//input[@name = 'uniquePost'];
+value_selection = .//select [@id= 'select1'];
+button_save_post = .//button [@class = 'btn btn-primary'];
+message = .//div[@class = 'alert alert-success text-center'];
+title_post = .//div//h2[text() = 'New test title'];
+
+#DeletePostPage
+icon_my_profile = .//img[@data-original-title= 'My Profile'];
+created_post_title = .//a[@class = 'list-group-item list-group-item-action'];
+title_post = .//div//h2[text() = 'New test title'];
+delete_icon = .//button[@class = 'delete-post-button text-danger'];
+edit_icon = .//a[@class = 'text-primary mr-2'];
+info_message = .//div[@class = 'alert alert-success text-center'];
+posts_counter = .//a[@class = 'profile-nav-link nav-item nav-link active'];
+
+#SearchPage
+search_icon = .//a[@href = '#'];
+input_search_field_placeholder = .//input[@id = 'live-search-field'];
+nav_search_icon = .//label[@class = 'search-overlay-icon'];
+nav_delete_icon = .//span[@class = 'close-live-search'];
+error_message = .//p[@class = 'alert alert-danger text-center shadow-sm'];
+found_results_counter =  .//div[@class = 'list-group-item active'];
+found_search_results = .//a[@class = 'list-group-item list-group-item-action']
+

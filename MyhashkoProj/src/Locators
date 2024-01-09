@@ -1,2 +1,34 @@
 #LoginPage
-input_username = './/input[@id='username']'
+USER_NAME = './/*[@name='username' and @id='username-register']'
+Email_fo_reg = './/*[@name='email']'
+USER_PASSWORD = './/*[@name='password' and @placeholder='Create a password']'
+button 'Sign up for OurApp' ='.//*[@type='submit']'
+
+#MainPage
+hello_text = './/h2'
+button 'Create Post' = './/a[@href="/create-post"]'
+button Chat = './/*[@data-original-title="Chat"]'
+введення тексту в чат = './/*[@class="chat-field"]'
+текст вже введений в чаті = './/*[@class="chat-message-inner"]'
+
+#TitlePage
+Title = './/*[@name="title"]'
+Body Content = './/*[@name="body"]'
+button 'Save New Post' = './/*[@class="btn btn-primary"]'
+
+#NewPostCreatedPage
+text 'New post successfully created.' = './/*[@class="alert alert-success text-center"]'
+button 'Search' = './/header//*[@data-icon="search"]'
+поле пошуку = './/*[@id='live-search-field']'
+вибір власного посту = './/*[@class='text-muted small']'
+
+#PostPage
+title of post = './/h2'
+body of post = './/div[@class="body-content"]//p[not(.//i)]'
+edit post= './/*[@class="text-primary mr-2"]'
+
+#PostEditPage
+title of post = './/*[@name="title"]'
+body of post = './/*[@name="body"]'
+button 'Save Updates' = './/*[@class="btn btn-primary"]'
+

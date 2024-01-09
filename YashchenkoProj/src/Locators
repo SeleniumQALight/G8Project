@@ -1,0 +1,33 @@
+#Login Page
+Username field title = ".//small[text()='Username']"
+Username field = ".//input[@id='username-register']"
+Password field title = ".//small[text()='Password']"
+Password field = ".//input[@id='password-register']"
+Email field title = ".//small[text()='Email']"
+Email field = ".//input[@id='email-register']"
+SignUp button = ".//button[@type='submit']"
+Header username = ".//form[@action='/login']//input[@name='username']"
+Header password = ".//form[@action='/login']//input[@name='password']"
+SignIn button = ".//form[@action='/login']//button"
+
+
+#Home Page
+Create post button = ".//a[@href='/create-post']"
+Sign Out button = ".//button[@class='btn btn-sm btn-secondary']"
+Username in the header = ".//span[@class='text-white mr-2']"
+Chat icon = ".//*[@data-original-title='Chat']"
+Search icon = ".//*[@data-original-title='Search']"
+Home page text title = ".//*[@class='text-center']//h2"
+Home page text Title username = ".//*[@class='text-center']//h2//strong"
+
+#Create Post Page
+Title field = .//input[@name='title']
+Title field title = ".//small[text()='Title']"
+Body Content title = ".//small[text()='Body Content']"
+Body Content field = ".//textarea"
+Is this post unique? checkbox = ".//input[@type='checkbox']"
+Save new post button = ".//button[@class='btn btn-primary']"
+
+#Chat modal
+Type a message... = ".//*[@id='chatField']"
+Chat messages = ".//*[@id='chat']"

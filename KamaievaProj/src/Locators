@@ -1,5 +1,51 @@
 #LoginPage
-input_username = ".//input["id='username']"
+
+//Login form
+loginForm = "//form[@action= '/login']"
+inputUsernameForLogin = "//input[@placeholder = 'Username']",
+inputPasswordForLogin = "//input[@placeholder = 'Password']",
+buttonSignIn = "//button[contains(text(),'Sign In')]",
+alertInvalidUsernamePassword = "//div[text() = 'Invalid username/password.']",
+
+//Register form
+registerForm = "//form[@id = 'registration-form']",
+inputUsernameForRegister = "//input[@id = 'username-register']",
+inputEmailForRegister = "//input[@id = 'email-register']",
+inputPasswordForRegister = "//input[@id= 'password-register']",
+buttonSignUp = "//button[contains(text(), 'Sign up')]",
+
+#Header
+buttonSearch = "//a[@data-original-title= 'Search']",
+buttonMyProfile = "//img[@data-original-title= 'My Profile']",
+userName = "//span[contains(text(), '%s')]",
+buttonCreatePost = "//a[contains(text(), 'Create Post')]",
+buttonSignOut = "//button[contains(text(), 'Sign Out')]",
+buttonChat = "//span[@data-original-title= 'Chat']",
 
 #HomePage
-button_logout =
+buttonHomePage = "//a[contains(text(),'Complex app for testing - QA')]",
+followedPost = "//a[contains(@href, '/post/') and contains(strong, '%s') and contains(span, %s')]"
+
+#CreatePostPage
+inputPostTitle = "//input[@id= 'post-title']",
+inputBodyContent = "//textarea[@id= 'post-body']",
+checkboxUniquePost = "//input[@name= 'uniquePost']",
+DropdownSelectValue = "//select[@id= 'select1']",
+DropdownOptions = "//option[@value= '%s']",
+buttonSaveNewPost = "//button[contains(text(),'Save New Post')]"
+
+#PostPage
+alertSuccessfullyCreated = "//div[text() = 'New post successfully created.']"
+postTitle = "//div/h2[text() = '%s']",
+postNote = "//u[contains(text(),'%s')]",
+postUnique = "//p[contains(text(),'Is this post unique? : %s')]",
+postAuthor = "//a[text()= '%s']"
+
+#Search
+searchResultsPostsFound = "//strong[text() = '%']",
+alertSearchFindAnyResults = "//p[text() = 'Sorry, we could not find any results for that search.']",
+
+#ProfilePage
+buttonFollow = "//button[contains(text(),'Follow')]",
+buttonStopFollowing = //button[contains(text(),'Stop Following ')]",
+alertSuccessfullyFollowed = "//div[text() = 'Successfully followed '%s'.']" or "//div[contains(text(),'Successfully followed')]";
