@@ -17,6 +17,39 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPassword;
 
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private WebElement inputLoginRegister;
+
+    @FindBy(xpath = ".//input[@id='email-register']")
+    private WebElement inputEmailRegister;
+
+    @FindBy(xpath = ".//input[@id='password-register']")
+    private WebElement inputPasswordRegister;
+
+    @FindBy(xpath = ".//button[@type='submit']")
+    private WebElement buttonSignUpForOurApp;
+
+    @FindBy(xpath = "//*[@id='registration-form']/div[1]/div")
+    private WebElement successUsernameMessage;
+
+    @FindBy(xpath = "//*[@id='registration-form']/div[2]/div")
+    private WebElement successEmailMassage;
+
+    @FindBy(xpath = "//*[@id='registration-form']/div[3]/div")
+    private WebElement successPasswordMassage;
+
+    @FindBy(xpath = "//a[@data-original-title='Search']")
+    private WebElement buttonSearch;
+
+    @FindBy(xpath = "//span[@data-original-title='Chat']")
+    private WebElement buttonChat;
+
+    @FindBy(xpath = "//img[@alt='My profile']")
+    private WebElement buttonMyProfile;
+
+    @FindBy(xpath = "//*[@class ='btn btn-sm btn-success mr-2']")
+    private WebElement buttonCreatePost;
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -40,10 +73,30 @@ public class LoginPage extends ParentPage {
         enterTextIntoInput(inputPassword, password);
     }
 
+    // input Username Login Register
+    public void enterTextIntoInputUsernameLoginRegister(String usernameLoginRegister) {
+        enterTextIntoInput(inputLoginRegister, usernameLoginRegister);
+    }
+
+    // input Email Login Register
+    public void enterTextIntoInputEmailRegister(String emailLoginRegister) {
+        enterTextIntoInput(inputEmailRegister, emailLoginRegister);
+    }
+
+    // input Password Login Register
+    public void enterTextIntoInputPasswordRegister(String passwordLoginRegister) {
+        enterTextIntoInput(inputPasswordRegister, passwordLoginRegister);
+    }
+
     public void clickOnButtonSignIn() {
 //        WebElement buttonSignIn = webDriver.findElement(
 //                By.xpath("//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignIn);
+    }
+
+    // click on button Sign Up For Our App
+    private void clickOnButtonSignUpForOurApp() {
+        clickOnElement(buttonSignUpForOurApp);
     }
 
     // is button Sign In visible
@@ -80,5 +133,89 @@ public class LoginPage extends ParentPage {
         enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+
+    // check enty of short data in the registration form
+    public void fillOutTheLoginFormRegistration() {
+        openLoginPage();
+        enterTextIntoInputUsernameLoginRegister(TestData.SHORT_LOGIN_UI);
+        enterTextIntoInputEmailRegister(TestData.SHORT_EMAIL);
+        enterTextIntoInputPasswordRegister(TestData.SHORT_PASSWORD_UI);
+        clickOnButtonSignUpForOurApp();
+        checkIsMessageAboutShortUsernameInRegistrationFormVisible("Username must be at least 3 characters.");
+        checkIsMessageAboutShortEmailInRegistrationFormVisible("You must provide a valid email address.");
+        checkIsMessageAboutShortPasswordInRegistrationFormVisible("Password must be at least 12 characters.");
+    }
+
+    // check massage about short data in username in the registration form
+    public LoginPage checkIsMessageAboutShortUsernameInRegistrationFormVisible(String text) {
+        checkTextInElement(successUsernameMessage, text);
+        logger.info("Message about short username in the registration form is visible");
+        return this;
+    }
+
+    // check massage about short data in Email in the registration form
+    public LoginPage checkIsMessageAboutShortEmailInRegistrationFormVisible(String text) {
+        checkTextInElement(successEmailMassage, text);
+        logger.info("Message about short Email in the registration form is visible");
+        return this;
+    }
+
+    // check massage about short data in password in the registration form
+    public LoginPage checkIsMessageAboutShortPasswordInRegistrationFormVisible(String text) {
+        checkTextInElement(successPasswordMassage, text);
+        logger.info("Message about short password in the registration form is visible");
+        return this;
+    }
+
+    public LoginPage checkIsRedirectOnLoginPage() {
+        // TODO check url
+        // TODO Check element
+        return this;
+    }
+
+
+    public LoginPage isButtonSearchVisible() {
+        try {
+            Assert.assertFalse("Button Search is visible", buttonSearch.isDisplayed());
+        } catch (Exception e) {
+            logger.info("Button Search is not visible");
+        }
+        return this;
+    }
+
+    public LoginPage isButtonChatVisible() {
+        try {
+            Assert.assertFalse("Button Chat is visible", buttonChat.isDisplayed());
+        } catch (Exception e) {
+            logger.info("Button Chat is not visible");
+        }
+        return this;
+    }
+
+    public LoginPage isButtonAvatarVisible() {
+        try {
+            Assert.assertFalse("Button Avatar is visible", buttonMyProfile.isDisplayed());
+        } catch (Exception e) {
+            logger.info("Button Avatar is not visible");
+        }
+        return this;
+    }
+
+    public LoginPage isButtonCreatePostVisible() {
+        try {
+            Assert.assertFalse("Button Create Post is visible", buttonCreatePost.isDisplayed());
+        } catch (Exception e) {
+            logger.info("Button Create Post is not visible");
+        }
+        return this;
+    }
+
+    public boolean isInputPasswordVisible() {
+        return isElementDisplayed(inputPassword);
+    }
+
+    public boolean isInputLoginVisible() {
+        return isElementDisplayed(inputLogin);
     }
 }

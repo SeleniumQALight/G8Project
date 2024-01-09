@@ -4,16 +4,20 @@ import baseTest.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static libs.TestData.VALID_LOGIN_UI;
-import static libs.TestData.VALID_PASSWORD_UI;
+import static libs.TestData.*;
 
-public class LoginTestWithPageObject  extends BaseTest {
+public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void validLogin() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextIntoInputLogin(VALID_LOGIN_UI);
         pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
         pageProvider.loginPage().clickOnButtonSignIn();
+        pageProvider.homePage().getHeader().isButtonCreatePostVisible();
+        pageProvider.homePage().getHeader().isButtonProfileVisible();
+        pageProvider.homePage().checkIsProfileNameVisible("qaauto");
+        pageProvider.homePage().isInputLoginVisible();
+        pageProvider.homePage().isInputPasswordVisible();
 
         Assert.assertTrue("Button SignOut is not visible",
                 pageProvider.homePage().getHeader().isButtonSignOutVisible());
@@ -22,7 +26,7 @@ public class LoginTestWithPageObject  extends BaseTest {
     @Test
     public void unValidLogin() {
         pageProvider.loginPage().openLoginPage();
-        pageProvider.loginPage().enterTextIntoInputLogin("qalogin");
+        pageProvider.loginPage().enterTextIntoInputLogin(INVALID_LOGIN_UI);
         pageProvider.loginPage().enterTextIntoInputPassword("123456qwerty");
         pageProvider.loginPage().clickOnButtonSignIn();
 
@@ -32,5 +36,40 @@ public class LoginTestWithPageObject  extends BaseTest {
                 pageProvider.loginPage().isButtonSignInVisible());
         Assert.assertTrue("Message is not visible",
                 pageProvider.loginPage().isMessageInvalidUsernamePasswordInVisible());
+    }
+
+    // check enty of short data in the registration form
+    @Test
+    public void shortDataInRegistrationForm() {
+        pageProvider.loginPage().fillOutTheLoginFormRegistration();
+    }
+
+    // check Sign Out
+    @Test
+    public void checkSignOutButton() {
+        pageProvider.loginPage().openLoginPageAndFillLoginFormWithValidCred();
+        pageProvider.homePage().getHeader().isButtonSearchVisible();
+        pageProvider.homePage().getHeader().isButtonChatVisible();
+        pageProvider.homePage().getHeader().isButtonAvatarVisible();
+        pageProvider.homePage().getHeader().isButtonCreatePostVisible();
+        pageProvider.homePage().getHeader().isButtonSignOutVisible();
+        pageProvider.homePage().getHeader().isButtonSignInVisible();
+        pageProvider.homePage().getHeader().isInputPasswordVisible();
+        pageProvider.homePage().getHeader().isInputLoginVisible();
+        pageProvider.homePage().getHeader().clickOnButtonSignOut();
+        pageProvider.loginPage().checkIsRedirectOnLoginPage();
+        pageProvider.loginPage().isButtonSearchVisible();
+        pageProvider.loginPage().isButtonChatVisible();
+        pageProvider.loginPage().isButtonAvatarVisible();
+        pageProvider.loginPage().isButtonCreatePostVisible();
+        pageProvider.loginPage().isButtonSignOutVisible();
+        pageProvider.loginPage().isButtonSignInVisible();
+
+        // input Login visible
+        Assert.assertTrue("Input Login is not visible",
+                pageProvider.loginPage().isInputLoginVisible());
+        // input Password visible
+        Assert.assertTrue("Input Password is not visible",
+                pageProvider.loginPage().isInputPasswordVisible());
     }
 }
