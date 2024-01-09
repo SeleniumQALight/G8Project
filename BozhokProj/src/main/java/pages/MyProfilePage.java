@@ -30,4 +30,23 @@ public class MyProfilePage extends ParentPage {
         Assert.assertEquals("Count of posts with title " + postTitle, 1, getPostList(postTitle).size());
         return this;
     }
+
+    public MyProfilePage deletePostTillPresent(String postTitle) {
+        List<WebElement> postsList = getPostList(postTitle);
+        int counter = 0;
+        final int MAX_POST_COUNT = 100;
+        while (!postsList.isEmpty() && counter < MAX_POST_COUNT) {
+            clickOnElement(postsList.get(0));
+            new PostPage(webDriver).checkIsRedirectToPostPage()
+                    .clickOnDeleteButton().checkIsRedirectOnMyProfilePage();
+            logger.info("Post with title " + postTitle + " was deleted");
+            postsList = getPostList(postTitle);
+//            counter++;
+            postsList = getPostList(postTitle);
+        }
+        if (counter >= MAX_POST_COUNT) {
+            Assert.fail("There are more then 100 posts with title " + postTitle);
+        }
+        return this;
+    }
 }
