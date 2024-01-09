@@ -20,17 +20,24 @@ public class CreateNewPostTest  extends BaseTest {
                 .enterTextInToInputBody("body text")
             //    .selectTextInDropDown("Приватне повідомлення")
                 .selectValueInDropDown("One Person")
+                .setCheckboxState("check")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
+
+
 
         ;
 
         pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkPostWithTitleIsPresent(POST_TITLE)
+                .setCheckboxState("uncheck")
+
         ;
+
+        pageProvider.homePage().openHomePageAndLoginIfNeeded();
 
 
     }

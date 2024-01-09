@@ -1,5 +1,6 @@
 package pages;
 
+
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 
 public class CreatePostPage extends ParentPage {
+    CommonActionsWithElements commonActions = new CommonActionsWithElements(webDriver);
 
 
     @FindBy(xpath = ".//input[@id='post-title']")
@@ -33,6 +35,7 @@ public class CreatePostPage extends ParentPage {
                 , isElementDisplayed(inputTitle));
         return this;
     }
+
     //fill the title field
     public CreatePostPage enterTitleInToInputTitle(String title) {
         enterTextInToInput(inputTitle, title);
@@ -61,4 +64,14 @@ public class CreatePostPage extends ParentPage {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
-}
+
+    public CreatePostPage setCheckboxState(String state) {
+        setCheckboxState(dropDownSelectValue, state);
+        return this;
+
+    }
+
+
+    }
+
+

@@ -31,4 +31,9 @@ public class MyProfilePage extends ParentPage{
                 1, getPostsList(postTitle).size());
         return this;
     }
+
+    public MyProfilePage setCheckboxState(String uncheck) {
+        return this;
+    }
 }
+
