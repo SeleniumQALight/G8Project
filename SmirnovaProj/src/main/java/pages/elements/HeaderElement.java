@@ -122,4 +122,8 @@ public class HeaderElement extends CommonActionsWithElements {
         clickOnElement(buttonSignOut);
         return new LoginPage(webDriver);
     }
+
+    public boolean isButtonSignOutVisible() {
+        return isElementDisplayed(buttonSignOut);
+    }
 }
