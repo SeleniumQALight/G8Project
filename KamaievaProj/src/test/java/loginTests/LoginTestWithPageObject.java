@@ -72,8 +72,8 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getLoginPage().enterTextIntoInputEmailRegister("email");
         pageProvider.getLoginPage().enterTextIntoInputPasswordRegister("t1");
         pageProvider.getLoginPage().clickOnButtonSignUp();
-        pageProvider.getLoginPage().isValidationMessageUsernameRegisterVisible();
-        pageProvider.getLoginPage().isValidationMessageEmailRegisterVisible();
-        pageProvider.getLoginPage().isValidationMessagePasswordRegisterVisible();
+        pageProvider.getLoginPage().checkIsValidationMessageUsernameRegisterVisible();
+        pageProvider.getLoginPage().checkIsValidationMessageEmailRegisterVisible();
+        pageProvider.getLoginPage().checkIsValidationMessagePasswordRegisterVisible();
     }
 }

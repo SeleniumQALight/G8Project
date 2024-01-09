@@ -8,6 +8,7 @@ import org.junit.Test;
 public class CreateNewPostTest extends BaseTest {
 
     final String POST_TITLE = "TC_001_Kamaieva" + Util.getDateAndTimeFormatted();
+    final String POST_BODY = "Body text" + Util.getDateAndTimeFormatted();
 
     @Test
     public void TC_001_createNewPost() {
@@ -17,13 +18,18 @@ public class CreateNewPostTest extends BaseTest {
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextIntoInputTitle(POST_TITLE)
-                .enterTextIntoInputBody("Body text")
+                .enterTextIntoInputBody(POST_BODY)
                 //.selectTextInDropdown("Приватне повідомлення")
+                .checkboxUniquePost("check")
                 .selectValueInDropdown("One Person")
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
-                .checkTextInSuccessMessage("New post successfully created.");
+                .checkTextInSuccessMessage("New post successfully created.")
+                .checkIsPostUniqueStateConfirmExpectedValue("yes")
+                .checkPostTitleIsPresentOnPostPage(POST_TITLE)
+                .checkPostBodyIsPresentOnPostPage(POST_BODY)
+                .checkIsPostNoteStateConfirmExpectedValue("One Person");
 
         pageProvider.getPostPage().getHeader().clickOnButtonMyProfile()
                 .checkIsRedirectToMyProfilePage()
