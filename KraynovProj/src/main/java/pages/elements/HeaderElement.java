@@ -17,13 +17,13 @@ public class HeaderElement extends CommonActionsWithElements {
         super(webDriver);
     }
 
-    public boolean isButtonSignOutVisible() {
-        return isElementDisplayed(buttonSignOut);
-    }
-
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
+    }
+
+    public boolean isButtonSignOutVisible() {
+        return isElementDisplayed(buttonSignOut);
     }
 
 }
