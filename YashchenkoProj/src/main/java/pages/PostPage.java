@@ -11,6 +11,9 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
 
+    @FindBy(xpath = "//button[@data-original-title='Delete']")
+    private WebElement trashIcon;
+
     private HeaderElement headerElement;
 
     public PostPage(WebDriver webDriver) {
@@ -37,4 +40,8 @@ public class PostPage extends ParentPage {
         return headerElement = new HeaderElement(webDriver);
     }
 
+    public MyProfilePage clickOnTrashIcon() {
+        clickOnElement(trashIcon);
+        return new MyProfilePage(webDriver);
+    }
 }
