@@ -28,7 +28,9 @@ abstract public class ParentPage extends CommonActionsWithElements {
     // [a-zA-Z0-9]{24}
     // https://aqa-complexapp.onrender.com/post/[a-zA-Z0-9]{24}
     protected void checkCurrentUrlWithPattern() {
-        Assert.assertTrue("Invalid page",
+        Assert.assertTrue("Invalid page \n"
+                        + "Expected: " + baseUrl + getRelativeUrl() + "\n"
+                        + "Actual: " + webDriver.getCurrentUrl(),
                 webDriver.getCurrentUrl().matches(baseUrl + getRelativeUrl())
         );
     }
