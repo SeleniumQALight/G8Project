@@ -9,6 +9,7 @@ public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "TC_001_Smirnova" + Util.getDateAndTimeFormatted();
     final String POST_BODY = "Post body";
     final String POST_BODY_NOTE = "Note: This post was written for One Person";
+
     @Test
     public void TC_001_createNewPost() {
         pageProvider.loginPage()
@@ -19,6 +20,8 @@ public class CreateNewPostTest extends BaseTest {
                 .enterTitleIntoInput(POST_TITLE)
                 .enterTextIntoInputBody(POST_BODY)
                 // .selectTextInDropDown("Приватне повідомлення")
+                //.setCheckBoxUniquePostChosen()
+                .setCheckBoxUniquePostUnchosen()
                 .selectValueInDropDown("One Person")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()

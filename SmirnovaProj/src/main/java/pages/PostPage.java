@@ -63,12 +63,7 @@ public class PostPage extends ParentPage {
 
     public PostPage checkPostUniqueState(String state) {
         checkIsElementVisible(uniquePostElement);
-        if (state.equals("yes")) {
-            checkTextInElement(uniquePostElement,"Is this post unique? : yes");
-            logger.info("Is this post unique? : yes");
-        } else {
-            logger.info("Is this post unique? : no");
-        }
+        checkTextInElement(uniquePostElement, "Is this post unique? : " + state);
         return this;
     }
 }
