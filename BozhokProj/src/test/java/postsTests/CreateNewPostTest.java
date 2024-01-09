@@ -17,7 +17,7 @@ public class CreateNewPostTest extends BaseTest {
 //                .selectTextInToDropDown("Приватне повідомлення")
                 .selectValueInDropDown("One Person")
                 .clickOnSaveNewButton()
-                .checkIsRedirectToPstPage()
+                .checkIsRedirectToPostPage()
                 .checkIsSuccesMassegeDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
         ;
@@ -29,6 +29,10 @@ public class CreateNewPostTest extends BaseTest {
 
     @After
     public void deletePost() {
-        pageProvider.homePage().openHomePageAndLoginIfNeeded();
+        pageProvider.homePage().openHomePageAndLoginIfNeeded()
+                .getHeader().clickOnMyProfileButton()
+                .checkIsRedirectOnMyProfilePage()
+                .deletePostTillPresent(POST_TITLE)
+        ;
     }
 }
