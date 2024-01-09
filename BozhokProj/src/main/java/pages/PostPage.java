@@ -18,14 +18,18 @@ public class PostPage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
 
     public PostPage checkIsRedirectToPostPage() {
-        // TODO check url
-        // TODO Chek element\
+        checkUrlWithPattern();
         return this;
     }
 
-    public PostPage checkIsSuccesMassegeDisplayed() {
+    public PostPage checkIsSuccessMassageDisplayed() {
         checkIsElementVisible(successMessage);
         return this;
     }

@@ -18,7 +18,7 @@ public class CreateNewPostTest extends BaseTest {
                 .selectValueInDropDown("One Person")
                 .clickOnSaveNewButton()
                 .checkIsRedirectToPostPage()
-                .checkIsSuccesMassegeDisplayed()
+                .checkIsSuccessMassageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
         ;
 

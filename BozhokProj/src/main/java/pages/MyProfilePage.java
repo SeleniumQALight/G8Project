@@ -15,9 +15,13 @@ public class MyProfilePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/profile/[a-zA-Z0-9]*";
+    }
+
     public MyProfilePage checkIsRedirectOnMyProfilePage() {
-        // TODO check url
-        // TODO check unique element present
+        checkUrlWithPattern();
         return this;
     }
 
