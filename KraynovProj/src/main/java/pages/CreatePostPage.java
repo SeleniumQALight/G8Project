@@ -20,6 +20,11 @@ public class CreatePostPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
     //check if we are on the Create Post Page
     public CreatePostPage checkIsRedirectToCreatePostPage() {
         // TODO check url
