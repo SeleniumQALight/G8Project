@@ -23,6 +23,9 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = "//div[4]/p")
     private WebElement checkboxText;
 
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement deleteButton;
+
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -59,11 +62,16 @@ public class PostPage extends ParentPage {
     }
 
     public PostPage checkIsCreatedPostHasValueInDropDown(String valueInDropDown) {
-        checkTextInElement(postDropdownOnPage, "Note: This post was written for " +valueInDropDown);
+        checkTextInElement(postDropdownOnPage, "Note: This post was written for " + valueInDropDown);
         return this;
     }
 
     public void checkCheckboxStatus(String checkboxValue) {
         checkTextInElement(checkboxText, "Is this post unique? : " + checkboxValue);
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(deleteButton);
+        return new MyProfilePage(webDriver);
     }
 }
