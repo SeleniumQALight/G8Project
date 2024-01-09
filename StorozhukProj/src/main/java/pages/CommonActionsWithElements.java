@@ -28,6 +28,7 @@ public class CommonActionsWithElements {
         }
     }
 
+
     private String getElementName(WebElement webElement) {
         try {
             return webElement.getAccessibleName();
@@ -56,6 +57,16 @@ public class CommonActionsWithElements {
             return false;
         }
     }
+  
+    protected WebElement findElementByXpath(String xpath) {
+        try {
+            WebElement element = webDriver.findElement(org.openqa.selenium.By.xpath(xpath));
+            return element;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+  
     //select Text in dropdown
     protected void selectTextInDropDown(WebElement dropDown, String text) {
         try{
