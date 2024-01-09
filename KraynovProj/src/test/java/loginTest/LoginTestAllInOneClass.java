@@ -50,10 +50,33 @@ public class LoginTestAllInOneClass {
         webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")).click();
         logger.info("Button Sing In was clicked");
 
-        Assert.assertTrue("Button sign out in not visible", isButtonSingOutVisible());
+        Assert.assertTrue("Button sign out in not visible", isButtonSignOutVisible());
     }
 
-    private boolean isButtonSingOutVisible() {
+    @Test
+    public void invalidLogin(){
+        webDriver.get("https://aqa-complexapp.onrender.com");
+        logger.info("Site was opened");
+
+        WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
+        inputUserName.clear();
+        inputUserName.sendKeys("INCORRECT");
+        logger.info("'qaauto' was inputted into input UserName ");
+
+        WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        inputPassword.clear();
+        inputPassword.sendKeys("123456qwerty");
+        logger.info("password was inputted ");
+
+        webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")).click();
+        logger.info("Button Sing In was clicked");
+
+        Assert.assertTrue("Button Sign In is not displayed", isButtonSignInDisplayed());
+        Assert.assertTrue("Text 'Invalid username/password' is not displayed", isTextInvalidLoginOrPasswordDisplayed());
+        Assert.assertFalse("Button Sign Out is displayed", isButtonSignOutVisible());
+    }
+
+    private boolean isButtonSignOutVisible() {
         try {
             boolean state =
                     webDriver.findElement(By.xpath("//button[contains(text(),'Sign Out')]")).isDisplayed();
@@ -61,6 +84,28 @@ public class LoginTestAllInOneClass {
             return state;
         } catch (Exception e) {
             logger.info("Element is not displayed");
+            return false;
+        }
+    }
+
+    private boolean isButtonSignInDisplayed() {
+        try {
+            boolean state = webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]")).isDisplayed();
+            logger.info("Button Sign In is displayed -> " + state);
+            return state;
+        } catch (Exception e) {
+            logger.info("Button Sign In is displayed -> false");
+            return false;
+        }
+    }
+
+    private boolean isTextInvalidLoginOrPasswordDisplayed() {
+        try {
+            boolean state = webDriver.findElement(By.xpath(".//div[contains(text(),'Invalid username/password.')]")).isDisplayed();
+            logger.info("Text 'Invalid username/password.' is displayed -> " + state);
+            return state;
+        } catch (Exception e) {
+            logger.info("Text 'Invalid username/password.' is displayed -> false");
             return false;
         }
     }
