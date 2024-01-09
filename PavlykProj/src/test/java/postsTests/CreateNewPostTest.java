@@ -9,6 +9,10 @@ import static libs.Util.getDateAndTimeFormatted;
 public class CreateNewPostTest extends BaseTest {
 
     final String POST_TITLE = "TC_001_pavlyk-" + getDateAndTimeFormatted();
+    final String POST_BODY = "body text";
+    final String SUCCESS_MESSAGE = "New post successfully created.";
+    final String DROPDOWN_VALUE = "One Person";
+
 
     @Test
     public void TC_001_createNewPost() {
@@ -18,13 +22,18 @@ public class CreateNewPostTest extends BaseTest {
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
                 .enterTitleInToInputTitle(POST_TITLE)
-                .enterTextIntoInputBody("body text")
+                .enterTextIntoInputBody(POST_BODY)
 //                .selectTextInDropDown("Приватне повідомлення")
-                .selectValueInDropDown("One Person")
+                .setIsThisPostUniqueCheckboxState("check")
+                .selectValueInDropDown(DROPDOWN_VALUE)
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
-                .checkTextInSuccessMessage("New post successfully created.")
+                .checkTextInSuccessMessage(SUCCESS_MESSAGE)
+                .checkPostWithTitleIsPresent(POST_TITLE)
+                .checkPostWithContentIsPresent(POST_BODY)
+                .checkIsThisPostUniqueTextPresent("yes")
+                .checkNoteTextPresent(DROPDOWN_VALUE)
         ;
 
         pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
