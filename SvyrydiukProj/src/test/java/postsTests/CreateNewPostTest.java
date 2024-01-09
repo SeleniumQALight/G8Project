@@ -6,7 +6,10 @@ import org.junit.Test;
 import libs.Util;
 
 public class CreateNewPostTest extends BaseTest {
-    final String POST_TITLE = "TC_001_Svyrydiuk"+Util.getDateAndTimeFormatted();
+    final String POST_TITLE = "TC_001_Svyrydiuk" + Util.getDateAndTimeFormatted();
+    final String POST_BODY = "New Post Body Svyrydiuk" + Util.getDateAndTimeFormatted();
+    final String DROPDOWN_VALUE = "One Person"; // "Приватне повідомлення"
+
 
     @Test
 
@@ -17,13 +20,18 @@ public class CreateNewPostTest extends BaseTest {
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextIntoInputTitle(POST_TITLE)
-                .enterTextIntoInputBody("New Body Svyrydiuk")
+                .enterTextIntoInputBody(POST_BODY)
                 //.selectTextInDropDown("Приватне повідомлення")
-                .selectValueInDropDown("One Person")
+                .selectValueInDropDown(DROPDOWN_VALUE)
+                .setCheckbox("checked")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .checkIsCreatedPostHasTitle(POST_TITLE)
+                .checkIsCreatedPostHasBody(POST_BODY)
+                .checkIsCreatedPostHasValueInDropDown(DROPDOWN_VALUE)
+                .checkCheckboxStatus("yes")
         ;
         pageProvider.getPostPage().getHeader().clickOnButtonMyProfile()
                 .checkIsRedirectToMyProfilePage()

@@ -9,6 +9,18 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
 
+    @FindBy(xpath = ".//p[contains(text(), 'Is this post unique?')]")
+    private WebElement uniquePostMessage;
+
+    @FindBy(xpath = ".//h2")
+    private WebElement postTitle;
+
+    @FindBy(xpath = ".//div[@class='container py-md-5 container--narrow']/div[5]/p")
+    private WebElement postBody;
+
+    @FindBy(xpath = ".//div[@class='container py-md-5 container--narrow']/div[3]/p")
+    private WebElement postNote;
+
     private HeaderElement headerElement;
 
     public PostPage(WebDriver webDriver) {
@@ -33,5 +45,25 @@ public class PostPage extends ParentPage {
 
     public HeaderElement getHeader() {
         return headerElement = new HeaderElement(webDriver);
+    }
+
+    public PostPage checkTextInUniquePostInfoMessage(String value) {
+        checkTextInElement(uniquePostMessage, "Is this post unique? : " + value);
+        return this;
+    }
+
+    public PostPage checkTextInPostTitle(String postTitleText) {
+        checkTextInElement(postTitle, postTitleText);
+        return this;
+    }
+
+    public PostPage checkTextInPostBody(String postBodyText) {
+        checkTextInElement(postBody, postBodyText);
+        return this;
+    }
+
+    public PostPage checkTextInPostNote(String noteText) {
+        checkTextInElement(postNote, noteText);
+        return this;
     }
 }
