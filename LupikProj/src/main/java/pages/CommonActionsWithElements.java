@@ -59,6 +59,7 @@ public class CommonActionsWithElements {
         }
     }
 
+
     // select Text in dropDown
 
     protected void selectTextInDropDown(WebElement dropDown, String text) {
@@ -89,6 +90,10 @@ public class CommonActionsWithElements {
 
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
+    }
+
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertTrue("Element is visible", !isElementDisplayed(webElement));
     }
 
     //check text in element
