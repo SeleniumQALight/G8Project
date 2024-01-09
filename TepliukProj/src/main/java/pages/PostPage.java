@@ -9,9 +9,11 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
 private HeaderElement headerElement;
-    public PostPage(WebDriver webDriver) {
-        super(webDriver);
-    }
+
+@FindBy(xpath= ".//button[@class='delete-post-button text-danger']")
+private WebElement buttonDelete;
+
+    public PostPage(WebDriver webDriver) {        super(webDriver);    }
 
     public PostPage checkIsRedirectToPostPage() {
         //TODO check url
@@ -31,5 +33,10 @@ public PostPage checkTextInSuccessMessage(String text) {
 
     public HeaderElement getHeader() {
         return headerElement = new HeaderElement(webDriver);
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }
