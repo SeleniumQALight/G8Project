@@ -46,9 +46,14 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public LoginPage openLoginPage() {
         try {
-            webDriver.get("https://aqa-complexapp.onrender.com");
+            webDriver.get(baseUrl);
             logger.info("Login page was opened");
             return this;
         } catch (Exception e) {
@@ -171,7 +176,7 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage checkIsRedirectToHomePage() {
-        //TODO check url
+        checkUrl();
         getHeader().checkIsHeaderForGuestVisible();
         checkIsInputLoginVisible();
         checkIsInputPasswordVisible();
