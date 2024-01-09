@@ -18,8 +18,13 @@ public class PostPage  extends ParrentPage{
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
     public PostPage checkIsRedirectToPostPage() {
-        // TODO check url
+        checkUrlWithPattern();
         // TODO Check element
         return this;
 
