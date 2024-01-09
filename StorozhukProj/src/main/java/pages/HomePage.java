@@ -3,9 +3,14 @@ package pages;
 import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
+
+    @FindBy(xpath = ".//button[contains(text(),'Sign Out')]") //цей елемент буде створенний PageFactory в CommonActionsWithElements
+    private WebElement buttonSingOut;
     private HeaderElement headerElement;
 
     public HomePage(WebDriver webDriver) {
@@ -14,18 +19,16 @@ public class HomePage extends ParentPage {
 
 
     public boolean isButtonSignOutVisible() {
-        //WebElement buttonSignOut = webDriver.findElement(
-        //        By.xpath("//button[text()='Sign Out']"));
-        WebElement buttonSignOut = findElementByXpath("//button[text()='Sign Out']");
-        return isElementDisplayed(buttonSignOut);
+        return isElementDisplayed(buttonSingOut);
     }
-  
+
     public HomePage checkIsRedirectToHomePage() {
         //TODO check url
         Assert.assertTrue("Invalid page - not Home Page",
                 getHeader().isButtonSignOutVisible());
         return this;
     }
+
     public HeaderElement getHeader() {
         return new HeaderElement(webDriver);
     }
@@ -33,7 +36,7 @@ public class HomePage extends ParentPage {
     public HomePage openHomePageAndLoginIfNeeded() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openLoginPage();
-        if(this.getHeader().isButtonSignOutVisible()){
+        if (this.getHeader().isButtonSignOutVisible()) {
             logger.info("User is already logged in");
         } else {
             loginPage.enterTextIntoInput(TestData.VALID_LOGIN_UI);
@@ -45,10 +48,4 @@ public class HomePage extends ParentPage {
         return this;
     }
 
-    public boolean isButtonSignInVisible() {
-        //WebElement buttonSignIn = webDriver.findElement(
-        //        By.xpath("//button[text()='Sign In']"));
-        WebElement buttonSignIn = findElementByXpath("//button[text()='Sign In']");
-        return isElementDisplayed(buttonSignIn);
-    }
 }

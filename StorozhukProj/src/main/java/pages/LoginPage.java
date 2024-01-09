@@ -13,6 +13,8 @@ public class LoginPage  extends ParentPage {
     private WebElement inputLogin;
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPassword;
+    @FindBy(xpath = "//div[text()='Invalid username/password.']")
+    private WebElement validationMessage;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -36,8 +38,7 @@ public class LoginPage  extends ParentPage {
         enterTextIntoInput(inputPassword, password); // WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
     }
 
-    public void clickOnButtonSignIn() {
-        clickOnElement(buttonSingIn); // WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
+    public void clickOnButtonSignIn() {clickOnElement(buttonSingIn); // WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
     }
 
     // is button Sign In visible
@@ -54,7 +55,6 @@ public class LoginPage  extends ParentPage {
     }
 
     public boolean isAlertTextVisible() {
-        WebElement alertText = webDriver.findElement(By.xpath("//div[text()='Invalid username/password.']"));
-        return isElementDisplayed(alertText);
+        return isElementDisplayed(validationMessage);
     }
-}
+    }
