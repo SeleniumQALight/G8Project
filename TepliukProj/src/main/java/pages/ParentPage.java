@@ -1,11 +1,33 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 // все загальне для сторінок
-public class ParentPage extends CommonActionsWithElements{
+abstract public class ParentPage extends CommonActionsWithElements {
+    final String baseUrl = "https://aqa-complexapp.onrender.com";
+
     // конструктор
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
     }
+
+
+    // метод для отримання частини url
+    abstract protected String getRelativeUrl();
+
+
+    // методи для перевірки чи відкрита потрібна сторінка
+    protected void checkUrl() {
+        Assert.assertEquals("Invalid page", baseUrl + getRelativeUrl(), webDriver.getCurrentUrl());
+    }
+
+    // метод для перевірки чи відкрита потрібна сторінка по патерну
+    protected void checkUrlWithPattern() {
+        Assert.assertTrue("Invalid page \n"
+                + "Expected result: " + baseUrl + getRelativeUrl() + "\n"
+                + "Actual result: " + webDriver.getCurrentUrl(),
+                webDriver.getCurrentUrl().matches(baseUrl + getRelativeUrl()));
+    }
+
 }
