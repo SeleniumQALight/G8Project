@@ -12,6 +12,10 @@ public class PostPage extends ParentPage {
     private WebElement titleText;
     @FindBy(xpath = "(//div[@class='body-content']//p)[2]")
     private WebElement bodyText;
+    @FindBy(xpath = "//div[2][@class='body-content']")
+    private WebElement bodyTextNote;
+    @FindBy(xpath = "//div[2]/div[3]")
+    private WebElement uniquePostElement;
 
     private HeaderElement headerElement;
 
@@ -47,7 +51,24 @@ public class PostPage extends ParentPage {
         return this;
     }
 
+    public PostPage checkTextInPostBodyNote(String text) {
+        checkIsElementVisible(bodyTextNote);
+        checkTextInElement(bodyTextNote, text);
+        return this;
+    }
+
     public HeaderElement getHeader() {
         return headerElement = new HeaderElement(webDriver);
+    }
+
+    public PostPage checkPostUniqueState(String state) {
+        checkIsElementVisible(uniquePostElement);
+        if (state.equals("yes")) {
+            checkTextInElement(uniquePostElement,"Is this post unique? : yes");
+            logger.info("Is this post unique? : yes");
+        } else {
+            logger.info("Is this post unique? : no");
+        }
+        return this;
     }
 }

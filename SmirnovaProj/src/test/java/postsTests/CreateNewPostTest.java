@@ -8,7 +8,7 @@ import org.junit.Test;
 public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "TC_001_Smirnova" + Util.getDateAndTimeFormatted();
     final String POST_BODY = "Post body";
-
+    final String POST_BODY_NOTE = "Note: This post was written for One Person";
     @Test
     public void TC_001_createNewPost() {
         pageProvider.loginPage()
@@ -32,6 +32,8 @@ public class CreateNewPostTest extends BaseTest {
         pageProvider.getMyProfilePage().clickOnPostWithTitle(POST_TITLE)
                 .checkTextInPostTitle(POST_TITLE)
                 .checkTextInPostBody(POST_BODY)
+                .checkTextInPostBodyNote(POST_BODY_NOTE)
+                .checkPostUniqueState("no")
         ;
     }
 
