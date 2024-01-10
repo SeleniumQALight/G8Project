@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +11,8 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
     private HeaderElement headerElement;
+
+    private String postUniqueLocator = ".//p[text()='Is this post unique? : %s']";
 
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
@@ -41,6 +44,11 @@ public class PostPage extends ParentPage{
         return this;
     }
 
+    private WebElement getIsThisPostUniqueElement(String checkboxText) {
+        return webDriver.findElement(
+                By.xpath(String.format(postUniqueLocator, checkboxText)));
+    }
+
     public PostPage checkIsSuccessMessageDisplayed() {
         checkIsElementVisible(successMessage);
         return this;
@@ -67,10 +75,12 @@ public class PostPage extends ParentPage{
         return this;
     }
 
-    public void checkCheckboxStatus(String checkboxValue) {
-        checkTextInElement(checkboxText, "Is this post unique? : " + checkboxValue);
-
+    public PostPage checkIsThisPostUniqueTextPresent (String checkboxText) {
+        checkIsElementVisible(getIsThisPostUniqueElement(checkboxText));
+        return this;
     }
+
+
 
 
     public HeaderElement getHeader() {

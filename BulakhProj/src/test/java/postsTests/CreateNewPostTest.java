@@ -29,8 +29,8 @@ public class CreateNewPostTest  extends BaseTest {
                 .checkTextInSuccessMessage("New post successfully created.")
                 .checkIsCreatedPostHasTitle(POST_TITLE)
                 .checkIsCreatedPostHasBody(POST_BODY)
+                .checkIsThisPostUniqueTextPresent("yes")
                 .checkIsCreatedPostHasValueInDropDown(DROPDOWN_VALUE)
-                .checkCheckboxStatus("no")
 
 
 
@@ -40,7 +40,7 @@ public class CreateNewPostTest  extends BaseTest {
         pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkPostWithTitleIsPresent(POST_TITLE)
-                .setCheckboxState("uncheck")
+
 
         ;
 

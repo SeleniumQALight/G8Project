@@ -36,9 +36,7 @@ public class MyProfilePage extends ParentPage{
                 1, getPostsList(postTitle).size());
         return this;
     }
-    public MyProfilePage setCheckboxState(String uncheck) {
-        return this;
-    }
+
 
     public MyProfilePage deletePostTillPresent(String postTitle) {
         List<WebElement> postsList = getPostsList(postTitle);
