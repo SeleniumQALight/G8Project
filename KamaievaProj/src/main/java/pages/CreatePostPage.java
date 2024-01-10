@@ -19,6 +19,9 @@ public class CreatePostPage extends ParentPage {
     @FindBy(xpath = "//button[contains(text(),'Save New Post')]")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = "//input[@name= 'uniquePost']")
+    private WebElement checkboxUniquePost;
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -60,5 +63,10 @@ public class CreatePostPage extends ParentPage {
     public PostPage clickOnButtonSaveNewPost() {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
+    }
+
+    public CreatePostPage checkboxUniquePost(String state){
+        setCheckboxState(checkboxUniquePost, "Is this post unique", state);
+        return this;
     }
 }
