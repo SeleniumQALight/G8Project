@@ -8,12 +8,21 @@ import pages.elements.HeaderElement;
 public class PostPage  extends ParentPage{
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
+
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
     private HeaderElement headerElement;
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    @Override
+    protected String getRelativUrl() {
+        return "/post/[a-zA-z0-9]*";
+    }
+
     public PostPage checkIsRedirectedToPostPage() {
-        //TODO check url
+        checkUrlWithPattern();
         //TODO check element
         return this;
     }
@@ -27,5 +36,9 @@ public class PostPage  extends ParentPage{
     }
     public HeaderElement getHeader() {
         return headerElement = new HeaderElement(webDriver);
+    }
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }
