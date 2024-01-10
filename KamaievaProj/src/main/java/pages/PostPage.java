@@ -21,15 +21,22 @@ public class PostPage extends ParentPage {
     private String postUniqueLocator = "//p[contains(text(),'Is this post unique? : %s')]";
     private String postNoteLocator = "//u[contains(text(),'%s')]";
 
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
+
     private HeaderElement headerElement;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelatedUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
     public PostPage checkIsRedirectToPostPage() {
-        //TODO check url
-        //TODO Check if we are on the Post page
+        checkCurrentUrlWithPattern();
         return this;
     }
 
@@ -67,5 +74,11 @@ public class PostPage extends ParentPage {
     public PostPage checkPostBodyIsPresentOnPostPage(String expectedText){
         checkTextInElement(postBody, expectedText);
         return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        //TODO
+        return new MyProfilePage(webDriver);
     }
 }

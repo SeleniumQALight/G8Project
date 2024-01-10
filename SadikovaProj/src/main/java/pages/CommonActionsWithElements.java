@@ -110,12 +110,7 @@ public class CommonActionsWithElements {
         Assert.assertTrue("Element is visible", isElementDisplayed(webElement));
     }
 
-    protected void assertUrl(String exepectedUrl) {
-        String actualUrl = webDriver.getCurrentUrl();
-        logger.info("Current url is: " + actualUrl);
-        Assert.assertEquals(actualUrl, exepectedUrl);
-        logger.info("Url is correct: " + exepectedUrl);
-    }
+
 
 
     // select Text in dropDown

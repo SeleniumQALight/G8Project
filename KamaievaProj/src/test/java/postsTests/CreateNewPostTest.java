@@ -1,7 +1,7 @@
 package postsTests;
 
 import libs.Util;
-import BaseTest.BaseTest;
+import baseTest1.BaseTest;
 import org.junit.After;
 import org.junit.Test;
 
@@ -39,6 +39,9 @@ public class CreateNewPostTest extends BaseTest {
     @After
     public void deletePost() {
         pageProvider.getHomePage()
-                .openHomePageAndLoginIfNeeded();
+                .openHomePageAndLoginIfNeeded()
+                .getHeader().clickOnButtonMyProfile()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostWhilePresent(POST_TITLE);
     }
 }

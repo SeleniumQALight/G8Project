@@ -14,13 +14,14 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
 
 
     public HomePage checkIsRedirectedToHomePage() {
-        // TODO check url
-        Assert.assertEquals("Invalid page"
-                , "https://aqa-complexapp.onrender.com/"
-                , webDriver.getCurrentUrl());
+        checkCurrentUrl();
         Assert.assertTrue("Invalid page - not Home Page"
                 , getHeader().isButtonSignOutVisible());
         return this;

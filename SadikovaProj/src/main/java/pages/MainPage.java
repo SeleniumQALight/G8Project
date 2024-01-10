@@ -36,6 +36,10 @@ public class MainPage extends ParentPage {
     @FindBy(xpath = "//div[contains(@class,'liveValidateMessage--visible')]")
     private List<WebElement> errorBlockList;
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
 
     public MainPage(WebDriver webDriver) {
         super(webDriver);
