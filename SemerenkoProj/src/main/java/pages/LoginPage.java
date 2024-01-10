@@ -26,13 +26,13 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@id='password-register']")
     private WebElement inputPasswordRegistration;
 
-    @FindBy(xpath = ".//div[contains(text(),'Username must be at least 3 characters.')]")
+    @FindBy(xpath = ".//div[contains(text(), 'Username must be at least 3 characters.')]")
     private WebElement divWarningUsernameRegistration;
 
-    @FindBy(xpath = ".//div[contains(text(),'You must provide a valid email address.')]")
+    @FindBy(xpath = ".//div[contains(text(), 'You must provide a valid email address.')]")
     private WebElement divWarningEmailRegistration;
 
-    @FindBy(xpath = ".//div[contains(text(),'Password must be at least 12 characters.')]")
+    @FindBy(xpath = ".//div[contains(text(), 'Password must be at least 12 characters.')]")
     private WebElement divWarningPasswordRegistration;
 
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")

@@ -2,7 +2,10 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
@@ -65,9 +68,12 @@ public class HomePage extends ParentPage {
 //        return this;
 //    }
 
+
+
     public HomePage checkIsRedirectToHomePage() {
         getHeader().checkIsButtonSignOutVisible();
         checkUrl();
+        Assert.assertTrue("Invalid page - not Home Page", getHeader().isButtonSignOutVisible());
         Assert.assertTrue("Invalid page - not Home Page", getHeader().isButtonSignOutVisible());
         return this;
     }
