@@ -8,6 +8,8 @@ import org.junit.Test;
 
 public class CreateNewPostTest  extends BaseTest {
     final String POST_TITLE = "TC_001_Bulakh" + Util.getDateAndTimeFormatted();
+    final String POST_BODY = "body text";
+    final String DROPDOWN_VALUE = "One Person";
     @Test
 
     public void TC_001_createNewPost() {
@@ -25,10 +27,15 @@ public class CreateNewPostTest  extends BaseTest {
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .checkIsCreatedPostHasTitle(POST_TITLE)
+                .checkIsCreatedPostHasBody(POST_BODY)
+                .checkIsCreatedPostHasValueInDropDown(DROPDOWN_VALUE)
+                .checkCheckboxStatus("no")
 
 
 
         ;
+
 
         pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
