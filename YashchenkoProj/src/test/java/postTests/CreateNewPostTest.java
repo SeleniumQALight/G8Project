@@ -27,6 +27,8 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsThisPostUniqueValuePresent("yes")
                 .checkCreatedPostTitle(POST_TITLE)
                 .checkCreatedPostBody(POST_BODY)
+                .checkIsNoteAndNoteValuePresent()
+                .checkValueOfNote("One Person")
         ;
 
         pageProvider.getPostPage().getHeader().clickOnButtonMyProfile()
