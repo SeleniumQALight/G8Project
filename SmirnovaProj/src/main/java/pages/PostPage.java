@@ -17,9 +17,13 @@ public class PostPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
     public PostPage checkIsRedirectToPostPage() {
-        //TODO check url
-        //Assert.assertTrue("Invalid page - not Post Page"
+        checkUrlWithPattern();        //Assert.assertTrue("Invalid page - not Post Page"
         return this;
     }
 
