@@ -85,6 +85,10 @@ public class CommonActionsWithElements {
         Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
     }
 
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementDisplayed(webElement));
+    }
+
     // check text in element
     protected void checkTextInElement(WebElement element, String expectedText) {
         try {
@@ -93,6 +97,41 @@ public class CommonActionsWithElements {
         } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void setCheckBox(WebElement checkBox) {
+        try {
+            if (!checkBox.isSelected()) {
+                checkBox.click();
+            }
+            logger.info(getElementName(checkBox) + " was checked");
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void unSetCheckBox(WebElement checkBox) {
+        try {
+            if (checkBox.isSelected()) {
+                checkBox.click();
+            }
+            logger.info(getElementName(checkBox) + " was unchecked");
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void setStateToCheckBox(WebElement checkBox, String state) {
+        if (state.toLowerCase().equals("check")) {
+            setCheckBox(checkBox);
+        } else if (state.toLowerCase().equals("uncheck")) {
+            unSetCheckBox(checkBox);
+        } else {
+            logger.error("State should be 'check' or 'uncheck'");
+            Assert.fail("State should be 'check' or 'uncheck'");
         }
     }
 }

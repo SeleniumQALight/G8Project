@@ -4,18 +4,29 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class PostPage extends ParentPage {
 
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
 
+    @FindBy(xpath = "//button[@data-original-title='Delete']")
+    private WebElement trashIcon;
+
+    private HeaderElement headerElement;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
     public PostPage checkIsRedirectedToPostPage() {
-        // TODO check url
+        checkCurrentUrlWithPattern();
         // TODO check some element on page
         return this;
     }
@@ -30,4 +41,12 @@ public class PostPage extends ParentPage {
         return this;
     }
 
+    public HeaderElement getHeader() {
+        return headerElement = new HeaderElement(webDriver);
+    }
+
+    public MyProfilePage clickOnTrashIcon() {
+        clickOnElement(trashIcon);
+        return new MyProfilePage(webDriver);
+    }
 }

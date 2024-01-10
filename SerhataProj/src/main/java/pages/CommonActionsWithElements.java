@@ -49,11 +49,10 @@ public class CommonActionsWithElements {
     protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
-            logger.info("Element is displayed " + state);
+            logger.info(state + " Element is displayed " + getElementName(element));
             return state;
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            logger.info("Element is not displayed " + getElementName(element));
             return false;
         }
     }
@@ -96,6 +95,51 @@ public class CommonActionsWithElements {
         } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementDisplayed(webElement));
+    }
+
+    protected void selectCheckbox(WebElement checkbox, String elementName) {
+        try {
+            if (!checkbox.isSelected()) {
+                checkbox.click();
+                logger.info(elementName + " was selected");
+            } else {
+                logger.info(elementName + " is already selected.");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with checkbox element");
+            Assert.fail("Can not work with checkbox element");
+        }
+    }
+
+    protected void unselectCheckbox(WebElement checkbox, String elementName) {
+        try {
+            if (checkbox.isSelected()) {
+                checkbox.click();
+                logger.info(elementName + " was unselected");
+            } else {
+                logger.info(elementName + " is already unselected.");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with checkbox element");
+            Assert.fail("Can not work with checkbox element");
+        }
+    }
+
+    protected void setCheckboxState(WebElement checkbox, String elementName, String state) {
+        try {
+            if (state.toLowerCase().equals("check")) {
+                selectCheckbox(checkbox, elementName);
+            } else if (state.toLowerCase().equals("uncheck")) {
+                unselectCheckbox(checkbox, elementName);
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with checkbox element");
+            Assert.fail("Can not work with checkbox element");
         }
     }
 }

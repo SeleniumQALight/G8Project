@@ -15,4 +15,8 @@ public class PageProvider {
     public HomePages homePage() {
         return new HomePages(webDriver);
     }
+
+    public PostPage getPostPage() {
+        return new PostPage(webDriver);
+    }
 }

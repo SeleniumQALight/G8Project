@@ -86,14 +86,59 @@ public class CommonActionsWithElements {
         Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
     }
 
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementDisplayed(webElement));
+    }
+
     //check text in element
     protected void checkTextInElement(WebElement element, String expectedText) {
         try {
             String textFromElement = element.getText();
             Assert.assertEquals("Text in element not matched", expectedText, textFromElement);
+            logger.info("Text '" + expectedText + "' in element matched");
         } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
         }
     }
+
+    protected void checkCheckbox(WebElement checkbox) {
+        try {
+            if (!checkbox.isSelected()) {
+                checkbox.click();
+                logger.info("Checkbox was checked");
+            } else {
+                logger.info("Checkbox is already checked");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void uncheckCheckbox(WebElement checkbox) {
+        try {
+            if (checkbox.isSelected()) {
+                checkbox.click();
+                logger.info("Checkbox was unchecked");
+            } else {
+                logger.info("Checkbox is already unchecked");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void  setCheckboxState(WebElement checkbox, String state) {
+        if (state.equals("check")) {
+            checkCheckbox(checkbox);
+        } else if (state.equals("uncheck")) {
+            uncheckCheckbox(checkbox);
+        } else {
+            logger.error("State should be 'check' or 'uncheck'");
+            Assert.fail("State should be 'check' or 'uncheck'");
+        }
+    }
+
 }

@@ -3,22 +3,33 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class PostPage extends ParentPage{
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
 
+    HeaderElement headerElement;
+
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public PostPage checkIsRedirectToPstPage() {
-        // TODO check url
-        // TODO Chek element\
+    @Override
+    String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
+
+    public PostPage checkIsRedirectToPostPage() {
+        checkUrlWithPattern();
         return this;
     }
 
-    public PostPage checkIsSuccesMassegeDisplayed() {
+    public PostPage checkIsSuccessMassageDisplayed() {
         checkIsElementVisible(successMessage);
         return this;
     }
@@ -28,4 +39,12 @@ public class PostPage extends ParentPage{
         return this;
     }
 
+    public HeaderElement getHeader() {
+        return headerElement = new HeaderElement(webDriver);
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
+    }
 }
