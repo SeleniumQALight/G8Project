@@ -22,6 +22,9 @@ public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = "//img[@alt='My profile']")
     private WebElement buttonMyProfile;
 
+    @FindBy (xpath = "//span[@class='text-white mr-2']")
+    private WebElement nameOfUser;
+
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
     }
@@ -29,6 +32,19 @@ public class HeaderElement extends CommonActionsWithElements {
     public boolean isButtonSignOutVisible() {
         return isElementDisplayed(buttonSignOut);
     }
+
+    public boolean isButtonCreatePostVisible() {
+        return isElementDisplayed(buttonCreatePost);
+    }
+
+    public boolean isButtonMyProfileVisible() {
+    return isElementDisplayed(buttonMyProfile);
+    }
+
+    public boolean isNameOfUserVisible() {
+    return isElementDisplayed(nameOfUser);
+    }
+
 
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
@@ -39,6 +55,7 @@ public class HeaderElement extends CommonActionsWithElements {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
     }
+
 
 
 }
