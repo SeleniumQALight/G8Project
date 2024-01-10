@@ -21,14 +21,22 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = ".//div[@class='container py-md-5 container--narrow']/div[3]/p")
     private WebElement postNote;
 
+    @FindBy(xpath = ".//button[@data-original-title='Delete']")
+    private WebElement buttonDelete;
+
     private HeaderElement headerElement;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
     public PostPage checkIsRedirectToPostPage() {
-        // TODO check url
+        checkUrlWithPattern();
         // TODO check element
         return this;
     }
@@ -65,5 +73,10 @@ public class PostPage extends ParentPage {
     public PostPage checkTextInPostNote(String noteText) {
         checkTextInElement(postNote, noteText);
         return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }
