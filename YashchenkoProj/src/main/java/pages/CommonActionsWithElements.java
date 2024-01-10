@@ -98,5 +98,22 @@ public class CommonActionsWithElements {
             Assert.fail("Can not get text from element: " + getElementName(element));
         }
     }
+    protected void checkCheckbox(WebElement checkbox) {
+        if (!checkbox.isSelected()) {
+            checkbox.click();
+            logger.info("Checkbox is not selected");
+        } else {
+            logger.info("Checkbox is already selected");
+        }
+    }
+
+    protected void uncheckCheckbox(WebElement checkbox) {
+        if (checkbox.isSelected()) {
+            checkbox.click();
+            logger.info("Checkbox is unselected");
+        } else {
+            logger.info("Checkbox is already unselected");
+        }
+    }
 
 }

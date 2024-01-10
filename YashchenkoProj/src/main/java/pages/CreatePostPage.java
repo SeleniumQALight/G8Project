@@ -19,6 +19,8 @@ public class CreatePostPage extends ParentPage {
     @FindBy(xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = "//input[@type='checkbox']")
+    private WebElement checkboxIsUnique;
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -53,5 +55,34 @@ public class CreatePostPage extends ParentPage {
     public PostPage clickOnSaveNewPostButton() {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
+    }
+    public CreatePostPage checkIsCheckboxIsUniquePresent() {
+        Assert.assertTrue("Checkbox is not present", isElementDisplayed(checkboxIsUnique));
+        return this;
+    }
+
+    public CreatePostPage checkCheckboxIsUnique() {
+        checkIsCheckboxIsUniquePresent();
+        checkCheckbox(checkboxIsUnique);
+        return this;
+    }
+    public CreatePostPage uncheckCheckboxIsUnique() {
+        checkIsCheckboxIsUniquePresent();
+        uncheckCheckbox(checkboxIsUnique);
+        return this;
+    }
+
+    public CreatePostPage selectIsUniqueCheckboxUsingStringValue(String state) {
+        switch (state.toLowerCase()) {
+            case "check":
+                checkCheckboxIsUnique();
+                break;
+            case "uncheck":
+                uncheckCheckboxIsUnique();
+                break;
+            default:
+                Assert.fail("State should be 'check' or 'uncheck'");
+        }
+        return this;
     }
 }

@@ -18,10 +18,12 @@ public class CreateNewPostTest extends BaseTest {
                 .enterTextInToInputBody("New Post Body Yashchenko")
 //                .selectTextInDropDown("Приватне повідомлення")
                 .selectValueInDropDown("One Person")
+                .selectIsUniqueCheckboxUsingStringValue("check")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectedToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .checkIsThisPostUniqueValuePresent("yes")
         ;
 
         pageProvider.getPostPage().getHeader().clickOnButtonMyProfile()

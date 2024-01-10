@@ -1,6 +1,6 @@
 package pages;
 
-import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +10,8 @@ public class PostPage extends ParentPage {
 
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
+
+    private String isThisPostUniqueValue = "//p[contains(text(), 'Is this post unique? : %s')]";
 
     private HeaderElement headerElement;
 
@@ -37,4 +39,8 @@ public class PostPage extends ParentPage {
         return headerElement = new HeaderElement(webDriver);
     }
 
+    public PostPage checkIsThisPostUniqueValuePresent(String value) {
+        checkIsElementVisible(webDriver.findElement(By.xpath(String.format(isThisPostUniqueValue, value))));
+        return this;
+    }
 }
