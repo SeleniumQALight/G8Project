@@ -42,10 +42,15 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public void openLoginPage() {
         try {
-            webDriver.get("https://aqa-complexapp.onrender.com");
-            logger.info("Login page was opened");
+            webDriver.get(baseUrl);
+            logger.info("Login page was opened " + baseUrl);
         } catch (Exception e) {
             logger.error("Can not open Login Page");
             Assert.fail("Can not open Login Page");
@@ -96,6 +101,7 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage checkIsRedirectToLoginPage() {
+        checkUrl();
         Assert.assertTrue("Invalid page - not Login Page", isElementDisplayed(buttonSignIn));
         Assert.assertTrue("Invalid page - not Login Page", isElementDisplayed(inputLogin));
         Assert.assertTrue("Invalid page - not Login Page", isElementDisplayed(inputPassword));
