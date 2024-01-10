@@ -1,1 +1,90 @@
 TestCase #001
+User registration
+
+Pre-conditions:
+1. Open the browser
+2. Go to the website https://aqa-complexapp.onrender.com/
+
+Steps to reproduce:
+1. Enter username in input field Username "Iryna"
+2. Enter e-mail in input field Email "irina1989ovcharenko@gmail.com"
+3. Create and enter password in input field Password "Qwerty123456789"
+4. Click on the button "Sign up for OurApp"
+
+Expected result:
+1. User is registered
+2. User is redirected to the personal profile.
+
+Test Case #002
+User login
+
+Pre-conditions:
+1. Open the browser
+2. Go to the website https://aqa-complexapp.onrender.com
+
+Steps to reproduce:
+1. Enter username in input field Username on the top bar of the site "Iryna"
+2. Enter password in input field Password on the top bar of the site "Qwerty123456789"
+3. Click on the button "Sign in"
+
+Expected result:
+Login to the user's personal account took place.
+
+Test Case #003
+Create a new post
+
+Pre-conditions:
+1. Open the browser
+2. Go to the website https://aqa-complexapp.onrender.com
+3. Enter username in input field Username on the top bar of the site "Iryna"
+4. Enter password in input field Password on the top bar of the site "Qwerty123456789"
+5. Click on the button "Sign in"
+
+Steps to reproduce:
+1. Click on the button "Create post"
+2. Enter title in input field Title "Onofriichuk"
+3. Enter text in area field Body Content "qwerty"
+4. Put a checkbox "Is this post unique?"
+5. Select value, for example, "Загальнодоступне"
+6. Click on the button "Save New Post"
+
+Expected result:
+The user receives an information message: "New post successfully created."
+
+Test Case #004
+Deleting the post
+
+Pre-conditions:
+1. Open the browser
+2. Go to the website https://aqa-complexapp.onrender.com
+3. Enter username in input field Username on the top bar of the site "Iryna"
+4. Enter password in input field Password on the top bar of the site "Qwerty123456789"
+5. Click on the button "Sign in"
+6. Click on the button "Create post"
+7. Enter title in input field Title "Onofriichuk"
+8. Enter text in area field Body Content "qwerty"
+9. Put a checkbox "Is this post unique?"
+10. Select value, for example, "Загальнодоступне"
+11. Click on the button "Save New Post"
+
+Steps to reproduce:
+Click on the button "Delete" in the upper right part of the post
+
+Expected result:
+The user received a message that the post was deleted: "Post successfully deleted."
+
+Test Case #005
+Exit from the user's personal account
+
+Pre-conditions:
+1. Open the browser
+2. Go to the website https://aqa-complexapp.onrender.com
+3. Enter username in input field Username on the top bar of the site "Iryna"
+4. Enter password in input field Password on the top bar of the site "Qwerty123456789"
+5. Click on the button "Sign in"
+
+Steps to reproduce:
+Click on the button "Sign out" on the top bar of the site
+
+Expected result:
+The was exit from the user's personal account to the main page of the site.

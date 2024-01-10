@@ -1,0 +1,33 @@
+TestCase #001
+User registration
+
+Input Username  .//input[@id='username-register']
+Input Password   .//input[@id='password-register']
+Input Email       .//input[@id='email-register']
+Button Sign up for OurApp   .//button[text()='Sign up for OurApp']
+
+Test Case #002
+User login
+
+Input Username   .//input[@name="username"]
+Input Password   .//input[@name='password']
+Button Sign     .//button[text()='Sign In']
+
+Test Case #003
+Create a new post
+
+Button Create Post   .//a[@href="/create-post"]
+Input field Title     .//input[@id='post-title']
+Area field Body Content    .//textarea[@id='post-body']
+Dropdown list   .//select/option[@value='All Users']
+Button Save new post    .//button[text()='Save New Post']
+
+Test Case #004
+Deleting the post
+
+Button Delete   .//button[@class="delete-post-button text-danger"]
+
+Test Case #005
+Exit from the user's personal account
+
+Button Sign out .//button[text()='Sign Out']
