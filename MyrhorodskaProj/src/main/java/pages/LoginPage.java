@@ -2,7 +2,6 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,6 +19,28 @@ public class LoginPage extends ParentPage{
 
     @FindBy(xpath = ".//div[text()='Invalid username/password.']")
     private WebElement invalidMassage;
+
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private WebElement inputUserNameReg;
+
+    @FindBy(xpath = ".//input[@id='email-register']")
+    private WebElement inputEmailReg;
+
+
+    @FindBy(xpath = ".//input[@id='password-register']")
+    private WebElement inputPasswordReg;
+
+    @FindBy(xpath = ".//form[@id='registration-form']//button[@type='submit']")
+    private WebElement buttonSignUp;
+
+    @FindBy(xpath = ".//div[text()='Username must be at least 3 characters.']")
+    private WebElement userNameValidationReg;
+
+    @FindBy(xpath = ".//div[text()='You must provide a valid email address.']")
+    private WebElement emailValidationReg;
+
+    @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
+    private WebElement passwordValidationReg;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -80,6 +101,73 @@ public class LoginPage extends ParentPage{
     public boolean isInvalidUserNamePasswordMessageVisible() {
         //WebElement invalidMassage = webDriver.findElement(By.xpath("//div[contains(text(),'Invalid username/password.')]"));
         return isElementDisplayed(invalidMassage);
+    }
+    public boolean isInputUsernameVisible() {
+        return isElementDisplayed(inputLogin);
+    }
+
+    public void isInputUsernameNotVisible() {
+        checkIsElementNotVisible(inputLogin);
+    }
+
+    public boolean isInputPasswordVisible() {
+        return isElementDisplayed(inputPassword);
+    }
+
+    public void isInputPasswordNotVisible() {
+        checkIsElementNotVisible(inputPassword);
+    }
+
+    public void isButtonSignInNotVisible() {
+        checkIsElementNotVisible(buttonSignIn);
+    }
+    public LoginPage inputTextIntoRegistrationLogin(String login) {
+        enterTextInToInput(inputUserNameReg, login);
+        return this;
+    }
+
+    public LoginPage inputTextIntoRegistrationPassword(String password) {
+        enterTextInToInput(inputPasswordReg, password);
+        return this;
+    }
+
+    public LoginPage inputTextIntoRegistrationEmail(String email) {
+        enterTextInToInput(inputEmailReg, email);
+        return this;
+    }
+
+    public boolean isValidationMessageForRegistrationInputLoginDisplayed() {
+        return isElementDisplayed(userNameValidationReg);
+    }
+    public LoginPage checkInputInRegistrationLogin(String text) {
+        checkTextInElement(userNameValidationReg, text);
+        return this;
+    }
+    public LoginPage checkInputInRegistrationEmail(String text) {
+        checkTextInElement(emailValidationReg, text);
+        return this;
+    }
+    public LoginPage isValidationMessageForRegistrationInputEmailDisplayed() {
+        checkIsElementVisible(emailValidationReg);
+        return this;
+    }
+
+    public LoginPage checkInputInRegistrationPassword(String text) {
+        checkTextInElement(passwordValidationReg, text);
+        return this;
+    }
+    public boolean isValidationMessageForRegistrationInputPasswordDisplayed() {
+        return isElementDisplayed(passwordValidationReg);
+    }
+
+
+    public void clickOnButtonSignUp() {
+        clickOnElement(buttonSignUp);
+    }
+
+    public LoginPage checkIsRedirectToLoginPage() {
+        Assert.assertTrue("Invalid page", isButtonSignInVisible());
+        return this;
     }
 }
 
