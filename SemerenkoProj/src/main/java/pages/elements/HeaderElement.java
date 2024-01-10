@@ -14,9 +14,6 @@ public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = ".// a [@href='/create-post']")
     private WebElement buttonCreatePost;
 
-    @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
-    public WebElement buttonSignIn;
-
     @FindBy(xpath = ".//button[@class='btn btn-sm btn-secondary']")
     private WebElement buttonSignOut;
 
@@ -31,12 +28,6 @@ public class HeaderElement extends CommonActionsWithElements {
 
     @FindBy(xpath = ".//span[contains (text(), 'qaauto')]")
     private WebElement spanUserName;
-
-    @FindBy(xpath = ".//input[@placeholder='Username']")
-    private WebElement inputUsername;
-
-    @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPassword;
 
 
     public HeaderElement(WebDriver webDriver) {
@@ -57,73 +48,62 @@ public class HeaderElement extends CommonActionsWithElements {
         return new LoginPage(webDriver);
     }
 
-    public void checkIsElementButtonCreateNewPostVisible() {
+    public HeaderElement checkIsButtonCreateNewPostVisible() {
         checkIsElementVisible(buttonCreatePost, "buttonCreatePost");
+        return this;
     }
 
-    public void checkIsElementButtonCreateNewPostUnvisible() {
+    public HeaderElement checkIsButtonCreateNewPostUnvisible() {
         checkIsElementUnvisible(buttonCreatePost, "buttonCreatePost");
+        return this;
     }
 
-    public void checkIsElementButtonSignOutVisible() {
+    public HeaderElement checkIsButtonSignOutVisible() {
         checkIsElementVisible(buttonSignOut, "buttonSignOut");
+        return this;
     }
 
-    public void checkIsElementButtonSignOutUnvisible() {
+    public HeaderElement checkIsButtonSignOutUnvisible() {
         checkIsElementUnvisible(buttonSignOut, "buttonSignOut");
+        return this;
     }
 
-    public void checkIsElementLinkMyProfileVisible() {
+    public HeaderElement checkIsButtonMyProfileVisible() {
         checkIsElementVisible(buttonMyProfile, "buttonMyProfile");
+        return this;
     }
 
-    public void checkIsElementLinkMyProfileUnvisible() {
+    public HeaderElement checkIsButtonMyProfileUnvisible() {
         checkIsElementUnvisible(buttonMyProfile, "buttonMyProfile");
+        return this;
     }
 
-    public void checkIsElementSpanUserNameVisible() {
+    public HeaderElement checkIsSpanUserNameVisible() {
         checkIsElementVisible(spanUserName, "spanUserName");
+        return this;
     }
 
-    public void checkIsElementButtonChatVisible() {
+    public HeaderElement checkIsButtonChatVisible() {
         checkIsElementVisible(buttonChat, "buttonChat");
+        return this;
     }
 
-    public void checkIsElementButtonChatUnvisible() {
+    public HeaderElement checkIsButtonChatUnvisible() {
         checkIsElementUnvisible(buttonChat, "buttonChat");
+        return this;
     }
 
-    public void checkIsElementButtonSearchVisible() {
+    public HeaderElement checkIsButtonSearchVisible() {
         checkIsElementVisible(buttonSearch, "buttonSearch");
+        return this;
     }
 
-    public void checkIsElementButtonSearchUnvisible() {
+    public HeaderElement checkIsButtonSearchUnvisible() {
         checkIsElementUnvisible(buttonSearch, "buttonSearch");
+        return this;
     }
 
-    public void checkIsElementInputUsernameVisible() {
-        checkIsElementVisible(inputUsername, "inputUsername");
-    }
 
-    public void checkIsElementInputUsernameUnvisible() {
-        checkIsElementUnvisible(inputUsername, "inputUsername");
-    }
-
-    public void checkIsElementInputPasswordVisible() {
-        checkIsElementVisible(inputPassword, "inputPassword");
-    }
-
-    public void checkIsElementInputPasswordUnvisible() {
-        checkIsElementUnvisible(inputPassword, "inputPassword");
-    }
-
-    public void checkIsElementButtonSignInVisible() {
-        checkIsElementVisible(buttonSignIn, "buttonSignIn");
-    }
-
-    public void checkIsElementButtonSignInUnvisible() {
-        checkIsElementUnvisible(buttonSignIn, "buttonSignIn");
-    }
 
 
 }

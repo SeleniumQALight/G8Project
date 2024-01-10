@@ -15,6 +15,7 @@ public class LoginTestWithPageObject extends BaseTest {
                 .checkIsButtonCreateNewPostVisible()
                 .checkIsLinkMyProfileVisible()
                 .checkIsSpanUserNameVisible()
+                .redirectOnLoginPage()
                 .checkIsInputUsernameUnvisible()
                 .checkIsInputPasswordUnvisible();
 

@@ -3,9 +3,9 @@ input_username_register =  ".//input[@id='username-register']"
 input_email_register =  ".//input[@id='email-register']"
 input_password_register =  ".//input[@id='password-register']"
 
-div_username_worning_messege = ".//input[@id='username-register']//../div"
-div_email_worning_messege = ".//input[@id='email-register']//../div"
-div_password_worning_messege = ".//input[@id='password-register']//../div"
+div_username_worning_messege = ".//div[contains(text(),'Username must be at least 3 characters.')]"
+div_email_worning_messege = ".//div[contains(text(),'You must provide a valid email address.')]"
+div_password_worning_messege = ".//div[contains(text(),'Password must be at least 12 characters.')]"
 
 input_username_signin = ".//input[@placeholder='Username']"
 input_password_signin = ".//input[@placeholder='Password']"

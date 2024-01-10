@@ -12,33 +12,39 @@ import pages.elements.HeaderElement;
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@placeholder='Username']")
     private WebElement inputUsername;
+
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPassword;
+
     @FindBy(xpath = ".//div[@class='alert alert-danger text-center' and contains(text(),'Invalid username/password.')]")
     private WebElement divFailSignIn;
+
     @FindBy(xpath = ".//input[@id='username-register']")
     private WebElement inputUsernameRegistration;
+
     @FindBy(xpath = ".//input[@id='email-register']")
     private WebElement inputEmailRegistration;
+
     @FindBy(xpath = ".//input[@id='password-register']")
     private WebElement inputPasswordRegistration;
-    @FindBy(xpath = ".//input[@id='username-register']//../div")
+
+    @FindBy(xpath = ".//div[contains(text(),'Username must be at least 3 characters.')]")
     private WebElement divWarningUsernameRegistration;
-    @FindBy(xpath = ".//input[@id='email-register']//../div")
+
+    @FindBy(xpath = ".//div[contains(text(),'You must provide a valid email address.')]")
     private WebElement divWarningEmailRegistration;
-    @FindBy(xpath = ".//input[@id='password-register']//../div")
+
+    @FindBy(xpath = ".//div[contains(text(),'Password must be at least 12 characters.')]")
     private WebElement divWarningPasswordRegistration;
+
+    @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
+    public WebElement buttonSignIn;
+
     @FindBy(xpath = ".//button[@type='submit']")
     private WebElement buttonSignUp;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
-    }
-
-    public HeaderElement headerElement;
-
-    public HeaderElement getHeader() {
-        return new HeaderElement(webDriver);
     }
 
     public void openLoginPage() {
@@ -60,14 +66,10 @@ public class LoginPage extends ParentPage {
     }
 
     public void clickOnButtonSignIn() {
-        clickOnElement(getHeader().buttonSignIn);
+        clickOnElement(buttonSignIn);
     }
 
-    public void clickOnButtonSingUp(){
-        clickOnElement(buttonSignUp);
-    }
-
-    public LoginPage clickOnButtonSignup(){
+    public LoginPage clickOnButtonSignup() {
         clickOnElement(buttonSignUp);
         return this;
     }
@@ -84,80 +86,83 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    public HomePage redirectToHomePage() {
+        return new HomePage(webDriver);
+    }
+
+    public HeaderElement redirectToHeaderElement() {
+        return new HeaderElement(webDriver);
+    }
+
     public LoginPage enterIntoUsernameRegistration(String username) {
         enterTextIntoInput(inputUsernameRegistration, username);
         return this;
     }
 
-    public LoginPage enterIntoEmailRegistration(String email){
+    public LoginPage enterIntoEmailRegistration(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
 
-    public LoginPage enterIntoPasswordRegistration(String pass){
+    public LoginPage enterIntoPasswordRegistration(String pass) {
         enterTextIntoInput(inputPasswordRegistration, pass);
         return this;
     }
 
+    //----------------------------------------------------
+    public LoginPage checkIsInputUsernameUnvisible() {
+        checkIsElementUnvisible(inputUsername, "inputUsername");
+        return this;
+    }
+
+
+    public LoginPage checkIsInputPasswordUnvisible() {
+        checkIsElementUnvisible(inputPassword, "inputPassword");
+        return this;
+    }
+//--------------------------------------------------------
+
     public LoginPage checkIsRedirectOnLoginPage() {
-        getHeader().checkIsElementButtonSignInVisible();
+        checkIsElementVisible(buttonSignIn, "buttonSignIn");
         return this;
     }
 
     public LoginPage checkIsInputUsernameVisible() {
-        getHeader().checkIsElementInputUsernameVisible();
+        checkIsElementVisible(inputUsername, "inputUsername");
         return this;
     }
 
     public LoginPage checkIsInputPasswordVisible() {
-        getHeader().checkIsElementInputPasswordVisible();
+        checkIsElementVisible(inputPassword, "inputPassword");
         return this;
     }
 
     public LoginPage checkIsButtonSignInVisible() {
-        getHeader().checkIsElementButtonSignInVisible();
+        checkIsElementVisible(buttonSignIn, "buttonSignIn");
         return this;
     }
 
-    public LoginPage checkIsWarningUsernameRegistrationVisible(){
+    public LoginPage checkIsButtonSignInUnvisible() {
+        checkIsElementUnvisible(buttonSignIn, "buttonSignIn");
+        return new LoginPage(webDriver);
+    }
+
+
+    public LoginPage checkIsWarningUsernameRegistrationVisible() {
         checkIsElementVisible(divWarningUsernameRegistration, "divWarningUsernameRegistration");
         return this;
     }
 
-    public LoginPage checkIsWarningEmailRegistrationVisible(){
+    public LoginPage checkIsWarningEmailRegistrationVisible() {
         checkIsElementVisible(divWarningEmailRegistration, "divWarningEmailRegistration");
         return this;
     }
 
-    public LoginPage checkIsWarningPasswordRegistrationVisible(){
+    public LoginPage checkIsWarningPasswordRegistrationVisible() {
         checkIsElementVisible(divWarningPasswordRegistration, "divWarningPasswordRegistration");
         return this;
     }
 
-    public LoginPage checkIsButtonSearchUnvisible() {
-        getHeader().checkIsElementButtonSearchUnvisible();
-        return this;
-    }
-
-    public LoginPage checkIsButtonChatUnvisible() {
-        getHeader().checkIsElementButtonChatUnvisible();
-        return this;
-    }
-
-    public LoginPage checkIsButtonProfileUnvisible() {
-        getHeader().checkIsElementLinkMyProfileUnvisible();
-        return this;
-    }
-
-    public LoginPage checkIsButtonCreatePostUnvisible() {
-        getHeader().checkIsElementButtonCreateNewPostUnvisible();
-        return this;
-    }
-
-    public LoginPage checkIsButtonSignOutUnvisible() {
-        getHeader().checkIsElementButtonSignOutUnvisible();
-        return this;
-    }
 
 
 }
