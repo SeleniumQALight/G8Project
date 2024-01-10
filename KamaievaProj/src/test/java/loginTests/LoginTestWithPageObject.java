@@ -1,6 +1,6 @@
 package loginTests;
 
-import BaseTest.BaseTest;
+import baseTest1.BaseTest;
 import jdk.jfr.Description;
 import org.junit.Assert;
 import org.junit.Test;
