@@ -12,6 +12,8 @@ public class PostPage extends ParentPage {
     private WebElement successMessage;
 
     private String isThisPostUniqueValue = "//p[contains(text(), 'Is this post unique? : %s')]";
+    private String createdPostTitle = "//h2[text()='%s']";
+    private String createdPostBody = "//p[text()='%s']";
 
     private HeaderElement headerElement;
 
@@ -41,6 +43,16 @@ public class PostPage extends ParentPage {
 
     public PostPage checkIsThisPostUniqueValuePresent(String value) {
         checkIsElementVisible(webDriver.findElement(By.xpath(String.format(isThisPostUniqueValue, value))));
+        return this;
+    }
+
+    public PostPage checkCreatedPostTitle(String value) {
+        checkIsElementVisible(webDriver.findElement(By.xpath(String.format(createdPostTitle, value))));
+        return this;
+    }
+
+    public PostPage checkCreatedPostBody(String value){
+        checkIsElementVisible(webDriver.findElement(By.xpath(String.format(createdPostBody, value))));
         return this;
     }
 }
