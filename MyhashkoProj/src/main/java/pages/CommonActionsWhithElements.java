@@ -94,4 +94,22 @@ public class CommonActionsWhithElements {
             Assert.fail("Can not work with element");
         }
     }
+    protected void setCheckBoxIsThisPostUniqueChecked(WebElement checkBoxIsSelected) {
+        if (!checkBoxIsSelected.isSelected()) {
+            checkBoxIsSelected.click();
+            logger.info("CheckBoxIsThisPostUnique was checked");
+        } else {
+            logger.info("CheckBoxIsThisPostUnique is already checked");
+        }
+    }
+
+    protected void setCheckBoxIsThisPostUniqueUnchecked(WebElement checkBoxIsSelected) {
+        if (checkBoxIsSelected.isSelected()) {
+            checkBoxIsSelected.click();
+            logger.info("CheckBoxIsThisPostUnique was unchecked");
+        } else {
+            logger.info("CheckBoxIsThisPostUnique is already unchecked");
+        }
+
+    }
 }
