@@ -13,9 +13,16 @@ public class HomePage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public HomePage checkIsRedirectToHomePage() {
-        //TODO check url
+        checkUrl();
         Assert.assertTrue("Invalid page - not Home Page", getHeader().isButtonSignOutPresent());
+        getHeader().checkIsHeaderForUserVisible();
+        getLoginPage().checkIsLoginFieldIsNotVisible();
         return this;
     }
 
@@ -36,5 +43,9 @@ public class HomePage extends ParentPage{
             logger.info("User was logged in");
         }
         return this;
+    }
+
+    public LoginPage getLoginPage() {
+        return new LoginPage(webDriver);
     }
 }

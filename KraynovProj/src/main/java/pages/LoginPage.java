@@ -2,7 +2,6 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,18 +14,30 @@ public class LoginPage extends ParentPage{
     private WebElement inputLogin;
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPassword;
+    @FindBy(xpath = ".//div[text()='Invalid username/password.']")
+    private WebElement errorMessage;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public void openLoginPage() {
         try {
-            webDriver.get("https://aqa-complexapp.onrender.com");
-            logger.info("Login page was opened");
+            webDriver.get(baseUrl);
+            logger.info("Login page was opened " + baseUrl);
         } catch (Exception e) {
             logger.error("Can not open login page");
             Assert.fail("Can not open login page");
         }
+    }
+
+    public void checkIsRedirectToLoginPage() {
+        checkUrl();
     }
 
     public void enterTextIntoInputLogin(String login) {
@@ -42,6 +53,10 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSignIn);
     }
 
+    public boolean isErrorMessageVisible() {
+        return isElementDisplayed(errorMessage);
+    }
+
     public boolean clickOnButtonSignInVisible() {
         return isElementDisplayed(buttonSignIn);
     }
@@ -53,4 +68,13 @@ public class LoginPage extends ParentPage{
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
+    public boolean isButtonSignInVisible() {
+        try {
+            return isElementDisplayed(buttonSignIn);
+        } catch (Exception e) {
+            logger.info("Element button SignIn is displayed -> false");
+            return false;
+        }
+    }
+
 }

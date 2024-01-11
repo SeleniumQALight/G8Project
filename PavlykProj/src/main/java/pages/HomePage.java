@@ -1,7 +1,6 @@
 package pages;
 
 import libs.TestData;
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.elements.HeaderElement;
 
@@ -13,14 +12,24 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public HomePage checkIsRedirectToHomePage() {
-        //TODO check url
-        Assert.assertTrue("Invalid page - not Home Page", getHeader().isButtonSignOutVisible());
+        checkUrl();
+        getHeader().checkIsHeaderForUserVisible();
+        getLoginPage().checkIsLoginFieldIsNotVisible();
         return this;
     }
 
     public HeaderElement getHeader() {
         return new HeaderElement(webDriver);
+    }
+
+    public LoginPage getLoginPage() {
+        return new LoginPage(webDriver);
     }
 
     public HomePage openHomePageAndLoginIfNeeded() {

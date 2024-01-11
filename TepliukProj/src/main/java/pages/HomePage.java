@@ -20,13 +20,18 @@ public class HomePage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
 //    public boolean isButtonSignOutVisible() {
 //      //  WebElement buttonSignOut = webDriver.findElement(By.xpath("//button[text()='Sign Out']"));
 //        return isElementDisplayed(buttonSignOut);
 //    }
 
     public HomePage checkIsRedirectToHomePage() {
-        //TODO check url
+        checkUrl();
         Assert.assertTrue("Invalid page - not Home page", getHeader().isButtonSignOutVisible());
         return this;
     }

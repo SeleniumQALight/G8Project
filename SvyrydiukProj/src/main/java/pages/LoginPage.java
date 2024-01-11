@@ -38,9 +38,18 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/";
+    }
+
+    public void checkIsRedirectToLoginPage() {
+        checkUrl();
+    }
+
     public void openLoginPage() {
         try {
-            webDriver.get("https://aqa-complexapp.onrender.com");
+            webDriver.get(baseUrl);
             logger.info("Login page was opened");
         } catch (Exception e) {
             logger.error("Can not open Login Page");
@@ -80,6 +89,7 @@ public class LoginPage extends ParentPage {
         //    return false;
         // }
     }
+
     //is button Sign In visible
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
@@ -135,6 +145,7 @@ public class LoginPage extends ParentPage {
     public boolean isValidationMessageForPasswordFieldVisible() {
         return isElementDisplayed(validationMessageForPasswordRegistrationField);
     }
+
     public void checkTextValidationMessageForPasswordRegistrationField(String message) {
         checkTextInElement(validationMessageForPasswordRegistrationField, message);
     }
@@ -142,6 +153,7 @@ public class LoginPage extends ParentPage {
     public boolean isValidationMessageForEmailFieldVisible() {
         return isElementDisplayed(validationMessageForEmailRegistrationField);
     }
+
     public void enterTextIntoInputEmailRegistration(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
     }

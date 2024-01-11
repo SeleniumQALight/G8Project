@@ -2,6 +2,7 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,15 +21,25 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public void openLoginPage() {
         try {
-            webDriver.get("https://aqa-complexapp.onrender.com");
-            logger.info("Login page was opened");
+            webDriver.get(baseUrl);
+            logger.info("Login page was opened" + baseUrl);
         }catch (Exception e){
             logger.error("Can not open Login Page");
             Assert.fail("Can not open Login Page");
         }
     }
+
+    public void checkIsRedirectToLoginPage() {
+     checkUrl();
+    }
+
 
     public void enterTextIntoInputLogin(String login) {
         //WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
@@ -50,6 +61,17 @@ public class LoginPage extends ParentPage {
     public boolean isButtonSignInVisible() {
         //WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         return isElementDisplayed(buttonSignIn);
+    }
+
+    public boolean isErrorMessageVisible() {
+        try {
+            boolean state = webDriver.findElement(By.xpath("//div[text() = 'Invalid username/password.']")).isDisplayed();
+            logger.info(state + " is alert visible");
+            return state;
+        } catch (Exception e) {
+            logger.info("Alert is not displayed");
+            return false;
+        }
     }
 
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
