@@ -9,16 +9,26 @@ public class SignOutTest extends BaseTest {
     public void signOutTest() {
         pageProvider.loginPage().openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
-                .getHeader().isButtonFindVisible();
+                .getHeader().checkIsButtonFindVisible()
+                .CheckIsButtonChatVisible()
+                .checkIsAvatarVisible()
+                .checkIsButtonCreatePostVisible()
+                .checkIsButtonSignOutVisible()
+                .checkIsInputLoginNotVisible()
+                .checkIsInputPasswordNotVisible()
+                .checkIsButtonSignInNotVisible()
+                .clickOnButtonSignOut()
+                .checkIsRedirectToLoginPage();
 
-
-//        pageProvider.homePage().getHeader().isButtonChatVisible();
-//        pageProvider.homePage().getHeader().isAvatarVisible();
-//        pageProvider.homePage().getHeader().isButtonCreatePostVisible();
-//        pageProvider.homePage().getHeader().isButtonSignOutVisible();
-
-
-
+        pageProvider.homePage().getHeader().checkIsButtonFindNotVisible()
+                .checkIsButtonChatNotVisible()
+                .checkIsAvatarNotVisible()
+                .checkIsButtonCreatePostNotVisible()
+                .checkIsButtonSignOutNotVisible()
+                .checkIsInputLoginVisible()
+                .checkIsInputPasswordVisible()
+                .checkIsButtonSignInVisible()
         ;
+
     }
 }
