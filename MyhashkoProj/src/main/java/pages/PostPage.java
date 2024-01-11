@@ -1,6 +1,5 @@
 package pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,7 +19,7 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = ".//button[@data-original-title='Delete']")
     private WebElement buttonDelete;
     private String checkBoxIsThisPostUnique ="//div/p[contains(text(),'Is this post unique? : %s')]";
-    private String NoteOnPostPage = "//i[contains(text(),' Note: This post was written for')]";
+    private String noteOnPostPageValue = "//i//u[contains(text(),'%s')]";
 
 
     public PostPage(WebDriver webDriver) {
@@ -75,8 +74,8 @@ public class PostPage extends ParentPage{
         return this;
     }
 
-    public PostPage checkOfNoteText(String valueInDropDown) {
-        checkIsElementVisible(webDriver.findElement(By.xpath(String.format(NoteOnPostPage, valueInDropDown))));
+    public PostPage checkOfNoteTextValue(String valueInDropDown) {
+        checkIsElementVisible(webDriver.findElement(By.xpath(String.format(noteOnPostPageValue, valueInDropDown))));
 
         return this;
     }
