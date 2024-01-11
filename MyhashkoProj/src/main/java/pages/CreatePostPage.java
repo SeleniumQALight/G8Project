@@ -70,37 +70,29 @@ public class CreatePostPage extends ParentPage {
         return new PostPage(webDriver);
     }
 
-
     public CreatePostPage setStatusOfCheckBoxIsThisPostUnique(String checked) {
-        if (checked.equals("check")) {
-            setCheckBoxIsThisPostUniqueChecked();
-        } else if (checked.equals("uncheck")) {
-            setCheckBoxIsThisPostUniqueUnchecked();
-        } else {
-            logger.error("CheckBoxIsThisPostUnique should be check or unchecked");
-            Assert.fail("CheckBoxIsThisPostUnique should be check or unchecked");
+        switch (checked) {
+            case "check":
+                checkCheckBoxIshisPostUnique();
+                break;
+            case "uncheck":
+                unCheckCheckBoxIshisPostUnique();
+                break;
+            default:
+                logger.error("CheckBoxIsThisPostUnique should be check or unchecked");
+                Assert.fail("CheckBoxIsThisPostUnique should be check or unchecked");
         }
         return this;
     }
 
-    private PostPage setCheckBoxIsThisPostUniqueChecked() {
-        if (!checkBoxIsSelected.isSelected()) {
-            clickOnElement(checkBoxIsSelected);
-            logger.info("CheckBoxIsThisPostUnique was checked");
-        } else {
-        logger.info("CheckBoxIsThisPostUnique is already checked");
-        }
-        return new PostPage(webDriver);
+    private CreatePostPage unCheckCheckBoxIshisPostUnique() {
+        setCheckBoxIsThisPostUniqueUnchecked(checkBoxIsSelected);
+        return this;
     }
 
-    private PostPage setCheckBoxIsThisPostUniqueUnchecked() {
-        if (checkBoxIsSelected.isSelected()) {
-            clickOnElement(checkBoxIsSelected);
-            logger.info("CheckBoxIsThisPostUnique was unchecked");
-        } else {
-            logger.info("CheckBoxIsThisPostUnique is already unchecked");
-        }
-        return new PostPage(webDriver);
+    private CreatePostPage checkCheckBoxIshisPostUnique() {
+        setCheckBoxIsThisPostUniqueChecked(checkBoxIsSelected);
+        return this;
     }
 
 }
