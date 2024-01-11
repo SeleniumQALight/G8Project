@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,8 +10,6 @@ import pages.elements.HeaderElement;
 public class PostPage extends ParentPage {
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
-    @FindBy(xpath = "//div/p[contains(text(),'Is this post unique')]")
-    private WebElement checkBoxIsThisPostUnique;
     @FindBy(xpath = "//h2")
     private WebElement titleOnPostPage;
     @FindBy(xpath = ".//div[@class='body-content'][2]//p")
@@ -20,7 +19,7 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = "//i[contains(text(),' Note: This post was written for ')]")
 
     private HeaderElement headerElement;
-
+    private String checkBoxIsThisPostUnique ="//div/p[contains(text(),'Is this post unique? : %s')]";
 
 
     public PostPage(WebDriver webDriver) {
@@ -49,16 +48,7 @@ public class PostPage extends ParentPage {
     }
 
     public PostPage chekStatusOfCheckBoxIsThisPostUniqueOnPostPage(String text) {
-        if (text.equals("yes")) {
-            checkTextInElement(checkBoxIsThisPostUnique, "Is this post unique? : yes");
-            logger.info("This post unique");
-        } else if (text.equals("no")) {
-            checkTextInElement(checkBoxIsThisPostUnique, "Is this post unique? : no");
-            logger.info("This post not unique");
-        } else {
-            logger.error("Can not answer if this post unique");
-            Assert.fail("Can not answer if this post unique");
-        }
+        checkIsElementVisible(webDriver.findElement(By.xpath(String.format(checkBoxIsThisPostUnique, text))));
         return this;
     }
 
