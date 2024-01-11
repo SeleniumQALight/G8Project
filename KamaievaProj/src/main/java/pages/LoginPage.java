@@ -44,10 +44,15 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelatedUrl() {
+        return "/";
+    }
+
     public void openLoginPage() {
         try {
-            webDriver.get("https://aqa-complexapp.onrender.com/");
-            logger.info("Login page was opened");
+            webDriver.get(baseUrl);
+            logger.info("Login page was opened " + baseUrl);
         } catch (Exception e) {
             logger.error("Can not open login page");
             Assert.fail("Can not open login page");
@@ -129,19 +134,20 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage checkIsRedirectToLoginPage() {
+        checkCurrentUrl();
         Assert.assertTrue("Login page is not opened", isButtonSignInVisible());
         return this;
     }
 
-    public boolean isValidationMessageUsernameRegisterVisible() {
+    public boolean checkIsValidationMessageUsernameRegisterVisible() {
         return checkIsValidationMessageVisible(validationMessageUsernameRegister);
     }
 
-    public boolean isValidationMessageEmailRegisterVisible() {
+    public boolean checkIsValidationMessageEmailRegisterVisible() {
         return checkIsValidationMessageVisible(validationMessageEmailRegister);
     }
 
-    public boolean isValidationMessagePasswordRegisterVisible() {
+    public boolean checkIsValidationMessagePasswordRegisterVisible() {
         return checkIsValidationMessageVisible(validationMessagePasswordRegister);
     }
 }

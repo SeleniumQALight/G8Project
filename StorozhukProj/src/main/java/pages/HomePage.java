@@ -12,13 +12,19 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
 
     public HomePage checkIsRedirectToHomePage() {
-        //TODO check url
+        checkCurrentUrl();
         Assert.assertTrue("Invalid page - not Home Page",
                 getHeader().isButtonSignOutVisible());
         return this;
     }
+
     public HeaderElement getHeader() {
         return new HeaderElement(webDriver);
     }
@@ -26,7 +32,7 @@ public class HomePage extends ParentPage {
     public HomePage openHomePageAndLoginIfNeeded() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openLoginPage();
-        if(this.getHeader().isButtonSignOutVisible()){
+        if (this.getHeader().isButtonSignOutVisible()) {
             logger.info("User is already logged in");
         } else {
             loginPage.enterTextIntoInput(TestData.VALID_LOGIN_UI);

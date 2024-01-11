@@ -11,12 +11,20 @@ public class PostPage extends ParentPage{
     private WebElement successMessage;
     private HeaderElement headerElement;
 
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
     public PostPage checkIsRedirectToPostPage() {
-        // TODO check url
+        checkUrlWithPattern();
         // TODO Check element
         return this;
     }
@@ -34,5 +42,11 @@ public class PostPage extends ParentPage{
 
     public HeaderElement getHeader() {
         return headerElement = new HeaderElement(webDriver);
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
+
     }
 }
