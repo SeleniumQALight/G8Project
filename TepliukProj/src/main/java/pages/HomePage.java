@@ -36,6 +36,10 @@ public class HomePage extends ParentPage{
         return this;
     }
 
+    public LoginPage redirectOnLoginPage (){
+        return new LoginPage(webDriver);
+    }
+
     public HeaderElement getHeader() {
         return new HeaderElement(webDriver);
     }
@@ -54,4 +58,6 @@ public class HomePage extends ParentPage{
         }
         return this;
     }
+
+
 }

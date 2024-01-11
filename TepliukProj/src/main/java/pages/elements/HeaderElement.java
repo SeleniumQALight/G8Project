@@ -25,6 +25,17 @@ public class HeaderElement extends CommonActionsWithElements {
     @FindBy (xpath = "//span[@class='text-white mr-2']")
     private WebElement nameOfUser;
 
+
+
+      @FindBy (xpath = "//a[@data-original-title= 'Search']")
+        private WebElement buttonFind;
+
+      @FindBy (xpath = "//span[@data-original-title= 'Chat']")
+      private WebElement buttonChat;
+
+      @FindBy (xpath = ".//*[@alt='My profile']")
+      private WebElement avatar;
+
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
     }
@@ -45,6 +56,17 @@ public class HeaderElement extends CommonActionsWithElements {
     return isElementDisplayed(nameOfUser);
     }
 
+    public boolean isButtonFindVisible() {
+    return isElementDisplayed(buttonFind);
+    }
+
+    public boolean isButtonChatVisible() {
+        return isElementDisplayed(buttonChat);
+    }
+
+    public boolean isAvatarVisible() {
+        return isElementDisplayed(avatar);
+    }
 
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
