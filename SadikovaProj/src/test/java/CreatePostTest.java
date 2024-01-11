@@ -18,7 +18,7 @@ public class CreatePostTest extends BaseTest {
         String postTitle = POST_TITLE;
         pageProvider.mainPage()
                 .loginToProfile(TestData.VALID_LOGIN_UI, TestData.VALID_PASSWORD);
-        pageProvider.homePage().checkIsRedirectToHomePage(Urls.HOME_PAGE_URL);
+        pageProvider.homePage().checkIsRedirectToHomePage();
         pageProvider.headerElement().clickCreatePostButton();
         pageProvider.createPostPage().checkIsRedirectToCreatePostPage();
         pageProvider.createPostPage().enterTextInTitleInInputTitle(postTitle);
@@ -35,14 +35,20 @@ public class CreatePostTest extends BaseTest {
 
 
         pageProvider.postPage().getHeaderElement()
-                .clickOnMyProfilePageButton()
+                .clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkPostWithTitleIsPresent(POST_TITLE, 1);
     }
 
     @After
     public void deletePost() {
-        pageProvider.homePage().openHomePageAndLoginIfNeeded();
+        pageProvider.homePage()
+                .openHomePageAndLoginIfNeeded()
+                .getheaderElement().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostsTillPresent(POST_TITLE)
+
+        ;
     }
 
 }

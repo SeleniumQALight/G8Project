@@ -21,14 +21,22 @@ public class PostPage extends ParentPage {
     private String createdPostTitle = "//h2[text()='%s']";
     private String createdPostBody = "//p[text()='%s']";
 
+    @FindBy(xpath = "//button[@data-original-title='Delete']")
+    private WebElement trashIcon;
+
     private HeaderElement headerElement;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
     public PostPage checkIsRedirectedToPostPage() {
-        // TODO check url
+        checkCurrentUrlWithPattern();
         // TODO check some element on page
         return this;
     }
@@ -71,5 +79,9 @@ public class PostPage extends ParentPage {
     public PostPage checkValueOfNote(String value) {
         checkTextInElement(noteValue, value);
         return this;
+    }
+    public MyProfilePage clickOnTrashIcon() {
+        clickOnElement(trashIcon);
+        return new MyProfilePage(webDriver);
     }
 }
