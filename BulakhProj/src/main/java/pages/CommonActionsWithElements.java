@@ -12,6 +12,8 @@ public class CommonActionsWithElements {
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
 
+
+
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // ініцйалізуємо елементи сторінки опираючись на анотації @FindBy
@@ -81,10 +83,12 @@ public class CommonActionsWithElements {
             Assert.fail("Can not work with element");
         }
     }
+
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
 
     }
+
     // Check text in element
     protected void checkTextInElement(WebElement element, String expectedText) {
         try {
@@ -96,6 +100,51 @@ public class CommonActionsWithElements {
         }
     }
 
+    // Method for selecting a checkbox
+    protected void checkCheckbox(WebElement checkbox) {
+        try {
+            if (!checkbox.isSelected()) {
+                checkbox.click();
+                logger.info("Checkbox was checked");
+            } else {
+                logger.info("Checkbox is already checked");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    //method that will make the checkbox unchecked
+    protected void uncheckCheckbox(WebElement checkbox) {
+        try {
+            if (checkbox.isSelected()) {
+                checkbox.click();
+                logger.info("Checkbox was unchecked");
+            } else {
+                logger.info("Checkbox is already unchecked");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    //method of setting a given state in a checkbox
+    protected void setCheckboxState(WebElement checkbox, String state) {
+        try {
+            if (state.equalsIgnoreCase("check")) {
+                checkCheckbox(checkbox);
+            } else if (state.equalsIgnoreCase("uncheck")) {
+                uncheckCheckbox(checkbox);
+            } else {
+                logger.warn("State should be 'check' or 'uncheck'");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
 
 }
 

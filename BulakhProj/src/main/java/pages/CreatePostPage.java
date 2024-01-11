@@ -1,5 +1,6 @@
 package pages;
 
+
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 
 public class CreatePostPage extends ParentPage {
+
 
 
     @FindBy(xpath = ".//input[@id='post-title']")
@@ -20,6 +22,9 @@ public class CreatePostPage extends ParentPage {
 
     @FindBy(xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
+
+    @FindBy(xpath = ".//input[@type='checkbox']")
+    private WebElement checkBoxIsUnique;
 
 
     public CreatePostPage(WebDriver webDriver) {
@@ -38,6 +43,7 @@ public class CreatePostPage extends ParentPage {
                 , isElementDisplayed(inputTitle));
         return this;
     }
+
     //fill the title field
     public CreatePostPage enterTitleInToInputTitle(String title) {
         enterTextInToInput(inputTitle, title);
@@ -66,4 +72,13 @@ public class CreatePostPage extends ParentPage {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
-}
+
+    public CreatePostPage setCheckboxState(String state){
+        checkCheckbox(checkBoxIsUnique);
+        return new CreatePostPage(webDriver);
+
+    }
+
+    }
+
+

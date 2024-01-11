@@ -37,6 +37,7 @@ public class MyProfilePage extends ParentPage{
         return this;
     }
 
+
     public MyProfilePage deletePostTillPresent(String postTitle) {
         List<WebElement> postsList = getPostsList(postTitle);
         int counter = 0;
