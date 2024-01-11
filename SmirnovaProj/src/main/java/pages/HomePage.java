@@ -12,8 +12,13 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public HomePage checkIsRedirectToHomePage() {
-        //TODO check url
+        checkUrlWithPattern();
         getHeader().checkIsButtonSignOutVisible();
         return this;
     }

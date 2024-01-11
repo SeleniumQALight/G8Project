@@ -74,8 +74,8 @@ public class CommonActionsWithElements {
             select.selectByVisibleText(text);
             logger.info(text + " was selected in DropDown " + getElementName(dropDown));
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            logger.error("Can't work with element");
+            Assert.fail("Can't work with element");
         }
     }
 
@@ -86,8 +86,8 @@ public class CommonActionsWithElements {
             select.selectByValue(value);
             logger.info(value + " was selected in DropDown " + getElementName(dropDown));
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            logger.error("Can't work with element");
+            Assert.fail("Can't work with element");
         }
     }
 
@@ -100,9 +100,11 @@ public class CommonActionsWithElements {
             String textFromElement = element.getText();
             Assert.assertEquals("Text in element not matched", expectedText, textFromElement);
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            logger.error("Can't work with element");
+            Assert.fail("Can't not work with element");
         }
     }
-
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementDisplayed(webElement));
+    }
 }
