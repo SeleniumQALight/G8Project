@@ -16,8 +16,8 @@ public class HomePage extends ParentPage {
         goToWebPage(Urls.HOME_PAGE_URL);
     }
 
-    public HomePage checkIsRedirectToHomePage(String url) {
-        assertUrl(url);
+    public HomePage checkIsRedirectToHomePage() {
+        assertUrl();
         getheaderElement().checkSignOutButtonIsVisible();
         return this;
     }
@@ -30,6 +30,10 @@ public class HomePage extends ParentPage {
         return new MainPage(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
 
     public HomePage openHomePageAndLoginIfNeeded() {
         MainPage mainPage = new MainPage(webDriver);
@@ -38,7 +42,7 @@ public class HomePage extends ParentPage {
             logger.info("User is already logged in");
         } else {
             mainPage.loginToProfile(TestData.VALID_LOGIN_UI, TestData.VALID_PASSWORD);
-            checkIsRedirectToHomePage(Urls.HOME_PAGE_URL);
+            checkIsRedirectToHomePage();
             logger.info("User is logged in");
         }
         return this;

@@ -1,10 +1,11 @@
-package signUpTests;
+package registrationTests;
 
 import baseTest.BaseTest;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
-public class SignUpTest extends BaseTest {
+public class ValidationMessagesTests extends BaseTest {
 
 
     @Test
@@ -26,6 +27,18 @@ public class SignUpTest extends BaseTest {
 
     }
 
+    /*@Test
+    @Ignore
+    public void validationMessagesTests() {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputUsernameRegistration("test");
+        pageProvider.loginPage().enterTextIntoInputEmailRegistration("test");
+        pageProvider.loginPage().enterTextIntoInputPasswordRegistration("test");
+        pageProvider.loginPage().clickOnButtonSignUp();
+        pageProvider.loginPage().checkTextValidationMessageForUserNameRegistrationField("Username must be at least 3 characters.");
+
+    }
+*/
 }
 
 

@@ -14,8 +14,13 @@ public class MyProfilePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativUrl() {
+        return "/profile/[a-zA-z0-9]*";
+    }
+
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-        //TODO check url
+        checkUrlWithPattern();
         // TODO check is page title correct
         return this;
     }
@@ -29,4 +34,28 @@ public class MyProfilePage extends ParentPage {
                 1, getPostsList(postTitle).size());
         return this;
     }
+
+    public MyProfilePage deletePostsTillPresent(String postTitle) {
+        List<WebElement> postsList = getPostsList(postTitle);
+        int counter = 0;
+        final int MaxPostsCount = 100;
+        while (!postsList.isEmpty() && counter < MaxPostsCount){
+            clickOnElement(postsList.get(0));// click on first post in the list клікнути на перший пост в списку
+            new PostPage(webDriver)
+                    .checkIsRedirectedToPostPage()
+                    .clickOnDeleteButton()
+                    .checkIsRedirectToMyProfilePage();
+            logger.info("Post with title " + postTitle + " was deleted");
+            postsList = getPostsList(postTitle);
+            counter++;//counter = counter + 1;
+        }
+        if (counter >= MaxPostsCount){
+            Assert.fail("There are more then 100 posts with title " + postTitle
+                    + " or Delete button does not work");
+        }
+        return this;
+    }
+
 }
+
+
