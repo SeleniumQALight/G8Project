@@ -15,11 +15,10 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = ".//div[@class='body-content'][2]//p")
     private WebElement BodyOnPostPage;
     @FindBy(xpath = "//i[contains(text(),' Note: This post was written for ')]")
-    private WebElement NoteOnPostPage;
-    @FindBy(xpath = "//i[contains(text(),' Note: This post was written for ')]")
 
     private HeaderElement headerElement;
     private String checkBoxIsThisPostUnique ="//div/p[contains(text(),'Is this post unique? : %s')]";
+    private String NoteOnPostPage = "//i[contains(text(),' Note: This post was written for')]";
 
 
     public PostPage(WebDriver webDriver) {
@@ -65,19 +64,8 @@ public class PostPage extends ParentPage {
     }
 
     public PostPage checkOfNoteText(String valueInDropDown) {
-        if (valueInDropDown.equals("One Person")) {
-            checkTextInElement(NoteOnPostPage, "Note: This post was written for One Person");
-            logger.info("Note: This post was written for One Person");
-        } else if (valueInDropDown.equals("All Users")) {
-            checkTextInElement(NoteOnPostPage, "Note: This post was written for All Users");
-            logger.info("Note: This post was written for All Users");
-        } else if (valueInDropDown.equals("Group Message")) {
-            checkTextInElement(NoteOnPostPage, "Note: This post was written for Group Message");
-            logger.info("Note: This post was written for Group Message");
-        }else {
-            logger.error("Can not check note text");
-            Assert.fail("Can not check note text");
-        }
+        checkIsElementVisible(webDriver.findElement(By.xpath(String.format(NoteOnPostPage, valueInDropDown))));
+
         return this;
     }
 }
