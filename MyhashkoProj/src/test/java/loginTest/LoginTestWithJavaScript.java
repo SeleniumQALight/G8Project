@@ -1,7 +1,6 @@
 package loginTest;
 
 import baseTest.BaseTest;
-import org.junit.Assert;
 import org.junit.Test;
 
 import static libs.TestData.VALID_LOGIN_UI;
