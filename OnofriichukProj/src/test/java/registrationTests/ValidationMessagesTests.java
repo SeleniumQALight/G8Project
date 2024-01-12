@@ -8,6 +8,10 @@ public class ValidationMessagesTests extends BaseTest {
     @Test
     @Ignore
     public void validationMessagesTest() {
-        //pageProvider.loginPage().openLoginPage();
-       // pageProvider.loginPage().enterTextIntoRegistration
+        pageProvider.loginPage();
+        pageProvider.loginPage().enterTextIntoRegistrationUserNameField("taras");
+        pageProvider.loginPage().enterTextIntoRegistrationEmailField("tr");
+        pageProvider.loginPage().enterTextIntoRegistrationPasswordField("tr");
+        pageProvider.loginPage().checkErrorsMessages(
+                "You must provide a valid email address.; Password must be at least 12 characters.");
 } }
