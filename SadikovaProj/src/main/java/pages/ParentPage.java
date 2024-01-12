@@ -1,11 +1,17 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+
+import java.util.ArrayList;
 
 // Все общее для всех страниц
 abstract public class ParentPage extends CommonActionsWithElements {
-    final String baseUrl = "https://aqa-complexapp.onrender.com";
+   final String baseUrl = "https://aqa-complexapp.onrender.com";
+   protected String homeUrl;
 
     // Конструктор
     public ParentPage(WebDriver webDriver) {
@@ -29,4 +35,31 @@ abstract public class ParentPage extends CommonActionsWithElements {
                             + "Actual result: " + webDriver.getCurrentUrl()
                     , webDriver.getCurrentUrl().matches(baseUrl + getRelativeUrl()));
         }
+
+    public void switchTab(int tab) {
+        try {
+            ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(tab));
+        } catch (Exception e) {
+            webDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL + "t");
+        }
+    }
+
+    public void openWindow() throws InterruptedException {
+        ((JavascriptExecutor) webDriver).executeScript("window.open();");
+    }
+
+    public void closeTab(int tabNumber) {
+        try {
+            ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(tabNumber));
+            webDriver.close();
+        } catch (Exception e) {
+            webDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL + "t");
+        }
+    }
+
+    public void refreshPage() {
+        webDriver.navigate().refresh();
+    }
 }

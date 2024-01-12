@@ -1,7 +1,6 @@
 package pages;
 
 import libs.TestData;
-import org.junit.Assert;
 import libs.Urls;
 import org.openqa.selenium.WebDriver;
 import pages.elements.HeaderElement;
@@ -26,7 +25,7 @@ public class HomePage extends ParentPage {
         return new HeaderElement(webDriver);
     }
 
-    public MainPage getMainPage(){
+    public MainPage getMainPage() {
         return new MainPage(webDriver);
     }
 
@@ -47,4 +46,7 @@ public class HomePage extends ParentPage {
         }
         return this;
     }
+
+
+
 }

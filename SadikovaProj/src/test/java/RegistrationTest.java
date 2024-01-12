@@ -8,7 +8,7 @@ public class RegistrationTest extends BaseTest {
     @Test
     public void registrationFormValidation() {
         pageProvider.mainPage().openMainPage();
-        pageProvider.mainPage().fillForm(TestData.INVALID_DATA, TestData.INVALID_DATA, TestData.INVALID_DATA)
+        pageProvider.mainPage().fillRegistrationForm(TestData.INVALID_DATA, TestData.INVALID_DATA, TestData.INVALID_DATA)
         .clickOnSignInForOurAppButton();
         pageProvider.mainPage().checkErrorMessage(0, ErrorMessage.USER_NAME_MUST_HAS_3_CHARACTERS);
         pageProvider.mainPage().checkErrorMessage(1, ErrorMessage.YOU_MUST_PROVIDE_VALID_ADDRESS);
