@@ -115,7 +115,7 @@ public class LoginPage extends ParentPage {
         checkIsElementNotVisible(inputLogin);
     }
 
-    public void checkUsernameFieltVisible() {
+    public void checkUsernameFieldVisible() {
         checkIsElementVisible(inputLogin);
     }
 
@@ -204,5 +204,40 @@ public class LoginPage extends ParentPage {
 
 
         return this;
+    }
+
+
+    public void fillUserNameWithTabKey(String username) {
+        checkFocusOnElementAndFillWithData(inputLogin, username);
+    }
+
+    public void fillPasswordFieldWithTabKey(String password){
+        checkFocusOnElementAndFillWithData(inputPassword, password);
+        pressEnterKey();
+    }
+
+    public void fillRegistrationUserNameFieldWithTabKey(String username){
+        checkFocusOnElementAndFillWithData(inputUsernameRegistration, username);
+    }
+
+    public void fillRegistrationEmailFieldWithTabKey(String email){
+        checkFocusOnElementAndFillWithData(inputEmailRegistration, email);
+    }
+
+    public void fillRegistrationPasswordFieldWithTabKey(String password){
+        checkFocusOnElementAndFillWithData(inputPasswordRegistration, password);
+        pressEnterKey();
+    }
+
+    public void redirectToNewTab() {
+            switchToNewTab(baseUrl);
+    }
+
+    public void switchToPreviousTab() {
+        switchToFirstTab();
+    }
+
+    public void refreshPage(){
+        webDriver.navigate().refresh();
     }
 }

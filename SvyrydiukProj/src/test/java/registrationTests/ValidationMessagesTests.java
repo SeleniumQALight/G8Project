@@ -37,6 +37,16 @@ public class ValidationMessagesTests extends BaseTest {
                 "You must provide a valid email address.;Password must be at least 12 characters.");
 
     }
+
+    @Test
+    public void validationMessagesTestsWithTABKey() {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().fillRegistrationUserNameFieldWithTabKey("ts");
+        pageProvider.loginPage().fillRegistrationEmailFieldWithTabKey("tr");
+        pageProvider.loginPage().fillRegistrationPasswordFieldWithTabKey("tr");
+        pageProvider.loginPage().checkErrorsMessages(
+                "Username must be at least 3 characters.;You must provide a valid email address.;Password must be at least 12 characters.");
+    }
 }
 
 
