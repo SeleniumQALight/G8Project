@@ -164,24 +164,24 @@ public class CommonActionsWithElements {
             }
         }
 
-
     }
 
     public void pressTabKey(){
         Actions actions = new Actions(webDriver);
         actions.sendKeys(Keys.TAB);
+        logger.info("Tab pressed");
     }
 
     public void enterTextWithKeys(WebElement element, String text){
-        Actions actions = new Actions(webDriver);
-        clickOnElement(element);
-        actions.sendKeys(Keys.CONTROL + "a");
+        element.sendKeys(Keys.CONTROL + "a");
         element.sendKeys(Keys.DELETE);
         element.sendKeys(text);
+        logger.info("Filled field: " + text);
     }
 
     public void pressEnter(WebElement element){
         element.sendKeys(Keys.ENTER);
+        logger.info("Element is clicked");
     }
 
 

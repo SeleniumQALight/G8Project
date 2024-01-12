@@ -53,9 +53,9 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
-    public void fillInputAndRefreshPage(){
+    public void fillInputAndRefreshPage() {
         pageProvider.mainPage().openMainPage();
-        pageProvider.mainPage().fillLoginForm(TestData.VALID_LOGIN_UI,TestData.VALID_PASSWORD);
+        pageProvider.mainPage().fillLoginForm(TestData.VALID_LOGIN_UI, TestData.VALID_PASSWORD);
         pageProvider.mainPage().refreshPage();
         pageProvider.mainPage().clickOnButtonSignIn();
         pageProvider.headerElement().checkSignOutButtonIsNotVisible();
@@ -70,13 +70,9 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.mainPage().enterLoginFieldWithKeys(VALID_LOGIN_UI)
                 .pressTabKey();
         pageProvider.mainPage().enterPasswordFieldWithKeys(VALID_PASSWORD)
-        .pressTabKey();
-        pageProvider.mainPage().pressTabKey();
+                .pressTabKey();
         pageProvider.mainPage().pressSignInButton();
         pageProvider.headerElement().checkSignOutButtonIsVisible();
-
-
-
 
 
     }

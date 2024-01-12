@@ -7,6 +7,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 // Все общее для всех страниц
 abstract public class ParentPage extends CommonActionsWithElements {
@@ -40,13 +41,18 @@ abstract public class ParentPage extends CommonActionsWithElements {
         try {
             ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(tab));
-        } catch (Exception e) {
+            logger.info("Tab is switch and opened: " + tab);
+        }
+        catch (Exception e) {
             webDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL + "t");
+            logger.info("Was used hot keys " + tab);
+
         }
     }
 
     public void openWindow() throws InterruptedException {
         ((JavascriptExecutor) webDriver).executeScript("window.open();");
+        logger.info("New window is open");
     }
 
     public void closeTab(int tabNumber) {
@@ -54,12 +60,15 @@ abstract public class ParentPage extends CommonActionsWithElements {
             ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(tabNumber));
             webDriver.close();
+            logger.info("Page is closed");
         } catch (Exception e) {
             webDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL + "t");
+            logger.info("Was used hot key. Page is closed");
         }
     }
 
     public void refreshPage() {
         webDriver.navigate().refresh();
+        logger.info("Page is refreshed");
     }
 }
