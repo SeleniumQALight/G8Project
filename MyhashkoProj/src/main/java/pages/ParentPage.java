@@ -64,4 +64,8 @@ public abstract class ParentPage extends CommonActionsWhithElements{
     public void openNewTabInBrowser() {
         ((JavascriptExecutor) webDriver).executeScript("window.open();");
     }
+
+    public void refreshPage() {
+        webDriver.navigate().refresh();
+    }
 }
