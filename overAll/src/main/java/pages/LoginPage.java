@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage{
-    @FindBy(xpath = ".//i[contains(text(),'Sign I')]") // цей елемент створиться PageFactory в CommonActionsWithElements
+    @FindBy(xpath = ".//button[contains(text(),'Sign In')]") // цей елемент створиться PageFactory в CommonActionsWithElements
     private WebElement buttonSingIn;
 
     @FindBy(xpath = ".//input[@placeholder='Username']")
