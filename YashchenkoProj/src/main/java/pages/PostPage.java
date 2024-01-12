@@ -1,6 +1,6 @@
 package pages;
 
-import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +10,16 @@ public class PostPage extends ParentPage {
 
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
+
+    @FindBy(xpath = "//i")
+    private WebElement note;
+
+    @FindBy(xpath = "//i//u")
+    private WebElement noteValue;
+
+    private String isThisPostUniqueValue = "//p[contains(text(), 'Is this post unique? : %s')]";
+    private String createdPostTitle = "//h2[text()='%s']";
+    private String createdPostBody = "//p[text()='%s']";
 
     @FindBy(xpath = "//button[@data-original-title='Delete']")
     private WebElement trashIcon;
@@ -45,6 +55,31 @@ public class PostPage extends ParentPage {
         return headerElement = new HeaderElement(webDriver);
     }
 
+    public PostPage checkIsThisPostUniqueValuePresent(String value) {
+        checkIsElementVisible(webDriver.findElement(By.xpath(String.format(isThisPostUniqueValue, value))));
+        return this;
+    }
+
+    public PostPage checkCreatedPostTitle(String value) {
+        checkIsElementVisible(webDriver.findElement(By.xpath(String.format(createdPostTitle, value))));
+        return this;
+    }
+
+    public PostPage checkCreatedPostBody(String value){
+        checkIsElementVisible(webDriver.findElement(By.xpath(String.format(createdPostBody, value))));
+        return this;
+    }
+
+    public PostPage checkIsNoteAndNoteValuePresent() {
+        checkIsElementVisible(note);
+        checkIsElementVisible(noteValue);
+        return this;
+    }
+
+    public PostPage checkValueOfNote(String value) {
+        checkTextInElement(noteValue, value);
+        return this;
+    }
     public MyProfilePage clickOnTrashIcon() {
         clickOnElement(trashIcon);
         return new MyProfilePage(webDriver);
