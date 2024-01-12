@@ -168,7 +168,7 @@ public class CommonActionsWithElements {
 
     public void pressTabKey(){
         Actions actions = new Actions(webDriver);
-        actions.sendKeys(Keys.TAB);
+        actions.sendKeys(Keys.TAB).build().perform();
         logger.info("Tab pressed");
     }
 
@@ -180,8 +180,9 @@ public class CommonActionsWithElements {
     }
 
     public void pressEnter(WebElement element){
+        webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
         element.sendKeys(Keys.ENTER);
-        logger.info("Element is clicked");
+        logger.info("Enter key pressed on the element");logger.info("Element is clicked");
     }
 
 
