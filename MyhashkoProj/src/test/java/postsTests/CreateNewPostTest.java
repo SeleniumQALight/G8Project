@@ -28,7 +28,7 @@ public class CreateNewPostTest extends BaseTest {
                 .chekStatusOfCheckBoxIsThisPostUniqueOnPostPage("yes")
                 .checkTitleOnPostPageEqualsTileOnCreatePostPage()
                 .checkBodyOnPostPageEqualsTileOnCreatePostPage()
-                .checkOfNoteText(VALUE_IN_DROPDOWN)
+                .checkOfNoteTextValue(VALUE_IN_DROPDOWN)
 
         ;
 
