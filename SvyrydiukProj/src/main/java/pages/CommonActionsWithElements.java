@@ -143,76 +143,9 @@ public class CommonActionsWithElements {
     }
 
     //press button ENTER on keyboard using Actions class
-    protected void pressEnterKey() {
-        try {
-            Actions actions = new Actions(webDriver);
-            actions.sendKeys(Keys.ENTER).build().perform();
-            logger.info("Enter key was pressed");
-        } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
-        }
-    }
 
 
-    protected void pressTabKey() {
-        try {
-            Actions actions = new Actions(webDriver);
-            actions.sendKeys(Keys.TAB).build().perform();
-            logger.info("Tab key was pressed");
-        } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
-        }
-    }
 
-    //check focus in input field with java method and TAb key
-    protected void checkFocusOnElementAndFillWithData(WebElement element, String text) {
-        int counter = 0;
-        int MAX_ITERATIONS = 10;
-        do {
-            pressTabKey();
-            logger.info("Tab key was pressed");
-            counter++;
-        }
-        while (element.equals(webDriver.switchTo().activeElement()) == true && counter < MAX_ITERATIONS);
-        {
-            logger.info("Focus is on element " + getElementName(element));
-            enterTextIntoInput(element, text);
-        }
-    }
-//switch to new Tab in the same browser
+    //enter text into input field with Actions class
 
-    protected void switchToNewTab(String newTab) {
-        try {
-            webDriver.switchTo().newWindow(WindowType.TAB);
-            logger.info("Switched to new tab");
-        } catch (Exception e) {
-            logger.error("Can not switch to new tab");
-            Assert.fail("Can not switch to new tab");
-        }
-    }
-
-    //close tabs and switch to first tab
-    protected void switchToFirstTab() {
-        try {
-            webDriver.switchTo().window(webDriver.getWindowHandles().iterator().next());
-            logger.info("Tabs were closed");
-        } catch (Exception e) {
-            logger.error("Can not close tabs and switch to first tab");
-            Assert.fail("Can not close tabs and switch to first tab");
-        }
-    }
-
-    //refresh page
-
-    protected void refreshPage() {
-        try {
-            webDriver.navigate().refresh();
-            logger.info("Page was refreshed");
-        } catch (Exception e) {
-            logger.error("Can not refresh page");
-            Assert.fail("Can not refresh page");
-        }
-    }
 }

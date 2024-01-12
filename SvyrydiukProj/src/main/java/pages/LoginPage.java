@@ -4,9 +4,8 @@ import libs.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -206,38 +205,133 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    protected void pressEnterKey() {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys(Keys.ENTER).build().perform();
+            logger.info("Enter key was pressed");
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+
+    protected void pressTabKey() {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys(Keys.TAB).build().perform();
+            logger.info("Tab key was pressed");
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    //check focus in input field with java method and TAb key
+   /* protected void checkFocusOnElementAndFillWithData(WebElement element, String text) {
+        int counter = 0;
+        int MAX_ITERATIONS = 10;
+        do {
+            pressTabKey();
+            logger.info("Tab key was pressed");
+            // counter++;
+        }
+        while (element.equals(webDriver.switchTo().activeElement()));// && counter < MAX_ITERATIONS
+        {
+            logger.info("Focus is on element ");
+            enterTextIntoInputWithActions(text);
+        }
+    }*/
+//switch to new Tab in the same browser
+
+    protected void switchToNewTab(String newTab) {
+        try {
+            webDriver.switchTo().newWindow(WindowType.TAB);
+            logger.info("Switched to new tab");
+        } catch (Exception e) {
+            logger.error("Can not switch to new tab");
+            Assert.fail("Can not switch to new tab");
+        }
+    }
+
+    //close tabs and switch to first tab
+    protected void switchToFirstTab() {
+        try {
+            webDriver.switchTo().window(webDriver.getWindowHandles().iterator().next());
+            logger.info("Tabs were closed");
+        } catch (Exception e) {
+            logger.error("Can not close tabs and switch to first tab");
+            Assert.fail("Can not close tabs and switch to first tab");
+        }
+    }
+
+    //refresh page
+
+
+    protected void enterTextIntoInputWithActions(String text) {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys(text).build().perform();
+            logger.info(text + " was inputted into input ");
+        } catch (Exception e) {
+            logger.error("Can not work with element ");
+            Assert.fail("Can not work with element ");
+        }
+    }
+
 
     public void fillUserNameWithTabKey(String username) {
-        checkFocusOnElementAndFillWithData(inputLogin, username);
+
+        pressTabKey();
+        pressTabKey();
+        enterTextIntoInputWithActions(username);
+        //checkFocusOnElementAndFillWithData(inputLogin, username);
     }
 
-    public void fillPasswordFieldWithTabKey(String password){
-        checkFocusOnElementAndFillWithData(inputPassword, password);
+    public void fillPasswordFieldWithTabKey(String password) {
+        pressTabKey();
+        enterTextIntoInputWithActions(password);
         pressEnterKey();
     }
 
-    public void fillRegistrationUserNameFieldWithTabKey(String username){
-        checkFocusOnElementAndFillWithData(inputUsernameRegistration, username);
+    public void fillRegistrationUserNameFieldWithTabKey(String username) {
+        pressTabKey();
+        pressTabKey();
+        pressTabKey();
+        pressTabKey();
+        pressTabKey();
+        pressTabKey();
+        enterTextIntoInputWithActions(username);
     }
 
-    public void fillRegistrationEmailFieldWithTabKey(String email){
-        checkFocusOnElementAndFillWithData(inputEmailRegistration, email);
+    public void fillRegistrationEmailFieldWithTabKey(String email) {
+        pressTabKey();
+        enterTextIntoInputWithActions(email);
     }
 
-    public void fillRegistrationPasswordFieldWithTabKey(String password){
-        checkFocusOnElementAndFillWithData(inputPasswordRegistration, password);
+    public void fillRegistrationPasswordFieldWithTabKey(String password) {
+        pressTabKey();
+        enterTextIntoInputWithActions(password);
         pressEnterKey();
+
     }
 
     public void redirectToNewTab() {
-            switchToNewTab(baseUrl);
+        switchToNewTab(baseUrl);
     }
 
     public void switchToPreviousTab() {
         switchToFirstTab();
     }
 
-    public void refreshPage(){
-        webDriver.navigate().refresh();
+    public void refreshPage() {
+        try {
+            webDriver.navigate().refresh();
+            logger.info("Page was refreshed");
+        } catch (Exception e) {
+            logger.error("Can not refresh page");
+            Assert.fail("Can not refresh page");
+        }
     }
 }
