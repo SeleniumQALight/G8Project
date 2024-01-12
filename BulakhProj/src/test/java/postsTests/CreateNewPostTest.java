@@ -44,7 +44,7 @@ public class CreateNewPostTest  extends BaseTest {
 
         ;
 
-        pageProvider.homePage().openHomePageAndLoginIfNeeded();
+
 
 
     }

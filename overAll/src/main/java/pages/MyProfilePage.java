@@ -15,8 +15,13 @@ public class MyProfilePage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/profile/[a-zA-Z0-9]*";
+    }
+
     public MyProfilePage checkIsRedirectToMyProfilePage(){
-        // TODO check url
+        checkUrlWithPattern();
         // TODO check is unique element present
         return this;
     }
@@ -32,4 +37,31 @@ public class MyProfilePage extends ParentPage{
                 1, getPostsList(postTitle).size());
         return this;
     }
+
+    public MyProfilePage deletePostsTillPresent(String postTitle) {
+        List<WebElement> postsList = getPostsList(postTitle);
+        int counter = 0;
+        final int MAX_POST_COUNT = 100;
+        while (!postsList.isEmpty() && counter < MAX_POST_COUNT){
+            clickOnElement(postsList.get(0));
+            new PostPage(webDriver)
+                    .checkIsRedirectToPostPage()
+                    .clickOnDeleteButton()
+                    .checkIsRedirectToMyProfilePage();
+            logger.info("Post with title " + postTitle + " was deleted");
+            postsList = getPostsList(postTitle);
+            counter++;  // counter = counter + 1;
+        }
+        if (counter >= MAX_POST_COUNT){
+            Assert.fail("There are more than 100 posts with title " + postTitle);
+        }
+        return this;
+    }
+
+
+
+
+
+
+
 }
