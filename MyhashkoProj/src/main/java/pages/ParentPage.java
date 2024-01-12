@@ -1,11 +1,18 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+
+import java.util.ArrayList;
+
 
 // все загальне для сторінок
 public abstract class ParentPage extends CommonActionsWhithElements{
     final String baseUrl = "https://aqa-complexapp.onrender.com";
+
     // конструктор
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
@@ -33,5 +40,28 @@ public abstract class ParentPage extends CommonActionsWhithElements{
                         + "Actual result: " + webDriver.getCurrentUrl()
                 , webDriver.getCurrentUrl().matches(baseUrl + getRelativeUrl())
         );
+    }
+
+    public void switchToTab(int tab) {
+        try {
+            ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(tab));
+        } catch (Exception e) {
+            webDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL + "t");
+        }
+    }
+
+    public void closeTab(int tabNumber) {
+        try {
+            ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(tabNumber));
+            webDriver.close();
+        } catch (Exception e) {
+            webDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL + "t");
+        }
+    }
+
+    public void openNewTabInBrowser() {
+        ((JavascriptExecutor) webDriver).executeScript("window.open();");
     }
 }
