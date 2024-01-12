@@ -120,6 +120,19 @@ public class CommonActionsWhithElements {
         } else {
             logger.info("CheckBoxIsThisPostUnique is already unchecked");
         }
-
     }
+    protected void setStatusOfCheckBoxIsThisPostUnique(WebElement checkBoxIsSelected, String checked) {
+        switch (checked) {
+            case "check":
+                setCheckBoxIsThisPostUniqueChecked(checkBoxIsSelected);
+                break;
+            case "uncheck":
+                setCheckBoxIsThisPostUniqueUnchecked(checkBoxIsSelected);
+                break;
+            default:
+                logger.error("CheckBoxIsThisPostUnique should be check or unchecked");
+                Assert.fail("CheckBoxIsThisPostUnique should be check or unchecked");
+        }
+    }
+
 }
