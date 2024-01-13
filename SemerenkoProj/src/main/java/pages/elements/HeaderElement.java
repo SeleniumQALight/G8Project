@@ -1,6 +1,7 @@
 package pages.elements;
 
 import libs.TestData;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,15 +13,14 @@ import pages.MyProfilePage;
 
 // описує елементи які є в хедері залогіненого юзера
 public class HeaderElement extends CommonActionsWithElements {
-    //create new post
+    private String buttonMyProfileLocator = ".//a[@href='/profile/%s']";
+
     @FindBy(xpath = ".// a [@href='/create-post']")
     private WebElement buttonCreatePost;
 
     @FindBy(xpath = ".//button[@class='btn btn-sm btn-secondary']")
     private WebElement buttonSignOut;
 
-    @FindBy(xpath = ".//a[@href='/profile/%s']")
-    private WebElement buttonMyProfile;
 
     @FindBy(xpath = ".//span[@data-original-title='Chat']")
     private WebElement buttonChat;
@@ -37,7 +37,11 @@ public class HeaderElement extends CommonActionsWithElements {
     }
 
     private WebElement getButtonMyProfile(String username){
-        return webDriver.findElement(By.xpath(String.format(".//a[@href='/profile/%s']", username)));
+        try {
+            return webDriver.findElement(By.xpath(String.format(buttonMyProfileLocator, username)));
+        }catch(Exception e){
+            return null;
+        }
     }
 
     public boolean isButtonSignOutVisible() {
