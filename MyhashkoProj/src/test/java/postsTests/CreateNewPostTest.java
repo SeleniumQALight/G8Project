@@ -7,6 +7,7 @@ import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "TC_001_Myhashko " + Util.getDateAndTimeFormatted();
+    final String VALUE_IN_DROPDOWN = "One Person";
 
     @Test
     public void createNewPost() {
@@ -18,11 +19,16 @@ public class CreateNewPostTest extends BaseTest {
                 .enterTextIntoTitleField(POST_TITLE)
                 .enterTextIntoInputBody("Myhashko body")
                 //.selectTextInDropDown("Приватне повідомлення")
-                .selectValueInDropDown("One Person")
+                .selectValueInDropDown(VALUE_IN_DROPDOWN)
+                .setStatusOfCheckBoxIsThisPostUnique("check")
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .chekStatusOfCheckBoxIsThisPostUniqueOnPostPage("yes")
+                .checkTitleOnPostPageEqualsTileOnCreatePostPage()
+                .checkBodyOnPostPageEqualsTileOnCreatePostPage()
+                .checkOfNoteTextValue(VALUE_IN_DROPDOWN)
 
         ;
 
