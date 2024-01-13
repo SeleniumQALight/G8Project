@@ -12,7 +12,6 @@ import java.util.NoSuchElementException;
 // Все общее для всех страниц
 abstract public class ParentPage extends CommonActionsWithElements {
    final String baseUrl = "https://aqa-complexapp.onrender.com";
-   protected String homeUrl;
 
     // Конструктор
     public ParentPage(WebDriver webDriver) {
