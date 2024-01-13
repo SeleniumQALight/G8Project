@@ -16,6 +16,9 @@ public class RegisterFormMessagesCheckWhrnInvalidDataWithTabAndEnter extends Bas
         pageProvider.loginPage().pressTabKey(1); // 6. Tabom доклікати до поля Password в Реєстраційній формі
         pageProvider.loginPage().enterTextIntoField("tr"); // 7. Ввести не валідне значення в поле Password
         pageProvider.loginPage().pressEnterKey(); // 8. Натиснути кнопку Enter
-        pageProvider.loginPage().checkErrorMessages("Username must be at least 3 characters.;You must provide a valid email address.;Password must be at least 12 characters."); // 9. Перевірити що відобразилися три еррор меседжа
+        pageProvider.loginPage().checkErrorMessages("" +
+                "Username must be at least 3 characters.;" +
+                "You must provide a valid email address.;" +
+                "Password must be at least 12 characters."); // 9. Перевірити що відобразилися три еррор меседжа
     }
 }
