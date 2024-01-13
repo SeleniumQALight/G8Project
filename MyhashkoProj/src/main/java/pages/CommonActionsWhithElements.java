@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.Keys;
 
 import java.time.Duration;
 
@@ -135,4 +137,21 @@ public class CommonActionsWhithElements {
         }
     }
 
+    public void pressTabKey(){
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(Keys.TAB).build().perform();
+        logger.info("Tab key was pressed");
+    }
+
+    public void enterTextIntoField(String textForField) {
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(textForField).build().perform();
+        logger.info(textForField + " was entered into field");
+    }
+
+    public void pressEnterKey() {
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(Keys.ENTER).build().perform();
+        logger.info("Enter key was pressed");
+    }
 }
