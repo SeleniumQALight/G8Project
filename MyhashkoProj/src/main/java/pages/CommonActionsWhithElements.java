@@ -137,10 +137,12 @@ public class CommonActionsWhithElements {
         }
     }
 
-    public void pressTabKey(){
+    public void pressTabKey(int numberOfTabs) {
         Actions actions = new Actions(webDriver);
-        actions.sendKeys(Keys.TAB).build().perform();
-        logger.info("Tab key was pressed");
+        for (int i = 0; i < numberOfTabs; i++) {
+            actions.sendKeys(Keys.TAB).build().perform();
+        }
+        logger.info("Tab key was pressed " + numberOfTabs + " times");
     }
 
     public void enterTextIntoField(String textForField) {
