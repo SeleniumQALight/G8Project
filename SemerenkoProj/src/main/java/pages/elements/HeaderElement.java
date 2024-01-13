@@ -1,6 +1,7 @@
 package pages.elements;
 
 import libs.TestData;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,13 +16,10 @@ public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = ".// a [@href='/create-post']")
     private WebElement buttonCreatePost;
 
-    @FindBy(xpath = ".//a[@href='/profile/qaauto']")
-    private WebElement buttonProfile;
-
     @FindBy(xpath = ".//button[@class='btn btn-sm btn-secondary']")
     private WebElement buttonSignOut;
 
-    @FindBy(xpath = ".//a[@href='/profile/" + TestData.VALID_LOGIN_UI + "']")
+    @FindBy(xpath = ".//a[@href='/profile/%s']")
     private WebElement buttonMyProfile;
 
     @FindBy(xpath = ".//span[@data-original-title='Chat']")
@@ -38,6 +36,10 @@ public class HeaderElement extends CommonActionsWithElements {
         super(webDriver);
     }
 
+    private WebElement getButtonMyProfile(String username){
+        return webDriver.findElement(By.xpath(String.format(".//a[@href='/profile/%s']", username)));
+    }
+
     public boolean isButtonSignOutVisible() {
         return isElementDisplayed(buttonSignOut);
     }
@@ -47,7 +49,7 @@ public class HeaderElement extends CommonActionsWithElements {
         return new CreatePostPage(webDriver);
     }
     public MyProfilePage clickOnButtonProfile() {
-        clickOnElement(buttonProfile);
+        clickOnElement(getButtonMyProfile(TestData.VALID_LOGIN_UI));
         return new MyProfilePage(webDriver);
     }
 
@@ -77,12 +79,12 @@ public class HeaderElement extends CommonActionsWithElements {
     }
 
     public HeaderElement checkIsButtonMyProfileVisible() {
-        checkIsElementVisible(buttonMyProfile, "buttonMyProfile");
+        checkIsElementVisible(getButtonMyProfile(TestData.VALID_LOGIN_UI), "buttonMyProfile");
         return this;
     }
 
     public HeaderElement checkIsButtonMyProfileUnvisible() {
-        checkIsElementUnvisible(buttonMyProfile, "buttonMyProfile");
+        checkIsElementUnvisible(getButtonMyProfile(TestData.VALID_LOGIN_UI), "buttonMyProfile");
         return this;
     }
 
