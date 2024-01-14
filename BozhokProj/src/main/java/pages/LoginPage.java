@@ -1,11 +1,17 @@
 package pages;
 
 import libs.TestData;
+import libs.Util;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = " .//button[text()='Sign In']") // цей елемент створюється в CommonActionWithElements
@@ -162,6 +168,9 @@ public class LoginPage extends ParentPage {
         checkIsMessageAboutShortUsernameInRegistrationFormVisible("Username must be at least 3 characters.");
         checkIsMessageAboutShortEmailInRegistrationFormVisible("You must provide a valid email address.");
         checkIsMessageAboutShortPasswordInRegistrationFormVisible("Password must be at least 12 characters.");
+    }
+
+    private void clickOnButtonSignUpForOurApp() {
     }
 
     // check massage about short data in username in the registration form
