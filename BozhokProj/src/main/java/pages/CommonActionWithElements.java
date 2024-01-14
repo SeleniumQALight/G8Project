@@ -6,15 +6,22 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class CommonActionWithElements {
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
+    protected WebDriverWait webDriverWaite10, webDriverWaite15;
 
     public CommonActionWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // ініціалізує всі елементи сторінки опираючись на анотації @FindBy
+        webDriverWaite10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        webDriverWaite15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
     }
 
     protected void enterTextIntoInput(WebElement input, String text) {
@@ -38,6 +45,7 @@ public class CommonActionWithElements {
 
     protected void clickOnElement(WebElement element) {
         try {
+            webDriverWaite10.until(ExpectedConditions.elementToBeClickable(element));
             String elementName = getElementName(element);
             element.click();
             logger.info("Element was clicked " + elementName);

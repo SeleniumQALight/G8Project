@@ -19,9 +19,14 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativUrl() {
+        return "/";
+    }
+
 
     public HomePage checkIsredirectToHomePage() {
-        //TODO check url
+        checkUrl();
         Assert.assertTrue("Home page is not opened", getHeader().isButtonSignOutVisible());
         return this; //перевірка чи ми на сторінці
     }

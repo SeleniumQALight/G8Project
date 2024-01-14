@@ -1,24 +1,41 @@
 package postsTests;
 
 import baseTest.BaseTest;
+import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
+    final String POST_TITLE = "TC_001_Smirnova" + Util.getDateAndTimeFormatted();
+
     @Test
-    public void createNewPost(){
+    public void TC_001_createNewPost() {
         pageProvider.loginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
-                .enterTitleIntoInput("Smirnova test title")
+                .enterTitleIntoInput(POST_TITLE)
                 .enterTextIntoInputBody("test body")
-               // .selectTextInDropDown("Приватне повідомлення")
+                // .selectTextInDropDown("Приватне повідомлення")
                 .selectValueInDropDown("One Person")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
+        ;
+        pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .checkPostWithTitleIsPresent(POST_TITLE);
+    }
+
+    @After
+    public void deletePost() {
+        pageProvider.homePage()
+                .openHomePageAndLoginIfNeeded()
+                .getHeader().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostWhilePresent(POST_TITLE)
         ;
     }
 }

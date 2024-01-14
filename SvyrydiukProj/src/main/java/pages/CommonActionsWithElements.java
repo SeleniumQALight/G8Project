@@ -2,18 +2,27 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
+    protected WebDriverWait webDriverWait10, webDriverWait15;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this); // init all elements from this class @findby
+        PageFactory.initElements(webDriver, this); // init all elements from this class @FindBy
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
     }
 
     protected void enterTextIntoInput(WebElement input, String text) {
@@ -38,6 +47,7 @@ public class CommonActionsWithElements {
 
     protected void clickOnElement(WebElement element) {
         try {
+            webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             String elementName = getElementName(element);  // getTagName() - return name of element
             element.click();
             logger.info("Element was clicked " + elementName);
@@ -100,4 +110,47 @@ public class CommonActionsWithElements {
     protected void checkIsElementNotVisible(WebElement webElement) {
         Assert.assertFalse("Element is visible", isElementDisplayed(webElement));
     }
+
+    protected void setCheckboxChecked(WebElement checkbox) {
+        if (!checkbox.isSelected()) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox was checked");
+        }else {
+            logger.info("Checkbox already checked");
+        }
+    }
+
+
+    protected void setCheckboxUnchecked(WebElement checkbox) {
+        if (checkbox.isSelected()) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox was unchecked");
+        }else{
+            logger.info("Checkbox already unchecked");
+        }
+    }
+
+    protected void setCheckbox(String checked, WebElement checkbox) {
+        if (checked.equals("checked")) {
+            setCheckboxChecked(checkbox);
+        } else if (checked.equals("unchecked")) {
+            setCheckboxUnchecked(checkbox);
+        } else {
+            logger.error("Checkbox status should be 'checked' or 'unchecked'");
+            Assert.fail("Checkbox status should be 'checked' or 'unchecked'");
+        }
+    }
+
+    //press button ENTER on keyboard using Actions class
+    protected void pressEnterKey(){
+        try{
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys(Keys.ENTER).build().perform();
+            logger.info("Enter key was pressed");
+        }catch (Exception e){
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
 }

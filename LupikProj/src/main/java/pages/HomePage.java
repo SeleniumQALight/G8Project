@@ -14,13 +14,19 @@ public class HomePage extends ParrentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
 
     public HomePage checkIsRedirectToHomePage() {
-        // TODO check url
+        checkUrl();
         Assert.assertTrue("Invalid page - not Home Page"
                 , getHeader().isButtonSignOutVisible());
         return this;
     }
+
 
     public HeaderElement getHeader() {
         return new HeaderElement(webDriver);

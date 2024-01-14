@@ -14,14 +14,25 @@ public class CreatePostPage extends ParentPage {
     private WebElement dropDownSelectValue;
     @FindBy(xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
+    @FindBy(xpath = "//input[@type='checkbox']")
+    private WebElement checkBoxIsSelected;
+
+    private static String SavedTextOfTitleFieldWhichWasEnteredOnCreatePostPage;
+    private static String SavedTextOfBodyFieldWhichWasEnteredOnCreatePostPage;
 
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
     // check if we are on the Create Post page
     public CreatePostPage checkIsRedirectToCreatePostPage() {
-        // TODO check url
+        checkUrl();
         Assert.assertTrue("Invalid page - not Create Post page"
                 , isElementDisplayed(inputTitle));
     return this;
@@ -30,12 +41,22 @@ public class CreatePostPage extends ParentPage {
     // fill the title field
     public CreatePostPage enterTextIntoTitleField(String title) {
         enterTextIntoInput(inputTitle, title);
+        this.SavedTextOfTitleFieldWhichWasEnteredOnCreatePostPage = title;
         return this;
     }
 
-    public CreatePostPage enterTextIntoInputBody(String myhashkoBody) {
-        enterTextIntoInput(inputBody, myhashkoBody);
+    public static String getEnteredTitle() {
+        return SavedTextOfTitleFieldWhichWasEnteredOnCreatePostPage;
+    }
+
+    public CreatePostPage enterTextIntoInputBody(String Body) {
+        enterTextIntoInput(inputBody, Body);
+        this.SavedTextOfBodyFieldWhichWasEnteredOnCreatePostPage = Body;
         return this;
+    }
+
+    public static String getEnteredBody() {
+        return SavedTextOfBodyFieldWhichWasEnteredOnCreatePostPage;
     }
 
     // select Text in DropDown
@@ -54,4 +75,30 @@ public class CreatePostPage extends ParentPage {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
+
+    public CreatePostPage setStatusOfCheckBoxIsThisPostUnique(String checked) {
+        switch (checked) {
+            case "check":
+                checkCheckBoxIshisPostUnique();
+                break;
+            case "uncheck":
+                unCheckCheckBoxIshisPostUnique();
+                break;
+            default:
+                logger.error("CheckBoxIsThisPostUnique should be check or unchecked");
+                Assert.fail("CheckBoxIsThisPostUnique should be check or unchecked");
+        }
+        return this;
+    }
+
+    private CreatePostPage unCheckCheckBoxIshisPostUnique() {
+        setCheckBoxIsThisPostUniqueUnchecked(checkBoxIsSelected);
+        return this;
+    }
+
+    private CreatePostPage checkCheckBoxIshisPostUnique() {
+        setCheckBoxIsThisPostUniqueChecked(checkBoxIsSelected);
+        return this;
+    }
+
 }

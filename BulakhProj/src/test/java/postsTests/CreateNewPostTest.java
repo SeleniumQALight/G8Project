@@ -8,6 +8,8 @@ import org.junit.Test;
 
 public class CreateNewPostTest  extends BaseTest {
     final String POST_TITLE = "TC_001_Bulakh" + Util.getDateAndTimeFormatted();
+    final String POST_BODY = "body text";
+    final String DROPDOWN_VALUE = "One Person";
     @Test
 
     public void TC_001_createNewPost() {
@@ -20,18 +22,29 @@ public class CreateNewPostTest  extends BaseTest {
                 .enterTextInToInputBody("body text")
             //    .selectTextInDropDown("Приватне повідомлення")
                 .selectValueInDropDown("One Person")
+                .setCheckboxState("check")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .checkIsCreatedPostHasTitle(POST_TITLE)
+                .checkIsCreatedPostHasBody(POST_BODY)
+                .checkIsThisPostUniqueTextPresent("yes")
+                .checkIsCreatedPostHasValueInDropDown(DROPDOWN_VALUE)
+
 
 
         ;
+
 
         pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkPostWithTitleIsPresent(POST_TITLE)
+
+
         ;
+
+
 
 
     }
@@ -40,6 +53,9 @@ public class CreateNewPostTest  extends BaseTest {
     public void deletePost(){
         pageProvider.homePage()
                 .openHomePageAndLoginIfNeeded()
+                .getHeader().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostTillPresent(POST_TITLE)
         ;
     }
 }

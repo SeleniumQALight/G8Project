@@ -25,9 +25,13 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/";
+    }
+
     public HomePage checkIsRedirectOnHomePage() {
-//        TODO check url
-        Assert.assertTrue("Invalid page - not Home Page ", getHeader().isButtonSignOutVisible());
+        checkUrl();
         return this;
     }
 
