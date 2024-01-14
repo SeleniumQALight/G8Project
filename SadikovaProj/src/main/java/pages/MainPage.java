@@ -89,6 +89,8 @@ public class MainPage extends ParentPage {
     }
 
 
+
+
     /**
      * NOT visible elements
      */
@@ -150,12 +152,18 @@ public class MainPage extends ParentPage {
     }
 
 
-    public MainPage fillForm(String name, String email, String pass) {
+    public MainPage fillRegistrationForm(String name, String email, String pass) {
         enterTextIntoInput(userNameField, name);
         enterTextIntoInput(emailField, email);
         enterTextIntoInput(passwordField, pass);
         return this;
 
+    }
+
+    public MainPage fillLoginForm(String login, String password) {
+        enterTextIntoInputLogin(login);
+        enterTextIntoInputPassword(password);
+        return new MainPage(webDriver);
     }
 
     public MainPage loginToProfile(String login, String password) {
@@ -166,10 +174,18 @@ public class MainPage extends ParentPage {
         return new MainPage(webDriver);
     }
 
-    public void registerUser(String name, String email, String pass){
-        fillForm(name,email,pass);
+    public MainPage enterLoginFieldWithKeys(String email){
+        enterTextWithKeys(loginFieldInHeader, email);
 
+   return new MainPage(webDriver); }
+
+    public MainPage enterPasswordFieldWithKeys(String email){
+        enterTextWithKeys(passwordFieldInHeader, email);
+        return new MainPage(webDriver); }
+
+    public MainPage pressSignInButton(){
+        pressEnter(signInButtonInHeader);
+        return new MainPage(webDriver);
     }
-
 }
 
