@@ -105,7 +105,7 @@ public class LoginTestAllInOneClass {
         try {
             boolean state = webDriver.findElement(By.xpath("//button[contains(text(),'Sign Out')]")).isEnabled();
             logger.info(!state + " is button unavailable");
-            return false;
+            return !state;
         } catch (Exception e) {
             logger.info("Sign Out is hidden");
             return true;
