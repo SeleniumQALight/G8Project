@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v111.input.Input;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -42,6 +43,14 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected String getElementProperty(WebElement webElement, String name) {
+        try {
+            return webElement.getDomProperty(name);
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
     protected void clickOnElement(WebElement element) {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
@@ -72,7 +81,7 @@ public class CommonActionsWithElements {
             logger.info("Element " + getElementName(element) + " is displayed -> " + state);
             return state;
         } catch (Exception e) {
-            logger.error("Can not work with "+ elementName);
+            logger.error("Can not work with " + elementName);
             //Assert.fail("Can not work with element");
             return false;
         }
@@ -107,7 +116,7 @@ public class CommonActionsWithElements {
     }
 
     protected void checkIsElementVisible(WebElement webElement, String elementName) {
-        Assert.assertTrue("Element "+ elementName+" is not visible", isElementDisplayed(webElement, elementName));
+        Assert.assertTrue("Element " + elementName + " is not visible", isElementDisplayed(webElement, elementName));
     }
 
     protected void checkIsElementUnvisible(WebElement webElement, String elementName) {
