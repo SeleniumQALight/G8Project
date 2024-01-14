@@ -39,16 +39,16 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage();
-        Assert.assertTrue("Button Sign Out is not visible", pageProvider.loginPage().getHeader().isButtonSignOutVisible());
+        pageProvider.loginPage().getHeader().checkIsButtonSignOutVisible();
         pageProvider.homePage().openNewTabInBrowser();
         pageProvider.homePage().switchToTabInBrowser(1);
         pageProvider.loginPage().openLoginPage();
-        Assert.assertTrue("Button Sign Out is not visible", pageProvider.loginPage().getHeader().isButtonSignOutVisible());
+        pageProvider.loginPage().getHeader().checkIsButtonSignOutVisible();
         pageProvider.loginPage().switchToTabInBrowser(0);
-        Assert.assertTrue("Button Sign Out is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
         pageProvider.homePage().switchToTabInBrowser(1);
         pageProvider.loginPage().closeTabAndSwitchToMainPage();
-        Assert.assertTrue("Button Sign Out is not visible", pageProvider.loginPage().getHeader().isButtonSignOutVisible());
+        pageProvider.loginPage().getHeader().checkIsButtonSignOutVisible();
     }
 
     @Test
@@ -58,7 +58,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
         pageProvider.loginPage().refreshPage();
         pageProvider.loginPage().clickOnButtonSignIn();
-        Assert.assertFalse("Button Sign Out is visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+        pageProvider.homePage().getHeader().checkIsButtonSignOutNotVisible();
     }
 
     @Test
@@ -69,6 +69,6 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().pressTabKey(1);
         pageProvider.loginPage().enterTextIntoInputActions(VALID_PASSWORD_UI);
         pageProvider.loginPage().pressEnterKey();
-        Assert.assertTrue("Button Sign Out is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
     }
 }
