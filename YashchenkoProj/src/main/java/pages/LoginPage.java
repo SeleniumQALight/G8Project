@@ -1,9 +1,16 @@
 package pages;
 
+import libs.Util;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static libs.TestData.DEFAULT_VALID_LOGIN_UI;
 import static libs.TestData.DEFAULT_VALID_PASSWORD_UI;
@@ -45,15 +52,30 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
     private WebElement passwordRegValidation;
 
+    @FindBy(xpath = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> listErrorMessages;
+
+    private String listErrorMessagesLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
     //Constructor
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
+    public void checkIsRedirectedToLoginPage() {
+        checkCurrentUrl();
+        checkIsButtonSignInVisible();
+    }
+
     public void openLoginPage() {
         try {
-            webDriver.get("https://aqa-complexapp.onrender.com");
-            logger.info("Login page was opened");
+            webDriver.get(baseUrl);
+            logger.info("Login page was opened " + baseUrl);
         } catch (Exception e) {
             logger.error("Can not open login page");
             Assert.fail("Can not open login page");
@@ -170,4 +192,25 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    public LoginPage checkErrorMessages(String messages){
+        String[] expectedErrors = messages.split(";");
+        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(
+                By.xpath(listErrorMessagesLocator), expectedErrors.length));
+
+        Util.waitABit(1);
+        Assert.assertEquals("Number of messages", expectedErrors.length, listErrorMessages.size());
+        ArrayList<String> actualErrors = new ArrayList<>();
+        for (WebElement element : listErrorMessages) {
+            actualErrors.add(element.getText());
+        }
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrors.length; i++) {
+            softAssertions.assertThat(actualErrors.get(i))
+                    .as("Error " + i)
+                    .isIn(actualErrors);
+        }
+        softAssertions.assertAll();
+        return this;
+    }
 }

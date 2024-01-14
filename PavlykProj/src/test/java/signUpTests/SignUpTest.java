@@ -1,6 +1,7 @@
 package signUpTests;
 
 import baseTest.BaseTest;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static libs.TestData.SMALL_INVALID_TEXT;
