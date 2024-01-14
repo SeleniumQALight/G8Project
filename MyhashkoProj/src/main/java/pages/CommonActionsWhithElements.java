@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.Keys;
 
 import java.time.Duration;
 
@@ -120,6 +122,38 @@ public class CommonActionsWhithElements {
         } else {
             logger.info("CheckBoxIsThisPostUnique is already unchecked");
         }
+    }
+    protected void setStatusOfCheckBoxIsThisPostUnique(WebElement checkBoxIsSelected, String checked) {
+        switch (checked) {
+            case "check":
+                setCheckBoxIsThisPostUniqueChecked(checkBoxIsSelected);
+                break;
+            case "uncheck":
+                setCheckBoxIsThisPostUniqueUnchecked(checkBoxIsSelected);
+                break;
+            default:
+                logger.error("CheckBoxIsThisPostUnique should be check or unchecked");
+                Assert.fail("CheckBoxIsThisPostUnique should be check or unchecked");
+        }
+    }
 
+    public void pressTabKey(int numberOfTabs) {
+        Actions actions = new Actions(webDriver);
+        for (int i = 0; i < numberOfTabs; i++) {
+            actions.sendKeys(Keys.TAB).build().perform();
+        }
+        logger.info("Tab key was pressed " + numberOfTabs + " times");
+    }
+
+    public void enterTextIntoField(String textForField) {
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(textForField).build().perform();
+        logger.info(textForField + " was entered into field");
+    }
+
+    public void pressEnterKey() {
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(Keys.ENTER).build().perform();
+        logger.info("Enter key was pressed");
     }
 }
