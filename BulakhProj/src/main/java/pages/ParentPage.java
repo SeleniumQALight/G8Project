@@ -3,6 +3,8 @@ package pages;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
+import java.util.logging.Logger;
+
 //все загальні методи для сторінок
 abstract public class ParentPage extends CommonActionsWithElements{
     final String baseUrl = "https://aqa-complexapp.onrender.com";
@@ -35,6 +37,11 @@ abstract public class ParentPage extends CommonActionsWithElements{
                 .matches(baseUrl + getRelativeUrl())
                 );
 
+    }
+
+    public void clickOnRefreshPage() {
+        webDriver.navigate().refresh();
+        logger.info("Page was refreshed");
     }
 }
 
