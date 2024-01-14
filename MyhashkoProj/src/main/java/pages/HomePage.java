@@ -21,6 +21,9 @@ public class HomePage extends ParentPage {
     }
 
     public HomePage checkIsRedirectToHomePage() {
+        webDriverWait15.until(
+                webDriver -> webDriver.getCurrentUrl().equals(baseUrl + getRelativeUrl())
+        );
         checkUrl();
         Assert.assertTrue("Invalid page - not Home page"
                 , getHeader().isButtonSignOutVisble());
