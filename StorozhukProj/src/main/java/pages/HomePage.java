@@ -9,8 +9,10 @@ import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
 
-    @FindBy(xpath = ".//button[contains(text(),'Sign Out')]") //цей елемент буде створенний PageFactory в CommonActionsWithElements
+    @FindBy(xpath = ".//button[contains(text(),'Sign Out')]")
+    //цей елемент буде створенний PageFactory в CommonActionsWithElements
     private WebElement buttonSingOut;
+
     private HeaderElement headerElement;
 
     public HomePage(WebDriver webDriver) {
