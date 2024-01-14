@@ -36,9 +36,6 @@ public class LoginPage extends ParentPage {
     private String listErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     @FindBy(xpath = "//div[text()='Invalid username/password.']")
     private WebElement validationMessage;
-    @FindBy(xpath = ".//input[@id='username-register']")
-    private WebElement inputUserName;
-
     @FindBy(xpath = ".//button[text()='Sign up for OurApp']")
     private WebElement buttonSingUp;
     @FindBy(xpath = ".//div[text()='Username must be at least 3 characters.']")
@@ -161,18 +158,6 @@ public class LoginPage extends ParentPage {
 
     public boolean isInputPasswordVisible() {
         return isElementDisplayed(inputPassword);
-    }
-
-    public void enterTextIntoInputUserNameRegister(String username) {
-        enterTextIntoInput(inputUserName, username);
-    }
-
-    public void enterTextIntoInputEmailRegister(String email) {
-        enterTextIntoInput(inputLogin, email);
-    }
-
-    public void enterTextIntoInputPasswordRegister(String password) {
-        enterTextIntoInput(inputPassword, password);
     }
 
     public void clickOnButtonSignUp() {
