@@ -1,6 +1,7 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import libs.Util;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -40,8 +41,11 @@ public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void validLoginWithSendKeys() {
         pageProvider.loginPage().openLoginPage();
-        pageProvider.loginPage().fillUserNameWithTabKey(VALID_LOGIN_UI);
-        pageProvider.loginPage().fillPasswordFieldWithTabKey(VALID_PASSWORD_UI);
+        pageProvider.loginPage().pressTabKey(2);
+        pageProvider.loginPage().enterTextIntoInputWithActions(VALID_LOGIN_UI);
+        pageProvider.loginPage().pressTabKey(1);
+        pageProvider.loginPage().enterTextIntoInputWithActions(VALID_PASSWORD_UI);
+        pageProvider.loginPage().pressEnterKey();
         Assert.assertTrue("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
     }
 
@@ -54,9 +58,12 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().openLoginPage();
         pageProvider.homePage().checkIsRedirectToHomePage();
         Assert.assertTrue("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+        pageProvider.loginPage().switchToTabByIndex(0);
         pageProvider.homePage().getHeader().clickOnButtonSignOut();
+        Util.waitABit(3);
+        Assert.assertTrue("Button Sign In is visible", pageProvider.loginPage().isButtonSignInVisible());
         pageProvider.loginPage().checkUsernameFieldVisible();
-        pageProvider.loginPage().switchToPreviousTab();
+        pageProvider.loginPage().switchToTabByIndex(1);
         pageProvider.loginPage().refreshPage();
         Assert.assertTrue("Button Sign In is visible", pageProvider.loginPage().isButtonSignInVisible());
         pageProvider.loginPage().checkUsernameFieldVisible();
@@ -65,8 +72,10 @@ public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void checkClearingEnteredDataInLoginAndPasswordFieldsAfterRefresh() {
         pageProvider.loginPage().openLoginPage();
-        pageProvider.loginPage().enterTextIntoInputLogin(VALID_LOGIN_UI);
-        pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
+        pageProvider.loginPage().pressTabKey(2);
+        pageProvider.loginPage().enterTextIntoInputWithActions(VALID_LOGIN_UI);
+        pageProvider.loginPage().pressTabKey(1);
+        pageProvider.loginPage().enterTextIntoInputWithActions(VALID_PASSWORD_UI);
         pageProvider.loginPage().refreshPage();
         pageProvider.loginPage().clickOnButtonSignIn();
         Assert.assertFalse("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());

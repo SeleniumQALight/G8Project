@@ -41,9 +41,13 @@ public class ValidationMessagesTests extends BaseTest {
     @Test
     public void validationMessagesTestsWithTABKey() {
         pageProvider.loginPage().openLoginPage();
-        pageProvider.loginPage().fillRegistrationUserNameFieldWithTabKey("ts");
-        pageProvider.loginPage().fillRegistrationEmailFieldWithTabKey("tr");
-        pageProvider.loginPage().fillRegistrationPasswordFieldWithTabKey("tr");
+        pageProvider.loginPage().pressTabKey(6);
+        pageProvider.loginPage().enterTextIntoInputWithActions("tr");
+        pageProvider.loginPage().pressTabKey(1);
+        pageProvider.loginPage().enterTextIntoInputWithActions("tr");
+        pageProvider.loginPage().pressTabKey(1);
+        pageProvider.loginPage().enterTextIntoInputWithActions("tr");
+        pageProvider.loginPage().pressEnterKey();
         pageProvider.loginPage().checkErrorsMessages(
                 "Username must be at least 3 characters.;You must provide a valid email address.;Password must be at least 12 characters.");
     }
