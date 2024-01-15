@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.devtools.v111.input.Input;
@@ -35,7 +36,15 @@ public class CommonActionsWithElements {
         }
     }
 
-    private String getElementName(WebElement webElement) {
+    protected WebElement getElement (String locator, String param){
+        try {
+            return webDriver.findElement(By.xpath(String.format(locator, param)));
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    protected String getElementName(WebElement webElement) {
         try {
             return webElement.getAccessibleName();
         } catch (Exception e) {

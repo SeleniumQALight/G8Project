@@ -46,27 +46,15 @@ public class PostPage extends ParentPage {
     }
 
     private WebElement getStateOfUniquePost(String state) {
-        try {
-            return webDriver.findElement(By.xpath(String.format(locatorStateOfUniquePost, state)));
-        } catch (Exception e) {
-            return null;
-        }
+        return getElement(locatorStateOfUniquePost, state);
     }
 
     private WebElement getCreatedPostBody(String bodyText) {
-        try {
-            return webDriver.findElement(By.xpath(String.format(locatorCreatedPostBody, bodyText)));
-        } catch (Exception e) {
-            return null;
-        }
+        return getElement(locatorCreatedPostBody, bodyText);
     }
 
     private WebElement getCreatedPostTitle(String titleText) {
-        try {
-            return webDriver.findElement(By.xpath(String.format(locatorCreatedPostTitle, titleText)));
-        } catch (Exception e) {
-            return null;
-        }
+        return getElement(locatorCreatedPostTitle, titleText);
     }
 
 
