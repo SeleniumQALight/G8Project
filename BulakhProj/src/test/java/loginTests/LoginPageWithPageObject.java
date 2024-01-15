@@ -12,7 +12,7 @@ import static libs.TestData.VALID_LOGIN_UI;
 import static libs.TestData.VALID_PASSWORD_UI;
 
 public class LoginPageWithPageObject extends BaseTest {
-    WebDriver webDriver;
+
 
     @Test
     public void validLogin() {
@@ -59,18 +59,19 @@ public class LoginPageWithPageObject extends BaseTest {
         Assert.assertTrue("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
 
 
-        LoginPage.openNewTab(webDriver);
-        LoginPage.switchToNextTab(webDriver);
+        pageProvider.homePage().openNewTab();
+        pageProvider.homePage().switchToNextTab();
 
-        pageProvider.homePage().openHomePageAndLoginIfNeeded();
+        pageProvider.loginPage().openLoginPage();
 
         pageProvider.homePage().getHeader().checkSignOutButtonIsVisible();
 
-        Util.switchTab(webDriver);
+        pageProvider.homePage().switchToTheMainTab();
 
         Assert.assertTrue("Button SignOut is not visible in the main tab", pageProvider.homePage().getHeader().isButtonSignOutVisible());
-
-        Util.closeTab(webDriver);
+        pageProvider.homePage().switchToNextTab();
+        pageProvider.homePage().closeTab();
+        pageProvider.homePage().switchToTheMainTab();
 
         Assert.assertTrue("Button SignOut is not visible after closing the new tab", pageProvider.homePage().getHeader().isButtonSignOutVisible());
     }

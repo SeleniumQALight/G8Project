@@ -44,24 +44,4 @@ public class Util {
         return dateFormat.format(date);
     }
 
-
-
-    public static void switchTab(WebDriver webDriver) {
-        try {
-            String currentHandle = webDriver.getWindowHandle();
-            webDriver.switchTo().window(currentHandle);
-        } catch (Exception e) {
-            System.out.println("Failed to switch to the main tab: " + e.getMessage());
-        }
-    }
-
-    public static void closeTab(WebDriver webDriver) {
-        try {
-            String currentHandle = webDriver.getWindowHandle();
-            webDriver.close();
-            webDriver.switchTo().window(currentHandle);
-        } catch (Exception e) {
-            System.out.println("Failed to close the tab: " + e.getMessage());
-        }
-    }
 }

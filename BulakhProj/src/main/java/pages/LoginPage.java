@@ -226,18 +226,5 @@ public class LoginPage  extends ParentPage{
         return this;
     }
 
-    public static void switchToNextTab(WebDriver webDriver) {
-        try {
-            String currentHandle = webDriver.getWindowHandle();
-            Set<String> handles = webDriver.getWindowHandles();
-            for (String handle : handles) {
-                if (!handle.equals(currentHandle)) {
-                    webDriver.switchTo().window(handle);
-                    return;
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Failed to switch to the next tab: " + e.getMessage());
-        }
-    }
+
 }

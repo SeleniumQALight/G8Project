@@ -5,7 +5,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 
-import static pages.LoginPage.switchToNextTab;
+import java.util.Set;
+
 
 //все загальні методи для сторінок
 abstract public class ParentPage extends CommonActionsWithElements{
@@ -43,11 +44,10 @@ abstract public class ParentPage extends CommonActionsWithElements{
 
     }
 
-    public static void openNewTab(WebDriver driver) {
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+    public void openNewTab() {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) webDriver;
         if (jsExecutor != null) {
             jsExecutor.executeScript("window.open();");
-            switchToNextTab(driver);
         } else {
             System.out.println("JavascriptExecutor is not initialized.");
         }
@@ -58,5 +58,39 @@ abstract public class ParentPage extends CommonActionsWithElements{
         webDriver.navigate().refresh();
         logger.info("Page was refreshed");
     }
+
+    public void switchToNextTab() {
+        try {
+            String currentHandle = webDriver.getWindowHandle();
+            Set<String> handles = webDriver.getWindowHandles();
+            for (String handle : handles) {
+                if (!handle.equals(currentHandle)) {
+                    webDriver.switchTo().window(handle);
+                    return;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Failed to switch to the next tab: " + e.getMessage());
+        }
+    }
+
+    public  void switchToTheMainTab() {
+        try {
+            String currentHandle = webDriver.getWindowHandle();
+            webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[0].toString());
+        } catch (Exception e) {
+            System.out.println("Failed to switch to the main tab: " + e.getMessage());
+        }
+    }
+
+    public  void closeTab() {
+        try {
+            String currentHandle = webDriver.getWindowHandle();
+            webDriver.close();
+        } catch (Exception e) {
+            System.out.println("Failed to close the tab: " + e.getMessage());
+        }
+    }
 }
+
 
