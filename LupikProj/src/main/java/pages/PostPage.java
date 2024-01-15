@@ -10,6 +10,11 @@ public class PostPage extends ParrentPage {
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
 
+     HeaderElement headerElement;
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
+
+
     @FindBy(xpath = ".//h2")
     private WebElement textPostTitle;
 
@@ -28,8 +33,13 @@ public class PostPage extends ParrentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
     public PostPage checkIsRedirectToPostPage() {
-        // TODO check url
+        checkUrlWithPattern();
         // TODO Check element
         return this;
 
@@ -78,5 +88,10 @@ public class PostPage extends ParrentPage {
             logger.error("Wrong parameter!!! status should be Yes or No");
         Assert.fail("Wrong parameter!!! status should be Yes or No");
         return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }

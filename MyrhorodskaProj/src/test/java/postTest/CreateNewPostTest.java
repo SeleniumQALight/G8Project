@@ -18,10 +18,15 @@ public class CreateNewPostTest extends BaseTest {
                 .enterTextInToInputTitle(POST_TITLE)
                 .enterTextInToInputBody("Myrhorodska Body")
                 .selectValueInDropDown("One Person")
+                .setStatusOfCheckBoxIsThisPostUnique("check")
                 .clickOnSaveNewButton()
                 .checkIsRedirectedToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .chekStatusOfCheckBoxIsThisPostUniqueOnPostPage("yes")
+                .checkTitleOnPostPageEqualsTileOnCreatePostPage()
+                .checkBodyOnPostPageEqualsTileOnCreatePostPage()
+                .checkOfNoteTextValue("VALUE_IN_DROPDOWN")
         ;
         pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
@@ -29,6 +34,9 @@ public class CreateNewPostTest extends BaseTest {
     }
     @After
     public void deletePost() {
-        pageProvider.homePage().openHomePageAndLoginIfNeed();
+        pageProvider.homePage().openHomePageAndLoginIfNeed()
+                        .getHeader().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostsTillPresent(POST_TITLE);
     }
 }

@@ -2,10 +2,17 @@ package pages;
 
 
 import libs.TestData;
+import libs.Util;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class LoginPage  extends ParentPage{
@@ -46,23 +53,46 @@ public class LoginPage  extends ParentPage{
     @FindBy(xpath = "//input[@placeholder='Username']")
     private WebElement loginInput;
 
+
     @FindBy(xpath = "//input[@placeholder='Password']")
     private WebElement passwordInput;
 
+    @FindBy(id = "username-register") // xpath = ".//*[@id='username-register']"
+    private WebElement inputUserNameRegistration;
+
+    @FindBy(id = "email-register") // xpath = ".//*[@id='email-register']"
+    private WebElement inputEmailRegistration;
+
+    @FindBy(id = "password-register") // xpath = ".//*[@id='password-register']"
+    private WebElement inputPasswordRegistration;
+
+    @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> listOfErrorMessages;
+
+    private String listOfErrorMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public void openLoginPage() {
         try{
-            webDriver.get("https://aqa-complexapp.onrender.com");
-            logger.info("Login page was opened");
+            webDriver.get(baseUrl);
+            logger.info("Login page was opened " + baseUrl);
         }catch (Exception e){
             logger.error("Can not open login page");
             Assert.fail("Can not open login page");
         }
+    }
+
+    public void checkIsRedirectToLoginPage() {
+        checkUrl();
     }
 
     public void enterTextInToInputLogin(String login) {
@@ -152,4 +182,46 @@ public class LoginPage  extends ParentPage{
     }
 
 
+    public LoginPage enterTextIntoRegistrationUsernameField(String username) {
+        enterTextInToInput(inputUserNameRegistration, username);
+        return this;
+    }
+
+
+    public LoginPage enterTextIntoRegistrationEmailField(String email) {
+        enterTextInToInput(inputEmailRegistration, email);
+        return this;
+    }
+
+    public LoginPage enterTextIntoRegistrationPasswordField(String password) {
+        enterTextInToInput(inputPasswordRegistration, password);
+        return this;
+    }
+
+
+    public LoginPage checkErrorMessages(String messages) {
+        // error1;error2 -> [error1, error2]
+        String[] expectedErrors = messages.split(";");
+        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorMessagesLocator), expectedErrors.length));
+
+        Util.waitABit(1);
+        Assert.assertEquals("Number of messages", expectedErrors.length, listOfErrorMessages.size());
+
+        ArrayList<String> actualErrors = new ArrayList<>();
+        for (WebElement element : listOfErrorMessages) {
+            actualErrors.add(element.getText());
+        }
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrors.length; i++) {
+            softAssertions.assertThat(expectedErrors[i])
+                    .as("Error " + i)
+                    .isIn(actualErrors);
+        }
+
+
+        softAssertions.assertAll(); // перевірка всіх асертів
+
+        return this;
+    }
 }

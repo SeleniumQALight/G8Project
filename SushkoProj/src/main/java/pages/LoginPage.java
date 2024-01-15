@@ -27,14 +27,23 @@ public class LoginPage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
+    public void checkIsRedirectToLoginPage(){
+        checkUrl();
+    }
+
     public RegistrationFormElement getRegistrationForm() {
         return registrationFormElement = new RegistrationFormElement(webDriver);
     }
 
     public LoginPage openLoginPage() {
         try{
-            webDriver.get("https://aqa-complexapp.onrender.com");
-            logger.info("Login page was opened");
+            webDriver.get(baseUrl);
+            logger.info("Login page was opened " + baseUrl);
         }catch (Exception e){
             logger.error("Can not open login page");
             Assert.fail("Can not open login page");

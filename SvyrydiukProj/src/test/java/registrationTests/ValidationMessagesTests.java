@@ -1,10 +1,11 @@
-package signUpTests;
+package registrationTests;
 
 import baseTest.BaseTest;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
-public class SignUpTest extends BaseTest {
+public class ValidationMessagesTests extends BaseTest {
 
 
     @Test
@@ -26,6 +27,16 @@ public class SignUpTest extends BaseTest {
 
     }
 
+    @Test
+    public void validationMessagesTests() {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputUsernameRegistration("taras");
+        pageProvider.loginPage().enterTextIntoInputEmailRegistration("tr");
+        pageProvider.loginPage().enterTextIntoInputPasswordRegistration("tr");
+        pageProvider.loginPage().checkErrorsMessages(
+                "You must provide a valid email address.;Password must be at least 12 characters.");
+
+    }
 }
 
 

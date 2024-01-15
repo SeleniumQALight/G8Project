@@ -2,10 +2,16 @@ package pages;
 
 
 import libs.Urls;
+import libs.Util;
+import org.assertj.core.api.SoftAssertions;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainPage extends ParentPage {
@@ -36,6 +42,12 @@ public class MainPage extends ParentPage {
     @FindBy(xpath = "//div[contains(@class,'liveValidateMessage--visible')]")
     private List<WebElement> errorBlockList;
 
+    private String errorsMessegesList = "//div[contains(@class,'liveValidateMessage--visible')]";
+
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
 
     public MainPage(WebDriver webDriver) {
         super(webDriver);
@@ -77,6 +89,8 @@ public class MainPage extends ParentPage {
     }
 
 
+
+
     /**
      * NOT visible elements
      */
@@ -101,6 +115,26 @@ public class MainPage extends ParentPage {
         return this;
     }
 
+    public MainPage checkErrorsMessage(String messages) {
+        String[] expectedErrors = messages.split(";");
+        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(errorsMessegesList), expectedErrors.length));
+        Util.waitABit(1);
+        Assert.assertEquals("Number of messages ", expectedErrors.length, errorBlockList.size());
+        ArrayList<String> actualErrors = new ArrayList<>();
+        for(WebElement element : errorBlockList){
+            actualErrors.add(element.getText());
+        }
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i =0; i < expectedErrors.length; i ++){
+            softAssertions.assertThat(expectedErrors[i])
+                    .as("Error: " + i)
+                    .isIn(actualErrors);
+        }
+        softAssertions.assertAll();
+        return this;
+    }
+
     /**
      * CLICKS
      */
@@ -118,12 +152,18 @@ public class MainPage extends ParentPage {
     }
 
 
-    public MainPage fillForm(String name, String email, String pass) {
+    public MainPage fillRegistrationForm(String name, String email, String pass) {
         enterTextIntoInput(userNameField, name);
         enterTextIntoInput(emailField, email);
         enterTextIntoInput(passwordField, pass);
         return this;
 
+    }
+
+    public MainPage fillLoginForm(String login, String password) {
+        enterTextIntoInputLogin(login);
+        enterTextIntoInputPassword(password);
+        return new MainPage(webDriver);
     }
 
     public MainPage loginToProfile(String login, String password) {
@@ -134,6 +174,18 @@ public class MainPage extends ParentPage {
         return new MainPage(webDriver);
     }
 
+    public MainPage enterLoginFieldWithKeys(String email){
+        enterTextWithKeys(loginFieldInHeader, email);
 
+   return new MainPage(webDriver); }
+
+    public MainPage enterPasswordFieldWithKeys(String email){
+        enterTextWithKeys(passwordFieldInHeader, email);
+        return new MainPage(webDriver); }
+
+    public MainPage pressSignInButton(){
+        pressEnter(signInButtonInHeader);
+        return new MainPage(webDriver);
+    }
 }
 
