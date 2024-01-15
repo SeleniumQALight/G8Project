@@ -27,18 +27,16 @@ public class ValidationMessagesTests extends BaseTest {
 
     }
 
-    /*@Test
-    @Ignore
+    @Test
     public void validationMessagesTests() {
         pageProvider.loginPage().openLoginPage();
-        pageProvider.loginPage().enterTextIntoInputUsernameRegistration("test");
-        pageProvider.loginPage().enterTextIntoInputEmailRegistration("test");
-        pageProvider.loginPage().enterTextIntoInputPasswordRegistration("test");
-        pageProvider.loginPage().clickOnButtonSignUp();
-        pageProvider.loginPage().checkTextValidationMessageForUserNameRegistrationField("Username must be at least 3 characters.");
+        pageProvider.loginPage().enterTextIntoInputUsernameRegistration("taras");
+        pageProvider.loginPage().enterTextIntoInputEmailRegistration("tr");
+        pageProvider.loginPage().enterTextIntoInputPasswordRegistration("tr");
+        pageProvider.loginPage().checkErrorsMessages(
+                "You must provide a valid email address.;Password must be at least 12 characters.");
 
     }
-*/
 }
 
 

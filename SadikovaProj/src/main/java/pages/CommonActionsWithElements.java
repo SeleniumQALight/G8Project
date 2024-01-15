@@ -2,19 +2,30 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
+
     protected Logger logger = Logger.getLogger(getClass());
+    protected WebDriverWait webDriverWait10, webDriverWait15;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // инициализирует все элементы на странице отмеченные аннотацией @FindBy
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+
     }
 
     /**
@@ -41,6 +52,7 @@ public class CommonActionsWithElements {
 
     protected void clickOnElement(WebElement element) {
         try {
+            webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             String elementName = getElementName(element);
             element.click();
             logger.info("Element was clicked " + elementName);
@@ -111,8 +123,6 @@ public class CommonActionsWithElements {
     }
 
 
-
-
     // select Text in dropDown
     protected void selectTextInDropDown(WebElement dropDown, String text) {
         try {
@@ -154,6 +164,28 @@ public class CommonActionsWithElements {
             }
         }
 
-
     }
+
+    public void pressTabKey(){
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(Keys.TAB).build().perform();
+        logger.info("Tab pressed");
+    }
+
+    public void enterTextWithKeys(WebElement element, String text){
+        element.sendKeys(Keys.CONTROL + "a");
+        element.sendKeys(Keys.DELETE);
+        element.sendKeys(text);
+        logger.info("Filled field: " + text);
+    }
+
+    public void pressEnter(WebElement element){
+        webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
+        element.sendKeys(Keys.ENTER);
+        logger.info("Enter key pressed on the element");
+    }
+
+
+
+
 }

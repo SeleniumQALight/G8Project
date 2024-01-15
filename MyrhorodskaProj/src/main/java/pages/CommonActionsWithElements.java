@@ -5,17 +5,26 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;//save browser //доступний в нащадках і в цьому класі (protected)
 
     protected Logger logger = Logger.getLogger(getClass());//save logger
+    protected WebDriverWait webDriverWait10, webDriverWait15;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); //ініціалізує всі елементи (передаємо вебдрайвер і цей клас) опираючись на анотації FindBy
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+
     }
+
 
     protected void enterTextInToInput(WebElement element, String text) {
         try {
@@ -39,6 +48,7 @@ public class CommonActionsWithElements {
 
     protected void clickOnElement(WebElement element) {
         try {
+            webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             String elementName = getElementName(element);
             element.click();
             logger.info("Element was clicked " + elementName);
@@ -106,5 +116,23 @@ public class CommonActionsWithElements {
     }
     protected void checkIsElementNotVisible(WebElement webElement) {
         Assert.assertFalse("Element is visible", isElementDisplayed(webElement));
+    }
+    protected void setCheckBoxIsThisPostUniqueChecked(WebElement checkBoxIsSelected) {
+        if (!checkBoxIsSelected.isSelected()) {
+            checkBoxIsSelected.click();
+            logger.info("CheckBoxIsThisPostUnique was checked");
+        } else {
+            logger.info("CheckBoxIsThisPostUnique is already checked");
+        }
+    }
+
+    protected void setCheckBoxIsThisPostUniqueUnchecked(WebElement checkBoxIsSelected) {
+        if (checkBoxIsSelected.isSelected()) {
+            checkBoxIsSelected.click();
+            logger.info("CheckBoxIsThisPostUnique was unchecked");
+        } else {
+            logger.info("CheckBoxIsThisPostUnique is already unchecked");
+        }
+
     }
 }

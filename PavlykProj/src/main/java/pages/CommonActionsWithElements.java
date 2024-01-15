@@ -2,18 +2,27 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
+    protected WebDriverWait webDriverWait10, webDriverWait15;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // инициализирует все элементы на странице отмеченные аннотацией @FindBy
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
     }
 
 
@@ -38,6 +47,8 @@ public class CommonActionsWithElements {
 
     protected void clickOnElement(WebElement element) {
         try {
+            //webDriverWait10.until(e->element.isDisplayed());
+            webDriverWait10.withMessage("Element is not clickable").until(ExpectedConditions.elementToBeClickable(element));
             String elementName = getElementName(element);
             element.click();
             logger.info("Element was clicked " + elementName);
@@ -141,4 +152,117 @@ public class CommonActionsWithElements {
         }
     }
 
+    //press button ENTER on keyboard using Actions class
+    // can be used in tests directly
+    public void pressEnterKey(){
+        try{
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys(Keys.ENTER).build().perform();
+            logger.info("Enter key was pressed");
+        }catch (Exception e){
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    /**
+     * Enter text into input using Actions class
+     * Just enter text without specify element
+     * Сan be used in tests directly
+     * @param text
+     */
+    public void enterTextIntoInputActions(String text) {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys(text).build().perform();
+            logger.info(text + " was inputted ");
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    //press button TAB on keyboard using Actions class
+    // can be used in tests directly
+    public void pressTabKey(int iterations){
+        try{
+            Actions actions = new Actions(webDriver);
+            for (int i = 0; i < iterations; i++) {
+                actions.sendKeys(Keys.TAB).build().perform();
+                logger.info("Tab key was pressed");
+            }
+        }catch (Exception e){
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    /**
+     * Press key on keyboard using Actions class
+     * Сan be used in tests directly
+     * @param key
+     */
+    public void pressKey(Keys key){
+        try{
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys(key).build().perform();
+            logger.info("Tab key was pressed");
+        }catch (Exception e){
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    /**
+     * Open new tab in browser by javascript
+     */
+    public void openNewTabInBrowser(){
+        try{
+            ((JavascriptExecutor)webDriver).executeScript("window.open()");
+            logger.info("New tab was opened");
+        }catch (Exception e){
+            logger.error("Can not open new tab");
+            Assert.fail("Can not open new tab");
+        }
+    }
+
+    /**
+     * Switch to tab in browser by index
+     */
+    public void switchToTabInBrowser(int tabIndex) {
+        try {
+            webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[tabIndex].toString());
+            logger.info("Switched to tab with index " + tabIndex);
+        } catch (Exception e) {
+            logger.error("Can not switch to tab with index " + tabIndex);
+            Assert.fail("Can not switch to tab with index " + tabIndex);
+        }
+    }
+
+    /**
+     * refresh page
+     */
+    public void refreshPage() {
+        try {
+            webDriver.navigate().refresh();
+            logger.info("Page was refreshed");
+        } catch (Exception e) {
+            logger.error("Can not refresh page");
+            Assert.fail("Can not refresh page");
+        }
+    }
+
+    /**
+     * close tab and switch to main page
+     */
+    public void closeTabAndSwitchToMainPage() {
+        try {
+            webDriver.close();
+            switchToTabInBrowser(0);
+            logger.info("Tab was closed and switched to main page");
+        } catch (Exception e) {
+            logger.error("Can not close tab and switch to main page");
+            Assert.fail("Can not close tab and switch to main page");
+        }
+    }
 }

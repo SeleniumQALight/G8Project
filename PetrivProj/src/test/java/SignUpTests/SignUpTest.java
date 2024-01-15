@@ -9,9 +9,9 @@ public class SignUpTest extends BaseTest {
     @Test
     public void validationMessagesInRegistrationForm() {
         pageProvider.loginPage().openLoginPage();
-        pageProvider.loginPage().enterTextIntoInputUserNameRegister("tr");
-        pageProvider.loginPage().enterTextIntoInputEmailRegister("tr");
-        pageProvider.loginPage().enterTextIntoInputPasswordRegister("tr");
+        pageProvider.loginPage().enterTextIntoRegistrationUserNameField("tr");
+        pageProvider.loginPage().enterTextIntoRegistrationEmailField("tr");
+        pageProvider.loginPage().enterTextIntoRegistrationPasswordField("tr");
         pageProvider.loginPage().clickOnButtonSignUp();
         Assert.assertTrue("Validation Message For User Name Register Input is not visible", pageProvider.loginPage().isValidationMessageForUserNameRegisterInputDisplayed());
         pageProvider.loginPage().checkTextInValidationMessageForUserNameRegisterInput("Username must be at least 3 characters.");

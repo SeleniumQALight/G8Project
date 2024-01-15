@@ -3,9 +3,16 @@ package pages;
 import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
+
+    @FindBy(xpath = ".//button[contains(text(),'Sign Out')]")
+    //цей елемент буде створенний PageFactory в CommonActionsWithElements
+    private WebElement buttonSingOut;
+
     private HeaderElement headerElement;
 
     public HomePage(WebDriver webDriver) {
@@ -17,6 +24,10 @@ public class HomePage extends ParentPage {
         return "/";
     }
 
+
+    public boolean isButtonSignOutVisible() {
+        return isElementDisplayed(buttonSingOut);
+    }
 
     public HomePage checkIsRedirectToHomePage() {
         checkCurrentUrl();
@@ -43,4 +54,5 @@ public class HomePage extends ParentPage {
         }
         return this;
     }
+
 }

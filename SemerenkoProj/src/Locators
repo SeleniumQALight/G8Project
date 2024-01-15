@@ -3,6 +3,10 @@ input_username_register =  ".//input[@id='username-register']"
 input_email_register =  ".//input[@id='email-register']"
 input_password_register =  ".//input[@id='password-register']"
 
+div_username_worning_messege = ".//div[contains(text(),'Username must be at least 3 characters.')]"
+div_email_worning_messege = ".//div[contains(text(),'You must provide a valid email address.')]"
+div_password_worning_messege = ".//div[contains(text(),'Password must be at least 12 characters.')]"
+
 input_username_signin = ".//input[@placeholder='Username']"
 input_password_signin = ".//input[@placeholder='Password']"
 
@@ -14,9 +18,12 @@ div_failSignIn = ".//div[@class="alert alert-danger text-center" and contains(te
 #HomePage
 button_signout = ".//button[@class='btn btn-sm btn-secondary']"
 button_createPost = ".// a [@href='/create-post']"
+button_chat = ".//span[@data-original-title='Chat']"
 
 a_my_profile = ".//a[@href='/profile/qaauto']"
 a_search = ".//a[@data-original-title='Search']"
+
+span_user_name = ".//span[contains (text(), "qaauto")]"
 
 text_hello = ".//h2 [contains(text(), "Hello")]"
 

@@ -5,16 +5,23 @@ import org.openqa.selenium.WebDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
+    protected WebDriverWait webDriverWait10, webDriverWait15;
 
     public CommonActionsWithElements(WebDriver webDriver) {
-
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // initialize all elements
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
     }
 
     protected void enterTextIntoInput(WebElement input, String text) {
@@ -38,11 +45,13 @@ public class CommonActionsWithElements {
 
     protected void clickOnElement(WebElement element) {
         try {
+            webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             String elementName = getElementName(element);
             element.click();
             logger.info("Element was clicked " + elementName);
         } catch (Exception e) {
             logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
         }
     }
 
@@ -54,6 +63,15 @@ public class CommonActionsWithElements {
         } catch (Exception e) {
             logger.info("Element is not displayed");
             return false;
+        }
+    }
+
+    protected WebElement findElementByXpath(String xpath) {
+        try {
+            WebElement element = webDriver.findElement(org.openqa.selenium.By.xpath(xpath));
+            return element;
+        } catch (Exception e) {
+            return null;
         }
     }
 
@@ -83,6 +101,9 @@ public class CommonActionsWithElements {
 
     protected void checkIsElementVisible(WebElement WebElement) {
         Assert.assertTrue("Element is not visible", isElementDisplayed(WebElement));
+    }
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementDisplayed(webElement));
     }
 
     protected void checkTextInElement(WebElement element, String expectedText) {

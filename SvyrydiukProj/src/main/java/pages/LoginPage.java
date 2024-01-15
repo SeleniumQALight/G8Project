@@ -1,11 +1,17 @@
 package pages;
 
 import libs.TestData;
+import libs.Util;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[text()='Sign In']")
@@ -17,14 +23,14 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPassword;
-    @FindBy(xpath = ".//input[@id='username-register']")
+    @FindBy(id = "username-register")// xpath = ".//input[@id='username-register']"
     private WebElement inputUsernameRegistration;
 
     @FindBy(xpath = ".//input[@id='username-register']/..//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private WebElement validationMessageForUserNameRegistrationField;
-    @FindBy(xpath = ".//input[@id='password-register']")
+    @FindBy(id = "password-register")//xpath = ".//input[@id='password-register']"
     private WebElement inputPasswordRegistration;
-    @FindBy(xpath = ".//input[@id='email-register']")
+    @FindBy(id = "email-register")//xpath = ".//input[@id='email-register']"
     private WebElement inputEmailRegistration;
     @FindBy(xpath = ".//input[@id='email-register']/following-sibling::div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private WebElement validationMessageForEmailRegistrationField;
@@ -32,6 +38,10 @@ public class LoginPage extends ParentPage {
     private WebElement validationMessageForPasswordRegistrationField;
     @FindBy(xpath = ".//button[text()='Sign up for OurApp']")
     private WebElement buttonSignUp;
+
+    @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> listErrorsMessages;
+    private String listErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
 
     public LoginPage(WebDriver webDriver) {
@@ -125,21 +135,23 @@ public class LoginPage extends ParentPage {
 
 
     //enter text into input username registration
-    public void enterTextIntoInputUsernameRegistration(String username) {
+    public LoginPage enterTextIntoInputUsernameRegistration(String username) {
         enterTextIntoInput(inputUsernameRegistration, username);
+        return this;
     }
 
     public boolean isValidationMessageForUserNameFieldVisible() {
         return isElementDisplayed(validationMessageForUserNameRegistrationField);
     }
 
-    public Object checkTextValidationMessageForUserNameRegistrationField(String message) {
+    public LoginPage checkTextValidationMessageForUserNameRegistrationField(String message) {
         checkTextInElement(validationMessageForUserNameRegistrationField, message);
         return this;
     }
 
-    public void enterTextIntoInputPasswordRegistration(String password) {
+    public LoginPage enterTextIntoInputPasswordRegistration(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
+        return this;
     }
 
     public boolean isValidationMessageForPasswordFieldVisible() {
@@ -154,8 +166,9 @@ public class LoginPage extends ParentPage {
         return isElementDisplayed(validationMessageForEmailRegistrationField);
     }
 
-    public void enterTextIntoInputEmailRegistration(String email) {
+    public LoginPage enterTextIntoInputEmailRegistration(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
+        return this;
     }
 
     public void checkTextValidationMessageForEmailRegistrationField(String message) {
@@ -164,5 +177,32 @@ public class LoginPage extends ParentPage {
 
     public void clickOnButtonSignUp() {
         clickOnElement(buttonSignUp);
+    }
+
+    public LoginPage checkErrorsMessages(String messages) {
+        //String[] errors = messages.split(";"); error1;error2 -> [error1, error2]
+        String[] expectedErrors = messages.split(";");
+
+        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(
+                By.xpath(listErrorsMessagesLocator), expectedErrors.length));
+
+        Util.waitABit(1);
+        Assert.assertEquals("Number of messages", expectedErrors.length, listErrorsMessages.size());
+
+        ArrayList<String> actualErrors = new ArrayList<>();
+        for (WebElement element : listErrorsMessages) {
+            actualErrors.add(element.getText());
+        }
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrors.length; i++) {
+            softAssertions.assertThat(expectedErrors[i])
+                    .as("Error " + i)
+                    .isIn(actualErrors);
+        }
+
+        softAssertions.assertAll(); // check all assertion
+
+
+        return this;
     }
 }
