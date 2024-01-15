@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.elements.HeaderElement;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,13 +78,11 @@ public class LoginPage extends ParentPage {
 
 
     public void enterTextIntoInputLogin(String login) {
-        //WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
-        enterTextIntoInput(inputLogin, login);
+             enterTextIntoInput(inputLogin, login);
     }
 
     public void enterTextIntoInputPassword(String password) {
-        //WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
-        enterTextIntoInput(inputPassword, password);
+               enterTextIntoInput(inputPassword, password);
     }
 
     public void enterTextRegUsernameInput(String username) {
@@ -100,8 +98,7 @@ public class LoginPage extends ParentPage {
     }
 
     public void clickOnButtonSignIn() {
-        //  WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
-        clickOnElement(buttonSignIn);
+               clickOnElement(buttonSignIn);
     }
 
     public void clickOnButtonSignUpForOurApp() {
@@ -111,8 +108,7 @@ public class LoginPage extends ParentPage {
 
     // is button Sign In visible
     public boolean isButtonSignInVisible() {
-        //WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
-        return isElementDisplayed(buttonSignIn);
+             return isElementDisplayed(buttonSignIn);
     }
 
     public boolean isInputLoginVisible() {
