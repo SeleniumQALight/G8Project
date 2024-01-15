@@ -61,8 +61,7 @@ public class CommonActionWithElements {
             logger.info("Element " + getElementName(element) + " is displayed -> " + state);
             return state;
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            logger.info("Element is not displayed");
             return false;
         }
     }

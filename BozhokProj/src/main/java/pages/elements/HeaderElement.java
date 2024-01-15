@@ -76,4 +76,8 @@ public class HeaderElement extends CommonActionWithElements {
         return isElementDisplayed(buttonMyProfile);
     }
 
+    public HeaderElement checkIsButtonCreatePostNotVisible() {
+        checkIsElementNotVisible(buttonCreatePost);
+        return this;
+    }
 }

@@ -61,7 +61,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.homePage().getHeader().isButtonSearchVisible();
         pageProvider.homePage().getHeader().isButtonChatVisible();
         pageProvider.homePage().getHeader().isButtonAvatarVisible();
-        pageProvider.homePage().getHeader().checkIsButtonCreatePostVisible();
+        pageProvider.homePage().getHeader().checkIsButtonCreatePostNotVisible();
         pageProvider.homePage().getHeader().isButtonSignOutVisible();
         pageProvider.loginPage().isButtonSignInVisible();
 
