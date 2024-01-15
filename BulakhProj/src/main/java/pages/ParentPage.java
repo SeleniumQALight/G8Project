@@ -1,9 +1,11 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
-import java.util.logging.Logger;
+
+import static pages.LoginPage.switchToNextTab;
 
 //все загальні методи для сторінок
 abstract public class ParentPage extends CommonActionsWithElements{
@@ -12,6 +14,8 @@ abstract public class ParentPage extends CommonActionsWithElements{
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
     }
+
+
 
     //метод для отримання частини url
     abstract protected String getRelativeUrl();
@@ -39,7 +43,18 @@ abstract public class ParentPage extends CommonActionsWithElements{
 
     }
 
-    public void clickOnRefreshPage() {
+    public static void openNewTab(WebDriver driver) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        if (jsExecutor != null) {
+            jsExecutor.executeScript("window.open();");
+            switchToNextTab(driver);
+        } else {
+            System.out.println("JavascriptExecutor is not initialized.");
+        }
+    }
+
+
+    public void refreshPage() {
         webDriver.navigate().refresh();
         logger.info("Page was refreshed");
     }

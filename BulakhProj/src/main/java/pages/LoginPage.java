@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 public class LoginPage  extends ParentPage{
@@ -223,5 +224,20 @@ public class LoginPage  extends ParentPage{
         softAssertions.assertAll(); // перевірка всіх асертів
 
         return this;
+    }
+
+    public static void switchToNextTab(WebDriver webDriver) {
+        try {
+            String currentHandle = webDriver.getWindowHandle();
+            Set<String> handles = webDriver.getWindowHandles();
+            for (String handle : handles) {
+                if (!handle.equals(currentHandle)) {
+                    webDriver.switchTo().window(handle);
+                    return;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Failed to switch to the next tab: " + e.getMessage());
+        }
     }
 }

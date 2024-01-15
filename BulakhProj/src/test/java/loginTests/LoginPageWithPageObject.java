@@ -5,6 +5,8 @@ import libs.Util;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import pages.LoginPage;
+
 
 import static libs.TestData.VALID_LOGIN_UI;
 import static libs.TestData.VALID_PASSWORD_UI;
@@ -57,18 +59,18 @@ public class LoginPageWithPageObject extends BaseTest {
         Assert.assertTrue("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
 
 
-        Util.openNewTab(webDriver);
-        Util.switchToNextTab(webDriver);
+        LoginPage.openNewTab(webDriver);
+        LoginPage.switchToNextTab(webDriver);
 
         pageProvider.homePage().openHomePageAndLoginIfNeeded();
 
-        Assert.assertTrue("Button SignOut is not visible in the new tab", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+        pageProvider.homePage().getHeader().checkSignOutButtonIsVisible();
 
-        Util.switchToMainTab(webDriver);
+        Util.switchTab(webDriver);
 
         Assert.assertTrue("Button SignOut is not visible in the main tab", pageProvider.homePage().getHeader().isButtonSignOutVisible());
 
-        Util.closeNewTab(webDriver);
+        Util.closeTab(webDriver);
 
         Assert.assertTrue("Button SignOut is not visible after closing the new tab", pageProvider.homePage().getHeader().isButtonSignOutVisible());
     }
@@ -78,7 +80,7 @@ public class LoginPageWithPageObject extends BaseTest {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextInToInputLogin(VALID_LOGIN_UI);
         pageProvider.loginPage().enterTextInToInputPassword(VALID_PASSWORD_UI);
-        pageProvider.loginPage().clickOnRefreshPage();
+        pageProvider.loginPage().refreshPage();
         pageProvider.loginPage().clickOnButtonSingIn();
 
         Assert.assertFalse("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
