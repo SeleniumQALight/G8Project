@@ -88,7 +88,7 @@ public class HeaderElement extends CommonActionsWithElements {
         return this;
     }
 
-    public HeaderElement CheckIsButtonChatVisible() {
+    public HeaderElement сheckIsButtonChatVisible() {
         checkIsElementVisible(buttonChat);
         return this;
     }
