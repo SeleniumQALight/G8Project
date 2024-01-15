@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.elements.HeaderElement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -132,6 +133,37 @@ public class LoginPage extends ParentPage {
             return false;
         }
     }
+
+        public LoginPage checkIsInputLoginNotVisible() {
+        checkIsElementNotVisible(inputLogin);
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordVisible() {
+        checkIsElementVisible(inputPassword);
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordNotVisible() {
+        checkIsElementNotVisible(inputPassword);
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInNotVisible() {
+        checkIsElementNotVisible(buttonSignIn);
+        return this;
+    }
+
+    public LoginPage checkIsInputLoginVisible() {
+    checkIsElementVisible(inputLogin);
+    return this;
+}
+
+    public LoginPage checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn);
+        return this;
+    }
+
 
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
