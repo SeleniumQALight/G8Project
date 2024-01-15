@@ -37,14 +37,14 @@ public class LoginPage extends ParentPage {
     private WebElement buttonSignUpForOurApp;
 
 
-//    @FindBy(xpath = ".//div[text()='Username must be at least 3 characters.']")
-//    private WebElement errorMessageUsername;
-//
-//    @FindBy(xpath = ".//div[text()='You must provide a valid email address.']")
-//    private WebElement errorMessageEmail;
-//
-//    @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
-//    private WebElement errorMessagePassword;
+    @FindBy(xpath = ".//div[text()='Username must be at least 3 characters.']")
+    private WebElement errorMessageUsername;
+
+    @FindBy(xpath = ".//div[text()='You must provide a valid email address.']")
+    private WebElement errorMessageEmail;
+
+    @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
+    private WebElement errorMessagePassword;
 
 
     @FindBy(xpath = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
@@ -87,15 +87,15 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterTextRegUsernameInput(String username) {
-            enterTextIntoInput(regUsername, username);
+            enterTextIntoInput(inputUserNameRegistration, username);
     }
 
     public void enterTextRegEmailInput(String email) {
-            enterTextIntoInput(regEmail, email);
+            enterTextIntoInput(inputEmailRegistration, email);
     }
 
     public void enterTextRegPasswordInput(String password) {
-             enterTextIntoInput(regPassword, password);
+             enterTextIntoInput(inputPasswordRegistration, password);
     }
 
     public void clickOnButtonSignIn() {
