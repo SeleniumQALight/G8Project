@@ -228,7 +228,6 @@ public class CommonActionsWithElements {
         }
     }
 
-
     public void refreshPage() {
         try {
             webDriver.navigate().refresh();
