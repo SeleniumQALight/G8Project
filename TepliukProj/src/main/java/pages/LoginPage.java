@@ -112,13 +112,13 @@ public class LoginPage extends ParentPage {
              return isElementDisplayed(buttonSignIn);
     }
 
-    public boolean isInputLoginVisible() {
-        return isElementDisplayed(inputLogin);
-    }
-
-    public boolean isInputPasswordVisible() {
-        return isElementDisplayed(inputPassword);
-    }
+//    public boolean isInputLoginVisible() {
+//        return isElementDisplayed(inputLogin);
+//    }
+//
+//    public boolean isInputPasswordVisible() {
+//        return isElementDisplayed(inputPassword);
+//    }
 
     public boolean isInputLoginVisible() {
         return isElementDisplayed(inputLogin);
