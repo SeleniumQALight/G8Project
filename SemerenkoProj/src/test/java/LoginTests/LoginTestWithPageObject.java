@@ -33,7 +33,7 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
-    public void loginValidation(){
+    public void loginValidation() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterIntoUsernameRegistration("tr")
                 .enterIntoEmailRegistration("tr")
