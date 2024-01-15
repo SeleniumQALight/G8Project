@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.elements.HeaderElement;
 
 
 import java.util.ArrayList;
@@ -109,6 +110,14 @@ public class LoginPage extends ParentPage {
     // is button Sign In visible
     public boolean isButtonSignInVisible() {
              return isElementDisplayed(buttonSignIn);
+    }
+
+    public boolean isInputLoginVisible() {
+        return isElementDisplayed(inputLogin);
+    }
+
+    public boolean isInputPasswordVisible() {
+        return isElementDisplayed(inputPassword);
     }
 
     public boolean isInputLoginVisible() {

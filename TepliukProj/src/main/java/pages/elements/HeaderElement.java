@@ -36,7 +36,14 @@ public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = ".//*[@alt='My profile']")
     private WebElement avatar;
 
+//    @FindBy(xpath = ".//input[@placeholder='Username']")
+//    private WebElement inputLogin;
 
+//    @FindBy(xpath = ".//input[@placeholder='Password']")
+//    private WebElement inputPassword;
+
+//    @FindBy(xpath = ".//button[contains(text(),'Sign In')]")
+//    private WebElement buttonSignIn;
 
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
@@ -81,7 +88,7 @@ public class HeaderElement extends CommonActionsWithElements {
         return this;
     }
 
-    public HeaderElement checkIsButtonChatVisible() {
+    public HeaderElement CheckIsButtonChatVisible() {
         checkIsElementVisible(buttonChat);
         return this;
     }
@@ -123,6 +130,34 @@ public class HeaderElement extends CommonActionsWithElements {
     }
 
 
+//public HeaderElement checkIsInputLoginVisible() {
+//    checkIsElementVisible(inputLogin);
+//    return this;
+//}
+
+//    public HeaderElement checkIsInputLoginNotVisible() {
+//        checkIsElementNotVisible(inputLogin);
+//        return this;
+//    }
+
+//    public HeaderElement checkIsInputPasswordVisible() {
+//        checkIsElementVisible(inputPassword);
+//        return this;
+//    }
+//    public HeaderElement checkIsInputPasswordNotVisible() {
+//        checkIsElementNotVisible(inputPassword);
+//        return this;
+//    }
+
+
+//    public HeaderElement checkIsButtonSignInNotVisible() {
+//        checkIsElementNotVisible(buttonSignIn);
+//        return this;
+//    }
+//    public HeaderElement checkIsButtonSignInVisible() {
+//        checkIsElementVisible(buttonSignIn);
+//        return this;
+//    }
 
     public LoginPage clickOnButtonSignOut() {
         clickOnElement(buttonSignOut);
