@@ -66,6 +66,15 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected WebElement findElementByXpath(String xpath) {
+        try {
+            WebElement element = webDriver.findElement(org.openqa.selenium.By.xpath(xpath));
+            return element;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     //select Text in dropdown
     protected void selectTextInDropDown(WebElement dropDown, String text) {
         try {
@@ -92,6 +101,9 @@ public class CommonActionsWithElements {
 
     protected void checkIsElementVisible(WebElement WebElement) {
         Assert.assertTrue("Element is not visible", isElementDisplayed(WebElement));
+    }
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementDisplayed(webElement));
     }
 
     protected void checkTextInElement(WebElement element, String expectedText) {
