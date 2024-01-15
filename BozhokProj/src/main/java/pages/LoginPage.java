@@ -26,13 +26,13 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@type='submit']")
     private WebElement buttonSignUpForOurApp;
 
-    @FindBy(xpath = "//*[@id='registration-form']/div[1]/div")
+    @FindBy(xpath = "//*[text()='Username must be at least 3 characters.']")
     private WebElement usernameErrorMessage;
 
-    @FindBy(xpath = "//*[@id='registration-form']/div[2]/div")
+    @FindBy(xpath = "//*[text()='You must provide a valid email address.']")
     private WebElement emailErrorMessage;
 
-    @FindBy(xpath = "//*[@id='registration-form']/div[3]/div")
+    @FindBy(xpath = "//*[text()='Password must be at least 12 characters.']")
     private WebElement passwordErrorMessage;
 
     @FindBy(id = "username-register")
@@ -126,14 +126,10 @@ public class LoginPage extends ParentPage {
     // check enty of short data in the registration form
     public void fillOutTheLoginFormRegistration() {
         openLoginPage();
-        enterTextRegistrationUserNameField(TestData.SHORT_LOGIN_UI);
-        enterTextRegistrationEmailField(TestData.SHORT_EMAIL);
-        enterTextRegistrationPasswordField(TestData.SHORT_PASSWORD_UI);
+        enterTextRegistrationUserNameField(TestData.SHORT_VALUE);
+        enterTextRegistrationEmailField(TestData.SHORT_VALUE);
+        enterTextRegistrationPasswordField(TestData.SHORT_VALUE);
         clickOnButtonSignUpForOurApp();
-        // TODO
-        checkIsMessageAboutShortUsernameInRegistrationFormVisible("Username must be at least 3 characters.");
-        checkIsMessageAboutShortEmailInRegistrationFormVisible("You must provide a valid email address.");
-        checkIsMessageAboutShortPasswordInRegistrationFormVisible("Password must be at least 12 characters.");
     }
 
     private void clickOnButtonSignUpForOurApp() {

@@ -108,28 +108,4 @@ public class CommonActionWithElements {
             Assert.fail("Can not work with element");
         }
     }
-
-    //    check Profile Name
-    protected void checkUserNameInProfile(WebElement element, String expectedName) {
-        try {
-            String textFromElement = element.getText();
-            Assert.assertEquals("Text in element not matched", expectedName, textFromElement);
-        } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
-        }
-    }
-
-    // metod to check for absence button Sign In, input Login, input Password
-//    protected boolean isElementNotDisplayed(WebElement element) {
-//        try {
-//            String elementName = getElementName(element);
-//            boolean state = !element.isDisplayed();
-//            logger.info("Element state" + state);
-//            return state;
-//        } catch (Exception e) {
-//            logger.error("Element is not visible");
-//            return true;
-//        }
-//    }
 }

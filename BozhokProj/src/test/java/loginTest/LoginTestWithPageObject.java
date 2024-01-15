@@ -40,8 +40,11 @@ public class LoginTestWithPageObject extends BaseTest {
 
     // check enty of short data in the registration form
     @Test
-    public void shortDataInRegistrationForm() {
+    public void shortDataInRegistrationFormTest() {
         pageProvider.loginPage().fillOutTheLoginFormRegistration();
+        pageProvider.loginPage().checkIsMessageAboutShortUsernameInRegistrationFormVisible("Username must be at least 3 characters.");
+        pageProvider.loginPage().checkIsMessageAboutShortEmailInRegistrationFormVisible("You must provide a valid email address.");
+        pageProvider.loginPage().checkIsMessageAboutShortPasswordInRegistrationFormVisible("Password must be at least 12 characters.");
     }
 
     // check Sign Out
