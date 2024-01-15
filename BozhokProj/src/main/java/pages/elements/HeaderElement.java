@@ -80,4 +80,9 @@ public class HeaderElement extends CommonActionWithElements {
         checkIsElementNotVisible(buttonCreatePost);
         return this;
     }
+
+    public HeaderElement checkIsProfileNameVisible(String login) {
+        checkTextInElement(profileName, login);
+        return this;
+    }
 }

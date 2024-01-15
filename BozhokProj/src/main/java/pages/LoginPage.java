@@ -205,4 +205,14 @@ public class LoginPage extends ParentPage {
         softAssertions.assertAll(); //check all assertion
         return this;
     }
+
+    public LoginPage checkIsInputLoginNotVisible() {
+        checkIsElementNotVisible(inputLogin);
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordNotVisible() {
+        checkIsElementNotVisible(inputPassword);
+        return this;
+    }
 }
