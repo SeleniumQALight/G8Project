@@ -48,22 +48,22 @@ public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void checkSignOutTest() {
         pageProvider.loginPage().openLoginPageAndFillLoginFormWithValidCred();
-        pageProvider.homePage().getHeader().isButtonSearchVisible();
-        pageProvider.homePage().getHeader().isButtonChatVisible();
-        pageProvider.homePage().getHeader().isButtonAvatarVisible();
+        pageProvider.homePage().getHeader().checkIsButtonSearchVisible();
+        pageProvider.homePage().getHeader().checkIsButtonChatVisible();
+        pageProvider.homePage().getHeader().checkIsButtonMyProfileVisible();
         pageProvider.homePage().getHeader().checkIsButtonCreatePostVisible();
-        pageProvider.homePage().getHeader().isButtonSignOutVisible();
-        pageProvider.loginPage().isButtonSignInVisible();
-        pageProvider.loginPage().isInputPasswordVisible();
-        pageProvider.loginPage().isInputLoginVisible();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
+        pageProvider.loginPage().checkIsButtonSignInNotVisible();
+        pageProvider.loginPage().checkIsInputPasswordNotVisible();
+        pageProvider.loginPage().checkIsInputLoginNotVisible();
         pageProvider.homePage().getHeader().clickOnButtonSignOut();
         pageProvider.loginPage().checkIsRedirectOnLoginPage();
-        pageProvider.homePage().getHeader().isButtonSearchVisible();
-        pageProvider.homePage().getHeader().isButtonChatVisible();
-        pageProvider.homePage().getHeader().isButtonAvatarVisible();
+        pageProvider.homePage().getHeader().checkIsButtonSearchNotVisible();
+        pageProvider.homePage().getHeader().checkIsButtonChatNotVisible();
+        pageProvider.homePage().getHeader().checkIsButtonMyProfileNotVisible();
         pageProvider.homePage().getHeader().checkIsButtonCreatePostNotVisible();
-        pageProvider.homePage().getHeader().isButtonSignOutVisible();
-        pageProvider.loginPage().isButtonSignInVisible();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutNotVisible();
+        pageProvider.loginPage().checkIsButtonSignInVisible();
 
         // input Login visible
         Assert.assertTrue("Input Login is not visible",

@@ -68,10 +68,6 @@ public class LoginPage extends ParentPage {
         }
     }
 
-//    public  void checkIsRedirectToLoginPage() {
-//        Assert.assertEquals("Invalid page", baseUrl + getRelativeUrl(), webDriver.getCurrentUrl());
-//    }
-
     public void enterTextIntoInputLogin(String login) {
         enterTextIntoInput(inputLogin, login);
     }
@@ -80,15 +76,29 @@ public class LoginPage extends ParentPage {
         enterTextIntoInput(inputPassword, password);
     }
 
+    public boolean isInputLoginVisible() {
+        return isElementDisplayed(inputLogin);
+    }
+
+    public boolean isInputPasswordVisible() {
+        return isElementDisplayed(inputPassword);
+    }
+
     public void clickOnButtonSignIn() {
 //        WebElement buttonSignIn = webDriver.findElement(
 //                By.xpath("//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignIn);
     }
 
+    public LoginPage checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn);
+        return this;
+    }
+
     // is button Sign In visible
-    public boolean isButtonSignInVisible() {
-        return isElementDisplayed(buttonSignIn);
+    public LoginPage checkIsButtonSignInNotVisible() {
+        checkIsElementNotVisible(buttonSignIn);
+        return this;
     }
 
     public boolean isMessageInvalidUsernamePasswordInVisible() {
@@ -157,13 +167,18 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-
-    public boolean isInputPasswordVisible() { //check
-        return isElementDisplayed(inputPassword);
+    public boolean isButtonSignInVisible() {
+        return isElementDisplayed(buttonSignIn);
     }
 
-    public boolean isInputLoginVisible() { //check
-        return isElementDisplayed(inputLogin);
+    public LoginPage checkIsInputPasswordNotVisible() {
+        checkIsElementNotVisible(inputPassword);
+        return this;
+    }
+
+    public LoginPage checkIsInputLoginNotVisible() {
+        checkIsElementNotVisible(inputLogin);
+        return this;
     }
 
     public LoginPage enterTextRegistrationUserNameField(String userName) {
@@ -203,16 +218,6 @@ public class LoginPage extends ParentPage {
         }
 
         softAssertions.assertAll(); //check all assertion
-        return this;
-    }
-
-    public LoginPage checkIsInputLoginNotVisible() {
-        checkIsElementNotVisible(inputLogin);
-        return this;
-    }
-
-    public LoginPage checkIsInputPasswordNotVisible() {
-        checkIsElementNotVisible(inputPassword);
         return this;
     }
 }

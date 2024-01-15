@@ -38,6 +38,16 @@ public class HeaderElement extends CommonActionWithElements {
         return isElementDisplayed(buttonSignOut);
     }
 
+    public HeaderElement checkIsButtonSignOutVisible() {
+        checkIsElementVisible(buttonSignOut);
+        return this;
+    }
+
+    public HeaderElement checkIsButtonSignOutNotVisible() {
+        checkIsElementNotVisible(buttonSignOut);
+        return this;
+    }
+
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
@@ -64,16 +74,34 @@ public class HeaderElement extends CommonActionWithElements {
         return new LoginPage(webDriver);
     }
 
-    public boolean isButtonSearchVisible() {
-        return isElementDisplayed(buttonSearch);
+    public HeaderElement checkIsButtonSearchVisible() {
+       checkIsElementVisible(buttonSearch);
+       return this;
     }
 
-    public boolean isButtonChatVisible() {
-        return isElementDisplayed(buttonChat);
+    public HeaderElement checkIsButtonSearchNotVisible() {
+        checkIsElementNotVisible(buttonSearch);
+        return this;
     }
 
-    public boolean isButtonAvatarVisible() {
-        return isElementDisplayed(buttonMyProfile);
+    public HeaderElement checkIsButtonChatVisible() {
+        checkIsElementVisible(buttonChat);
+        return this;
+    }
+
+    public HeaderElement checkIsButtonChatNotVisible() {
+        checkIsElementNotVisible(buttonChat);
+        return this;
+    }
+
+    public HeaderElement checkIsButtonMyProfileVisible() {
+        checkIsElementVisible(buttonMyProfile);
+        return this;
+    }
+
+    public HeaderElement checkIsButtonMyProfileNotVisible() {
+        checkIsElementNotVisible(buttonMyProfile);
+        return this;
     }
 
     public HeaderElement checkIsButtonCreatePostNotVisible() {
