@@ -42,7 +42,7 @@ public class SignOutTest extends BaseTest {
                 pageProvider.loginPage().isValidationMessageForRegistrationInputLoginDisplayed());
         pageProvider.loginPage().checkInputInRegistrationLogin(USER_NAME_MESSAGE);
         Assert.assertTrue("Validation Message For Email Register Input is not displayed",
-                pageProvider.loginPage().isValidationMessageForRegistrationInputLoginDisplayed());
+                pageProvider.loginPage().isValidationMessageForRegistrationInputEmailDisplayed());
         pageProvider.loginPage().checkInputInRegistrationEmail(EMAIL_MESSAGE);
         Assert.assertTrue("Validation Message For Password Register Input is not displayed",
                 pageProvider.loginPage().isValidationMessageForRegistrationInputPasswordDisplayed());

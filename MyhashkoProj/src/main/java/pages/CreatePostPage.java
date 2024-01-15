@@ -77,17 +77,7 @@ public class CreatePostPage extends ParentPage {
     }
 
     public CreatePostPage setStatusOfCheckBoxIsThisPostUnique(String checked) {
-        switch (checked) {
-            case "check":
-                checkCheckBoxIshisPostUnique();
-                break;
-            case "uncheck":
-                unCheckCheckBoxIshisPostUnique();
-                break;
-            default:
-                logger.error("CheckBoxIsThisPostUnique should be check or unchecked");
-                Assert.fail("CheckBoxIsThisPostUnique should be check or unchecked");
-        }
+        setStatusOfCheckBoxIsThisPostUnique(checkBoxIsSelected, checked);
         return this;
     }
 

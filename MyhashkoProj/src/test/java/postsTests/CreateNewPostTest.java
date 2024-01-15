@@ -28,16 +28,12 @@ public class CreateNewPostTest extends BaseTest {
                 .chekStatusOfCheckBoxIsThisPostUniqueOnPostPage("yes")
                 .checkTitleOnPostPageEqualsTileOnCreatePostPage()
                 .checkBodyOnPostPageEqualsTileOnCreatePostPage()
-                .checkOfNoteTextValue(VALUE_IN_DROPDOWN)
-
-        ;
+                .checkOfNoteTextValue(VALUE_IN_DROPDOWN);
 
         pageProvider.getPostPage().getHeader().clickOnButtonMyProfile()
                 .checkIsRedirectToMyProfilePage()
-                .checkPostWithTitleIsPresent(POST_TITLE)
-        ;
+                .checkPostWithTitleIsPresent(POST_TITLE);
     }
-
     @After
     public void deletePost() {
         pageProvider.homePage()
@@ -45,7 +41,6 @@ public class CreateNewPostTest extends BaseTest {
                 .getHeader().clickOnButtonMyProfile()
                 .checkIsRedirectToMyProfilePage()
                 .deletePostsTillPresent(POST_TITLE)
-                .checkIsRedirectToMyProfilePage()
-        ;
+                .checkIsRedirectToMyProfilePage();
     }
 }
