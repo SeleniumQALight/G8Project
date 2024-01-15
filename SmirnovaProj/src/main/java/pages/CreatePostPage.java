@@ -60,13 +60,13 @@ public class CreatePostPage extends ParentPage {
         return new PostPage(webDriver);
     }
 
-    public CreatePostPage setCheckBoxUniquePostChosen() {
-        setCheckBox(checkBoxUniquePost, "check");
+    public CreatePostPage setCheckBoxUniquePostUnchosen() {
+        setStateToCheckBox(checkBoxUniquePost, "uncheck");
         return this;
     }
 
-    public CreatePostPage setCheckBoxUniquePostUnchosen() {
-        setCheckBox(checkBoxUniquePost, "uncheck");
+    public CreatePostPage setCheckBoxUniquePostChosen() {
+        setStateToCheckBox(checkBoxUniquePost, "check");
         return this;
     }
 }

@@ -1,5 +1,7 @@
 package pages;
 
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,8 +16,7 @@ public class PostPage extends ParentPage {
     private WebElement bodyText;
     @FindBy(xpath = "//div[2][@class='body-content']")
     private WebElement bodyTextNote;
-    @FindBy(xpath = "//div[2]/div[3]")
-    private WebElement uniquePostElement;
+    private String uniquePostElement = "//p[contains(text(), 'Is this post unique? : %s')]";
 
     private HeaderElement headerElement;
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
@@ -73,8 +74,7 @@ public class PostPage extends ParentPage {
     }
 
     public PostPage checkPostUniqueState(String state) {
-        checkIsElementVisible(uniquePostElement);
-        checkTextInElement(uniquePostElement, "Is this post unique? : " + state);
+        checkIsElementVisible(webDriver.findElement(By.xpath(String.format(uniquePostElement, state))));
         return this;
     }
 }

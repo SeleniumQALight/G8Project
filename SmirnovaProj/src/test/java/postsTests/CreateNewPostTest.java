@@ -20,8 +20,8 @@ public class CreateNewPostTest extends BaseTest {
                 .enterTitleIntoInput(POST_TITLE)
                 .enterTextIntoInputBody(POST_BODY)
                 // .selectTextInDropDown("Приватне повідомлення")
-                //.setCheckBoxUniquePostChosen()
-                .setCheckBoxUniquePostUnchosen()
+                .setCheckBoxUniquePostChosen()
+                //.setCheckBoxUniquePostUnchosen()
                 .selectValueInDropDown("One Person")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
@@ -36,7 +36,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkTextInPostTitle(POST_TITLE)
                 .checkTextInPostBody(POST_BODY)
                 .checkTextInPostBodyNote(POST_BODY_NOTE)
-                .checkPostUniqueState("no")
+              .checkPostUniqueState("yes")
         ;
     }
 
