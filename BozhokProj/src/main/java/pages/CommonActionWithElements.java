@@ -95,6 +95,10 @@ public class CommonActionWithElements {
         Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
     }
 
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible, but should not", isElementDisplayed(webElement));
+    }
+
     // check text in element
     protected void checkTextInElement(WebElement element, String expectedText) {
         try {
@@ -118,13 +122,15 @@ public class CommonActionWithElements {
     }
 
     // metod to check for absence button Sign In, input Login, input Password
-    protected boolean isElementNotDisplayed(WebElement element) {
-        try {
-            String elementName = getElementName(element);
-            Assert.assertFalse("Element is visible " + elementName, element.isDisplayed());
-        } catch (Exception e) {
-            logger.error("Element is visible");
-        }
-        return false;
-    }
+//    protected boolean isElementNotDisplayed(WebElement element) {
+//        try {
+//            String elementName = getElementName(element);
+//            boolean state = !element.isDisplayed();
+//            logger.info("Element state" + state);
+//            return state;
+//        } catch (Exception e) {
+//            logger.error("Element is not visible");
+//            return true;
+//        }
+//    }
 }

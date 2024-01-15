@@ -13,7 +13,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().enterTextIntoInputLogin(VALID_LOGIN_UI);
         pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
         pageProvider.loginPage().clickOnButtonSignIn();
-        pageProvider.homePage().getHeader().isButtonCreatePostVisible();
+        pageProvider.homePage().getHeader().checkIsButtonCreatePostVisible();
         pageProvider.homePage().getHeader().isButtonProfileVisible();
         pageProvider.homePage().checkIsProfileNameVisible("qaauto");
         pageProvider.homePage().isInputLoginVisible();
@@ -31,7 +31,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().clickOnButtonSignIn();
 
         Assert.assertFalse("Button SignOut is not visible",
-                pageProvider.loginPage().isButtonSignOutVisible());
+                pageProvider.homePage().getHeader().isButtonSignOutVisible());
         Assert.assertTrue("Button SignIn is visible",
                 pageProvider.loginPage().isButtonSignInVisible());
         Assert.assertTrue("Message is not visible",
@@ -46,23 +46,23 @@ public class LoginTestWithPageObject extends BaseTest {
 
     // check Sign Out
     @Test
-    public void checkSignOutButton() {
+    public void checkSignOutTest() {
         pageProvider.loginPage().openLoginPageAndFillLoginFormWithValidCred();
         pageProvider.homePage().getHeader().isButtonSearchVisible();
         pageProvider.homePage().getHeader().isButtonChatVisible();
         pageProvider.homePage().getHeader().isButtonAvatarVisible();
-        pageProvider.homePage().getHeader().isButtonCreatePostVisible();
+        pageProvider.homePage().getHeader().checkIsButtonCreatePostVisible();
         pageProvider.homePage().getHeader().isButtonSignOutVisible();
-        pageProvider.homePage().getHeader().isButtonSignInVisible();
-        pageProvider.homePage().getHeader().isInputPasswordVisible();
-        pageProvider.homePage().getHeader().isInputLoginVisible();
+        pageProvider.loginPage().isButtonSignInVisible();
+        pageProvider.loginPage().isInputPasswordVisible();
+        pageProvider.loginPage().isInputLoginVisible();
         pageProvider.homePage().getHeader().clickOnButtonSignOut();
         pageProvider.loginPage().checkIsRedirectOnLoginPage();
-        pageProvider.loginPage().isButtonSearchVisible();
-        pageProvider.loginPage().isButtonChatVisible();
-        pageProvider.loginPage().isButtonAvatarVisible();
-        pageProvider.loginPage().isButtonCreatePostVisible();
-        pageProvider.loginPage().isButtonSignOutVisible();
+        pageProvider.homePage().getHeader().isButtonSearchVisible();
+        pageProvider.homePage().getHeader().isButtonChatVisible();
+        pageProvider.homePage().getHeader().isButtonAvatarVisible();
+        pageProvider.homePage().getHeader().checkIsButtonCreatePostVisible();
+        pageProvider.homePage().getHeader().isButtonSignOutVisible();
         pageProvider.loginPage().isButtonSignInVisible();
 
         // input Login visible

@@ -24,12 +24,6 @@ public class HeaderElement extends CommonActionWithElements {
     @FindBy(xpath = "//span[@class='text-white mr-2']")
     private WebElement profileName;
 
-    @FindBy(xpath = ".//input[@placeholder='Username']")
-    private WebElement successProfileName;
-
-    @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPassword;
-
     @FindBy(xpath = "//a[@data-original-title='Search']")
     private WebElement buttonSearch;
 
@@ -50,8 +44,9 @@ public class HeaderElement extends CommonActionWithElements {
     }
 
     // check is button Create Post visible
-    public boolean isButtonCreatePostVisible() {
-        return isElementDisplayed(buttonCreatePost);
+    public HeaderElement checkIsButtonCreatePostVisible() {
+        checkIsElementVisible(buttonCreatePost);
+        return this;
     }
 
     public MyProfilePage clickOnMyProfileButton() {
@@ -79,18 +74,6 @@ public class HeaderElement extends CommonActionWithElements {
 
     public boolean isButtonAvatarVisible() {
         return isElementDisplayed(buttonMyProfile);
-    }
-
-    public boolean isButtonSignInVisible() {
-        return isElementNotDisplayed(successProfileName);
-    }
-
-    public boolean isInputPasswordVisible() {
-        return isElementNotDisplayed(inputPassword);
-    }
-
-    public boolean isInputLoginVisible() {
-        return isElementNotDisplayed(successProfileName);
     }
 
 }
