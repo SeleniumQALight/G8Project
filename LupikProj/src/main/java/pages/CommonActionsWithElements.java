@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+
+
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
@@ -110,9 +112,52 @@ public class CommonActionsWithElements {
         try {
             String textFromElement = element.getText();
             Assert.assertEquals("Text in element not matched", expectedText, textFromElement);
+            logger.info("Text matched");
         } catch (Exception e) {
             logger.error("Can not get text from element");
             Assert.fail("Can not get text from element");
         }
+    }
+
+    protected void checkToCheckbox(WebElement checkbox) {
+        try {
+            if (!checkbox.isSelected()) {
+                checkbox.click();
+                logger.info("Checkbox was checked");
+            } else {
+                logger.info("Checkbox is already selected");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with checkbox");
+            Assert.fail("Can not work with checkbox");
+        }
+    }
+
+    protected void uncheckToCheckbox(WebElement checkbox) {
+        try {
+            if (checkbox.isSelected()) {
+                checkbox.click();
+                logger.info("Checkbox unchecked");
+            } else {
+                logger.info("Checkbox is already unselected");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with checkbox");
+            Assert.fail("Can not work with checkbox");
+        }
+    }
+
+    protected void setStatusForCheckbox(WebElement checkbox, String status) {
+        if (status.toUpperCase().equals("CHECK")) {
+            checkToCheckbox(checkbox);
+
+        } else if (status.toUpperCase().equals("UNCHECK")) {
+            uncheckToCheckbox(checkbox);
+
+        } else {
+            logger.info("Wrong status!!! status should be Check or Uncheck");
+            Assert.fail("Wrong status!!! status should be Check or Uncheck");
+        }
+
     }
 }
