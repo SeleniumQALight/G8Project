@@ -197,9 +197,9 @@ public class CommonActionsWithElements {
         }
     }
 
-    public void switchToNewTabInBrowser() {
+    public void switchToTabInBrowser(int tabNumber) {
         try {
-            webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[1].toString());
+            webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[tabNumber].toString());
             logger.info("Switched to new tab");
         } catch (Exception e) {
             logger.error("Can not switch to new tab");
@@ -207,20 +207,10 @@ public class CommonActionsWithElements {
         }
     }
 
-    public void switchToMainTabInBrowser() {
+    public void closeTab(int tabNumber) {
         try {
-            webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[0].toString());
-            logger.info("Switched to main tab");
-        } catch (Exception e) {
-            logger.error("Can not switch to main tab");
-            Assert.fail("Can not switch to main tab");
-        }
-    }
-
-    public void closeNewTabAndSwitchToMainTab() {
-        try {
+            webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[tabNumber].toString());
             webDriver.close();
-            switchToMainTabInBrowser();
             logger.info("New tab was closed and switched to main tab");
         } catch (Exception e) {
             logger.error("Can not close new tab and switch to main tab");
