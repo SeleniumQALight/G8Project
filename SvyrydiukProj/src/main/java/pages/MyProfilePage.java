@@ -57,5 +57,14 @@ public class MyProfilePage extends ParentPage {
         return this;
     }
 
+    public MyProfilePage clickOnPostWithTitle(String postTitle) {
+        //clickOnElement(getPostsList(postTitle).get(0)); //list can be empty!!!
+//        clickOnElement(webDriver.findElement(By.xpath(
+ //               String.format(postTitleLocator, postTitle)
+//        ))); //find element can throw exception if no elements found
+        clickOnElement(String.format(postTitleLocator, postTitle));
+
+        return this;
+    }
 
 }
