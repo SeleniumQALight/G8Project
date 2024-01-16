@@ -98,5 +98,45 @@ public class CommonActionsWithElements {
             Assert.fail("Can not get text from element");
         }
     }
+
+    protected void checkCheckBox(WebElement element) {
+        try {
+            if (!element.isSelected()) {
+                element.click();
+                logger.info("Checkbox was checked");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void uncheckCheckBox(WebElement element) {
+        try {
+            if (element.isSelected()) {
+                element.click();
+                logger.info("Checkbox was unchecked");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void setStateToCheckBox(WebElement element, String state) {
+        try {
+            if (state.equalsIgnoreCase("check")) {
+                checkCheckBox(element);
+            } else if (state.equalsIgnoreCase("uncheck")) {
+                uncheckCheckBox(element);
+            } else {
+                logger.error("State should be 'check' or 'uncheck'");
+                Assert.fail("State should be 'check' or 'uncheck'");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
 }
 
