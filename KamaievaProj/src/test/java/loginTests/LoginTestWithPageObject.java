@@ -76,4 +76,15 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getLoginPage().checkIsValidationMessageEmailRegisterVisible();
         pageProvider.getLoginPage().checkIsValidationMessagePasswordRegisterVisible();
     }
+
+    @Test
+    @Description("Check that inputted data is cleared after page refresh")
+    public void checkThatInputtedToLoginFormDataIsDeletedAfterRefreshPage() {
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputLogin("gaauto");
+        pageProvider.getLoginPage().enterTextIntoInputPassword("123456qwerty");
+        pageProvider.getLoginPage().refreshPage();
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+        pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
+     }
 }
