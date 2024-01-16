@@ -1,9 +1,17 @@
 package pages.elements;
 
+import libs.Util;
+import org.assertj.core.api.SoftAssertions;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.CommonActionsWithElements;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegistrationFormElement extends CommonActionsWithElements {
     @FindBy(xpath = ".//input[@id='username-register']")
@@ -27,20 +35,28 @@ public class RegistrationFormElement extends CommonActionsWithElements {
     @FindBy(xpath = ".//div[text() = 'Password must be at least 12 characters.']")
     private WebElement divValidationMessageForPassword;
 
+    @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> listErrorMessages;
+
+    private String listErrorMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
     public RegistrationFormElement(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public void enterTextIntoInputUsername(String username) {
+    public RegistrationFormElement enterTextIntoInputUsername(String username) {
         enterTextIntoInput(inputUsername, username);
+        return this;
     }
 
-    public void enterTextIntoInputEmail(String email) {
+    public RegistrationFormElement enterTextIntoInputEmail(String email) {
         enterTextIntoInput(inputEmail, email);
+        return this;
     }
 
-    public void enterTextIntoInputPassword(String password) {
+    public RegistrationFormElement enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
+        return this;
     }
 
     public void clickOnButtonSingUp() {
@@ -67,6 +83,30 @@ public class RegistrationFormElement extends CommonActionsWithElements {
 
     public RegistrationFormElement checkIsValidationMessageDisplayedForPasswordField() {
         checkIsElementVisible(divValidationMessageForPassword);
+        return this;
+    }
+
+    public RegistrationFormElement checkErrorMessages(String messages) {
+        String[] expectedErrors = messages.split(";");
+        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorMessagesLocator), expectedErrors.length));
+
+        Util.waitABit(1);
+        Assert.assertEquals("Number of messages ", expectedErrors.length, listErrorMessages.size());
+
+        ArrayList<String> actualErrors  = new ArrayList<>();
+        for (WebElement element : this.listErrorMessages){
+            actualErrors.add(element.getText());
+        }
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrors.length; i++){
+            softAssertions.assertThat(expectedErrors[i])
+                    .as("Error " + i)
+                    .isIn(actualErrors);
+        }
+        softAssertions.assertAll(); //check all assertion
+
+
         return this;
     }
 }

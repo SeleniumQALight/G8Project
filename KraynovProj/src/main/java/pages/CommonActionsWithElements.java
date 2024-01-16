@@ -100,6 +100,7 @@ public class CommonActionsWithElements {
         try{
             String textFromElement = element.getText();
             Assert.assertEquals("Text in element not matched", expectedText, textFromElement);
+            logger.info("Text '" + expectedText + "' in element matched");
         }catch (Exception e){
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
@@ -115,6 +116,49 @@ public class CommonActionsWithElements {
         }catch (Exception e){
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementDisplayed(webElement));
+    }
+
+    protected void checkCheckbox(WebElement checkbox) {
+        try {
+            if (!checkbox.isSelected()) {
+                checkbox.click();
+                logger.info("Checkbox was checked");
+            } else {
+                logger.info("Checkbox is already checked");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void uncheckCheckbox(WebElement checkbox) {
+        try {
+            if (checkbox.isSelected()) {
+                checkbox.click();
+                logger.info("Checkbox was unchecked");
+            } else {
+                logger.info("Checkbox is already unchecked");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void  setCheckboxState(WebElement checkbox, String state) {
+        if (state.equals("check")) {
+            checkCheckbox(checkbox);
+        } else if (state.equals("uncheck")) {
+            uncheckCheckbox(checkbox);
+        } else {
+            logger.error("State should be 'check' or 'uncheck'");
+            Assert.fail("State should be 'check' or 'uncheck'");
         }
     }
 }
