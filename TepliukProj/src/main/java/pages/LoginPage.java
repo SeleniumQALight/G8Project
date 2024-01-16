@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.elements.HeaderElement;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +35,24 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistration;
 
+    @FindBy(xpath = ".//button[contains(text(),'Sign up for OurApp')]")
+    private WebElement buttonSignUpForOurApp;
+
+
+    @FindBy(xpath = ".//div[text()='Username must be at least 3 characters.']")
+    private WebElement errorMessageUsername;
+
+    @FindBy(xpath = ".//div[text()='You must provide a valid email address.']")
+    private WebElement errorMessageEmail;
+
+    @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
+    private WebElement errorMessagePassword;
+
+
     @FindBy(xpath = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listErrorsMessages;
     private String listErrorsMessagesLocator
             = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
-
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -51,7 +66,7 @@ public class LoginPage extends ParentPage {
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
-            logger.info("Login page was opened" + baseUrl);
+            logger.info("Login page was opened " + baseUrl);
         } catch (Exception e) {
             logger.error("Can not open Login Page");
             Assert.fail("Can not open Login Page");
@@ -64,25 +79,46 @@ public class LoginPage extends ParentPage {
 
 
     public void enterTextIntoInputLogin(String login) {
-        //WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         enterTextIntoInput(inputLogin, login);
     }
 
     public void enterTextIntoInputPassword(String password) {
-        //WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         enterTextIntoInput(inputPassword, password);
     }
 
+    public void enterTextRegUsernameInput(String username) {
+        enterTextIntoInput(inputUserNameRegistration, username);
+    }
+
+    public void enterTextRegEmailInput(String email) {
+        enterTextIntoInput(inputEmailRegistration, email);
+    }
+
+    public void enterTextRegPasswordInput(String password) {
+        enterTextIntoInput(inputPasswordRegistration, password);
+    }
 
     public void clickOnButtonSignIn() {
-        //  WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignIn);
     }
 
+    public void clickOnButtonSignUpForOurApp() {
+        clickOnElement(buttonSignUpForOurApp);
+    }
+
+
     // is button Sign In visible
     public boolean isButtonSignInVisible() {
-        //WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         return isElementDisplayed(buttonSignIn);
+    }
+
+
+    public boolean isInputLoginVisible() {
+        return isElementDisplayed(inputLogin);
+    }
+
+    public boolean isInputPasswordVisible() {
+        return isElementDisplayed(inputPassword);
     }
 
     public boolean isErrorMessageVisible() {
@@ -95,6 +131,37 @@ public class LoginPage extends ParentPage {
             return false;
         }
     }
+
+    public LoginPage checkIsInputLoginNotVisible() {
+        checkIsElementNotVisible(inputLogin);
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordVisible() {
+        checkIsElementVisible(inputPassword);
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordNotVisible() {
+        checkIsElementNotVisible(inputPassword);
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInNotVisible() {
+        checkIsElementNotVisible(buttonSignIn);
+        return this;
+    }
+
+    public LoginPage checkIsInputLoginVisible() {
+        checkIsElementVisible(inputLogin);
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn);
+        return this;
+    }
+
 
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
@@ -150,4 +217,24 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
+
+    public LoginPage openLoginPageAndFillLoginFormWithInvalidCred() {
+        openLoginPage();
+        enterTextRegUsernameInput(TestData.INVALID_USERNAME_UI);
+        enterTextRegEmailInput(TestData.INVALID_EMAIL_UI);
+        enterTextRegPasswordInput(TestData.INVALID_PASSWORD_UI);
+        clickOnButtonSignUpForOurApp();
+        return new LoginPage(webDriver);
+    }
+
+
+    public LoginPage checkIsErrorMessageDisplayed() {
+        checkIsElementVisible(errorMessageUsername);
+        checkIsElementVisible(errorMessageEmail);
+        checkIsElementVisible(errorMessagePassword);
+        return this;
+    }
+
+
+
 }
