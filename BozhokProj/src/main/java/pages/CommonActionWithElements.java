@@ -61,8 +61,7 @@ public class CommonActionWithElements {
             logger.info("Element " + getElementName(element) + " is displayed -> " + state);
             return state;
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            logger.info("Element is not displayed");
             return false;
         }
     }
@@ -95,6 +94,10 @@ public class CommonActionWithElements {
         Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
     }
 
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible, but should not", isElementDisplayed(webElement));
+    }
+
     // check text in element
     protected void checkTextInElement(WebElement element, String expectedText) {
         try {
@@ -105,5 +108,4 @@ public class CommonActionWithElements {
             Assert.fail("Can not work with element");
         }
     }
-
 }
