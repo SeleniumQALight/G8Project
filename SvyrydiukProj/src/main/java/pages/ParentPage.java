@@ -1,5 +1,6 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 
 //all  same methods for all pages
 abstract class ParentPage extends CommonActionsWithElements {
-    final String baseUrl = "https://aqa-complexapp.onrender.com";
+    final String baseUrl = ConfigProvider.configProperties.base_url(); //"https://aqa-complexapp.onrender.com"
 
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
