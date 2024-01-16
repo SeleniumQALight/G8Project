@@ -119,6 +119,10 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementDisplayed(webElement));
+    }
+
     protected void checkCheckbox(WebElement checkbox) {
         try {
             if (!checkbox.isSelected()) {
