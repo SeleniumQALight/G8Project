@@ -1,10 +1,14 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 //все загальне для сторінок
 abstract public class ParentPage extends CommonActionsWithElements {
+
+    final String baseUrl = ConfigProvider.configProperties.base_url();
+
     //все загальне для сторінок
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
@@ -12,8 +16,6 @@ abstract public class ParentPage extends CommonActionsWithElements {
 
     // метод для отримання частини URL
     protected abstract String getRelativeUrl();
-
-    final String baseUrl = "https://aqa-complexapp.onrender.com";
 
     // метод для перевірки чи відкрита потрібна сторінка
     protected void checkUrl() {
