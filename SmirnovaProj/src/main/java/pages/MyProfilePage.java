@@ -37,6 +37,11 @@ public class MyProfilePage extends ParentPage {
         return this;
     }
 
+    public PostPage clickOnPostWithTitle(String postTitle) {
+        clickOnElement(getListOfPosts(postTitle).get(0)); //чи ок що він буде клікати завжди на перший елемент?
+        return new PostPage(webDriver);
+    }
+
     public MyProfilePage deletePostWhilePresent(String postTitle) {
         List<WebElement> postsList = getListOfPosts(postTitle);
         int counter = 0;

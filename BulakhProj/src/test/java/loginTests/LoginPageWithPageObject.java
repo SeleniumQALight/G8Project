@@ -1,13 +1,19 @@
 package loginTests;
 
 import baseTast.BaseTest;
+import libs.Util;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import pages.LoginPage;
+
 
 import static libs.TestData.VALID_LOGIN_UI;
 import static libs.TestData.VALID_PASSWORD_UI;
 
 public class LoginPageWithPageObject extends BaseTest {
+
+
     @Test
     public void validLogin() {
         pageProvider.loginPage().openLoginPage();
@@ -42,6 +48,48 @@ public class LoginPageWithPageObject extends BaseTest {
         Assert.assertTrue("Alert Danger is not visible", pageProvider.loginPage().isInvalidLoginMessageDisplayed());
 
     }
+
+    @Test
+    public void loginAndVerifyInNewTab() {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextInToInputLogin(VALID_LOGIN_UI);
+        pageProvider.loginPage().enterTextInToInputPassword(VALID_PASSWORD_UI);
+        pageProvider.loginPage().clickOnButtonSingIn();
+
+        Assert.assertTrue("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+
+
+        pageProvider.homePage().openNewTab();
+        pageProvider.homePage().switchToNextTab();
+
+        pageProvider.loginPage().openLoginPage();
+
+        pageProvider.homePage().getHeader().checkSignOutButtonIsVisible();
+
+        pageProvider.homePage().switchToTheMainTab();
+
+        Assert.assertTrue("Button SignOut is not visible in the main tab", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+        pageProvider.homePage().switchToNextTab();
+        pageProvider.homePage().closeTab();
+        pageProvider.homePage().switchToTheMainTab();
+
+        Assert.assertTrue("Button SignOut is not visible after closing the new tab", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+    }
+
+    @Test
+    public void LoginPageRefreshTest(){
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextInToInputLogin(VALID_LOGIN_UI);
+        pageProvider.loginPage().enterTextInToInputPassword(VALID_PASSWORD_UI);
+        pageProvider.loginPage().refreshPage();
+        pageProvider.loginPage().clickOnButtonSingIn();
+
+        Assert.assertFalse("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+
+
+    }
+
+
 
 
 }

@@ -16,7 +16,7 @@ public class SignOutTest extends BaseTest {
         pageProvider.loginPage().checkPasswordFieldNotVisible();
         pageProvider.loginPage().checkSignInButtonNotVisible();
         pageProvider.homePage().getHeader().clickOnButtonSignOut();
-        pageProvider.loginPage().checkUsernameFieltVisible();
+        pageProvider.loginPage().checkUsernameFieldVisible();
         pageProvider.loginPage().checkPasswordFieldVisible();
         pageProvider.loginPage().isButtonSignInVisible();
         pageProvider.homePage().getHeader().isProfileButtonNotVisible();

@@ -33,4 +33,42 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertTrue("Error message is not visible", pageProvider.homePage().isInvalidUsernameOrPasswordMessageVisible());
         Assert.assertFalse("Button Sign Out is visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
     }
+
+    @Test
+    public void checkLoggedInUserSessionInNewTab () {
+        pageProvider.loginPage()
+                .openLoginPageAndFillLoginFormWithValidCred()
+                .checkIsRedirectToHomePage();
+        pageProvider.loginPage().getHeader().checkIsButtonSignOutVisible();
+        pageProvider.homePage().openNewTabInBrowser();
+        pageProvider.homePage().switchToTabInBrowser(1);
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().getHeader().checkIsButtonSignOutVisible();
+        pageProvider.loginPage().switchToTabInBrowser(0);
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
+        pageProvider.homePage().switchToTabInBrowser(1);
+        pageProvider.loginPage().closeTabAndSwitchToMainPage();
+        pageProvider.loginPage().getHeader().checkIsButtonSignOutVisible();
+    }
+
+    @Test
+    public void checkInputsAreClearAfterRefresh () {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputLogin(VALID_LOGIN_UI);
+        pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
+        pageProvider.loginPage().refreshPage();
+        pageProvider.loginPage().clickOnButtonSignIn();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutNotVisible();
+    }
+
+    @Test
+    public void validLoginUsingKeyboard() {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().pressTabKey(2);
+        pageProvider.loginPage().enterTextIntoInputActions(VALID_LOGIN_UI);
+        pageProvider.loginPage().pressTabKey(1);
+        pageProvider.loginPage().enterTextIntoInputActions(VALID_PASSWORD_UI);
+        pageProvider.loginPage().pressEnterKey();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
+    }
 }
