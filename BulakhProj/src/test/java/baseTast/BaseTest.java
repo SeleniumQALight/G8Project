@@ -21,7 +21,8 @@ public class BaseTest {
     @Before
     public void setup(){
         WebDriverManager.chromedriver().setup(); // download driver
-        webDriver = new ChromeDriver(); // create driver
+        webDriver = new ChromeDriver();
+        webDriver.get("https://aqa-complexapp.onrender.com");// create driver
         webDriver.manage().window().maximize(); // open window
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5)); // wait 5 sec
         logger.info("Browser was opened");
@@ -30,10 +31,10 @@ public class BaseTest {
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         webDriver.quit();
         logger.info("Browser was closed");
-    }
 
+    }
 
 }
