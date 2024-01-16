@@ -39,7 +39,7 @@ public class MyProfilePage extends ParentPage {
         List<WebElement> postsList = getPostsList(postTitle);
         int counter = 0;
         final int MaxPostsCount = 100;
-        while (!postsList.isEmpty() && counter < MaxPostsCount){
+        while (!postsList.isEmpty() && counter < MaxPostsCount) {
             clickOnElement(postsList.get(0));// click on first post in the list клікнути на перший пост в списку
             new PostPage(webDriver)
                     .checkIsRedirectedToPostPage()
@@ -49,13 +49,19 @@ public class MyProfilePage extends ParentPage {
             postsList = getPostsList(postTitle);
             counter++;//counter = counter + 1;
         }
-        if (counter >= MaxPostsCount){
+        if (counter >= MaxPostsCount) {
             Assert.fail("There are more then 100 posts with title " + postTitle
                     + " or Delete button does not work");
         }
         return this;
     }
 
-}
+    public MyProfilePage checkOnPostWithTitle(String postTitle) {
+//        clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, postTitle))));//findElement - шукає елемент can return null
 
+    //    clickOnElement(getPostsList(postTitle).get(0));//click on first post in the list клікнути на перший пост в списку
+      clickOnElement(String.format(postTitleLocator, postTitle)); //findElement - шукає елемент can return null
+        return this;
+    }
+}
 
