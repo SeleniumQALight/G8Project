@@ -5,6 +5,8 @@ package baseTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,6 +22,7 @@ public class BaseTest {
     // Will be executed before each test
     @Before
     public void setUp() {
+        logger.info("------ " + testName.getMethodName() + " was started ------");
         WebDriverManager.chromedriver().setup(); // Download and setup ChromeDriver
         webDriver = new ChromeDriver(); // Create driver
         webDriver.manage().window().maximize(); // Maximize window
@@ -32,5 +35,10 @@ public class BaseTest {
     public void tearDown() {
         webDriver.quit(); // Close browser
         logger.info("Browser closed");
+        logger.info("------ " + testName.getMethodName() + " was ended ------");
     }
+
+
+    @Rule
+    public TestName testName = new TestName();
 }
