@@ -21,6 +21,7 @@ public class HomePage extends ParentPage {
     }
 
     public HomePage checkIsRedirectToHomePage() {
+        checkUrl();
         getHeader().checkIsHeaderForUserVisible();
         getLoginPage().checkIsLoginFieldIsNotVisible();
         return this;

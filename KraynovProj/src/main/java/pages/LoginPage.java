@@ -75,10 +75,6 @@ public class LoginPage extends ParentPage{
         }
     }
 
-    public void checkIsRedirectToLoginPage() {
-        checkUrl();
-    }
-
     public void enterTextIntoInputLogin(String login) {
         enterTextIntoInput(inputLogin, login);
     }
@@ -218,8 +214,8 @@ public class LoginPage extends ParentPage{
         logger.info("Login field is not visible");
     }
 
-    public LoginPage checkIsRedirectToHomePage() {
-        //TODO check url
+    public LoginPage checkIsRedirectToLoginPage() {
+        checkUrl();
         getHeader().checkIsHeaderForGuestVisible();
         checkIsInputLoginVisible();
         checkIsInputPasswordVisible();

@@ -11,6 +11,6 @@ public class SignOutTest extends BaseTest {
                 .openLoginPageFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
                 .getHeader().clickOnButtonSignOut()
-                .checkIsRedirectToHomePage();
+                .checkIsRedirectToLoginPage();
     }
 }
