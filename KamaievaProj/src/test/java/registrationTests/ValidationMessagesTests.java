@@ -15,8 +15,6 @@ public class ValidationMessagesTests extends BaseTest {
 
     final String SEMICOLON = ";";
 
-    final String USERNAME = "taras";
-
     @Test
     @Parameters(method = "parametersForValidationMessagesTests")
     public void validationMessagesTests(String username, String email, String password, String errorMessage) {
