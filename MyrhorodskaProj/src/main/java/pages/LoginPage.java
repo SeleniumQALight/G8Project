@@ -48,10 +48,20 @@ public class LoginPage extends ParentPage{
 
     @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
     private WebElement passwordValidationReg;
-    @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
-    private List<WebElement> listErrorsMessages;
-    private String listErrorsMessagesLocator    = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    @FindBy(id = "username-register") // xpath = ".//*[@id='username-register']"
+    private WebElement inputUserNameRegistration;
 
+    @FindBy(id = "email-register")
+    private WebElement inputEmailRegistration;
+
+    @FindBy(id = "password-register")
+    private WebElement inputPasswordRegistration;
+
+    @FindBy(xpath = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> listErrorsMessages;
+
+    private String listErrorsMessagesLocator
+            = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -131,8 +141,9 @@ public class LoginPage extends ParentPage{
     public void isButtonSignInNotVisible() {
         checkIsElementNotVisible(buttonSignIn);
     }
-    public LoginPage inputTextIntoRegistrationLogin(String login) {
-        enterTextInToInput(inputUserNameReg, login);
+
+    public LoginPage  inputTextIntoRegistrationLogin (String userName) {
+        enterTextInToInput(inputUserNameRegistration, userName);
         return this;
     }
 
@@ -201,6 +212,35 @@ public class LoginPage extends ParentPage{
         }
 
         softAssertions.assertAll(); //check all assertion
+
+        return this;
+    }
+
+
+    public LoginPage checkErrorsMessages (String messages) {
+        // error1;error2 -> [error1, error2]
+        String[] expectedErrors = messages.split(";");
+        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(
+                By.xpath(listErrorsMessagesLocator), expectedErrors.length));
+
+
+        Util.waitABit(1);
+        Assert.assertEquals("Number of messages ", expectedErrors.length,
+                listErrorsMessages.size());
+
+        ArrayList<String> actualErrors = new ArrayList<>();
+        for (WebElement element : listErrorsMessages) {
+            actualErrors.add(element.getText());
+        }
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrors.length; i++) {
+            softAssertions.assertThat(expectedErrors[i])
+                    .as("Error " + i)
+                    .isIn(actualErrors);
+        }
+
+        softAssertions.assertAll(); // check all assertion
 
         return this;
     }

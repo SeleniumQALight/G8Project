@@ -6,7 +6,6 @@ import BaseTest.BaseTest;
 
 public class ValidationMessageTest extends BaseTest{
     @Test
-    @Ignore
     public void validationMessageTest() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().inputTextIntoRegistrationLogin("nataliia");
