@@ -10,14 +10,15 @@ public class TabsTests extends BaseTest {
     @Description("Check that a logged-in user remains logged in when switching to a new tab")
     public void userStillBeLoginIfOpenNewTab() {
         pageProvider.getLoginPage().openLoginPageAndFillLoginFormWithValidCreate();
-        pageProvider.getHomePage().getHeader().isButtonSignOutVisible();
+        pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
         pageProvider.getLoginPage().openNewTabInBrowser();
-        pageProvider.getLoginPage().switchToNewTabInBrowser();
+        pageProvider.getLoginPage().switchToTabInBrowser(1);
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getHomePage().getHeader().isButtonSignOutVisible();
-        pageProvider.getHomePage().switchToMainTabInBrowser();
-        pageProvider.getHomePage().getHeader().isButtonSignOutVisible();
-        pageProvider.getLoginPage().closeNewTabAndSwitchToMainTab();
-        pageProvider.getHomePage().getHeader().isButtonSignOutVisible();
+        pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
+        pageProvider.getHomePage().switchToTabInBrowser(0);
+        pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
+        pageProvider.getLoginPage().closeTab(1);
+        pageProvider.getHomePage().switchToTabInBrowser(0);
+        pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
     }
 }
