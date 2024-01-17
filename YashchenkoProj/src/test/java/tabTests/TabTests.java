@@ -13,14 +13,14 @@ public class TabTests extends BaseTest {
         pageProvider.getLoginPage().openLoginPageAndFillLoginFormWithValidCreds()
                 .getHeader().checkIsButtonSignOutVisible();
         pageProvider.openNewTab();
-        pageProvider.switchToNextTab();
+        pageProvider.switchToTabByIndex(1);
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
-        pageProvider.switchToOriginalTab();
+        pageProvider.switchToTabByIndex(0);
         pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
-        pageProvider.switchToNextTab();
+        pageProvider.switchToTabByIndex(1);
         pageProvider.closeTab();
-        pageProvider.switchToOriginalTab();
+        pageProvider.switchToTabByIndex(0);
         pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
     }
 
