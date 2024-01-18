@@ -1,6 +1,6 @@
 package pages;
 
-import libs.TestData;
+import data.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
