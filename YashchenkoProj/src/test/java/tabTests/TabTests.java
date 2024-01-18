@@ -2,10 +2,9 @@ package tabTests;
 
 import baseTest.BaseTest;
 import org.junit.Test;
-import pages.ParentPage;
 
-import static libs.TestData.DEFAULT_VALID_LOGIN_UI;
-import static libs.TestData.DEFAULT_VALID_PASSWORD_UI;
+import static data.TestData.DEFAULT_VALID_LOGIN_UI;
+import static data.TestData.DEFAULT_VALID_PASSWORD_UI;
 
 public class TabTests extends BaseTest {
 

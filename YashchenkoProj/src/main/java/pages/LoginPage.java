@@ -12,8 +12,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.ArrayList;
 import java.util.List;
 
-import static libs.TestData.DEFAULT_VALID_LOGIN_UI;
-import static libs.TestData.DEFAULT_VALID_PASSWORD_UI;
+import static data.TestData.DEFAULT_VALID_LOGIN_UI;
+import static data.TestData.DEFAULT_VALID_PASSWORD_UI;
 
 public class LoginPage extends ParentPage {
 
