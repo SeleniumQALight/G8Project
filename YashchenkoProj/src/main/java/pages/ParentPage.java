@@ -4,6 +4,9 @@ import libs.ConfigProvider;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // All common methods for all pages
 abstract public class ParentPage extends CommonActionsWithElements {
     final String baseUrl = ConfigProvider.configProperties.base_url();
@@ -21,6 +24,30 @@ abstract public class ParentPage extends CommonActionsWithElements {
                 baseUrl + getRelativeUrl(),
                 webDriver.getCurrentUrl()
         );
+    }
+
+    public void openNewTab() {
+        ((org.openqa.selenium.JavascriptExecutor) webDriver).executeScript("window.open()");
+        logger.info("New tab was opened");
+    }
+
+    public void refreshPage() {
+        webDriver.navigate().refresh();
+    }
+
+    public void closeTab() {
+        webDriver.close();
+        logger.info("Tab was closed");
+    }
+
+    public void switchToTabByIndex(int tabIndex) {
+        List<String> allWindows = new ArrayList<>(webDriver.getWindowHandles());
+        if (tabIndex >= 0 && tabIndex < allWindows.size()) {
+            webDriver.switchTo().window(allWindows.get(tabIndex));
+            logger.info("Switched to tab with index " + tabIndex);
+        } else {
+            logger.error("Invalid tab index");
+        }
     }
 
     //Method for checking if needed page is opened with pattern
