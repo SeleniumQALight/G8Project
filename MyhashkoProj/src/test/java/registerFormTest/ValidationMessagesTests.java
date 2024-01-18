@@ -34,7 +34,7 @@ public class ValidationMessagesTests extends BaseTest {
                 {"taras", "tr", "tr", ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD}, // 2 3
                 {"taras", "tr", "trtrtrtrtrtrtr", ERROR_EMAIL}, // 2
                 {"taras", "tr@tr.com", "tr", ERROR_PASSWORD}, // 3
-                {"тест", "tr@tr.com", "123456789012345678901234567890123456789012345678901234567890", ERROR_USERNAME_KIRILICA + SEMICOLON + ERROR_PASSWORD_60_numbers}, // 1 2 3
+                {"тест", "tr@tr.com", "1".repeat(60), ERROR_USERNAME_KIRILICA + SEMICOLON + ERROR_PASSWORD_60_numbers}, // 1 2 3
 
         };
     }

@@ -3,15 +3,11 @@ package loginTest;
 import baseTest.BaseTest;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
 public class LoginTestInvalidParams extends BaseTest {
-    final String expectedErrorMessage = "Invalid username/password.";
-    final String SEMICOLON = ";";
-
 
     @Test
     @Parameters(method = "parametersForInvalidationLogin")
