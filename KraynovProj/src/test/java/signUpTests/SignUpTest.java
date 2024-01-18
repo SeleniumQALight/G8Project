@@ -3,7 +3,7 @@ package signUpTests;
 import baseTest.BaseTest;
 import org.junit.Test;
 
-import static libs.TestData.SMALL_INVALID_TEXT;
+import static data.TestData.SMALL_INVALID_TEXT;
 
 public class SignUpTest extends BaseTest {
 
