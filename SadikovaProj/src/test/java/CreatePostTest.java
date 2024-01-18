@@ -1,8 +1,7 @@
 import baseTest.BaseTest;
-import libs.TestData;
+import data.TestData;
 import libs.Util;
 import org.junit.After;
-import libs.Urls;
 import org.junit.Ignore;
 import org.junit.Test;
 
