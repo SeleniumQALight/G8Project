@@ -53,5 +53,9 @@ public class MyProfilePage extends ParentPage {
         return this;
     }
 
-
+    public MyProfilePage clickOnPostWithTitle(String postTitle) {
+        //clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, postTitle))));
+        clickOnElement(String.format(postTitleLocator, postTitle));
+        return this;
+    }
 }
