@@ -18,7 +18,7 @@ public class LoginTestInvalidParams extends BaseTest {
         pageProvider.loginPage().enterTextIntoInputLogin(login);
         pageProvider.loginPage().enterTextIntoInputPassword(password);
         pageProvider.loginPage().clickOnButtonSignIn();
-        pageProvider.loginPage().isErrorMessageVisibleForInvalidLogin(errorMessage);
+        pageProvider.loginPage().checkisErrorMessageVisibleForInvalidLogin(errorMessage);
     }
 
     private Object[][] parametersForInvalidationLogin() {
