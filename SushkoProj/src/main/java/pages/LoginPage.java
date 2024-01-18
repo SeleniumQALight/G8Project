@@ -100,4 +100,12 @@ public class LoginPage extends ParentPage{
         checkIsElementNotVisible(inputPassword);
         checkIsElementNotVisible(buttonSingIn);
     }
+
+    public LoginPage openLoginPageInNewTabWithJS(int num_of_tab){
+        openNewTabWithJS();
+        switchToTab(num_of_tab);
+        openLoginPage();
+
+        return this;
+    }
 }

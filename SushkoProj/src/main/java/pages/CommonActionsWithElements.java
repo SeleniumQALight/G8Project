@@ -2,15 +2,14 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
@@ -151,6 +150,57 @@ public class CommonActionsWithElements {
         } else {
             logger.info("Wrong status for checkbox is passed");
             Assert.fail("Wrong status for checkbox is passed");
+        }
+    }
+
+    public void openNewTabWithJS(){
+        try {
+            ((JavascriptExecutor) webDriver).executeScript("window.open()");
+            logger.info("New tab was opened");
+        }catch (Exception e){
+            logger.info("New tab was not opened");
+            Assert.fail("New tab was not opened");
+        }
+    }
+
+    public void switchToTab(int num_of_tab){
+        try {
+            ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(num_of_tab));
+            logger.info("Switched to tab №" + num_of_tab);
+        }catch (Exception e){
+            logger.info("Can not switched to tab №" + num_of_tab);
+            Assert.fail("Can not switched to tab №" + num_of_tab);
+        }
+    }
+
+    public void switchToMainTab(){
+        switchToTab(0);
+    }
+
+    public void closeTab(int num_of_tab){
+        try {
+            switchToTab(num_of_tab);
+            webDriver.close();
+            logger.info("Tab was closed");
+        }catch (Exception e){
+            logger.info("Tab was not closed");
+            Assert.fail("Tab was not closed");
+        }
+    }
+
+    public void closeTabAndSwitchToMainTab(int num_of_tab){
+        closeTab(num_of_tab);
+        switchToMainTab();
+    }
+
+    public void refreshPage() {
+        try {
+            webDriver.navigate().refresh();
+            logger.info("Page was refreshed");
+        }catch (Exception e) {
+            logger.error("Page was not refreshed");
+            Assert.fail("Page was not refreshed");
         }
     }
 }
