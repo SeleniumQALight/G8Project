@@ -1,4 +1,4 @@
-package libs;
+package data;
 
 //class of saving data for tests which we will use a lot of times
 public class TestData {
