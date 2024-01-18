@@ -1,13 +1,17 @@
 package loginTest;
 
 import BaseTest.BaseTest;
-import libs.TestData;
+import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static libs.TestData.VALID_LOGIN_UI;
-import static libs.TestData.VALID_PASSWORD_UI;
+import java.io.IOException;
+import java.util.Map;
+
+import static data.TestData.VALID_LOGIN_UI;
+import static data.TestData.VALID_PASSWORD_UI;
+import static libs.ConfigProvider.configProperties;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
@@ -24,6 +28,16 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertFalse("Input Username is visible", pageProvider.loginPage().isInputUsernameVisible());
         Assert.assertFalse("Input Password is visible", pageProvider.loginPage().isInputPasswordVisible());
     }
+
+    @Test
+    public void validLoginWithExcel() throws IOException {
+        Map<String, String> dataForValidLogin =
+                ExcelDriver.getData(configProperties.DATA_FILE(),"validLogOn");
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextInToInputLogin("login");
+        pageProvider.loginPage().enterTextInToInputPassword("pass");
+        pageProvider.loginPage().clickOnButtonSingIn();
+       }
     @Test
     public void invalidLogin() {
         pageProvider.loginPage().openLoginPage();
