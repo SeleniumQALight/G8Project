@@ -4,9 +4,8 @@ import libs.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -115,7 +114,7 @@ public class LoginPage extends ParentPage {
         checkIsElementNotVisible(inputLogin);
     }
 
-    public void checkUsernameFieltVisible() {
+    public void checkUsernameFieldVisible() {
         checkIsElementVisible(inputLogin);
     }
 
@@ -205,4 +204,5 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
+
 }

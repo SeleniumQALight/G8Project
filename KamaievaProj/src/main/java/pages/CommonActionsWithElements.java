@@ -2,6 +2,8 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -51,6 +53,15 @@ public class CommonActionsWithElements {
         } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void clickOnElement(String locator) {
+        try {
+           clickOnElement(webDriver.findElement(By.xpath(locator)));
+        } catch (Exception e) {
+            logger.error("Can not work with locator");
+            Assert.fail("Can not work with locator");
         }
     }
 
@@ -183,6 +194,47 @@ public class CommonActionsWithElements {
         } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
+        }
+    }
+
+    public void openNewTabInBrowser() {
+        try {
+            ((JavascriptExecutor) webDriver).executeScript("window.open()");
+            logger.info("New tab was opened");
+        } catch (Exception e) {
+            logger.error("Can not open new tab");
+            Assert.fail("Can not open new tab");
+        }
+    }
+
+    public void switchToTabInBrowser(int tabNumber) {
+        try {
+            webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[tabNumber].toString());
+            logger.info("Switched to new tab");
+        } catch (Exception e) {
+            logger.error("Can not switch to new tab");
+            Assert.fail("Can not switch to new tab");
+        }
+    }
+
+    public void closeTab(int tabNumber) {
+        try {
+            webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[tabNumber].toString());
+            webDriver.close();
+            logger.info("New tab was closed and switched to main tab");
+        } catch (Exception e) {
+            logger.error("Can not close new tab and switch to main tab");
+            Assert.fail("Can not close new tab and switch to main tab");
+        }
+    }
+
+    public void refreshPage() {
+        try {
+            webDriver.navigate().refresh();
+            logger.info("Page was refreshed");
+        } catch (Exception e) {
+            logger.error("Can not refresh page");
+            Assert.fail("Can not refresh page");
         }
     }
 }

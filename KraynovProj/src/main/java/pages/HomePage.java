@@ -22,7 +22,8 @@ public class HomePage extends ParentPage {
 
     public HomePage checkIsRedirectToHomePage() {
         checkUrl();
-        Assert.assertTrue("Invalid page - not Home Page", getHeader().isButtonSignOutVisible());
+        getHeader().checkIsHeaderForUserVisible();
+        getLoginPage().checkIsLoginFieldIsNotVisible();
         return this;
     }
 
@@ -43,5 +44,9 @@ public class HomePage extends ParentPage {
             logger.info("User is logged in");
         }
         return this;
+    }
+
+    public LoginPage getLoginPage() {
+        return new LoginPage(webDriver);
     }
 }

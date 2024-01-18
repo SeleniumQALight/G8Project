@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -57,6 +58,15 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected void clickOnElement(String locator) {
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(locator)));
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
 
     protected boolean isElementDisplayed(WebElement element) {
         try {
@@ -97,6 +107,10 @@ public class CommonActionsWithElements {
 
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
+    }
+
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementDisplayed(webElement));
     }
 
 

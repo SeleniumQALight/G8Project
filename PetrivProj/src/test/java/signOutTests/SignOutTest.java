@@ -24,8 +24,25 @@ public class SignOutTest extends BaseTest {
         pageProvider.homePage().getHeader().isButtonChatNotVisible();
         pageProvider.homePage().getHeader().isButtonMyProfileNotVisible();
         pageProvider.homePage().getHeader().isButtonCreatePostNotVisible();
-        pageProvider.homePage().getHeader().isButtonSignOutNotVisible();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutNotVisible();
         Assert.assertTrue("Input Username is not visible", pageProvider.loginPage().isInputUserNameVisible());
         Assert.assertTrue("Input Password is not visible", pageProvider.loginPage().isInputPasswordVisible());
+    }
+
+    @Test
+    public void checkSignedOutUserSessionInAllTabs() {
+        pageProvider.loginPage()
+                .openLoginPageAndFillLoginFormWithValidCred()
+                .checkIsRedirectToHomePage();
+        pageProvider.homePage().openNewTabInBrowser();
+        pageProvider.homePage().switchToTabInBrowser(1);
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().getHeader().isButtonSignOutVisible();
+        pageProvider.loginPage().switchToTabInBrowser(0);
+        pageProvider.homePage().getHeader().clickOnButtonSignOut();
+        pageProvider.loginPage().getHeader().checkIsButtonSignOutNotVisible();
+        pageProvider.loginPage().switchToTabInBrowser(1);
+        pageProvider.loginPage().refreshPage();
+        pageProvider.loginPage().getHeader().checkIsButtonSignOutNotVisible();
     }
 }

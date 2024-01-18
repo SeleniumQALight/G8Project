@@ -74,7 +74,6 @@ public class HomePage extends ParentPage {
         getHeader().checkIsButtonSignOutVisible();
         checkUrl();
         Assert.assertTrue("Invalid page - not Home Page", getHeader().isButtonSignOutVisible());
-        Assert.assertTrue("Invalid page - not Home Page", getHeader().isButtonSignOutVisible());
         return this;
     }
 

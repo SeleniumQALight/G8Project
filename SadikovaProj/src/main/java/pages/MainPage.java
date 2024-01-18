@@ -41,8 +41,11 @@ public class MainPage extends ParentPage {
     private WebElement signInForOurAppButton;
     @FindBy(xpath = "//div[contains(@class,'liveValidateMessage--visible')]")
     private List<WebElement> errorBlockList;
+    @FindBy(xpath = "//div[contains(@class,'alert-danger') and not (contains(@class,'liveValidateMessage'))]")
+    private WebElement errorMessageLoginForm;
 
     private String errorsMessegesList = "//div[contains(@class,'liveValidateMessage--visible')]";
+
 
     @Override
     protected String getRelativeUrl() {
@@ -89,8 +92,6 @@ public class MainPage extends ParentPage {
     }
 
 
-
-
     /**
      * NOT visible elements
      */
@@ -121,17 +122,22 @@ public class MainPage extends ParentPage {
         Util.waitABit(1);
         Assert.assertEquals("Number of messages ", expectedErrors.length, errorBlockList.size());
         ArrayList<String> actualErrors = new ArrayList<>();
-        for(WebElement element : errorBlockList){
+        for (WebElement element : errorBlockList) {
             actualErrors.add(element.getText());
         }
 
         SoftAssertions softAssertions = new SoftAssertions();
-        for (int i =0; i < expectedErrors.length; i ++){
+        for (int i = 0; i < expectedErrors.length; i++) {
             softAssertions.assertThat(expectedErrors[i])
                     .as("Error: " + i)
                     .isIn(actualErrors);
         }
         softAssertions.assertAll();
+        return this;
+    }
+
+    public MainPage checkErrorMessageInLoginForm(String text) {
+        checkTextInElement(errorMessageLoginForm, text);
         return this;
     }
 
@@ -174,16 +180,18 @@ public class MainPage extends ParentPage {
         return new MainPage(webDriver);
     }
 
-    public MainPage enterLoginFieldWithKeys(String email){
+    public MainPage enterLoginFieldWithKeys(String email) {
         enterTextWithKeys(loginFieldInHeader, email);
 
-   return new MainPage(webDriver); }
+        return new MainPage(webDriver);
+    }
 
-    public MainPage enterPasswordFieldWithKeys(String email){
+    public MainPage enterPasswordFieldWithKeys(String email) {
         enterTextWithKeys(passwordFieldInHeader, email);
-        return new MainPage(webDriver); }
+        return new MainPage(webDriver);
+    }
 
-    public MainPage pressSignInButton(){
+    public MainPage pressSignInButton() {
         pressEnter(signInButtonInHeader);
         return new MainPage(webDriver);
     }

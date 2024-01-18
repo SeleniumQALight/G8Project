@@ -1,16 +1,37 @@
 package registerFormTest;
 
 import baseTest.BaseTest;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(JUnitParamsRunner.class)
 public class ValidationMessagesTests extends BaseTest {
+    final String ERROR_USERNAME = "Username must be at least 3 characters.";
+    final String ERROR_EMAIL = "You must provide a valid email address.";
+    final String ERROR_PASSWORD = "Password must be at least 12 characters.";
+    final String SEMICOLON = ";";
+
     @Test
-    public void ValidationMessagesTests() {
+    @Parameters(method = "parametersForValidationMessagesTests")
+    public void ValidationMessagesTests(String userName, String email, String password, String expectedMessages) {
         pageProvider.loginPage().openLoginPage();
-        pageProvider.loginPage().enterTextIntoInputUsernameRegister("taras");
-        pageProvider.loginPage().enterTextIntoInputEmailRegister("tr");
-        pageProvider.loginPage().enterTextIntoInputPasswordRegister("tr");
-        pageProvider.loginPage().checkErrorMessages(
-                "You must provide a valid email address.;Password must be at least 12 characters.");
+        pageProvider.loginPage().enterTextIntoInputUsernameRegister(userName);
+        pageProvider.loginPage().enterTextIntoInputEmailRegister(email);
+        pageProvider.loginPage().enterTextIntoInputPasswordRegister(password);
+        pageProvider.loginPage().checkErrorMessages(expectedMessages);
+    }
+
+    private Object[][] parametersForValidationMessagesTests() {
+        return new Object[][]{
+                {"tr", "tr", "tr", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD}, // 1 2 3
+                {"tr", "tr", "trtrtrtrtrtrtr", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL}, // 1 2
+                {"tr", "tr@tr.com", "tr", ERROR_USERNAME + SEMICOLON + ERROR_PASSWORD}, // 1 3
+                {"tr", "tr@tr.com", "trtrtrtrtrtrtr", ERROR_USERNAME}, // 1
+                {"taras", "tr", "tr", ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD}, // 2 3
+                {"taras", "tr", "trtrtrtrtrtrtr", ERROR_EMAIL}, // 2
+                {"taras", "tr@tr.com", "tr", ERROR_PASSWORD}, // 3
+        };
     }
 }

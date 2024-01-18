@@ -15,7 +15,7 @@ import pages.MyProfilePage;
 public class HeaderElement extends CommonActionsWithElements {
     private String buttonMyProfileLocator = ".//a[@href='/profile/%s']";
 
-    private String spanUserNameLocator = ".//span[contains (text(), '%s')]";
+    private String spanUserNameLocator = ".//span[text()=' %s']";
 
     @FindBy(xpath = ".// a [@href='/create-post']")
     private WebElement buttonCreatePost;
@@ -35,18 +35,18 @@ public class HeaderElement extends CommonActionsWithElements {
         super(webDriver);
     }
 
-    private WebElement getButtonMyProfile(String username){
+    private WebElement getButtonMyProfile(String username) {
         try {
             return webDriver.findElement(By.xpath(String.format(buttonMyProfileLocator, username)));
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
 
-    private WebElement getSpanUserName(String username){
+    private WebElement getSpanUserName(String username) {
         try {
             return webDriver.findElement(By.xpath(String.format(spanUserNameLocator, username)));
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
@@ -59,6 +59,7 @@ public class HeaderElement extends CommonActionsWithElements {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
     }
+
     public MyProfilePage clickOnButtonProfile() {
         clickOnElement(getButtonMyProfile(TestData.VALID_LOGIN_UI));
         return new MyProfilePage(webDriver);
@@ -123,8 +124,6 @@ public class HeaderElement extends CommonActionsWithElements {
         checkIsElementUnvisible(buttonSearch, "buttonSearch");
         return this;
     }
-
-
 
 
 }

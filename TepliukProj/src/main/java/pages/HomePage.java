@@ -4,16 +4,12 @@ package pages;
 import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage{
 
     private HeaderElement headerElement;
 
-//    @FindBy(xpath = "//button[text()='Sign Out']")
-//    private WebElement buttonSignOut;
 
 
     public HomePage(WebDriver webDriver) {
@@ -25,15 +21,16 @@ public class HomePage extends ParentPage{
         return "/";
     }
 
-//    public boolean isButtonSignOutVisible() {
-//      //  WebElement buttonSignOut = webDriver.findElement(By.xpath("//button[text()='Sign Out']"));
-//        return isElementDisplayed(buttonSignOut);
-//    }
+
 
     public HomePage checkIsRedirectToHomePage() {
         checkUrl();
         Assert.assertTrue("Invalid page - not Home page", getHeader().isButtonSignOutVisible());
         return this;
+    }
+
+    public LoginPage redirectOnLoginPage (){
+        return new LoginPage(webDriver);
     }
 
     public HeaderElement getHeader() {
@@ -54,4 +51,8 @@ public class HomePage extends ParentPage{
         }
         return this;
     }
+
+
+
+
 }

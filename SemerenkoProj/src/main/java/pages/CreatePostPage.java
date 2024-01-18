@@ -18,6 +18,9 @@ public class CreatePostPage extends ParentPage {
     @FindBy(xpath = ".//button[@class='btn btn-primary']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = ".//input[@type='checkbox']")
+    private WebElement checkBox;
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -57,6 +60,42 @@ public class CreatePostPage extends ParentPage {
         return this;
     }
 
+    public CreatePostPage setCheckedStateOfCheckBox() {
+        try {
+            if (getElementProperty(checkBox, "checked").equals("false")) {
+                clickOnElement(checkBox);
+            } else {
+                logger.info("CheckBox has checked state. Set checked state don't need");
+            }
+        } catch (Exception e) {
+            logger.info("Set checked state for checkBox incomplete");
+        }
+        return this;
+    }
+
+    public CreatePostPage setUncheckedStateOfCheckBox() {
+        try {
+            if (getElementProperty(checkBox, "checked").equals("true")) {
+                clickOnElement(checkBox);
+            } else {
+                logger.info("CheckBox has unchecked state. Set unchecked state don't need");
+            }
+        } catch (Exception e) {
+            logger.info("set unchecked state for checkBox incomplete");
+        }
+        return this;
+    }
+
+    public CreatePostPage setStateOfCheckBox(String state) {
+        if (state.equals("check")) {
+            setCheckedStateOfCheckBox();
+        } else if (state.equals("uncheck")) {
+            setUncheckedStateOfCheckBox();
+        } else {
+            logger.info("Input state for checkBox is undefined");
+        }
+        return this;
+    }
 
     public PostPage clickOnSavePostButton() {
         clickOnElement(buttonSaveNewPost);

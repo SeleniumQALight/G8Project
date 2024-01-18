@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.elements.HeaderElement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,10 @@ public class LoginPage extends ParentPage {
     @Override
     protected String getRelativeUrl() {
         return "/";
+    }
+
+    public HeaderElement getHeader() {
+        return new HeaderElement(webDriver);
     }
 
     public void openLoginPage() {
