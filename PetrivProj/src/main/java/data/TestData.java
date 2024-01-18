@@ -1,4 +1,4 @@
-package libs;
+package data;
 
 // клас для зберігання тестових даних, які будуть використовуватись в тестах БАГАТО разів
 public class TestData {
