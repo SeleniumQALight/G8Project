@@ -1,15 +1,19 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import libs.Util;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static libs.TestData.VALID_LOGIN_UI;
 import static libs.TestData.VALID_PASSWORD_UI;
 
-
+@RunWith(JUnitParamsRunner.class)
 public class LoginTestWithPageObject extends BaseTest {
+
     @Test
     public void validLogin() {
         pageProvider.loginPage().openLoginPage();
@@ -79,5 +83,25 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().refreshPage();
         pageProvider.loginPage().clickOnButtonSignIn();
         Assert.assertFalse("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+    }
+
+
+    @Test
+    @Parameters(method = "parametersForValidationMessagesLoginFieldsTests")
+        public void validationMessagesForLoginTests(String login, String password) {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputLogin(login);
+        pageProvider.loginPage().enterTextIntoInputPassword(password);
+        pageProvider.loginPage().clickOnButtonSignIn();
+        Assert.assertTrue("Warning message is visible", pageProvider.loginPage().isWarningMessageVisible());
+    }
+
+    public Object[][] parametersForValidationMessagesLoginFieldsTests() {
+        return new Object[][]{
+                {"taras", "tr"},
+                {"", "com123"},
+                {"taras", ""},
+                {"", ""}
+        };
     }
 }
