@@ -1,10 +1,15 @@
 package LoginTests;
 
 import baseTest.BaseTest;
+import libs.ConfigProvider;
+import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static libs.TestData.*;
+import java.io.IOException;
+import java.util.Map;
+
+import static data.TestData.*;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
@@ -42,5 +47,21 @@ public class LoginTestWithPageObject extends BaseTest {
                 .checkIsWarningUsernameRegistrationVisible()
                 .checkIsWarningEmailRegistrationVisible()
                 .checkIsWarningPasswordRegistrationVisible();
+    }
+
+    @Test
+    public void loginValidationWithExcel() throws IOException {
+        Map<String, String> dataForValidLogin =
+                ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputLogin(dataForValidLogin.get("login"));
+        pageProvider.loginPage().enterTextIntoInputPass(dataForValidLogin.get("pass"));
+        pageProvider.loginPage().clickOnButtonSignIn();
+
+Assert.assertTrue("Button SignOut is not displayed",
+        pageProvider.homePage().getHeader().isButtonSignOutVisible());
+
+
+
     }
 }
