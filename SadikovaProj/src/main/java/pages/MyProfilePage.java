@@ -60,4 +60,11 @@ public class MyProfilePage extends ParentPage {
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    public MyProfilePage clickOnPostWithTitle(String postTitle){
+//        clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator,postTitle)))); //find element can return exeption if element not found
+//        return this;
+        clickOnElement(String.format(postTitleLocator, postTitle));
+        return this;
+    }
 }
