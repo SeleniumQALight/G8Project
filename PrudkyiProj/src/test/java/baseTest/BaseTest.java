@@ -15,7 +15,7 @@ import java.time.Duration;
 //parent class for all tests
 public class BaseTest {
     WebDriver webDriver;
-    Logger logger = Logger.getLogger(getClass());
+  protected  Logger logger = Logger.getLogger(getClass());
     protected PageProvider pageProvider;
 
     //Will be executed before each test
