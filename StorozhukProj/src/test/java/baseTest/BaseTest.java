@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 // Parent class for all tests
 public class BaseTest {
     WebDriver webDriver;
-    Logger logger = Logger.getLogger(getClass());
+    protected Logger logger = Logger.getLogger(getClass());
     protected PageProvider pageProvider;
 
     // Will be executed before each test

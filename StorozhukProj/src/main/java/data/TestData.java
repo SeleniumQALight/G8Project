@@ -1,4 +1,4 @@
-package libs;
+package data;
 
 // this class is for storing test data
 //which is used in tests many times
