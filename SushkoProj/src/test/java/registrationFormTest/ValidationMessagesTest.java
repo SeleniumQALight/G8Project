@@ -6,7 +6,7 @@ import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static libs.TestData.*;
+import static data.TestData.*;
 
 @RunWith(JUnitParamsRunner.class)
 public class ValidationMessagesTest extends BaseTest {

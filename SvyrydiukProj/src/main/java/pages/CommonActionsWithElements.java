@@ -137,9 +137,9 @@ public class CommonActionsWithElements {
     }
 
     protected void setCheckbox(String checked, WebElement checkbox) {
-        if (checked.equals("checked")) {
+        if (checked.equals("check")) {
             setCheckboxChecked(checkbox);
-        } else if (checked.equals("unchecked")) {
+        } else if (checked.equals("uncheck")) {
             setCheckboxUnchecked(checkbox);
         } else {
             logger.error("Checkbox status should be 'checked' or 'unchecked'");

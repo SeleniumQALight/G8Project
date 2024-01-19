@@ -1,10 +1,15 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import libs.ConfigProvider;
+import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static libs.TestData.*;
+import java.io.IOException;
+import java.util.Map;
+
+import static data.TestData.*;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
@@ -50,6 +55,17 @@ public class LoginTestWithPageObject extends BaseTest {
 
         Assert.assertTrue("Button SignOut is not visible",
                 pageProvider.homePage().getHeader().isButtonSignOutVisible());
+    }
+
+    public void validLoginWithExcel() throws IOException {
+        Map<String, String> dataForValidLogin = ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputLogin(dataForValidLogin.get("login"));
+        pageProvider.loginPage().enterTextIntoInputPassword(dataForValidLogin.get("pass"));
+        pageProvider.loginPage().clickOnButtonSingIn();
+
+        pageProvider.homePage().getHeader().checkAllElementsInHeaderAreVisible();
+        pageProvider.loginPage().checkAllElementsFromLoginFormAreInvisible();
     }
 
     @Test

@@ -1,6 +1,6 @@
 import baseTest.BaseTest;
 import libs.ErrorMessage;
-import libs.TestData;
+import data.TestData;
 import org.junit.Test;
 
 public class RegistrationTest extends BaseTest {

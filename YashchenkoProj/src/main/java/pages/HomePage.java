@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.elements.HeaderElement;
 
-import static libs.TestData.DEFAULT_VALID_LOGIN_UI;
-import static libs.TestData.DEFAULT_VALID_PASSWORD_UI;
+import static data.TestData.DEFAULT_VALID_LOGIN_UI;
+import static data.TestData.DEFAULT_VALID_PASSWORD_UI;
 
 public class HomePage extends ParentPage {
     private HeaderElement headerElement;
