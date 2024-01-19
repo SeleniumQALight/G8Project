@@ -1,6 +1,6 @@
 package pages;
 
-import libs.TestData;
+import data.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;

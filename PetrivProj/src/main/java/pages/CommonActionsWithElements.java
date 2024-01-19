@@ -2,14 +2,11 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 
 import java.time.Duration;
@@ -51,6 +48,15 @@ public class CommonActionsWithElements {
             String elementName = getElementName(element);
             element.click();
             logger.info("Element " + elementName + " was clicked ");
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void clickOnElement(String locator) {
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(locator)));
         } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");

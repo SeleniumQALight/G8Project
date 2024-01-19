@@ -1,11 +1,7 @@
 package pages;
 
-import libs.TestData;
-import org.junit.Assert;
-import org.openqa.selenium.By;
+import data.TestData;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
