@@ -3,13 +3,18 @@ package loginTests;
 import baseTest.BaseTest;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import libs.ConfigProvider;
+import libs.ExcelDriver;
 import libs.Util;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static libs.TestData.VALID_LOGIN_UI;
-import static libs.TestData.VALID_PASSWORD_UI;
+import java.io.IOException;
+import java.util.Map;
+
+import static data.TestData.VALID_LOGIN_UI;
+import static data.TestData.VALID_PASSWORD_UI;
 
 @RunWith(JUnitParamsRunner.class)
 public class LoginTestWithPageObject extends BaseTest {
@@ -28,6 +33,21 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.homePage().getHeader().checkTextInUsername(VALID_LOGIN_UI);
         Assert.assertTrue("Profile image is not visible", pageProvider.homePage().getHeader().isProfileButtonVisible());
         Assert.assertTrue("Button Create Post is not visible", pageProvider.homePage().getHeader().isButtonCreatePostVisible());
+    }
+
+
+    @Test
+
+    public void validLoginWhitExcel() throws IOException {
+        Map<String, String> dataForValidLogin = ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputLogin(dataForValidLogin.get("login"));
+        pageProvider.loginPage().enterTextIntoInputPassword(dataForValidLogin.get("pass"));
+        pageProvider.loginPage().clickOnButtonSignIn();
+
+
+        Assert.assertTrue("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+
     }
 
     @Test
