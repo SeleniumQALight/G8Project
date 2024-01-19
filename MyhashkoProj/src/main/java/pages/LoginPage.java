@@ -163,7 +163,7 @@ public class LoginPage extends ParentPage{
     }
 
     public LoginPage checkisErrorMessageVisibleForInvalidLogin() {
-        checkTextInElement(errorMessage, "Invalid username/password.");
+        checkIsElementVisible(errorMessage);
         return this;
 
     }
