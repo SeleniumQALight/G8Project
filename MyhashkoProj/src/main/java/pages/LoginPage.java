@@ -162,8 +162,8 @@ public class LoginPage extends ParentPage{
         return this;
     }
 
-    public LoginPage checkisErrorMessageVisibleForInvalidLogin(String message) {
-        checkTextInElement(errorMessage, message);
+    public LoginPage checkisErrorMessageVisibleForInvalidLogin() {
+        checkTextInElement(errorMessage, "Invalid username/password.");
         return this;
 
     }
