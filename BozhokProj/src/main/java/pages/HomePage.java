@@ -1,7 +1,7 @@
 package pages;
 
 
-import libs.TestData;
+import data.TestData;
 import org.openqa.selenium.WebDriver;
 import pages.elements.HeaderElement;
 
