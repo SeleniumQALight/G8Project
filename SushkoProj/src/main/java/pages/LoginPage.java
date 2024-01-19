@@ -65,6 +65,10 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSingIn);
     }
 
+    public void clickOnButtonSingInWithEnterButton() {
+        pressTheEnterKey(buttonSingIn);
+    }
+
     public boolean isInputLoginIsVisible() {
         return isElementDisplayed(inputLogin);
     }

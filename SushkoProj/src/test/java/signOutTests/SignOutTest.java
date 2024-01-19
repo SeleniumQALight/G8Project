@@ -23,6 +23,35 @@ public class SignOutTest extends BaseTest {
                 .getHeader()
                 .checkAllElementsFromHeaderAreInvisible()
         ;
+    }
 
+    @Test
+    public void loginAndSignOut(){
+        pageProvider.loginPage()
+                .openLoginPageAndFillLoginFormWithValidCreds()
+                .getHeader()
+                .isButtonSignOutVisible()
+        ;
+
+        pageProvider.loginPage()
+                .openLoginPageInNewTabWithJS(1)
+        ;
+
+        pageProvider.homePage().getHeader().isButtonSignOutVisible();
+        pageProvider.loginPage().switchToMainTab();
+
+        pageProvider.homePage().getHeader().isButtonSignOutVisible();
+
+        pageProvider.homePage()
+                .getHeader()
+                .clickOnButtonSignOut()
+        ;
+
+        pageProvider.homePage().getHeader().checkIsButtonSignOutInvisible();
+
+        pageProvider.loginPage().switchToTab(1);
+        pageProvider.loginPage().refreshPage();
+
+        pageProvider.homePage().getHeader().checkIsButtonSignOutInvisible();
     }
 }

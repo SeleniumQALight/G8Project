@@ -3,6 +3,7 @@ package pages;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -201,6 +202,55 @@ public class CommonActionsWithElements {
         }catch (Exception e) {
             logger.error("Page was not refreshed");
             Assert.fail("Page was not refreshed");
+        }
+    }
+
+    public void pressTheTabKey() {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys("\t").build().perform();  // "\t" - це символ табуляції
+            logger.info("Tab was clicked");
+        }catch (Exception e){
+            logger.info("Tab was not clicked");
+            Assert.fail("Tab was not clicked");
+        }
+    }
+
+    public void pressTheEnterKey(WebElement webElement) {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys(webElement, "\n").build().perform();  // "\n" - це символ нового рядка (Enter)
+            logger.info("Enter was clicked");
+        }catch (Exception e){
+            logger.info("Enter was not clicked");
+            Assert.fail("Enter was not clicked");
+        }
+    }
+
+    public void enterTextWithoutGettingElement(String input){
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys(input);
+            actions.build().perform();
+            logger.info("Text was entered");
+        } catch (Exception e){
+            logger.info("Text was not entered");
+            Assert.fail("Text was not entered");
+        }
+    }
+
+    public void tabToElementWithActions(WebElement webElement) {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys(webElement, "\t").build().perform();
+
+            // Очікувати, доки елемент стане активним
+            actions.click(webElement).perform();
+
+            logger.info("Tabbed to the element: " + getElementName(webElement));
+        } catch (Exception e) {
+            logger.info("Failed to tab to the element: " + getElementName(webElement));
+            Assert.fail("Failed to tab to the element: " + getElementName(webElement));
         }
     }
 }
