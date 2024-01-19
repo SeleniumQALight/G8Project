@@ -1,11 +1,16 @@
 package loginTest;
 
 import baseTest.BaseTest;
+import libs.ConfigProvider;
+import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static libs.TestData.DEFAULT_VALID_LOGIN_UI;
-import static libs.TestData.DEFAULT_VALID_PASSWORD_UI;
+import java.io.IOException;
+import java.util.Map;
+
+import static data.TestData.DEFAULT_VALID_LOGIN_UI;
+import static data.TestData.DEFAULT_VALID_PASSWORD_UI;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
@@ -13,6 +18,22 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputLogin(DEFAULT_VALID_LOGIN_UI);
         pageProvider.getLoginPage().enterTextIntoInputPassword(DEFAULT_VALID_PASSWORD_UI);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+        pageProvider.homePage().getHeader().checkIsButtonMyProfileIconVisible();
+        pageProvider.homePage().getHeader().checkIsProfileNameVisible();
+        pageProvider.homePage().getHeader().checkIsCreatePostButtonVisible();
+        pageProvider.getLoginPage().checkIsLoginInputNotVisible();
+        pageProvider.getLoginPage().checkIsPasswordInputNotVisible();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
+
+    }
+
+    @Test
+    public void validLoginWithExcel() throws IOException {
+        Map<String, String> dataForValidLogin = ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputLogin(dataForValidLogin.get("login"));
+        pageProvider.getLoginPage().enterTextIntoInputPassword(dataForValidLogin.get("pass"));
         pageProvider.getLoginPage().clickOnButtonSignIn();
         pageProvider.homePage().getHeader().checkIsButtonMyProfileIconVisible();
         pageProvider.homePage().getHeader().checkIsProfileNameVisible();
