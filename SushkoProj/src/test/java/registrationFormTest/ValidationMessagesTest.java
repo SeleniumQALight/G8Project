@@ -27,7 +27,10 @@ public class ValidationMessagesTest extends BaseTest {
     public Object[][] parametersForValidationMessagesTests() {
         return new Object[][]{
                 {"vladyslava03", "sv", "sv", ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
-                {"vladyslava03", "sushko@gmail.com", "sv", ERROR_PASSWORD}
+                {"vladyslava03", "sushko@gmail.com", "sv", ERROR_PASSWORD},
+                {"тест", "sushko@gmail.com", "sv", ERROR_USERNAME_SYMBOLS + SEMICOLON + ERROR_PASSWORD},
+                {"vladyslava03", "sushko@gmail.com", "123456789012345678901234567890123456789012345678901234567890",
+                       ERROR_PASSWORD_CHARACTERS_COUNT}
         };
     }
 }
