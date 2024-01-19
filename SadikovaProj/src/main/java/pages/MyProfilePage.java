@@ -1,7 +1,6 @@
 package pages;
 
-import libs.TestData;
-import libs.Urls;
+import data.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

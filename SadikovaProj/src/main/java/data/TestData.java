@@ -1,4 +1,4 @@
-package libs;
+package data;
 
 public class TestData {
 

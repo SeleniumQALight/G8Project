@@ -3,8 +3,7 @@ package registrationTest;
 import baseTest.BaseTest;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import libs.TestData;
-import libs.Util;
+import data.TestData;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -34,5 +33,7 @@ public class ValidationMessageTests extends BaseTest {
                 {"мАРИИЯ", "rtytrrrr@gmail.com", TestData.VALID_PASSWORD, NAME_FIELD_CAN_ONLY_CONTAIN_LETTERS_AND_NUMBERS}
         };
     }
+
+
 
 }
