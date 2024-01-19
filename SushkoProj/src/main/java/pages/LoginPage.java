@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.RegistrationFormElement;
 
-import static libs.TestData.*;
+import static data.TestData.*;
 
 public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//button[contains(text(),'Sign In')]") // цей елемент створиться в PageFactory в CommonActionsWithElements
