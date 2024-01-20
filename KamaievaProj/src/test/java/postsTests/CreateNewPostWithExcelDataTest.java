@@ -18,13 +18,13 @@ public class CreateNewPostWithExcelDataTest extends BaseTest {
 
     @Test
     @Parameters(method = "parametersForCreatePostTests")
-    public void TC_002_createNewPostWithDataFromExcel(String postTitle,
+    public void TC_001_createNewPostWithDataFromExcel(String postTitle,
                                                       String postBody,
                                                       String dropdownValue,
                                                       String checkBoxValue,
                                                       String expectedMessage,
                                                       String checkBoxState) {
-        String POST_TITLE = postTitle.formatted("TC_002_Kamaieva", Util.getDateAndTimeFormatted());
+        String POST_TITLE = postTitle.formatted("TC_001_Kamaieva", Util.getDateAndTimeFormatted());
         String POST_BODY = postBody.formatted("Body author Kamaieva" + Util.getDateAndTimeFormatted());
         pageProvider.getLoginPage()
                 .openLoginPageAndFillLoginFormWithValidCreate()
