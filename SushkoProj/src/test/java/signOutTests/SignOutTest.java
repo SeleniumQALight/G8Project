@@ -30,17 +30,17 @@ public class SignOutTest extends BaseTest {
         pageProvider.loginPage()
                 .openLoginPageAndFillLoginFormWithValidCreds()
                 .getHeader()
-                .isButtonSignOutVisible()
+                .checkIsButtonSignOutVisible()
         ;
 
         pageProvider.loginPage()
                 .openLoginPageInNewTabWithJS(1)
         ;
 
-        pageProvider.homePage().getHeader().isButtonSignOutVisible();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
         pageProvider.loginPage().switchToMainTab();
 
-        pageProvider.homePage().getHeader().isButtonSignOutVisible();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
 
         pageProvider.homePage()
                 .getHeader()

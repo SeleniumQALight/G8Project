@@ -80,6 +80,10 @@ public class HeaderElement extends CommonActionsWithElements {
         checkIsElementNotVisible(buttonSignOut);
     }
 
+    public void checkIsButtonSignOutVisible(){
+        checkIsElementVisible(buttonSignOut);
+    }
+
     public void checkAllElementsFromHeaderAreInvisible() {
         checkIsElementNotVisible(buttonCreatePost);
         checkIsElementNotVisible(buttonSignOut);

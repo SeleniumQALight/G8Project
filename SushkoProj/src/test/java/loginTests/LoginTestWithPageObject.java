@@ -88,20 +88,20 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage()
                 .openLoginPageAndFillLoginFormWithValidCreds()
                 .getHeader()
-                .isButtonSignOutVisible()
+                .checkIsButtonSignOutVisible()
         ;
 
         pageProvider.loginPage()
                 .openLoginPageInNewTabWithJS(1)
         ;
 
-        pageProvider.homePage().getHeader().isButtonSignOutVisible();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
         pageProvider.loginPage().switchToMainTab();
 
-        pageProvider.homePage().getHeader().isButtonSignOutVisible();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
 
         pageProvider.loginPage().closeTabAndSwitchToMainTab(1);
-        pageProvider.homePage().getHeader().isButtonSignOutVisible();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
     }
 
     @Test
