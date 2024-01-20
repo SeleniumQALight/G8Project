@@ -22,7 +22,7 @@ public class CreateNewPostWithExcel extends BaseTest {
     String POST_BODY;
     @Test
     @Parameters(method = "parametersForCreateNewPostWithExcelTest")
-    public void createNewPostWithExcelTest(String postTitle, String postBody, String dropDownValue, String checkBoxValue, String successMessage, String uniquePostInfoMessage) {
+    public void TC_002_createNewPostWithExcelTest(String postTitle, String postBody, String dropDownValue, String checkBoxValue, String successMessage, String uniquePostInfoMessage) {
         POST_TITLE = String.format(postTitle, "TC_002_Petriv", TIME_STAMP);
         POST_BODY = String.format(postBody, "TC_002");
         pageProvider.loginPage()
