@@ -4,13 +4,18 @@ import baseTest.BaseTest;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Assert;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.io.IOException;
 import java.util.Map;
 
 import static data.TestData.VALID_LOGIN_UI;
 import static data.TestData.VALID_PASSWORD_UI;
+
+@RunWith(JUnitParamsRunner.class)
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
@@ -91,5 +96,24 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().enterTextIntoInputActions(VALID_PASSWORD_UI);
         pageProvider.loginPage().pressEnterKey();
         pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
+    }
+
+    @Test
+    @Parameters(method = "parametersForInValidLoginWithParamsTest")
+    public void inValidLoginWithParams(String userName, String password) {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputLogin(userName);
+        pageProvider.loginPage().enterTextIntoInputPassword(password);
+        pageProvider.loginPage().clickOnButtonSignIn();
+        pageProvider.loginPage().checkIsInvalidUsernameOrPasswordMessageVisible();
+    }
+
+    public Object[][] parametersForInValidLoginWithParamsTest() {
+        return new Object[][]{
+                {VALID_LOGIN_UI, "invalid_password"},
+                {"invalid_username", VALID_PASSWORD_UI},
+                {"!@#(*#&*#&^&#&^%#&", "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnmqwertyuio"},
+                {"тест", "тест"}
+        };
     }
 }
