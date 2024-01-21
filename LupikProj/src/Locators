@@ -1,0 +1,52 @@
+Login Page:
+
+Log In Username:    //input[@placeholder='Username']
+Log In Password:    .//input[@placeholder='Password']
+Sign In button:     .//button[@class='btn btn-primary btn-sm']
+
+Register Username:  .//input[@id='username-register']
+Register Email:     .//input[@name='email']
+Register Password:  .//input[@id='email-register']
+Sign up button:     .//button[@type='submit']
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+Home Page:
+
+Search:             .//a[@data-original-title='Search']
+Chat:               .//span[@data-original-title='Chat']
+My Profile:         .//a[@class='mr-2']
+User name :         .//span[@class='text-white mr-2']
+Create Post:        .//a[@class='btn btn-sm btn-success mr-2']
+Sign Out :          .//button[@class='btn btn-sm btn-secondary']
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+Create/Edit Post Page:
+
+Title:                                 .//input[@name='title']
+Body Content                           .//textarea[@name='body']
+Is this post unique? checkbox:         .//input[@name='uniquePost']
+Select value "Приватне повідомлення":  .//select//option[@value='One Person']
+Save New Post:                         .//button[@class='btn btn-primary']
+« Back to post permalink:              .//a[@class='small font-weight-bold']
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+
+Post Page:
+
+Title:                                  .//div[@class='d-flex justify-content-between']//h2
+Note: This post was written for ... :   .//div[@class='body-content']//i//u
+Is this post unique?                    .//*/p[contains(text(), 'Is this post unique?')]
+Body Content                            .//div[@class="body-content" and p[not(i)]]
+Edit                                    .//a[@data-original-title='Edit']
+Delete                                  .//button[@data-original-title='Delete']
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+Search Popup window
+
+Input text            .//input[@id='live-search-field']

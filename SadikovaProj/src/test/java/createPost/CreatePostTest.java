@@ -1,3 +1,5 @@
+package createPost;
+
 import baseTest.BaseTest;
 import data.TestData;
 import libs.Util;
