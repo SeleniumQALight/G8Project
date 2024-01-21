@@ -19,15 +19,16 @@ public class InvalidLogin extends BaseTest {
 
     @Parameters(method = "parameterForValidationMessageTests")
     @Test
-    public void validationMessageForInvalidLogin(String login, String password, String expectedMessage) {
+    public void validationMessageForInvalidLogin(String login, String password) {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextInToInputLogin(login);
         pageProvider.loginPage().enterTextInToInputPassword(password);
         pageProvider.loginPage().clickOnButtonSignIn();
 
         Assert.assertTrue("Button SignOut is not visible", pageProvider.loginPage().isButtonSignInVisible());
+        Assert.assertTrue("Text 'Invalid username/password' is not visible", pageProvider.loginPage().isTextInvalidLoginOrPasswordDisplayed());
 
-        pageProvider.loginPage().checkErrorsMessages(expectedMessage);
+
 
 
     }
@@ -35,9 +36,9 @@ public class InvalidLogin extends BaseTest {
 
     public Object[][] parameterForValidationMessageTests() {
         return new Object[][]{
-                {VALID_LOGIN_UI, INVALID_PASSWORD_UI, ERROR_MESSAGE},
-                {INVALID_LOGIN_UI, VALID_PASSWORD_UI, ERROR_MESSAGE},
-                {INVALID_LOGIN_UI, INVALID_PASSWORD_UI, ERROR_MESSAGE}
+                {VALID_LOGIN_UI, INVALID_PASSWORD_UI},
+                {INVALID_LOGIN_UI, VALID_PASSWORD_UI},
+                {INVALID_LOGIN_UI, INVALID_PASSWORD_UI}
 
 
         };
