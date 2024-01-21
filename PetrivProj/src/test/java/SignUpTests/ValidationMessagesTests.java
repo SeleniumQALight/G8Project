@@ -10,8 +10,11 @@ import org.junit.runner.RunWith;
 
 public class ValidationMessagesTests extends BaseTest {
     final String ERROR_USERNAME = "Username must be at least 3 characters.";
+    final String ERROR_USERNAME_FORMAT = "Username can only contain letters and numbers.";
+    final String ERROR_USERNAME_LENGTH_EXCEEDED = "Username cannot exceed 30 characters.";
     final String ERROR_EMAIL = "You must provide a valid email address.";
     final String ERROR_PASSWORD = "Password must be at least 12 characters.";
+    final String ERROR_PASSWORD_LENGTH_EXCEEDED = "Password cannot exceed 50 characters.";
     final String SEMICOLON = ";";
     @Test
     @Parameters(method = "parametersForValidationMessagesTests")
@@ -27,6 +30,8 @@ public class ValidationMessagesTests extends BaseTest {
         return new Object[][]{
                 {"taras", "tr", "tr", ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
                 {"taras", "tssr@te.com", "tr", ERROR_PASSWORD},
+                {"Testnameforlengthvalidationtest", "tssr@te.com", "Passwordlengthvalidationtest12345678901234567890123", ERROR_USERNAME_LENGTH_EXCEEDED + SEMICOLON + ERROR_PASSWORD_LENGTH_EXCEEDED},
+                {"тест", "тест", "тест", ERROR_USERNAME_FORMAT + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD}
         };
     }
 

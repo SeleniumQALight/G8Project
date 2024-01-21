@@ -1,7 +1,6 @@
 package loginTests;
 
 import baseTest.BaseTest;
-import libs.ConfigProperties;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Assert;
@@ -43,6 +42,21 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
+    public void validLoginWithTabAndEnterButtons() {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().pressTheTabKey();
+        pageProvider.loginPage().pressTheTabKey();
+
+
+        pageProvider.loginPage().enterTextWithoutGettingElement(VALID_LOGIN_UI);
+        pageProvider.loginPage().pressTheTabKey();
+        pageProvider.loginPage().enterTextWithoutGettingElement(VALID_PASSWORD_UI);
+        pageProvider.loginPage().clickOnButtonSingInWithEnterButton();
+
+        Assert.assertTrue("Button SignOut is not visible",
+                pageProvider.homePage().getHeader().isButtonSignOutVisible());
+    }
+
     public void validLoginWithExcel() throws IOException {
         Map<String, String> dataForValidLogin = ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
         pageProvider.loginPage().openLoginPage();
@@ -67,5 +81,39 @@ public class LoginTestWithPageObject extends BaseTest {
                 pageProvider.homePage().getHeader().isButtonSignOutVisible());
         Assert.assertTrue("Validation message is not displayed",
                 pageProvider.loginPage().isValidationMessageIsDisplayed());
+    }
+
+    @Test
+    public void loginAndOpenLoginPageInNewTab() {
+        pageProvider.loginPage()
+                .openLoginPageAndFillLoginFormWithValidCreds()
+                .getHeader()
+                .checkIsButtonSignOutVisible()
+        ;
+
+        pageProvider.loginPage()
+                .openLoginPageInNewTabWithJS(1)
+        ;
+
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
+        pageProvider.loginPage().switchToMainTab();
+
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
+
+        pageProvider.loginPage().closeTabAndSwitchToMainTab(1);
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
+    }
+
+    @Test
+    public void loginAndRefreshPage() {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputLogin(VALID_LOGIN_UI);
+        pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
+
+        pageProvider.loginPage().refreshPage();
+        pageProvider.loginPage().clickOnButtonSingIn();
+
+        Assert.assertFalse("Button SignOut is visible",
+                pageProvider.homePage().getHeader().isButtonSignOutVisible());
     }
 }

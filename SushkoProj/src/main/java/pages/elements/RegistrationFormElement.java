@@ -63,6 +63,10 @@ public class RegistrationFormElement extends CommonActionsWithElements {
         clickOnElement(buttonSignUp);
     }
 
+    public void clickOnButtonSingUpWithEnterButton() {
+        pressTheEnterKey(buttonSignUp);
+    }
+
     public RegistrationFormElement fillRegistrationFormWithInvalidCreds() {
         enterTextIntoInputUsername("sv");
         enterTextIntoInputEmail("sv");
@@ -107,6 +111,21 @@ public class RegistrationFormElement extends CommonActionsWithElements {
         softAssertions.assertAll(); //check all assertion
 
 
+        return this;
+    }
+
+    public RegistrationFormElement tabToUserNameField(){
+        tabToElementWithActions(inputUsername);
+        return this;
+    }
+
+    public RegistrationFormElement tabToEmailField(){
+        tabToElementWithActions(inputEmail);
+        return this;
+    }
+
+    public RegistrationFormElement tabToPasswordField(){
+        tabToElementWithActions(inputPassword);
         return this;
     }
 }

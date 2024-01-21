@@ -6,13 +6,10 @@ import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static data.TestData.*;
+
 @RunWith(JUnitParamsRunner.class)
 public class ValidationMessagesTest extends BaseTest {
-
-    final String ERROR_USERNAME = "Username must be at least 3 characters.";
-    final String ERROR_EMAIL = "You must provide a valid email address.";
-    final String ERROR_PASSWORD = "Password must be at least 12 characters.";
-    final String SEMICOLON = ";";
 
     @Test
     @Parameters(method = "parametersForValidationMessagesTests")
@@ -30,7 +27,10 @@ public class ValidationMessagesTest extends BaseTest {
     public Object[][] parametersForValidationMessagesTests() {
         return new Object[][]{
                 {"vladyslava03", "sv", "sv", ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
-                {"vladyslava03", "sushko@gmail.com", "sv", ERROR_PASSWORD}
+                {"vladyslava03", "sushko@gmail.com", "sv", ERROR_PASSWORD},
+                {"тест", "sushko@gmail.com", "sv", ERROR_USERNAME_SYMBOLS + SEMICOLON + ERROR_PASSWORD},
+                {"vladyslava03", "sushko@gmail.com", "123456789012345678901234567890123456789012345678901234567890",
+                       ERROR_PASSWORD_CHARACTERS_COUNT}
         };
     }
 }

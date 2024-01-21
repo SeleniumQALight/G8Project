@@ -51,18 +51,24 @@ public class LoginPage extends ParentPage{
         return this;
     }
 
-    public void enterTextIntoInputLogin(String login) {
+    public LoginPage enterTextIntoInputLogin(String login) {
         enterTextIntoInput(inputLogin, login);
+        return this;
     }
 
-    public void enterTextIntoInputPassword(String password) {
+    public LoginPage enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
+        return this;
     }
 
     public void clickOnButtonSingIn() {
 //        WebElement buttonSingIn =
 //                webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSingIn);
+    }
+
+    public void clickOnButtonSingInWithEnterButton() {
+        pressTheEnterKey(buttonSingIn);
     }
 
     public boolean isInputLoginIsVisible() {
@@ -99,5 +105,13 @@ public class LoginPage extends ParentPage{
         checkIsElementNotVisible(inputLogin);
         checkIsElementNotVisible(inputPassword);
         checkIsElementNotVisible(buttonSingIn);
+    }
+
+    public LoginPage openLoginPageInNewTabWithJS(int num_of_tab){
+        openNewTabWithJS();
+        switchToTab(num_of_tab);
+        openLoginPage();
+
+        return this;
     }
 }

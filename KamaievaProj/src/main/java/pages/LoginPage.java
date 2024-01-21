@@ -1,6 +1,6 @@
 package pages;
 
-import libs.TestData;
+import data.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -37,6 +37,9 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = "//button[contains(text(), 'Sign up')]")
     private WebElement buttonSignUp;
+
+    @FindBy(xpath = "//div[text() = 'Invalid username/password.']")
+    private WebElement validationMessagesInvalidUsernamePassword;
 
     @FindBy(xpath = "//div[text() = 'Username must be at least 3 characters.']")
     private WebElement validationMessageUsernameRegister;
@@ -163,12 +166,16 @@ public class LoginPage extends ParentPage {
         return checkIsValidationMessageVisible(validationMessagePasswordRegister);
     }
 
+    public void checkIsAlertInvalidUsernamePasswordVisible() {
+        checkIsElementVisible(validationMessagesInvalidUsernamePassword);
+    }
+
     public LoginPage checkErrorsMessages(String message) {
         // error1; error2; -> [error1, error2]
         String[] expectedErrors = message.split(";");
 
         webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(
-                By.xpath(listErrorsMessagesLocator),expectedErrors.length));
+                By.xpath(listErrorsMessagesLocator), expectedErrors.length));
 
         Util.waitABit(1);
         Assert.assertEquals("Number of messages", expectedErrors.length, listErrorsMessages.size());
@@ -179,7 +186,7 @@ public class LoginPage extends ParentPage {
         }
 
         SoftAssertions softAssertions = new SoftAssertions();
-        for(int i = 0; i < expectedErrors.length; i++) {
+        for (int i = 0; i < expectedErrors.length; i++) {
             softAssertions.assertThat(expectedErrors[i])
                     .as("Error " + i)
                     .isIn(actualErrors);

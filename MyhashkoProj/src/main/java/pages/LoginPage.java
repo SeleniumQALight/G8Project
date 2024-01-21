@@ -161,5 +161,11 @@ public class LoginPage extends ParentPage{
 
         return this;
     }
+
+    public LoginPage checkisErrorMessageVisibleForInvalidLogin() {
+        checkIsElementVisible(errorMessage);
+        return this;
+
+    }
 }
 
