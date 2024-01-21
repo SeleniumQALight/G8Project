@@ -1,6 +1,6 @@
 Login Page:
 
-Lof In Username:    .//input[@id='username8']
+Log In Username:    //input[@placeholder='Username']
 Log In Password:    .//input[@placeholder='Password']
 Sign In button:     .//button[@class='btn btn-primary btn-sm']
 

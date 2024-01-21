@@ -59,6 +59,7 @@ Steps:
 
 Expected result:
 1. New post successfully created. The text in Title and Body matches the text you enter.
+2. Created post appeared in the list of posts.
 
 Postconditions: Delete created post from the system.
 
