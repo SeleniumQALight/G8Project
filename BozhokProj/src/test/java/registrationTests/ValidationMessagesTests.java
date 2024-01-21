@@ -15,6 +15,7 @@ public class ValidationMessagesTests extends BaseTest {
     final String ERROR_UNVALID_EMAIL = "You must provide a valid email address.";
     final String ERROR_USERNAME_ONLY_LETTERS = "Username can only contain letters and numbers.";
     final String ERROR_PASSWORD_MORE_60_SYMBOLS = "Password cannot exceed 50 characters.";
+    final String ERROR_USERNAME_PASSWORD_LOGIN  = "Invalid username/password.";
     final String SEMICOLON = ";";
 
     @Test
@@ -44,9 +45,26 @@ public class ValidationMessagesTests extends BaseTest {
                         ERROR_PASSWORD_MORE_60_SYMBOLS},
                 {"tr", "tr@tr.com", "trtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtr",
                         ERROR_USERNAME + SEMICOLON + ERROR_PASSWORD_MORE_60_SYMBOLS},
+        };
+    }
 
+    @Test
+    @Parameters(method = "parametersForUnValidMessageInLoginTest")
+    public void unValidMessageInLoginTest(String userName, String password, String ERROR_USERNAME_PASSWORD_LOGIN) {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputLogin(userName);
+        pageProvider.loginPage().enterTextIntoInputPassword(password);
+        pageProvider.loginPage().clickOnButtonSignIn();
+        pageProvider.loginPage().checkErrorsMessagesInLogin(ERROR_USERNAME_PASSWORD_LOGIN);
+    }
 
+    public Object[][] parametersForUnValidMessageInLoginTest() {
+        return new Object[][]{
+                {"qaauto", "tr", ERROR_USERNAME_PASSWORD_LOGIN},
+                {"tr", "123456qwerty, ", ERROR_USERNAME_PASSWORD_LOGIN},
+                {"tr", "tr", ERROR_USERNAME_PASSWORD_LOGIN},
         };
     }
 }
+
 
