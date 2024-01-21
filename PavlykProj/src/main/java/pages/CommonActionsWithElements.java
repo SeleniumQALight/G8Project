@@ -67,10 +67,10 @@ public class CommonActionsWithElements {
     protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
-            logger.info("Element " + getElementName(element) + " is displayed -> " + state);
+            logger.info("Element " + getElementName(element) + " is displayed (" + state + ")");
             return state;
         } catch (Exception e) {
-            logger.error("Element is displayed -> false");
+            logger.info("Element is not displayed (false)");
             return false;
         }
     }
