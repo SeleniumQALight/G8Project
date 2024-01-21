@@ -52,7 +52,11 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listErrorsMessages;
 
+    @FindBy(xpath = ".//div[contains(@class,'alert-danger') and not (contains(@class,'liveValidateMessage'))]")
+    private WebElement errorMessageLoginForm;
+
     private String listErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -75,9 +79,10 @@ public class LoginPage extends ParentPage {
         }
     }
 
-    public void enterTextIntoInputLogin(String login) {
+    public LoginPage enterTextIntoInputLogin(String login) {
 //        WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         enterTextIntoInput(inputLogin, login);
+        return this;
     }
 
     public LoginPage checkIsInputLoginVisible() {
@@ -85,9 +90,10 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public void enterTextIntoInputPassword(String password) {
+    public LoginPage enterTextIntoInputPassword(String password) {
 //        WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         enterTextIntoInput(inputPassword, password);
+        return this;
     }
 
     public void checkIsInputPasswordVisible() {
@@ -227,5 +233,10 @@ public class LoginPage extends ParentPage {
 
         softAssertions.assertAll(); // проверка всех ошибок
         return null;
+    }
+
+    public LoginPage checkErrorMessageInLoginForm(String text) {
+        checkTextInElement(errorMessageLoginForm, text);
+        return this;
     }
 }
