@@ -69,14 +69,10 @@ private WebElement inputTitle;
         return new PostPage(webDriver);
     }
 
-    public CreatePostPage setCheckBoxUniquePostUnchosen() {
-        setStateToCheckBox(checkBoxUniquePost, "uncheck");
-        logger.info("CheckBox Unique Post was unchosen");
-        return this;
-    }
 
-    public CreatePostPage setCheckBoxUniquePostChosen() {
-        setStateToCheckBox(checkBoxUniquePost, "check");
+
+    public CreatePostPage setCheckBoxUniquePostChosen(String state) {
+        setStateToCheckBox(checkBoxUniquePost, state);
         logger.info("CheckBox Unique Post was chosen");
         return this;
             }

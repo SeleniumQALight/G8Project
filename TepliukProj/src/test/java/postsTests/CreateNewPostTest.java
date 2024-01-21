@@ -9,6 +9,7 @@ public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "TC_001_tepliuk" + Util.getDateAndTimeFormatted();
     final String POST_BODY = "Tepliuk body";
     final String POST_BODY_NOTE = "One Person";
+    final String STATE_CHECK = "Check";
 
     @Test
     public void TC_001_createNewPost() {
@@ -20,7 +21,7 @@ public class CreateNewPostTest extends BaseTest {
                 .enterTitleIntoInputTitle(POST_TITLE)
                 .enterTextIntoInputBody(POST_BODY)
                 //.selectTextInDropDown("Приватне повідомлення");
-                .setCheckBoxUniquePostChosen()
+                .setCheckBoxUniquePostChosen(STATE_CHECK)
                 .selectValueInDropDown(POST_BODY_NOTE)
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
