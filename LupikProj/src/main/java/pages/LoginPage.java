@@ -215,5 +215,10 @@ public class LoginPage extends ParrentPage {
 
         return this;
     }
+
+    public LoginPage checkErrorsMessages(String expecteMessage) {
+        checkTextInElement(textInvalidLoginOrPassword, expecteMessage);
+        return this;
+    }
 }
 
