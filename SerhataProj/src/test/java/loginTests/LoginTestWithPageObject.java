@@ -1,10 +1,13 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.io.IOException;
 import java.util.Map;
@@ -12,7 +15,13 @@ import java.util.Map;
 import static data.TestData.VALID_LOGIN_UI;
 import static data.TestData.VALID_PASSWORD_UI;
 
+
+@RunWith(JUnitParamsRunner.class)
+
 public class LoginTestWithPageObject extends BaseTest {
+
+    final String ERROR_LOGIN = "Invalid username/password.";
+
     @Test
     public void validLogin() {
         pageProvider.loginPage().openLoginPage();
@@ -61,5 +70,24 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertTrue("Title My Profile is not visible", pageProvider.homePage().getHeader().isTitleMyProfilePresent());
         Assert.assertTrue("User Name is not visible", pageProvider.homePage().getHeader().isUserNamePresent());
         pageProvider.loginPage().checkIsLoginFieldIsNotVisible();
+    }
+
+    @Parameters(method = "parametersForLoginValidationMessagesTests")
+    @Test
+    public void invalidLoginMessagesTests(String login, String password, String expectedMessages) {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextInToInputLogin(login);
+        pageProvider.loginPage().enterTextInToInputPassword(password);
+        pageProvider.loginPage().clickOnButtonSignIn();
+        pageProvider.loginPage().checkLoginErrorMessages(expectedMessages);
+    }
+
+    public Object[][] parametersForLoginValidationMessagesTests() {
+        return new Object[][]{
+                {"tr", "tr", ERROR_LOGIN},
+                {"@#$$#@", "@#$$#@", ERROR_LOGIN},
+                {"1","1", ERROR_LOGIN},
+                {"  ", "  ", ERROR_LOGIN}
+        };
     }
 }

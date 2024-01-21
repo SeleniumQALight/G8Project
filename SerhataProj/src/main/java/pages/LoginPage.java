@@ -46,7 +46,13 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listErrorsMessages;
+
     private String listErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+    private String listLoginErrorsMessagesLocator = ".//*[@class='alert alert-danger text-center']";
+
+    @FindBy(xpath = ".//*[@class='alert alert-danger text-center']")
+    private List<WebElement> listLoginErrorsMessages;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -178,6 +184,35 @@ public class LoginPage extends ParentPage {
 
         ArrayList<String> actualErrors = new ArrayList<>();
         for (WebElement element : listErrorsMessages) {
+            actualErrors.add(element.getText());
+        }
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrors.length; i++) {
+            softAssertions.assertThat(expectedErrors[i])
+                    .as("Error " + i)
+                    .isIn(actualErrors);
+        }
+
+        softAssertions.assertAll(); // check all assertion
+
+        return this;
+
+    }
+
+    public LoginPage checkLoginErrorMessages(String messages) {
+        // error1; error2 -> [error1, error2]
+        String[] expectedErrors = messages.split(";");
+
+        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(
+                By.xpath(listLoginErrorsMessagesLocator), expectedErrors.length));
+
+        Util.waitABit(1);
+        Assert.assertEquals("Number of messages ", expectedErrors.length,
+                listLoginErrorsMessages.size()); // for checking all errors which are on the page
+
+        ArrayList<String> actualErrors = new ArrayList<>();
+        for (WebElement element :  listLoginErrorsMessages) {
             actualErrors.add(element.getText());
         }
 
