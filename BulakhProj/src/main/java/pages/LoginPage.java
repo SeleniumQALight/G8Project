@@ -1,7 +1,7 @@
 package pages;
 
 
-import libs.TestData;
+import data.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -13,7 +13,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 
 public class LoginPage  extends ParentPage{
