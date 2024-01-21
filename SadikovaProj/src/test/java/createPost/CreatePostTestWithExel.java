@@ -8,17 +8,12 @@ import libs.ConfigProvider;
 import libs.ExcelSpreadsheetData;
 import libs.Util;
 import org.junit.After;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.Description;
 import org.junit.runner.RunWith;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.Date;
-
-import static org.bouncycastle.asn1.x500.style.RFC4519Style.description;
 
 @RunWith(JUnitParamsRunner.class)
 public class CreatePostTestWithExel extends BaseTest {
