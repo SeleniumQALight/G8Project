@@ -19,6 +19,9 @@ private WebElement inputTitle;
     @FindBy(xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = "//input[@type='checkbox']")
+    private WebElement checkBoxUniquePost;
+
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -60,8 +63,22 @@ private WebElement inputTitle;
         return this;
     }
 
+
     public PostPage clickOnSaveNewPostButton() {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
+
+    public CreatePostPage setCheckBoxUniquePostUnchosen() {
+        setStateToCheckBox(checkBoxUniquePost, "uncheck");
+        logger.info("CheckBox Unique Post was unchosen");
+        return this;
+    }
+
+    public CreatePostPage setCheckBoxUniquePostChosen() {
+        setStateToCheckBox(checkBoxUniquePost, "check");
+        logger.info("CheckBox Unique Post was chosen");
+        return this;
+            }
+
 }
