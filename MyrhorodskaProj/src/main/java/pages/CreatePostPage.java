@@ -14,8 +14,10 @@ public class CreatePostPage  extends ParentPage{
 
     @FindBy(tagName = "select")  //xpath = "//select"
     private WebElement dropDownSelectValue;
-    @FindBy(xpath = "//input[@type='checkbox']")
-    private WebElement checkBoxIsSelected;
+
+
+    @FindBy(xpath = ".//input[@type='checkbox']")
+    private WebElement checkboxIsThisPostUnique;
 
     private static String SavedTextOfTitleFieldWhichWasEnteredOnCreatePostPage;
     private static String SavedTextOfBodyFieldWhichWasEnteredOnCreatePostPage;
@@ -60,32 +62,15 @@ public class CreatePostPage  extends ParentPage{
         return SavedTextOfBodyFieldWhichWasEnteredOnCreatePostPage;
     }
 
-    public CreatePostPage setStatusOfCheckBoxIsThisPostUnique(String checked) {
-        switch (checked) {
-            case "check":
-                checkCheckBoxIshisPostUnique();
-                break;
-            case "uncheck":
-                unCheckCheckBoxIshisPostUnique();
-                break;
-            default:
-                logger.error("CheckBoxIsThisPostUnique should be check or unchecked");
-                Assert.fail("CheckBoxIsThisPostUnique should be check or unchecked");
-        }
-        return this;
+
+    public CreatePostPage  setIsThisPostUniqueCheckBoxState (String state) {
+        setCheckboxState(checkboxIsThisPostUnique ,state);
+        return new CreatePostPage(webDriver);
     }
 
-    private CreatePostPage unCheckCheckBoxIshisPostUnique() {
-        setCheckBoxIsThisPostUniqueUnchecked(checkBoxIsSelected);
-        return this;
-    }
 
-    private CreatePostPage checkCheckBoxIshisPostUnique() {
-        setCheckBoxIsThisPostUniqueChecked(checkBoxIsSelected);
-        return this;
-    }
     //select text in drop down
-    public CreatePostPage selectTextInDropDown(String textInDropDown) {
+    public CreatePostPage selectTextInDropDown (String textInDropDown) {
         //TODO select text in drop down
         selectTextInDropDown(dropDownSelectValue, textInDropDown);
         return this;

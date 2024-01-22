@@ -8,6 +8,8 @@ import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "TC_001_myrhorodska " + Util.getDateAndTimeFormatted();
+    final String POST_BODY = "body text";
+    final String DROPDOWN_VALUE = "One Person";
     @Test
     public void createNewPost() {
         pageProvider.loginPage()
@@ -18,7 +20,7 @@ public class CreateNewPostTest extends BaseTest {
                 .enterTextInToInputTitle(POST_TITLE)
                 .enterTextInToInputBody("Myrhorodska Body")
                 .selectValueInDropDown("One Person")
-                .setStatusOfCheckBoxIsThisPostUnique("check")
+                .setIsThisPostUniqueCheckBoxState("check")
                 .clickOnSaveNewButton()
                 .checkIsRedirectedToPostPage()
                 .checkIsSuccessMessageDisplayed()
@@ -26,7 +28,10 @@ public class CreateNewPostTest extends BaseTest {
                 .chekStatusOfCheckBoxIsThisPostUniqueOnPostPage("yes")
                 .checkTitleOnPostPageEqualsTileOnCreatePostPage()
                 .checkBodyOnPostPageEqualsTileOnCreatePostPage()
-                .checkOfNoteTextValue("VALUE_IN_DROPDOWN")
+                .checkPostWithTitleIsPresent(POST_TITLE)
+                .checkPostWithContentIsPresent(POST_BODY)
+                .checkIsThisPostUniqueTextPresent("yes")
+                .checkOfNoteTextValue(DROPDOWN_VALUE)
         ;
         pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()

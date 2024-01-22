@@ -97,7 +97,7 @@ public class CommonActionsWithElements {
         try {
             Select select = new Select(dropDown);
             select.selectByValue(value);
-            logger.info(value + " was selected in Dropdown" + getElementName(dropDown));
+            logger.info(value + " was selected in Dropdown " + getElementName(dropDown));
         } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
@@ -124,13 +124,55 @@ public class CommonActionsWithElements {
             Assert.fail("Can not work with element");
         }
     }
+
+    protected void checkCheckBox(WebElement element) {
+        try {
+            if (!element.isSelected()) {
+                element.click();
+                logger.info("Checkbox was checked");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void uncheckCheckBox(WebElement element) {
+        try {
+            if (element.isSelected()) {
+                element.click();
+                logger.info("Checkbox was unchecked");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void setStateToCheckBox(WebElement element, String state) {
+        try {
+            if (state.equalsIgnoreCase("check")) {
+                checkCheckBox(element);
+            } else if (state.equalsIgnoreCase("uncheck")) {
+                uncheckCheckBox(element);
+            } else {
+                logger.error("State should be 'check' or 'uncheck'");
+                Assert.fail("State should be 'check' or 'uncheck'");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+
     //press button ENTER on keyboard using Actions class
-    protected void pressEnterKey(){
-        try{
+    protected void pressEnterKey() {
+        try {
             Actions actions = new Actions(webDriver);
             actions.sendKeys(Keys.ENTER).build().perform();
             logger.info("Enter key was pressed");
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
         }
