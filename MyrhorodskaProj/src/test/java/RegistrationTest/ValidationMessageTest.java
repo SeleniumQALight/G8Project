@@ -3,7 +3,6 @@ package RegistrationTest;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import libs.ErrorMessage;
-import org.junit.Ignore;
 import org.junit.Test;
 import BaseTest.BaseTest;
 import org.junit.runner.RunWith;
@@ -18,9 +17,13 @@ public class ValidationMessageTest extends BaseTest{
     final String ERROR_USERNAME_LENGTH_EXCEEDED = "Username can't be more 30 characters.";
     final String ERROR_PASSWORD_LENGTH_EXCEEDED = "Password cannot exceed 50 characters.";
 
+    final String ERROR_USERNAME = "Username must be at least 3 characters.";
+    final String ERROR_EMAIL = "You must provide a valid email address.";
+    final String ERROR_PASSWORD = "Password must be at least 12 characters.";
+
     @Test
-    @Parameters(method = "parameterForValidationMessagesTests")
-    public void validationMessageTest(String userName, String email, String password, String expectedMessages) {
+    @Parameters(method = "parametersForValidationMessagesTests")
+    public void validationMessagesTest(String userName, String email, String password, String expectedMessages) {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().inputTextIntoRegistrationLogin(userName);
         pageProvider.loginPage().inputTextIntoRegistrationEmail(email);

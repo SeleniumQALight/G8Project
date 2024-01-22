@@ -44,7 +44,7 @@ public class LoginTestWithPageObject extends BaseTest {
 
     @Test
     @Ignore
-    public void unValidLogin() {
+    public void inValidLogin() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextInToInputLogin("qalogin");
         pageProvider.loginPage().enterTextInToInputPassword("123456qwerty");
