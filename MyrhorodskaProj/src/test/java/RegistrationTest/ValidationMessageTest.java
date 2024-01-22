@@ -17,7 +17,7 @@ public class ValidationMessageTest extends BaseTest{
     final String ERROR_USERNAME_LENGTH_EXCEEDED = "Username can't be more 30 characters.";
     final String ERROR_PASSWORD_LENGTH_EXCEEDED = "Password cannot exceed 50 characters.";
 
-    final String ERROR_USERNAME = "Username must be at least 3 characters.";
+    final String USER_NAME_MESSAGE = "Username must be at least 3 characters.";
     final String ERROR_EMAIL = "You must provide a valid email address.";
     final String ERROR_PASSWORD = "Password must be at least 12 characters.";
 
