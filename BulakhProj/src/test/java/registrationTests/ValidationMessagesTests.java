@@ -31,7 +31,7 @@ public class ValidationMessagesTests extends BaseTest {
         return new Object[][]{
                 {"tanya", "tr", "123456",  ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
                 {"tanya", "tr@tr.com", "tr", ERROR_PASSWORD},
-                {"tanya", "test@test.com", "T".repeat(51), PASSWORD_CANNOT_EXCEED_50},
+                {"tanya", "test@test.com", "T".repeat(61), PASSWORD_CANNOT_EXCEED_50},
                 {"user", "invalid_email", "T".repeat(12), ERROR_EMAIL},
 
                 {" ", "test@test.com", "T".repeat(12), ERROR_USERNAME},
