@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,8 +19,8 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = ".//div[@class='container py-md-5 container--narrow']/div[5]/p")
     private WebElement postBody;
 
-    @FindBy(xpath = ".//p[starts-with(text(),'Is this post unique? :')]")
-    private WebElement postUniqueInfoMessage;
+//    @FindBy(xpath = ".//p[starts-with(text(),'Is this post unique? :')]")
+//    private WebElement postUniqueInfoMessage;
 
     @FindBy(xpath = ".//i[contains(text(), 'Note: This post was written for')]/u")
     private WebElement postVisibilityInfoMessage;
@@ -63,12 +64,25 @@ public class PostPage extends ParentPage {
         return this;
     }
 
-    public PostPage checkTextInUniquePostInfoMessage(boolean option) {
-        if (option) {
-            checkTextInElement(postUniqueInfoMessage, "Is this post unique? : yes");
+    //public PostPage checkTextInUniquePostInfoMessage(boolean option) {
+     //   if (option) {
+    //        checkTextInElement(postUniqueInfoMessage, "Is this post unique? : yes");
+     //   } else {
+     //       checkTextInElement(postUniqueInfoMessage, "Is this post unique? : no");
+     //   }
+     //   return this;
+    //}
+
+    private By getPostUniqueInfoMessageNoLocator(boolean isCheckboxSelected) {
+        if (!isCheckboxSelected) {
+            return By.xpath(".//p[starts-with(text(),'Is this post unique? : no')]");
         } else {
-            checkTextInElement(postUniqueInfoMessage, "Is this post unique? : no");
+            return By.xpath(".//p[starts-with(text(),'Is this post unique? : yes')]");
         }
+    }
+
+    public PostPage checkTextInUniquePostInfoMessage(boolean isCheckboxSelected) {
+        checkIsElementVisible(getPostUniqueInfoMessageNoLocator(isCheckboxSelected));
         return this;
     }
 

@@ -4,11 +4,12 @@ import baseTest.BaseTest;
 import libs.Util;
 import org.junit.After;
 import org.junit.Test;
+import org.openqa.selenium.By;
 
 public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "TC_001_storozhuk " + Util.getDateAndTimeFormatted();
     final String POST_BODY = "check testbody" + Util.getDateAndTimeFormatted();
-    final boolean UNCHECKBOX = true;
+    final boolean UNCHECKBOX = false;
     final String POST_VISIBILITY = "One Person"; //possible values: One Person, All Users, Group Message
 
     @Test

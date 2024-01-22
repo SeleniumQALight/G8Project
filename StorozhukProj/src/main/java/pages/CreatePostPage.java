@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -67,7 +68,11 @@ public class CreatePostPage extends ParentPage {
     public CreatePostPage tickCheckbox(boolean selected) {
         if (selected != checkbox.isSelected()) {
             clickOnElement(checkbox);
+            logger.info("Checkbox was clicked");
+        }else{
+            logger.info("Checkbox is in correct state");
         }
         return this;
     }
+
 }
