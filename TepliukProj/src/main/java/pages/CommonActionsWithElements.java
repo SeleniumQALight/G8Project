@@ -2,17 +2,14 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
+
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
@@ -178,4 +175,51 @@ public class CommonActionsWithElements {
         }
     }
 
+
+    public void openNewTabInBrowser() {
+        try {
+            if (webDriver instanceof JavascriptExecutor) {
+                ((JavascriptExecutor) webDriver).executeScript("window.open()");
+                logger.info("New tab was opened");
+            } else {
+                throw new UnsupportedOperationException("JavascriptExecutor not supported");
+            }
+        } catch (Exception e) {
+            logger.error("Can not open new tab", e);
+            Assert.fail("Can not work new tab");
+        }
+    }
+
+
+    public void switchToNewTab(int tabNumber) {
+        try {
+            webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[tabNumber].toString());
+            logger.info("Switch to new tab");
+        } catch (Exception e) {
+            logger.error("Failed to switch to the new tab", e);
+            Assert.fail("Failed to switch to the new tab");
+        }
+    }
+
+
+    public void closeTab(int tabNumber) {
+        try {
+            webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[tabNumber].toString());
+            webDriver.close();
+            logger.info("New tab was closed and switch to main tab");
+        } catch (Exception e) {
+            logger.error("Failed to close the new tab", e);
+            Assert.fail("Failed to close the new tab");
+        }
+    }
+
+    public void refreshPage() {
+        try {
+            webDriver.navigate().refresh();
+            logger.info("Page was refreshed");
+        } catch (Exception e) {
+            logger.error("Failed to refresh the page", e);
+            Assert.fail("Failed to refresh the page");
+        }
+    }
 }
