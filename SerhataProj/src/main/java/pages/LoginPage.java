@@ -226,6 +226,5 @@ public class LoginPage extends ParentPage {
         softAssertions.assertAll(); // check all assertion
 
         return this;
-
     }
 }
