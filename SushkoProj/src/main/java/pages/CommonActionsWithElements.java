@@ -2,18 +2,26 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.ArrayList;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
+    protected WebDriverWait webDriverWait10, webDriverWait15;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // ініціалізує всі елементи сторінки опираючись на @FindBy
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
     }
 
     protected void enterTextIntoInput(WebElement input, String text) {
@@ -37,12 +45,22 @@ public class CommonActionsWithElements {
 
     protected void clickOnElement(WebElement element) {
         try{
+            webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             String elementName = getElementName(element);
             element.click();
             logger.info("Element was clicked " + elementName);
         }catch (Exception e){
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void clickOnElement(String locator){
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(locator)));
+        } catch (Exception e) {
+            logger.error("Can not work with element: " + locator);
+            Assert.fail("Can not work with element: " + locator);
         }
     }
 
@@ -133,6 +151,106 @@ public class CommonActionsWithElements {
         } else {
             logger.info("Wrong status for checkbox is passed");
             Assert.fail("Wrong status for checkbox is passed");
+        }
+    }
+
+    public void openNewTabWithJS(){
+        try {
+            ((JavascriptExecutor) webDriver).executeScript("window.open()");
+            logger.info("New tab was opened");
+        }catch (Exception e){
+            logger.info("New tab was not opened");
+            Assert.fail("New tab was not opened");
+        }
+    }
+
+    public void switchToTab(int num_of_tab){
+        try {
+            ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(num_of_tab));
+            logger.info("Switched to tab №" + num_of_tab);
+        }catch (Exception e){
+            logger.info("Can not switched to tab №" + num_of_tab);
+            Assert.fail("Can not switched to tab №" + num_of_tab);
+        }
+    }
+
+    public void switchToMainTab(){
+        switchToTab(0);
+    }
+
+    public void closeTab(int num_of_tab){
+        try {
+            switchToTab(num_of_tab);
+            webDriver.close();
+            logger.info("Tab was closed");
+        }catch (Exception e){
+            logger.info("Tab was not closed");
+            Assert.fail("Tab was not closed");
+        }
+    }
+
+    public void closeTabAndSwitchToMainTab(int num_of_tab){
+        closeTab(num_of_tab);
+        switchToMainTab();
+    }
+
+    public void refreshPage() {
+        try {
+            webDriver.navigate().refresh();
+            logger.info("Page was refreshed");
+        }catch (Exception e) {
+            logger.error("Page was not refreshed");
+            Assert.fail("Page was not refreshed");
+        }
+    }
+
+    public void pressTheTabKey() {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys("\t").build().perform();  // "\t" - це символ табуляції
+            logger.info("Tab was clicked");
+        }catch (Exception e){
+            logger.info("Tab was not clicked");
+            Assert.fail("Tab was not clicked");
+        }
+    }
+
+    public void pressTheEnterKey(WebElement webElement) {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys(webElement, "\n").build().perform();  // "\n" - це символ нового рядка (Enter)
+            logger.info("Enter was clicked");
+        }catch (Exception e){
+            logger.info("Enter was not clicked");
+            Assert.fail("Enter was not clicked");
+        }
+    }
+
+    public void enterTextWithoutGettingElement(String input){
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys(input);
+            actions.build().perform();
+            logger.info("Text was entered");
+        } catch (Exception e){
+            logger.info("Text was not entered");
+            Assert.fail("Text was not entered");
+        }
+    }
+
+    public void tabToElementWithActions(WebElement webElement) {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys(webElement, "\t").build().perform();
+
+            // Очікувати, доки елемент стане активним
+            actions.click(webElement).perform();
+
+            logger.info("Tabbed to the element: " + getElementName(webElement));
+        } catch (Exception e) {
+            logger.info("Failed to tab to the element: " + getElementName(webElement));
+            Assert.fail("Failed to tab to the element: " + getElementName(webElement));
         }
     }
 }

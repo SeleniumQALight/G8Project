@@ -62,7 +62,11 @@ public class HeaderElement extends CommonActionsWithElements {
         return isElementDisplayed(buttonSearch);
     }
 
-    public void isButtonSignOutNotVisible() {
+    public void checkIsButtonSignOutVisible() {
+        checkIsElementVisible(buttonSignOut);
+    }
+
+    public void checkIsButtonSignOutNotVisible() {
         checkIsElementNotVisible(buttonSignOut);
     }
 

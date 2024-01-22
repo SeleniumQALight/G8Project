@@ -1,10 +1,17 @@
 package pages;
 
-import libs.TestData;
+import data.TestData;
+import libs.Util;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginPage extends ParrentPage {
     @FindBy(xpath = ".//button[contains(text(),'Sign In')]")
@@ -40,6 +47,10 @@ public class LoginPage extends ParrentPage {
 
     @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
     WebElement errorMessageInRegisterPasswordField;
+
+    @FindBy(xpath =".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> listErrorsMessages;
+    private String listErrorsMessagesLocator  = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -79,9 +90,10 @@ public class LoginPage extends ParrentPage {
         clickOnElement(buttonSignIn);
     }
 
-    public void enterTextIntoRegisterLogin(String login) {
+    public LoginPage enterTextIntoRegisterLogin(String login) {
 
         enterTextInToInput(registerLogin, login);
+        return this;
     }
 
 
@@ -151,13 +163,15 @@ public class LoginPage extends ParrentPage {
 
     }
 
-    public void enterTextIntoRegisterPassword(String password) {
+    public LoginPage enterTextIntoRegisterPassword(String password) {
 
         enterTextInToInput(registerPassword, password);
+        return this;
     }
 
-    public void enterTextIntoRegisterEmail(String email) {
+    public LoginPage enterTextIntoRegisterEmail(String email) {
         enterTextInToInput(registerEmail, email);
+        return this;
     }
 
     public void clickOnButtonSignUp() {
@@ -177,5 +191,29 @@ public class LoginPage extends ParrentPage {
     }
 
 
+    public LoginPage checkErrorMessages(String messages) {
+        // error1;error2 ->[error1,error2]
+        String[] expectedErrors = messages.split(";");
+        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
+
+        Util.waitABit(1);
+        Assert.assertEquals("Number of messages", expectedErrors.length, listErrorsMessages.size());
+
+        ArrayList<String> actualErrors = new ArrayList<>();
+        for (WebElement element : listErrorsMessages) {
+            actualErrors.add(element.getText());
+        }
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrors.length; i++) {
+            softAssertions.assertThat(expectedErrors[i])
+                    .as("Error " + i)
+                    .isIn(actualErrors);
+        }
+
+
+        softAssertions.assertAll(); //перевірка всіх асертів
+
+        return this;
+    }
 }
 

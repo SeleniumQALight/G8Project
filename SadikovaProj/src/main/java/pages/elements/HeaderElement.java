@@ -30,7 +30,7 @@ public class HeaderElement extends CommonActionsWithElements {
     private WebElement myProfilePageButton;
 
     /**
-     *VISIBLE
+     * VISIBLE
      */
     public HeaderElement checkSignOutButtonIsVisible() {
         checkIsElementVisible(signOutButton);
@@ -105,7 +105,7 @@ public class HeaderElement extends CommonActionsWithElements {
         return new CreatePostPage(webDriver);
     }
 
-    public MyProfilePage clickOnMyProfileButton(){
+    public MyProfilePage clickOnMyProfileButton() {
         clickOnElement(myProfilePageButton);
         return new MyProfilePage(webDriver);
     }

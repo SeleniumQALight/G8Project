@@ -1,12 +1,14 @@
 package postTests;
 
 import baseTest.BaseTest;
-import libs.Util;
 import org.junit.After;
 import org.junit.Test;
 
+import static data.TestData.*;
+
 public class CreateNewPostTest extends BaseTest {
-    final String POST_TITLE = "TC_001_semerenko_" + Util.getDateAndTimeFormatted();
+
+
     @Test
     public void TC_001_createNewPost() {
         pageProvider.loginPage()
@@ -15,19 +17,23 @@ public class CreateNewPostTest extends BaseTest {
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextIntoInputTitle(POST_TITLE)
-                .enterTextIntoInputBody("New Post Body")
+                .enterTextIntoInputBody(POST_BODY)
+                .setStateOfCheckBox("check")
                 //.selectTextInDropDown("Привтне повідомлення")
-                .selectValueInDropDown("One Person")
+                .selectValueInDropDown(DROPDOWN_VALUE)
                 .clickOnSavePostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
-        ;
-
-        pageProvider.postPage().getHeader().clickOnButtonProfile()
+                .checkIsTitleVisible(POST_TITLE)
+                .checkIsBodyVisible(POST_BODY)
+                .checkNoteCreatePostMessage(DROPDOWN_VALUE)
+                .checkStateOfUniquePost("yes")
+                .getHeader().clickOnButtonProfile()
                 .checkIsRedirectToMyProfilePage()
-                .checkPostWithTitleIsPresent (POST_TITLE);
+                .checkPostWithTitleIsPresent(POST_TITLE);
     }
+
     @After
     public void deletePost() {
         pageProvider.homePage().openHomePageLoginIfNeeded()

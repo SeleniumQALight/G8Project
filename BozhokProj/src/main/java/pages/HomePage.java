@@ -1,8 +1,7 @@
 package pages;
 
 
-import libs.TestData;
-import org.junit.Assert;
+import data.TestData;
 import org.openqa.selenium.WebDriver;
 import pages.elements.HeaderElement;
 
@@ -31,7 +30,7 @@ public class HomePage extends ParentPage {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openLoginPage();
         if (this.getHeader().isButtonSignOutVisible()) {
-           logger.info("User is already logged in");
+            logger.info("User is already logged in");
         } else {
             loginPage.enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
             loginPage.enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);

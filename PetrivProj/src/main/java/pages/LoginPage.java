@@ -1,6 +1,6 @@
 package pages;
 
-import libs.TestData;
+import data.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.elements.HeaderElement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,8 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//input[@id='password-register']/following-sibling::div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private WebElement validationMessageForPasswordRegister;
+    @FindBy(xpath = ".//div[contains(text(),'Invalid username/password.')]")
+    private WebElement invalidUsernameOrPasswordMessage;
 
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listErrorMessages;
@@ -55,6 +58,10 @@ public class LoginPage extends ParentPage {
     @Override
     protected String getRelativeUrl() {
         return "/";
+    }
+
+    public HeaderElement getHeader() {
+        return new HeaderElement(webDriver);
     }
 
     public void openLoginPage() {
@@ -186,6 +193,11 @@ public class LoginPage extends ParentPage {
 
         softAssertions.assertAll(); // check all assertions
 
+        return this;
+    }
+
+    public LoginPage checkIsInvalidUsernameOrPasswordMessageVisible() {
+        checkIsElementVisible(invalidUsernameOrPasswordMessage);
         return this;
     }
 }

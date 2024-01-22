@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.Assert;
-import libs.TestData;
+import data.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
@@ -160,6 +160,12 @@ public class LoginPage extends ParentPage{
         softAssertions.assertAll(); //check all assertion
 
         return this;
+    }
+
+    public LoginPage checkisErrorMessageVisibleForInvalidLogin() {
+        checkIsElementVisible(errorMessage);
+        return this;
+
     }
 }
 

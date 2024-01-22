@@ -1,5 +1,6 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -11,7 +12,7 @@ import java.util.NoSuchElementException;
 
 // Все общее для всех страниц
 abstract public class ParentPage extends CommonActionsWithElements {
-   final String baseUrl = "https://aqa-complexapp.onrender.com";
+   final String baseUrl = ConfigProvider.configProperties.base_url();
 
     // Конструктор
     public ParentPage(WebDriver webDriver) {

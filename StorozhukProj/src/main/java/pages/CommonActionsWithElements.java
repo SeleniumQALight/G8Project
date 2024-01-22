@@ -56,6 +56,15 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected void clickOnElement(String locator){
+        try{
+            clickOnElement(webDriver.findElement(By.xpath(locator)));
+        }catch (Exception e){
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
     protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();

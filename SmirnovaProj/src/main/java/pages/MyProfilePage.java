@@ -37,6 +37,13 @@ public class MyProfilePage extends ParentPage {
         return this;
     }
 
+    public PostPage clickOnPostWithTitle(String postTitle) {
+        //  clickOnElement(getListOfPosts(postTitle).get(0));//list can't be empty
+        //  clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, postTitle))));//findElement can return null
+        clickOnElement(String.format(postTitleLocator, postTitle));
+        return new PostPage(webDriver);
+    }
+
     public MyProfilePage deletePostWhilePresent(String postTitle) {
         List<WebElement> postsList = getListOfPosts(postTitle);
         int counter = 0;

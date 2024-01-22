@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +11,13 @@ public class PostPage extends ParentPage{
     private WebElement successMessage;
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
+    @FindBy(xpath = ".//h2")
+    private WebElement postTitle;
+    @FindBy(xpath = ".//p[contains(text(),'Is this post unique?')]/../following-sibling::div/p")
+    private WebElement postContent;
+
+    private String noteLocator = ".//i[contains(text(),'Note: This post was written for')]/u[contains(text(),'%s')]";
+    private String isThisPostUniqueLocator = ".//p[text()='Is this post unique? : %s']";
 
 
 
@@ -52,5 +60,31 @@ public class PostPage extends ParentPage{
     public MyProfilePage clickOnDeletePostButton() {
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
+    }
+    private WebElement getIsThisPostUniqueElement (String сheckboxValue){
+        return webDriver.findElement(By.xpath(String.format(isThisPostUniqueLocator, сheckboxValue)));
+    }
+
+    private WebElement getNoteElement (String dropdownValue){
+        return webDriver.findElement(By.xpath(String.format(noteLocator, dropdownValue)));
+    }
+    public PostPage checkPostWithTitleIsPresent(String post_title) {
+        checkTextInElement(postTitle, post_title);
+        return this;
+    }
+
+    public PostPage checkPostWithContentIsPresent(String post_content) {
+        checkTextInElement(postContent, post_content);
+        return this;
+    }
+
+    public PostPage checkIsThisPostUniqueTextPresent(String checkboxValue) {
+        checkIsElementVisible(getIsThisPostUniqueElement(checkboxValue));
+        return this;
+    }
+
+    public PostPage checkNoteTextPresent(String dropdownValue) {
+        checkIsElementVisible(getNoteElement(dropdownValue));
+        return this;
     }
 }

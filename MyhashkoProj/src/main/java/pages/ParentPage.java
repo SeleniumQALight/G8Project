@@ -1,5 +1,6 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 
 // все загальне для сторінок
 public abstract class ParentPage extends CommonActionsWhithElements{
-    final String baseUrl = "https://aqa-complexapp.onrender.com";
+    final String baseUrl = ConfigProvider.configProperties.base_url();
 
     // конструктор
     public ParentPage(WebDriver webDriver) {
