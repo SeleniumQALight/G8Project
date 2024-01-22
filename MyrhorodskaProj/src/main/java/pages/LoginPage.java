@@ -50,6 +50,10 @@ public class LoginPage extends ParentPage{
     private WebElement passwordValidationReg;
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listErrorsMessages;
+
+    @FindBy(xpath = ".//div[contains(text(),'Invalid username/password.')]")
+    private WebElement invalidUsernameOrPasswordMessage;
+
     private String listErrorsMessagesLocator    = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     public LoginPage(WebDriver webDriver) {
@@ -91,7 +95,10 @@ public class LoginPage extends ParentPage{
       //  WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         return isElementDisplayed(buttonSignIn);
     }
-
+    public LoginPage checkIsInvalidUsernameOrPasswordMessageVisible() {
+        checkIsElementVisible(invalidUsernameOrPasswordMessage);
+        return this;
+    }
     public HomePage openLoginPageAndFillLoginFormWithValidCred(){
         openLoginPage();
         enterTextInToInputLogin(TestData.VALID_LOGIN_UI);
