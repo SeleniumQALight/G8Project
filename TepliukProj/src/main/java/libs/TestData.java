@@ -8,4 +8,5 @@ public class TestData {
     public final static String INVALID_EMAIL_UI = "tr";
     public final static String INVALID_PASSWORD_UI = "tr";
 
+
 }

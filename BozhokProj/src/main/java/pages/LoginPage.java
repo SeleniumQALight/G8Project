@@ -1,6 +1,6 @@
 package pages;
 
-import libs.TestData;
+import data.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -46,6 +46,9 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listOfErrorsMessages;
+
+    @FindBy(xpath = ".//*[@class='alert alert-danger text-center']")
+    private WebElement messageInvalidUsernamePassword;
 
     private String listOfErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
@@ -214,6 +217,11 @@ public class LoginPage extends ParentPage {
         }
 
         softAssertions.assertAll(); //check all assertion
+        return this;
+    }
+
+    public LoginPage checkErrorsMessagesInLogin(String text) {
+       checkTextInElement(messageInvalidUsernamePassword, text);
         return this;
     }
 }

@@ -2,10 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WindowType;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -58,6 +55,14 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected void clickOnElement(String locator) {
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(locator)));
+        } catch (Exception e) {
+            logger.error("Can not work with element " + locator);
+            Assert.fail("Can not work with element " + locator);
+        }
+    }
     protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
@@ -132,9 +137,9 @@ public class CommonActionsWithElements {
     }
 
     protected void setCheckbox(String checked, WebElement checkbox) {
-        if (checked.equals("checked")) {
+        if (checked.equals("check")) {
             setCheckboxChecked(checkbox);
-        } else if (checked.equals("unchecked")) {
+        } else if (checked.equals("uncheck")) {
             setCheckboxUnchecked(checkbox);
         } else {
             logger.error("Checkbox status should be 'checked' or 'unchecked'");

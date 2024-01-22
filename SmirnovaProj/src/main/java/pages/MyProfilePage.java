@@ -38,7 +38,9 @@ public class MyProfilePage extends ParentPage {
     }
 
     public PostPage clickOnPostWithTitle(String postTitle) {
-        clickOnElement(getListOfPosts(postTitle).get(0)); //чи ок що він буде клікати завжди на перший елемент?
+        //  clickOnElement(getListOfPosts(postTitle).get(0));//list can't be empty
+        //  clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, postTitle))));//findElement can return null
+        clickOnElement(String.format(postTitleLocator, postTitle));
         return new PostPage(webDriver);
     }
 

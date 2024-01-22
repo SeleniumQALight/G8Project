@@ -1,7 +1,6 @@
 package pages;
 
-import libs.TestData;
-import libs.Urls;
+import data.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -59,5 +58,12 @@ public class MyProfilePage extends ParentPage {
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    public MyProfilePage clickOnPostWithTitle(String postTitle){
+//        clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator,postTitle)))); //find element can return exeption if element not found
+//        return this;
+        clickOnElement(String.format(postTitleLocator, postTitle));
+        return this;
     }
 }

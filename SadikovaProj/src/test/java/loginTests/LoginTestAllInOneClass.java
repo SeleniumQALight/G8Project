@@ -1,7 +1,6 @@
 package loginTests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import libs.TestData;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Assert;
@@ -14,8 +13,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
-import static libs.TestData.VALID_PASSWORD;
-import static libs.TestData.WRONG_LOGIN;
+import static data.TestData.VALID_PASSWORD;
+import static data.TestData.WRONG_LOGIN;
 
 public class LoginTestAllInOneClass {
     WebDriver webDriver;

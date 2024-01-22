@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
@@ -50,6 +51,15 @@ public class CommonActionsWithElements {
             element.click();
             logger.info("Element was clicked " + elementName);
         } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void clickOnElement(String locator){
+        try{
+            clickOnElement(webDriver.findElement(By.xpath(locator)));
+        }catch (Exception e){
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
         }

@@ -1,12 +1,16 @@
 package loginTests;
 
 import baseTest.BaseTest;
-import libs.TestData;
+import libs.ConfigProvider;
+import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static libs.TestData.VALID_LOGIN_UI;
-import static libs.TestData.VALID_PASSWORD_UI;
+import java.io.IOException;
+import java.util.Map;
+
+import static data.TestData.VALID_LOGIN_UI;
+import static data.TestData.VALID_PASSWORD_UI;
 
 public class LoginTextWithPageObject extends BaseTest {
     @Test
@@ -17,5 +21,16 @@ public class LoginTextWithPageObject extends BaseTest {
         pageProvider.loginPage().clickOnButtonSignIn();
         Assert.assertTrue("Button Sing Out is not visible", pageProvider.homePage().getHeader().isButtonSingOutVisible());
     }
+    @Test
+    public void validLoginWithExcel() throws IOException {
+        Map<String, String> dataForValidLogin =
+                ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInput(dataForValidLogin.get("login"));
+        pageProvider.loginPage().enterTextIntoInputPassword(dataForValidLogin.get("pass"));
+        pageProvider.loginPage().clickOnButtonSignIn();
 
+        Assert.assertTrue("Button SignOut is not visible",
+                pageProvider.homePage().getHeader().isButtonSingOutVisible());
+    }
 }

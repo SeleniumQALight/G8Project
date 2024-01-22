@@ -2,11 +2,20 @@ package loginTests;
 
 import baseTest1.BaseTest;
 import jdk.jfr.Description;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+import libs.ConfigProvider;
+import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-import static libs.TestData.*;
+import java.io.IOException;
+import java.util.Map;
 
+import static data.TestData.*;
+
+@RunWith(JUnitParamsRunner.class)
 public class LoginTestWithPageObject extends BaseTest {
 
     @Test
@@ -34,6 +43,27 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertFalse("Button 'Sign Out' is visible", pageProvider.getHomePage().getHeader().isButtonSignOutVisible());
         Assert.assertTrue("Button 'Sign In' is not visible", pageProvider.getLoginPage().isButtonSignInVisible());
         Assert.assertTrue("Alert is not visible", pageProvider.getLoginPage().isAlertInvalidUsernamePasswordVisible());
+    }
+
+    @Test
+    @Parameters(method = "parametersForInvalidLoginTest")
+    public void invalidLoginTestWithParams(String login, String pass) {
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputLogin(login);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(pass);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+        pageProvider.getLoginPage().checkIsAlertInvalidUsernamePasswordVisible();
+    }
+
+    public Object[][] parametersForInvalidLoginTest() {
+        return new Object[][]{
+                {"qaautoInvalid", VALID_PASSWORD_UI},
+                {VALID_LOGIN_UI, "123456"},
+                {VALID_LOGIN_UI, "123456QWERTY"},
+                {" ", " "},
+                {"", ""},
+                {"#@%login", "#@%"},
+        };
     }
 
     @Test
@@ -75,5 +105,34 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getLoginPage().checkIsValidationMessageUsernameRegisterVisible();
         pageProvider.getLoginPage().checkIsValidationMessageEmailRegisterVisible();
         pageProvider.getLoginPage().checkIsValidationMessagePasswordRegisterVisible();
+    }
+
+    @Test
+    @Description("Check that inputted data is cleared after page refresh")
+    public void checkThatInputtedToLoginFormDataIsDeletedAfterRefreshPage() {
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputLogin("gaauto");
+        pageProvider.getLoginPage().enterTextIntoInputPassword("123456qwerty");
+        pageProvider.getLoginPage().refreshPage();
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+        pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
+    }
+
+    @Test
+    @Description("Check that user can login with valid login")
+    public void validLoginWithExcelTest() throws IOException {
+        Map<String, String> dataForValidLogin = ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
+
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputLogin(dataForValidLogin.get("login"));
+        pageProvider.getLoginPage().enterTextIntoInputPassword(dataForValidLogin.get("pass"));
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+        Assert.assertTrue("Button 'Sign Out' is not visible", pageProvider.getHomePage().getHeader().isButtonSignOutVisible());
+        Assert.assertTrue("Button 'Create Post' is not visible", pageProvider.getHomePage().getHeader().isButtonCreatePostVisible());
+        Assert.assertTrue("Button 'My Profile' is not visible", pageProvider.getHomePage().getHeader().isButtonMyProfileVisible());
+        Assert.assertTrue("User name is not visible", pageProvider.getHomePage().getHeader().isUserNameVisible());
+        Assert.assertEquals("User name is not expected", VALID_LOGIN_UI, pageProvider.getHomePage().getHeader().getUserName());
+        Assert.assertFalse("Input 'Username' is visible", pageProvider.getLoginPage().isInputLoginVisible());
+        Assert.assertFalse("Input 'Password' is visible", pageProvider.getLoginPage().isInputPasswordVisible());
     }
 }

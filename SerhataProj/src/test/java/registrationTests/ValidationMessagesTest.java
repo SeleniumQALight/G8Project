@@ -1,20 +1,34 @@
 package registrationTests;
 
 import baseTest.BaseTest;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-import static libs.TestData.INVALID_DATA_FOR_SIGN_IN;
+@RunWith(JUnitParamsRunner.class)
 
 public class ValidationMessagesTest extends BaseTest {
-    @Test
-    public void validationMessagesTests() {
-        pageProvider.loginPage().openLoginPage();
-        pageProvider.loginPage().enterTextInToInputUserName("petro");
-        pageProvider.loginPage().enterTextInToInputEmail(INVALID_DATA_FOR_SIGN_IN);
-        pageProvider.loginPage().enterTextInToInputPasswordForSignUp(INVALID_DATA_FOR_SIGN_IN);
-        pageProvider.loginPage().checkErrorMessages(
-                "You must provide a valid email address.;Password must be at least 12 characters.");
+    final String ERROR_USERNAME = "Username must be at least 3 characters.";
+    final String ERROR_EMAIL = "You must provide a valid email address.";
+    final String ERROR_PASSWORD = "Password must be at least 12 characters.";
+    final String SEMICOLON = ";";
 
+    @Test
+    @Parameters(method = "parametersForValidationMessagesTests")
+    public void validationMessagesTests(String userName, String email, String password, String expectedMessages) {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextInToInputUserName(userName);
+        pageProvider.loginPage().enterTextInToInputEmail(email);
+        pageProvider.loginPage().enterTextInToInputPasswordForSignUp(password);
+        pageProvider.loginPage().checkErrorMessages(expectedMessages);
+    }
+
+    public Object[][] parametersForValidationMessagesTests() {
+        return new Object[][]{
+                {"taras","tr", "tr", ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
+                {"taras","tr@tr.com", "tr", ERROR_PASSWORD}
+        };
     }
 
 }

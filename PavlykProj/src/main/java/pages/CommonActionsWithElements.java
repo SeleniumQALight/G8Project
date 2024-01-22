@@ -2,10 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -58,13 +55,22 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected void clickOnElement (String locator) {
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(locator)));
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
     protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
-            logger.info("Element " + getElementName(element) + " is displayed -> " + state);
+            logger.info("Element " + getElementName(element) + " is displayed (" + state + ")");
             return state;
         } catch (Exception e) {
-            logger.error("Element is displayed -> false");
+            logger.info("Element is not displayed (false)");
             return false;
         }
     }

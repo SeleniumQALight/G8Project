@@ -1,7 +1,7 @@
 package loginTests;
 
 import baseTest.BaseTest;
-import libs.TestData;
+import data.TestData;
 import org.junit.Test;
 
 public class TabsTests extends BaseTest {

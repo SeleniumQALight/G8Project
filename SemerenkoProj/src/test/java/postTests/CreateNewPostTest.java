@@ -1,12 +1,10 @@
 package postTests;
 
 import baseTest.BaseTest;
-import libs.TestData;
-import libs.Util;
 import org.junit.After;
 import org.junit.Test;
 
-import static libs.TestData.*;
+import static data.TestData.*;
 
 public class CreateNewPostTest extends BaseTest {
 

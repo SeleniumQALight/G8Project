@@ -1,7 +1,7 @@
 package loginTests;
 
 import baseTest.BaseTest;
-import libs.TestData;
+import data.TestData;
 import org.junit.Test;
 
 public class SignOutTest extends BaseTest {

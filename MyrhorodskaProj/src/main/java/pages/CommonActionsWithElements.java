@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -58,6 +59,16 @@ public class CommonActionsWithElements {
         } catch (Exception e) {
             logger.error(" Can't work with element ");
             Assert.fail(" Can't work with element ");
+        }
+    }
+
+
+    protected void clickOnElement (String locator) {
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(locator)));
+        } catch (Exception e) {
+            logger.error(" Can't work with locator ");
+            Assert.fail(" Can't work with locator ");
         }
     }
 

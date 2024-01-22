@@ -56,4 +56,14 @@ if (counter >= MAX_POST_COUNT) {
         }
         return this;
     }
+
+
+    public MyProfilePage clickOnPostWithTitle(String postTitle) {
+      //  clickOnElement(getPostsList(postTitle).get(0));   //List can be empty
+      //  clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, postTitle)
+      //  )));   //find element can return exception
+        clickOnElement(String.format(postTitleLocator, postTitle));
+
+        return this;
+    }
 }
