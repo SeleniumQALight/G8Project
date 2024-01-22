@@ -20,7 +20,7 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = ".//div[@class = 'd-flex justify-content-between']")
     private WebElement postTitleOnPostPage;
 
-    @FindBy(xpath = "//p[contains(text(), 'serhata')]")
+    @FindBy(xpath = ".//div[@class='body-content']/p[not(i)]")
     private WebElement postBodyOnPostPage;
 
     @FindBy(xpath = "//p//i[contains(text(), ' Note: This post was written for ')]")
@@ -38,6 +38,7 @@ public class PostPage extends ParentPage{
     private List<WebElement> listSuccessMessageAfterCreatingPostMessages;
 
     private String listSuccessfullyMessagesLocator = ".//div[@class='alert alert-success text-center']";
+    private String postNoteLocator = "//u[contains(text(),'%s')]";
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -122,6 +123,12 @@ public class PostPage extends ParentPage{
         }
 
         softAssertions.assertAll(); // check all assertion
+        return this;
+    }
+
+    public PostPage checkIsNoteStateExpected(String valueOfPostUnique) {
+        WebElement postNote = webDriver.findElement(By.xpath(String.format(postNoteLocator, valueOfPostUnique)));
+        Assert.assertTrue("The post note is not in the expected state.", isElementDisplayed(postNote));
         return this;
     }
 }
