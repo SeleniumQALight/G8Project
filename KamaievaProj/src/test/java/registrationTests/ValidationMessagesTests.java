@@ -1,6 +1,6 @@
 package registrationTests;
 
-import baseTest1.BaseTest;
+import baseTest.BaseTest;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;

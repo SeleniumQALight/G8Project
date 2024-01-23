@@ -1,7 +1,7 @@
 package postsTests;
 
 import libs.Util;
-import baseTest1.BaseTest;
+import baseTest.BaseTest;
 import org.junit.After;
 import org.junit.Test;
 

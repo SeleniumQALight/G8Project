@@ -1,4 +1,4 @@
-package baseTest1;
+package baseTest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
