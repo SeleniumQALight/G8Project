@@ -72,24 +72,32 @@ Precondition:
 Steps to reproduce:
 1. Click on the post item in the "Posts" tab
 2. On the post page click on the "Edit" icon
-3. Make changes in the "Body Content" text field
-4. Click "Save Updates" button
-5. Click "Back to post permalink" link
+3. Make changes in the "Title" text field
+4. Make changes in the "Body Content" text field
+5. Click "Save Updates" button
+6. Click "Back to post permalink" link
+7. Go to the "My Profile" page
 
 Expected Result:
 1. Successful alert with text "Post successfully updated." is displayed
-2. Changed body is displayed
+2. Changed title and body are displayed
+3. Changed post is displayed on the Post tab
 
 TestCase #005 - Delete Post
 Precondition:
 1. Open the browser [optional]
 2. Navigate to the BASE_URL.
 3. Log in with prepared user, use TEST_USER_NAME and TEST_USER_PASSWORD
-4. Go to the "My Profile" page
-5. Click on the post item in the "Posts" tab
+4. Click Create "Post button" in the header
+5. Enter text in the "Title" text field
+6. Enter text in the "Body Content" text field
+7. Click "Save New Post" button
+8. Go to the "My Profile" page
+9. Click on the post item in the "Posts" tab
 
 Steps to reproduce:
 1. Click on the "Trash" button
 Expected Result:
 1. Successful alert with text "Post successfully deleted." is displayed
 2. Counter near Post tab decreased by one
+3. Post is not displayed on the Post tab
