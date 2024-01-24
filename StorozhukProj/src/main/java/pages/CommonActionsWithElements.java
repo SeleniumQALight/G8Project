@@ -56,10 +56,10 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void clickOnElement(String locator){
-        try{
+    protected void clickOnElement(String locator) {
+        try {
             clickOnElement(webDriver.findElement(By.xpath(locator)));
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
         }

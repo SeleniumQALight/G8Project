@@ -67,9 +67,9 @@ public class LoginPage extends ParentPage {
         }
     }
 
-    // public void checkIsRedirectOnLoginPage() {
-    //    checkUrl();
-    // }
+    public String getPageHandler() {
+        return webDriver.getWindowHandle();
+    }
 
     public void enterTextIntoInput(String login) {
         enterTextIntoInput(inputLogin, login); // WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
@@ -185,5 +185,27 @@ public class LoginPage extends ParentPage {
 
     public void checkTextInValidationMessageForPasswordRegisterInput(String password) {
         Assert.assertEquals("Password Text is invalid ", password, validationMessageForPasswordRegister.getText());
+    }
+
+    public LoginPage switchToNewTab() {
+        try {
+            webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[1].toString());
+            logger.info("Switch to new tab");
+        } catch (Exception e) {
+            logger.error("Can not switch to new tab");
+            Assert.fail("Can not switch to new tab");
+        }
+
+        return this;
+    }
+
+    public LoginPage checkIsFieldLoginEmpty() {
+        Assert.assertEquals("Field Login is not empty", "", inputLogin.getText());
+        return this;
+    }
+
+    public LoginPage checkIsFieldPasswordEmpty() {
+        Assert.assertEquals("Field Password is not empty", "", inputPassword.getText());
+        return this;
     }
 }
