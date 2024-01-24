@@ -65,14 +65,25 @@ public class CreatePostPage extends ParentPage {
         return new PostPage(webDriver);
     }
 
-    public CreatePostPage tickCheckbox(boolean selected) {
-        if (selected != checkbox.isSelected()) {
+//    public CreatePostPage tickCheckbox(boolean selected) {
+//        if (selected != checkbox.isSelected()) {
+//            clickOnElement(checkbox);
+//            logger.info("Checkbox was clicked");
+//        }else{
+//            logger.info("Checkbox is in correct state");
+//        }
+//        return this;
+//    }
+
+    public CreatePostPage tickCheckbox(String status) {
+        if ((status == "check" && !checkbox.isSelected()) || (status == "uncheck" && checkbox.isSelected())) {
             clickOnElement(checkbox);
             logger.info("Checkbox was clicked");
-        }else{
+        }
+        else {
             logger.info("Checkbox is in correct state");
         }
+
         return this;
     }
-
 }
