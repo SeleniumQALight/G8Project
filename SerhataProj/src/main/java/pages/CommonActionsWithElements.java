@@ -1,17 +1,27 @@
 package pages;
 
+import libs.Util;
 import org.apache.log4j.Logger;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommonActionsWithElements {
+
+    private String listSuccessfullyMessagesLocator = ".//div[@class='alert alert-success text-center']";
+    @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
+    private List<WebElement> listSuccessMessageAfterCreatingPostMessages;
+
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
     protected WebDriverWait webDriverWait10, webDriverWait15;
@@ -224,5 +234,32 @@ public class CommonActionsWithElements {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
         }
+    }
+
+    public PostPage checkSuccessCreatePostMessages(String messages) {
+        // error1; error2 -> [error1, error2]
+        String[] expectedMessages = messages.split(";");
+
+        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(
+                By.xpath(listSuccessfullyMessagesLocator), expectedMessages.length));
+
+        Util.waitABit(1);
+        Assert.assertEquals("Number of messages ", expectedMessages.length,
+                listSuccessMessageAfterCreatingPostMessages.size()); // for checking all errors which are on the page
+
+        ArrayList<String> actualErrors = new ArrayList<>();
+        for (WebElement element : listSuccessMessageAfterCreatingPostMessages) {
+            actualErrors.add(element.getText());
+        }
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedMessages.length; i++) {
+            softAssertions.assertThat(expectedMessages[i])
+                    .as("Error " + i)
+                    .isIn(actualErrors);
+        }
+
+        softAssertions.assertAll(); // check all assertion
+        return (PostPage) this;
     }
 }

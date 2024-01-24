@@ -171,6 +171,11 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    public LoginPage checkIsLoginErrorVisible() {
+        checkIsElementVisible(listLoginErrorsMessages.get(0));
+        return this;
+    }
+
     public LoginPage checkErrorMessages(String messages) {
         // error1; error2 -> [error1, error2]
         String[] expectedErrors = messages.split(";");
@@ -198,33 +203,5 @@ public class LoginPage extends ParentPage {
 
         return this;
 
-    }
-
-    public LoginPage checkLoginErrorMessages(String messages) {
-        // error1; error2 -> [error1, error2]
-        String[] expectedErrors = messages.split(";");
-
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(
-                By.xpath(listLoginErrorsMessagesLocator), expectedErrors.length));
-
-        Util.waitABit(1);
-        Assert.assertEquals("Number of messages ", expectedErrors.length,
-                listLoginErrorsMessages.size()); // for checking all errors which are on the page
-
-        ArrayList<String> actualErrors = new ArrayList<>();
-        for (WebElement element :  listLoginErrorsMessages) {
-            actualErrors.add(element.getText());
-        }
-
-        SoftAssertions softAssertions = new SoftAssertions();
-        for (int i = 0; i < expectedErrors.length; i++) {
-            softAssertions.assertThat(expectedErrors[i])
-                    .as("Error " + i)
-                    .isIn(actualErrors);
-        }
-
-        softAssertions.assertAll(); // check all assertion
-
-        return this;
     }
 }

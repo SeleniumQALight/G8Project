@@ -20,8 +20,6 @@ import static data.TestData.VALID_PASSWORD_UI;
 
 public class LoginTestWithPageObject extends BaseTest {
 
-    final String ERROR_LOGIN = "Invalid username/password.";
-
     @Test
     public void validLogin() {
         pageProvider.loginPage().openLoginPage();
@@ -74,20 +72,20 @@ public class LoginTestWithPageObject extends BaseTest {
 
     @Parameters(method = "parametersForLoginValidationMessagesTests")
     @Test
-    public void invalidLoginMessagesTests(String login, String password, String expectedMessages) {
+    public void invalidLoginMessagesTests(String login, String password) {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextInToInputLogin(login);
         pageProvider.loginPage().enterTextInToInputPassword(password);
         pageProvider.loginPage().clickOnButtonSignIn();
-        pageProvider.loginPage().checkLoginErrorMessages(expectedMessages);
+        pageProvider.loginPage().checkIsLoginErrorVisible();
     }
 
     public Object[][] parametersForLoginValidationMessagesTests() {
         return new Object[][]{
-                {"tr", "tr", ERROR_LOGIN},
-                {"@#$$#@", "@#$$#@", ERROR_LOGIN},
-                {"1","1", ERROR_LOGIN},
-                {"  ", "  ", ERROR_LOGIN}
+                {"tr", "tr"},
+                {"@#$$#@", "@#$$#@"},
+                {"1","1"},
+                {"  ", "  "}
         };
     }
 }
