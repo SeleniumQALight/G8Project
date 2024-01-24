@@ -66,10 +66,11 @@ public class LoginTestWithPageObject extends BaseTest {
         String newTabHandler = pageProvider.openNewTab();
         pageProvider.loginPage().openLoginPage();
         pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
-        pageProvider.switchToMainTab(mainPageHandler);
+        pageProvider.switchToTab(mainPageHandler);
         pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
-        pageProvider.switchToMainTab(newTabHandler);
+        pageProvider.switchToTab(newTabHandler);
         pageProvider.closeNewTab();
+        pageProvider.switchToTab(mainPageHandler);
         pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
     }
 
@@ -81,7 +82,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.refreshPage();
         pageProvider.loginPage().checkIsFieldLoginEmpty();
         pageProvider.loginPage().checkIsFieldPasswordEmpty();
-        pageProvider.loginPage().isButtonSignInVisible();
+        pageProvider.loginPage().checkIsButtonSignInVisible();
 
     }
 

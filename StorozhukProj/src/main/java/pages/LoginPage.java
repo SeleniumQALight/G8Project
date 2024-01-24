@@ -187,18 +187,6 @@ public class LoginPage extends ParentPage {
         Assert.assertEquals("Password Text is invalid ", password, validationMessageForPasswordRegister.getText());
     }
 
-    public LoginPage switchToNewTab() {
-        try {
-            webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[1].toString());
-            logger.info("Switch to new tab");
-        } catch (Exception e) {
-            logger.error("Can not switch to new tab");
-            Assert.fail("Can not switch to new tab");
-        }
-
-        return this;
-    }
-
     public LoginPage checkIsFieldLoginEmpty() {
         Assert.assertEquals("Field Login is not empty", "", inputLogin.getText());
         return this;
@@ -206,6 +194,11 @@ public class LoginPage extends ParentPage {
 
     public LoginPage checkIsFieldPasswordEmpty() {
         Assert.assertEquals("Field Password is not empty", "", inputPassword.getText());
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInVisible() {
+        Assert.assertTrue("Button SignIn is not visible", isButtonSignInVisible());
         return this;
     }
 }

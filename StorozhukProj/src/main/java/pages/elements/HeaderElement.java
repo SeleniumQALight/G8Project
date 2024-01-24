@@ -79,30 +79,29 @@ public class HeaderElement extends CommonActionsWithElements {
         return new LoginPage(webDriver);
     }
 
-    public void isButtonSearchNotVisible() {
-        checkElementIsNotVisible(buttonSearch);
+    public void checkButtonSearchNotVisible() {checkElementIsNotVisible(buttonSearch);
     }
 
     private void checkElementIsNotVisible(WebElement buttonSearch) {
     }
 
-    public void isButtonCreatePostNotVisible() {
+    public void checkButtonCreatePostNotVisible() {
         checkElementIsNotVisible(buttonCreatePost);
     }
 
-    public void isButtonMyProfileNotVisible() {
+    public void checkButtonMyProfileNotVisible() {
         checkElementIsNotVisible(buttonMyProfile);
     }
 
-    public void isButtonCommentNotVisible() {
+    public void checkButtonCommentNotVisible() {
         checkElementIsNotVisible(buttonComment);
     }
 
-    public void isButtonUserNameNotVisible() {
+    public void checkButtonUserNameNotVisible() {
         checkElementIsNotVisible(buttonUserName);
     }
 
-    public void isButtonSignOutNotVisible() {
+    public void checkButtonSignOutNotVisible() {
         checkElementIsNotVisible(buttonSignOut);
     }
 
@@ -114,8 +113,7 @@ public class HeaderElement extends CommonActionsWithElements {
         checkTextInElement(buttonUserName, textUserName);
     }
 
-    public void checkIsButtonSignOutVisible(){
-         checkIsElementVisible(buttonSignOut);
+    public void checkIsButtonSignOutVisible(){checkIsElementVisible(buttonSignOut);
     }
 }
 

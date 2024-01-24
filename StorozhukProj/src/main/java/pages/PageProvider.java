@@ -38,12 +38,24 @@ public class PageProvider {
         return null;
     }
 
-    public void switchToMainTab(String mainPageHandler) {
-        webDriver.switchTo().window(mainPageHandler);
+    public void switchToTab(String mainPageHandler) {
+        try {
+            webDriver.switchTo().window(mainPageHandler);
+            logger.info("Switch to TAB ");
+        } catch (Exception e) {
+            logger.error("Can not switch to TAB");
+            Assert.fail("Can not switch to TAB");
+        }
     }
 
     public void closeNewTab() {
-        webDriver.close();
+        try {
+            webDriver.close();
+            logger.info("New TAB was closed ");
+        } catch (Exception e) {
+            logger.error("Can not close new TAB");
+            Assert.fail("Can not close new TAB");
+        }
     }
 
     public void refreshPage() { webDriver.navigate().refresh();
