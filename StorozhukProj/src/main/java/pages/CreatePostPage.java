@@ -76,11 +76,10 @@ public class CreatePostPage extends ParentPage {
 //    }
 
     public CreatePostPage tickCheckbox(String status) {
-        if ((status == "check" && !checkbox.isSelected()) || (status == "uncheck" && checkbox.isSelected())) {
+        if ((status.equals("check") && !checkbox.isSelected()) || (status.equals("uncheck") && checkbox.isSelected())) {
             clickOnElement(checkbox);
             logger.info("Checkbox was clicked");
-        }
-        else {
+        } else {
             logger.info("Checkbox is in correct state");
         }
 
