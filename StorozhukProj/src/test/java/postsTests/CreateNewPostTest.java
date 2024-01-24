@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "TC_001_storozhuk " + Util.getDateAndTimeFormatted();
     final String POST_BODY = "check testbody" + Util.getDateAndTimeFormatted();
-    final boolean UNCHECKBOX = false;
+    final String UNIQUECHECKBOX = "check"; //possible values: check, uncheck
     final String POST_VISIBILITY = "One Person"; //possible values: One Person, All Users, Group Message
 
     @Test
@@ -20,7 +20,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectToCreatePostPage()
                 .enterTitleInToInputTitle(POST_TITLE)
                 .enterTextIntoInputBody(POST_BODY)
-                .tickCheckbox(UNCHECKBOX)
+                .tickCheckbox(UNIQUECHECKBOX)
                 .selectValueInDropDown(POST_VISIBILITY)
                 .clickOnSaveNewPostButton()
                 //-----CHECKS
@@ -29,7 +29,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkTextInSuccessMessage("New post successfully created.")
                 .checkTextInPostTitle(POST_TITLE)
                 .checkTextInPostBody(POST_BODY)
-                .checkTextInUniquePostInfoMessage(UNCHECKBOX)
+                .checkTextInUniquePostInfoMessage(UNIQUECHECKBOX)
                 .checkTextInPostNote(POST_VISIBILITY);
 
 

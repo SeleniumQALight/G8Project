@@ -73,15 +73,17 @@ public class PostPage extends ParentPage {
      //   return this;
     //}
 
-    private By getPostUniqueInfoMessageNoLocator(boolean isCheckboxSelected) {
-        if (!isCheckboxSelected) {
+    private By getPostUniqueInfoMessageNoLocator(String CheckboxStatus) {
+        if (CheckboxStatus.equals("check")) {
+            return By.xpath(".//p[starts-with(text(),'Is this post unique? : yes')]");
+        } else if (CheckboxStatus.equals("uncheck")){
             return By.xpath(".//p[starts-with(text(),'Is this post unique? : no')]");
         } else {
-            return By.xpath(".//p[starts-with(text(),'Is this post unique? : yes')]");
+            throw new IllegalArgumentException("CheckboxStatus value should be 'check' or 'uncheck'");
         }
     }
 
-    public PostPage checkTextInUniquePostInfoMessage(boolean isCheckboxSelected) {
+    public PostPage checkTextInUniquePostInfoMessage(String isCheckboxSelected )  {
         checkIsElementVisible(getPostUniqueInfoMessageNoLocator(isCheckboxSelected));
         return this;
     }
