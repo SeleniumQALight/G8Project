@@ -68,7 +68,7 @@ public class CommonActionsWithElements {
             logger.info(state + " Element is displayed " + getElementName(element));
             return state;
         } catch (Exception e) {
-            logger.info("Element is not displayed " + getElementName(element) +e);
+            logger.info("Element is not displayed " + getElementName(element));
             return false;
         }
     }
