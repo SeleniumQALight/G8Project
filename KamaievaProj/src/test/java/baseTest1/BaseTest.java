@@ -30,7 +30,6 @@ public class BaseTest {
         //webDriver = new ChromeDriver(); // create driver
         webDriver = initDriver();
         webDriver.manage().window().maximize(); // open browser in full screen
-        webDriver = initDriver();
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5)); // wait 5 seconds
         logger.info("Browser was opened");
         pageProvider = new PageProvider(webDriver);
@@ -68,6 +67,4 @@ public class BaseTest {
         }
         return webDriver;
     }
-
-
 }
