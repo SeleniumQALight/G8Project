@@ -94,7 +94,7 @@ public class LoginPage extends ParentPage {
     public LoginPage checkErrorsMessages(String message) {
         //error1;error2 -> [error1,error2]
         String[] expectedErrors = message.split(";");
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
+        webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
         ArrayList<String> actualErrors = new ArrayList<>();
         for (WebElement element : listErrorsMessages) {
             actualErrors.add(element.getText());
