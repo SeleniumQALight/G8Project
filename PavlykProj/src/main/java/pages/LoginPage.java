@@ -212,12 +212,12 @@ public class LoginPage extends ParentPage {
     public LoginPage checkErrorsMessages(String messages) {
         //error1;error2 -> [error1, error2]
         String[] expectedErrors = messages.split(";");
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
+        webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
 
         Util.waitABit(1);
         Assert.assertEquals("Number of messages", expectedErrors.length, listErrorsMessages.size());
 
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
+        webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
 
         ArrayList<String> actualErrors = new ArrayList<>();
         for (WebElement element : listErrorsMessages) {
