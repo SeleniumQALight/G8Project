@@ -1,9 +1,9 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -14,13 +14,13 @@ import java.time.Duration;
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
-    protected WebDriverWait webDriverWait10, webDriverWait15;
+    protected WebDriverWait webDriverWait05, webDriverWait15;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // init all elements from this class @FindBy
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait05 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
     }
 
     protected void enterTextIntoInput(WebElement input, String text) {
@@ -29,8 +29,8 @@ public class CommonActionsWithElements {
             input.sendKeys(text);
             logger.info(text + " was inputted into input " + getElementName(input));
         } catch (Exception e) {
-            logger.error("Can not work with element " + getElementName(input));
-            Assert.fail("Can not work with element " + getElementName(input));
+            logger.error("Can not work with element " + getElementName(input) + e);
+            Assert.fail("Can not work with element " + getElementName(input) + e);
         }
     }
 
@@ -45,13 +45,13 @@ public class CommonActionsWithElements {
 
     protected void clickOnElement(WebElement element) {
         try {
-            webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
+            webDriverWait05.until(ExpectedConditions.elementToBeClickable(element));
             String elementName = getElementName(element);  // getTagName() - return name of element
             element.click();
             logger.info("Element was clicked " + elementName);
         } catch (Exception e) {
-            logger.error("Can not work with element " + getElementName(element));
-            Assert.fail("Can not work with element " + getElementName(element));
+            logger.error("Can not work with element " + getElementName(element) + e);
+            Assert.fail("Can not work with element " + getElementName(element) + e);
         }
     }
 
@@ -59,8 +59,7 @@ public class CommonActionsWithElements {
         try {
             clickOnElement(webDriver.findElement(By.xpath(locator)));
         } catch (Exception e) {
-            logger.error("Can not work with element " + locator);
-            Assert.fail("Can not work with element " + locator);
+            printErrorsAndStopTest(e);
         }
     }
     protected boolean isElementDisplayed(WebElement element) {
@@ -69,7 +68,7 @@ public class CommonActionsWithElements {
             logger.info(state + " Element is displayed " + getElementName(element));
             return state;
         } catch (Exception e) {
-            logger.info("Element is not displayed " + getElementName(element));
+            logger.info("Element is not displayed " + getElementName(element) +e);
             return false;
         }
     }
@@ -81,8 +80,8 @@ public class CommonActionsWithElements {
             select.selectByVisibleText(text);
             logger.info(text + " was selected in DropDown" + getElementName(dropDown));
         } catch (Exception e) {
-            logger.error("Can not work with element " + getElementName(dropDown));
-            Assert.fail("Can not work with element " + getElementName(dropDown));
+            logger.error("Can not work with element " + getElementName(dropDown) +e);
+            Assert.fail("Can not work with element " + getElementName(dropDown) + e);
         }
     }
 
@@ -93,8 +92,8 @@ public class CommonActionsWithElements {
             select.selectByValue(value);
             logger.info(value + " was selected in DropDown" + getElementName(dropDown));
         } catch (Exception e) {
-            logger.error("Can not work with element " + getElementName(dropDown));
-            Assert.fail("Can not work with element " + getElementName(dropDown));
+            logger.error("Can not work with element " + getElementName(dropDown) +e);
+            Assert.fail("Can not work with element " + getElementName(dropDown) +e);
         }
     }
 
@@ -108,9 +107,13 @@ public class CommonActionsWithElements {
             String textFromElement = element.getText();
             Assert.assertEquals("Text in element not matched", expectedText, textFromElement);
         } catch (Exception e) {
-            logger.error("Can not get text from element ");
-            Assert.fail("Can not get text from element ");
+            printErrorsAndStopTest(e);
         }
+    }
+
+    private void printErrorsAndStopTest(Exception e) {
+        logger.error("Can not get text from element " + e);
+        Assert.fail("Can not get text from element " + e);
     }
 
     protected void checkIsElementNotVisible(WebElement webElement) {
