@@ -198,7 +198,7 @@ public class LoginPage extends ParentPage {
     public LoginPage checkErrorsMessages(String massages) {
         //error1;error2 -> [error1, error2]
         String[] expectedErrors = massages.split(";");
-        webDriverWaite10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsMessagesLocator), expectedErrors.length));
+        webDriverWaite05.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsMessagesLocator), expectedErrors.length));
 
         Util.waitABit(1);
         Assert.assertEquals("Number of messages", expectedErrors.length, listOfErrorsMessages.size());
