@@ -1,12 +1,12 @@
 package loginTest;
 
 import BaseTest.BaseTest;
+import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import libs.TestData;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import static libs.TestData.VALID_LOGIN_UI;
@@ -15,6 +15,7 @@ import static libs.TestData.VALID_PASSWORD_UI;
 @RunWith(JUnitParamsRunner.class)
 public class LoginTestWithPageObject extends BaseTest {
     @Test
+    @Category(SmokeTestFilter.class)
     public void validLogin() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextInToInputLogin(VALID_LOGIN_UI);

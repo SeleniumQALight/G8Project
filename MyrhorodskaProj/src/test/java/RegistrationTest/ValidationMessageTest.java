@@ -1,16 +1,19 @@
 package RegistrationTest;
 
+import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import libs.ErrorMessage;
 import org.junit.Test;
 import BaseTest.BaseTest;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import static libs.TestData.VALID_LOGIN_UI;
 import static libs.TestData.VALID_PASSWORD_UI;
 
 @RunWith(JUnitParamsRunner.class)
+@Category(SmokeTestFilter.class)
 public class ValidationMessageTest extends BaseTest{
    final String SEMICOLON = ";";
     final String ERROR_USERNAME_FORMAT_CHECK = "Username can only contain letters and numbers.";
