@@ -1,5 +1,6 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -15,13 +16,13 @@ import java.util.ArrayList;
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
-    protected WebDriverWait webDriverWait10, webDriverWait15;
+    protected WebDriverWait webDriverWait05, webDriverWait15;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // ініціалізує всі елементи сторінки опираючись на @FindBy
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait05 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
     }
 
     protected void enterTextIntoInput(WebElement input, String text) {
@@ -30,9 +31,13 @@ public class CommonActionsWithElements {
             input.sendKeys(text);
             logger.info(text + " was inputted into input" + getElementName(input));
         }catch (Exception e){
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
+    }
+
+    private void printErrorAndStopTest(Exception e) {
+        logger.error("Can not work with element " + e);
+        Assert.fail("Can not work with element " + e);
     }
 
     private String getElementName(WebElement webElement) {
@@ -45,13 +50,12 @@ public class CommonActionsWithElements {
 
     protected void clickOnElement(WebElement element) {
         try{
-            webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
+            webDriverWait05.until(ExpectedConditions.elementToBeClickable(element));
             String elementName = getElementName(element);
             element.click();
             logger.info("Element was clicked " + elementName);
         }catch (Exception e){
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -82,8 +86,7 @@ public class CommonActionsWithElements {
             select.selectByVisibleText(text);
             logger.info(text + " was selected in DropDown " + getElementName(dropDown));
         }catch (Exception e){
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -94,8 +97,7 @@ public class CommonActionsWithElements {
             select.selectByValue(value);
             logger.info(value + " was selected in DropDown " + getElementName(dropDown));
         }catch (Exception e){
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -113,8 +115,7 @@ public class CommonActionsWithElements {
             String textFromElement = element.getText();
             Assert.assertEquals("Text in element not matched", expectedText, textFromElement);
         }catch (Exception e){
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -159,8 +160,8 @@ public class CommonActionsWithElements {
             ((JavascriptExecutor) webDriver).executeScript("window.open()");
             logger.info("New tab was opened");
         }catch (Exception e){
-            logger.info("New tab was not opened");
-            Assert.fail("New tab was not opened");
+            logger.info("New tab was not opened " + e);
+            Assert.fail("New tab was not opened " + e);
         }
     }
 
@@ -185,8 +186,7 @@ public class CommonActionsWithElements {
             webDriver.close();
             logger.info("Tab was closed");
         }catch (Exception e){
-            logger.info("Tab was not closed");
-            Assert.fail("Tab was not closed");
+            printErrorAndStopTest(e);
         }
     }
 
