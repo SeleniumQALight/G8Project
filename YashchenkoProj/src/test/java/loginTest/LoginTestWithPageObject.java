@@ -1,10 +1,12 @@
 package loginTest;
 
 import baseTest.BaseTest;
+import junitparams.JUnitParamsRunner;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.io.IOException;
 import java.util.Map;
@@ -12,6 +14,7 @@ import java.util.Map;
 import static data.TestData.DEFAULT_VALID_LOGIN_UI;
 import static data.TestData.DEFAULT_VALID_PASSWORD_UI;
 
+@RunWith(JUnitParamsRunner.class)
 public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void validLogin() {
