@@ -12,7 +12,9 @@ import java.util.ArrayList;
 
 // все загальне для сторінок
 public abstract class ParentPage extends CommonActionsWhithElements{
-    final String baseUrl = ConfigProvider.configProperties.base_url();
+    String env = System.getProperty("env", "aqa");
+    final String baseUrl =
+            ConfigProvider.configProperties.base_url().replace("[env]", env);
 
     // конструктор
     public ParentPage(WebDriver webDriver) {
