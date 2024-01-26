@@ -1,8 +1,10 @@
 package LoginTests;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import static libs.TestData.VALID_LOGIN_UI;
 import static libs.TestData.VALID_PASSWORD_UI;
@@ -10,6 +12,7 @@ import static libs.TestData.VALID_PASSWORD_UI;
 public class LoginTestWithPageObject extends BaseTest {
 
     @Test
+    @Category(SmokeTestFilter.class)
     public void validLogin() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextIntoInputLogin(VALID_LOGIN_UI);
