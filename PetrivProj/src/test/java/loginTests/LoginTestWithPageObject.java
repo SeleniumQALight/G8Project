@@ -1,13 +1,12 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Assert;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
 import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.experimental.categories.Category;
 
 import java.io.IOException;
 import java.util.Map;
@@ -15,10 +14,11 @@ import java.util.Map;
 import static data.TestData.VALID_LOGIN_UI;
 import static data.TestData.VALID_PASSWORD_UI;
 
-@RunWith(JUnitParamsRunner.class)
+// @RunWith(JUnitParamsRunner.class)
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
+    @Category(SmokeTestFilter.class)
     public void validLogin() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextIntoInputLogin(VALID_LOGIN_UI);
@@ -98,7 +98,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
     }
 
-    @Test
+    /*@Test
     @Parameters(method = "parametersForInValidLoginWithParamsTest")
     public void inValidLoginWithParams(String userName, String password) {
         pageProvider.loginPage().openLoginPage();
@@ -106,14 +106,14 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().enterTextIntoInputPassword(password);
         pageProvider.loginPage().clickOnButtonSignIn();
         pageProvider.loginPage().checkIsInvalidUsernameOrPasswordMessageVisible();
-    }
+    }*/
 
-    public Object[][] parametersForInValidLoginWithParamsTest() {
+    /*public Object[][] parametersForInValidLoginWithParamsTest() {
         return new Object[][]{
                 {VALID_LOGIN_UI, "invalid_password"},
                 {"invalid_username", VALID_PASSWORD_UI},
                 {"!@#(*#&*#&^&#&^%#&", "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnmqwertyuio"},
                 {"тест", "тест"}
         };
-    }
+    }*/
 }

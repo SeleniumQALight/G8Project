@@ -1,13 +1,14 @@
 package loginTests;
 
 import baseTest1.BaseTest;
+import categories.SmokeTestFilter;
 import jdk.jfr.Description;
 import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import java.io.IOException;
@@ -19,6 +20,7 @@ import static data.TestData.*;
 public class LoginTestWithPageObject extends BaseTest {
 
     @Test
+    @Category(SmokeTestFilter.class)
     @Description("Check that user can login with valid login")
     public void validLoginTest() {
         pageProvider.getLoginPage().openLoginPageAndFillLoginFormWithValidCreate();
@@ -33,6 +35,7 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
+    @Category(SmokeTestFilter.class)
     @Description("Check that user cannot login with invalid login")
     public void invalidLoginTest() {
         pageProvider.getLoginPage().openLoginPage();
@@ -43,27 +46,6 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertFalse("Button 'Sign Out' is visible", pageProvider.getHomePage().getHeader().isButtonSignOutVisible());
         Assert.assertTrue("Button 'Sign In' is not visible", pageProvider.getLoginPage().isButtonSignInVisible());
         Assert.assertTrue("Alert is not visible", pageProvider.getLoginPage().isAlertInvalidUsernamePasswordVisible());
-    }
-
-    @Test
-    @Parameters(method = "parametersForInvalidLoginTest")
-    public void invalidLoginTestWithParams(String login, String pass) {
-        pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextIntoInputLogin(login);
-        pageProvider.getLoginPage().enterTextIntoInputPassword(pass);
-        pageProvider.getLoginPage().clickOnButtonSignIn();
-        pageProvider.getLoginPage().checkIsAlertInvalidUsernamePasswordVisible();
-    }
-
-    public Object[][] parametersForInvalidLoginTest() {
-        return new Object[][]{
-                {"qaautoInvalid", VALID_PASSWORD_UI},
-                {VALID_LOGIN_UI, "123456"},
-                {VALID_LOGIN_UI, "123456QWERTY"},
-                {" ", " "},
-                {"", ""},
-                {"#@%login", "#@%"},
-        };
     }
 
     @Test

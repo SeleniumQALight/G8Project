@@ -1,12 +1,15 @@
 package registrationTests;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
+@Category(SmokeTestFilter.class)
 public class ValidationMessagesTests extends BaseTest {
     final String ERROR_EMAIL = "You must provide a valid email address.";
     final String ERROR_PASSWORD = "Password must be at least 12 characters.";
