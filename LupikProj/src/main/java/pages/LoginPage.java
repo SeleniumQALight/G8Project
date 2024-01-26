@@ -194,7 +194,7 @@ public class LoginPage extends ParrentPage {
     public LoginPage checkErrorMessages(String messages) {
         // error1;error2 ->[error1,error2]
         String[] expectedErrors = messages.split(";");
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
+        webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
 
         Util.waitABit(1);
         Assert.assertEquals("Number of messages", expectedErrors.length, listErrorsMessages.size());
@@ -215,5 +215,6 @@ public class LoginPage extends ParrentPage {
 
         return this;
     }
+
 }
 

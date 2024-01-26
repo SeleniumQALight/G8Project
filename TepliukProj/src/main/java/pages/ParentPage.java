@@ -9,7 +9,8 @@ import static libs.ConfigProvider.configProperties;
 
 // все загальне для сторінок
 abstract public class ParentPage extends CommonActionsWithElements {
-    final String baseUrl = ConfigProvider.configProperties.base_url(); // отримуємо url з конфіга
+    String env = System.getProperty("env", "aqa"); // отримуємо з консолі змінну env
+    final String baseUrl = ConfigProvider.configProperties.base_url().replace("[env]", env); // отримуємо url з конфіга
 
     // конструктор
     public ParentPage(WebDriver webDriver) {
