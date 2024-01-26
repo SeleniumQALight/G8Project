@@ -1,6 +1,7 @@
 package loginTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import jdk.jfr.Description;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
@@ -8,6 +9,7 @@ import org.checkerframework.checker.units.qual.A;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import java.io.IOException;
 import java.util.Map;
@@ -17,6 +19,7 @@ import static data.TestData.VALID_PASSWORD_UI;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
+    @Category(SmokeTestFilter.class)
     public void validLogin() {
        pageProvider.loginPage().openLoginPage();
        pageProvider.loginPage().enterTextIntoInputLogin(VALID_LOGIN_UI);
