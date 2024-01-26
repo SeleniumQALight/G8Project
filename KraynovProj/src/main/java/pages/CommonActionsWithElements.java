@@ -12,6 +12,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.JavascriptExecutor;
+
 
 import java.time.Duration;
 
@@ -168,4 +170,58 @@ public class CommonActionsWithElements {
             Assert.fail("State should be 'check' or 'uncheck'");
         }
     }
+
+    /**
+     * Open new tab in browser by javascript
+     */
+    public void openNewTabInBrowser(){
+        try{
+            ((JavascriptExecutor)webDriver).executeScript("window.open()");
+            logger.info("New tab was opened");
+        }catch (Exception e){
+            logger.error("Can not open new tab");
+            Assert.fail("Can not open new tab");
+        }
+    }
+
+    /**
+     * Switch to tab in browser by index
+     */
+    public void switchToTabInBrowser(int tabIndex) {
+        try {
+            webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[tabIndex].toString());
+            logger.info("Switched to tab with index " + tabIndex);
+        } catch (Exception e) {
+            logger.error("Can not switch to tab with index " + tabIndex);
+            Assert.fail("Can not switch to tab with index " + tabIndex);
+        }
+    }
+
+    /**
+     * close tab and switch to main page
+     */
+    public void closeTabAndSwitchToMainPage() {
+        try {
+            webDriver.close();
+            switchToTabInBrowser(0);
+            logger.info("Tab was closed and switched to main page");
+        } catch (Exception e) {
+            logger.error("Can not close tab and switch to main page");
+            Assert.fail("Can not close tab and switch to main page");
+        }
+    }
+
+    /**
+     * refresh page
+     */
+    public void refreshPage() {
+        try {
+            webDriver.navigate().refresh();
+            logger.info("Page was refreshed");
+        } catch (Exception e) {
+            logger.error("Can not refresh page");
+            Assert.fail("Can not refresh page");
+        }
+    }
+
 }
