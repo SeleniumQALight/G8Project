@@ -69,6 +69,7 @@ public class LoginPage  extends ParentPage{
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listOfErrorMessages;
 
+
     private String listOfErrorMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
 
@@ -226,4 +227,9 @@ public class LoginPage  extends ParentPage{
     }
 
 
+    public LoginPage checkErrorMessageInLoginForm(String text) {
+        checkTextInElement(invalidLoginMessage, text);
+        return this;
+
+    }
 }
