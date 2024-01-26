@@ -1,10 +1,12 @@
 package loginTests;
 
 import baseTast.BaseTest;
+import categories.SmokeTestFilter;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 
 import java.io.IOException;
@@ -17,6 +19,7 @@ public class LoginPageWithPageObject extends BaseTest {
 
 
     @Test
+    @Category(SmokeTestFilter.class)
     public void validLogin() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextInToInputLogin(VALID_LOGIN_UI);
