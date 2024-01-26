@@ -65,25 +65,25 @@ public class PostPage extends ParentPage {
     }
 
     //public PostPage checkTextInUniquePostInfoMessage(boolean option) {
-     //   if (option) {
+    //   if (option) {
     //        checkTextInElement(postUniqueInfoMessage, "Is this post unique? : yes");
-     //   } else {
-     //       checkTextInElement(postUniqueInfoMessage, "Is this post unique? : no");
-     //   }
-     //   return this;
+    //   } else {
+    //       checkTextInElement(postUniqueInfoMessage, "Is this post unique? : no");
+    //   }
+    //   return this;
     //}
 
     private By getPostUniqueInfoMessageNoLocator(String CheckboxStatus) {
         if (CheckboxStatus.equals("check")) {
             return By.xpath(".//p[starts-with(text(),'Is this post unique? : yes')]");
-        } else if (CheckboxStatus.equals("uncheck")){
+        } else if (CheckboxStatus.equals("uncheck")) {
             return By.xpath(".//p[starts-with(text(),'Is this post unique? : no')]");
         } else {
             throw new IllegalArgumentException("CheckboxStatus value should be 'check' or 'uncheck'");
         }
     }
 
-    public PostPage checkTextInUniquePostInfoMessage(String isCheckboxSelected )  {
+    public PostPage checkTextInUniquePostInfoMessage(String isCheckboxSelected) {
         checkIsElementVisible(getPostUniqueInfoMessageNoLocator(isCheckboxSelected));
         return this;
     }

@@ -4,7 +4,6 @@ import baseTest.BaseTest;
 import libs.Util;
 import org.junit.After;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
 public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "TC_001_storozhuk " + Util.getDateAndTimeFormatted();
@@ -46,9 +45,7 @@ public class CreateNewPostTest extends BaseTest {
                 .openHomePageAndLoginIfNeeded()
                 .getHeader().clickOnButtonMyProfile()
                 .checkIsRedirectToMyProfilePage()
-                .deletePostTillPresent(POST_TITLE)
-        ;
-
+                .deletePostTillPresent(POST_TITLE);
     }
 
 }
