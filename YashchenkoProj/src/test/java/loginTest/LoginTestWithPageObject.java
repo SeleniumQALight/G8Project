@@ -2,6 +2,7 @@ package loginTest;
 
 import baseTest.BaseTest;
 import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Assert;
@@ -46,18 +47,38 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
 
     }
+//    Example
+//    @Test
+//    public void invalidLogin() {
+//        pageProvider.getLoginPage().openLoginPage();
+//        pageProvider.getLoginPage().enterTextIntoInputLogin("qaavto");
+//        pageProvider.getLoginPage().enterTextIntoInputPassword("123456qwerty");
+//        pageProvider.getLoginPage().clickOnButtonSignIn();
+//
+//        Assert.assertFalse("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+//        Assert.assertTrue("Button SignIn is visible", pageProvider.getLoginPage().isButtonSignInVisible());
+//        Assert.assertTrue("Alert is visible", pageProvider.getLoginPage().isInvalidUserNamePasswordAlertVisible());
+//
+//    }
 
     @Test
-    public void invalidLogin() {
-        pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextIntoInputLogin("qaavto");
-        pageProvider.getLoginPage().enterTextIntoInputPassword("123456qwerty");
-        pageProvider.getLoginPage().clickOnButtonSignIn();
+    @Parameters(method = "ParametersForInvalidLoginTest")
+    public void invalidLoginWithParams(String login, String password){
+        pageProvider.getLoginPage().openLoginPage()
+                .enterTextIntoInputLogin(login)
+                .enterTextIntoInputPassword(password)
+                .clickOnButtonSignIn();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutNotVisible();
+        pageProvider.getLoginPage().checkIsButtonSignInVisible()
+                .checkIsInvalidUserNamePasswordAlertVisible();
+    }
 
-        Assert.assertFalse("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
-        Assert.assertTrue("Button SignIn is visible", pageProvider.getLoginPage().isButtonSignInVisible());
-        Assert.assertTrue("Alert is visible", pageProvider.getLoginPage().isInvalidUserNamePasswordAlertVisible());
-
+    public Object[][] ParametersForInvalidLoginTest(){
+        return new Object[][]{
+                {"qaavto", "123456qwerty"},
+                {"qaauto", "12345qwerty"},
+                {" ", " "}
+        };
     }
 
     @Test
