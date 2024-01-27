@@ -24,6 +24,13 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().clickOnButtonSignIn();
 
         Assert.assertTrue("Button SignOutTest is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+        Assert.assertTrue("Button CreatePost is not visible", pageProvider.homePage().getHeader().isButtonCreatePostVisible());
+        Assert.assertTrue("Button MyProfile is not visible", pageProvider.homePage().getHeader().isButtonMyProfileVisible());
+        Assert.assertTrue("Username is not visible", pageProvider.homePage().getHeader().isUserNameVisible());
+        pageProvider.homePage().getHeader().checkTextInUserName(VALID_LOGIN_UI);
+        Assert.assertFalse("Input Username is visible", pageProvider.loginPage().isInputUserNameVisible());
+        Assert.assertFalse("Input Password is visible", pageProvider.loginPage().isInputPasswordVisible());
+
     }
 
     @Test
@@ -48,6 +55,38 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().clickOnButtonSignIn();
 
         Assert.assertTrue("Button SignOutTest is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+    }
+
+    @Test
+    public void checkLoggedUserInNewTab(){
+        pageProvider.loginPage().openLoginPage();
+        String mainPageHandler = pageProvider.loginPage().getPageHandler();
+        pageProvider.loginPage().enterTextIntoInput(VALID_LOGIN_UI);
+        pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
+        pageProvider.loginPage().clickOnButtonSignIn();
+        pageProvider.homePage().checkIsRedirectToHomePage();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
+        String newTabHandler = pageProvider.openNewTab();
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
+        pageProvider.switchToTab(mainPageHandler);
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
+        pageProvider.switchToTab(newTabHandler);
+        pageProvider.closeNewTab();
+        pageProvider.switchToTab(mainPageHandler);
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
+    }
+
+    @Test
+    public void checkToRefreshPage(){
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInput(VALID_LOGIN_UI);
+        pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
+        pageProvider.refreshPage();
+        pageProvider.loginPage().checkIsFieldLoginEmpty();
+        pageProvider.loginPage().checkIsFieldPasswordEmpty();
+        pageProvider.loginPage().checkIsButtonSignInVisible();
+
     }
 
 }
