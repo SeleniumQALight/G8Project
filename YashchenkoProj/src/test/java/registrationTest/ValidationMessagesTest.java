@@ -1,12 +1,15 @@
 package registrationTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
+@Category(SmokeTestFilter.class)
 public class ValidationMessagesTest extends BaseTest {
     final String ERROR_USERNAME_1 = "Username must be at least 3 characters.";
     final String ERROR_USERNAME_2 = "Username can only contain letters and numbers.";

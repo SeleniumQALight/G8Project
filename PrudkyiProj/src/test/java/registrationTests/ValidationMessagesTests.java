@@ -4,8 +4,10 @@ import baseTest.BaseTest;
 import junitparams.Parameters;
 import org.junit.Test;
 import junitparams.JUnitParamsRunner;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 @RunWith(JUnitParamsRunner.class)
+@Category(registrationTests.ValidationMessagesTests.class)
 public class ValidationMessagesTests extends BaseTest {
     final String ERROR_USERNAME = "User must be at least 3 characters.";
     final String ERROR_EMAIL = "You must provide a valid email address.";

@@ -22,12 +22,12 @@ public class SignOutTest extends BaseTest {
         pageProvider.loginPage().isButtonSignInNotVisible();
         pageProvider.homePage().getHeader().clickOnButtonSignOut().checkIsRedirectToLoginPage();
         Assert.assertTrue("Button Sign In is not visible", pageProvider.loginPage().isButtonSignInVisible());
-        pageProvider.homePage().getHeader().isButtonSearchNotVisible();
-        pageProvider.homePage().getHeader().isButtonCreatePostNotVisible();
-        pageProvider.homePage().getHeader().isButtonMyProfileNotVisible();
-        pageProvider.homePage().getHeader().isButtonCommentNotVisible();
-        pageProvider.homePage().getHeader().isButtonUserNameNotVisible();
-        pageProvider.homePage().getHeader().isButtonSignOutNotVisible();
+        pageProvider.homePage().getHeader().checkButtonSearchNotVisible();
+        pageProvider.homePage().getHeader().checkButtonCreatePostNotVisible();
+        pageProvider.homePage().getHeader().checkButtonMyProfileNotVisible();
+        pageProvider.homePage().getHeader().checkButtonCommentNotVisible();
+        pageProvider.homePage().getHeader().checkButtonUserNameNotVisible();
+        pageProvider.homePage().getHeader().checkButtonSignOutNotVisible();
         Assert.assertTrue("Input Username is not visible", pageProvider.loginPage().isInputUserNameVisible());
         Assert.assertTrue("Input Password is not visible", pageProvider.loginPage().isInputPasswordVisible());
 

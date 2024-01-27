@@ -1,0 +1,40 @@
+** Sign Up fields: **
+Username field- .//input[@name="username" and @id="username-register"]
+Email field - .//input[@name="email" and @id="email-register"]
+Password field - .//input[@name="password" and @id="password-register"]
+Sign up for OurApp Button - .//button[@type="submit" and @class="py-3 mt-4 btn btn-lg btn-success btn-block"]
+Username field, alert - .//div[contains(text(),'Username must be at least 3 characters.')]
+Email field, alert - .//div[contains(text(),'You must provide a valid email address.')]
+Password field, alert - .//div[contains(text(),'Password must be at least 12 characters.')]
+
+**Header, logged in state**
+Username - .//span[@class="text-white mr-2 header-chat-icon"]
+"Sign Out" button - .//button[@class="btn btn-sm btn-secondary"]
+"Create Post" button - .//a[@class="btn btn-sm btn-success mr-2"]
+"My profile" link - .//a[@class="mr-2"]
+Chat icon - .//span[@class="text-white mr-2 header-chat-icon"]
+Search icon - .//a[@class="text-white mr-2 header-search-icon"]
+
+**Create Post page**
+.//input[@id='post-title']
+.//input[@id='post-body']
+.//input[@name="uniquePost"]
+.//select[@id="select1"]
+.//button[@class="btn btn-primary"]
+
+**Successfully created post**
+.//div[@class="alert alert-success text-center"]
+.//div[@class="d-flex justify-content-between"]
+.//p[@class="text-muted small mb-4"]
+.//div[@class="body-content"]//p//i[contains(text(),'Note')]
+.//div//p[contains(text(),'Is this post unique?')]
+.//div[@class="body-content"]//p[contains(text(),'Hello')]            // не знаю чи можемо прив'язуватись за текст,
+але ж цей текст вводимо ми, в момент створення посту, то це ще й буде перевіркою, що бачимо потрібний текст
+.//a[@class="text-primary mr-2"]
+.//form[@class="delete-post-form d-inline"]
+.//a[@class="profile-nav-link nav-item nav-link active"]
+
+**Edit page**.//a[@class="small font-weight-bold"]
+
+**Delete post**
+.//button[@class="delete-post-button text-danger"]

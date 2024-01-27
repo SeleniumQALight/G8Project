@@ -25,6 +25,12 @@ public class PostPage extends ParentPage {
     private WebElement buttonDelete;
 
     private HeaderElement headerElement;
+    @FindBy(xpath = ".//a[@data-original-title='Edit']")
+    private WebElement buttonEdit;
+    @FindBy(xpath = ".//input[@id='post-title']")
+    private WebElement inputTitle;
+    @FindBy(xpath = ".//form[contains(@action, '/post/')]//button")
+    private WebElement buttonSaveUpdates;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -78,5 +84,19 @@ public class PostPage extends ParentPage {
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
+    }
+
+    public PostPage clickOnEditButton() {
+        clickOnElement(buttonEdit);
+        return this;
+    }
+
+    public void enterTextIntoInputTitle(String text) {
+        enterTextIntoInput(inputTitle, text);
+    }
+
+    public PostPage clickOnSaveUpdatesButton() {
+        clickOnElement(buttonSaveUpdates);
+        return this;
     }
 }

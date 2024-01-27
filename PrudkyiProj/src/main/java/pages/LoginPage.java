@@ -35,8 +35,8 @@ public class LoginPage extends ParentPage {
 
     public void openLoginPage() {
         try {
-            webDriver.get("https://aqa-complexapp.onrender.com");
-            logger.info("Login page was opened");
+            webDriver.get(baseUrl);
+            logger.info("Login page was opened" + baseUrl);
         } catch (Exception e) {
             logger.error("Can not open login page");
             Assert.fail("Can not open login page");
@@ -94,7 +94,7 @@ public class LoginPage extends ParentPage {
     public LoginPage checkErrorsMessages(String message) {
         //error1;error2 -> [error1,error2]
         String[] expectedErrors = message.split(";");
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
+        webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
         ArrayList<String> actualErrors = new ArrayList<>();
         for (WebElement element : listErrorsMessages) {
             actualErrors.add(element.getText());

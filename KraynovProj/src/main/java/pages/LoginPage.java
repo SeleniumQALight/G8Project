@@ -53,6 +53,8 @@ public class LoginPage extends ParentPage{
 
     @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
     private WebElement validationMessageForPasswordField;
+    @FindBy(xpath = "//div[contains(@class,'alert-danger') and not (contains(@class,'liveValidateMessage'))]")
+    private WebElement errorMessageLoginForm;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -230,5 +232,16 @@ public class LoginPage extends ParentPage{
 
     public HeaderElement getHeader() {
         return new HeaderElement(webDriver);
+    }
+
+    public LoginPage fillLoginForm(String login, String password) {
+        enterTextIntoInputLogin(login);
+        enterTextIntoInputPassword(password);
+        return new LoginPage(webDriver);
+    }
+
+    public LoginPage checkErrorMessageInLoginForm(String text) {
+        checkTextInElement(errorMessageLoginForm, text);
+        return this;
     }
 }

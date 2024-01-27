@@ -69,6 +69,7 @@ public class LoginPage  extends ParentPage{
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listOfErrorMessages;
 
+
     private String listOfErrorMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
 
@@ -202,7 +203,7 @@ public class LoginPage  extends ParentPage{
     public LoginPage checkErrorMessages(String messages) {
         // error1;error2 -> [error1, error2]
         String[] expectedErrors = messages.split(";");
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorMessagesLocator), expectedErrors.length));
+        webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorMessagesLocator), expectedErrors.length));
 
         Util.waitABit(1);
         Assert.assertEquals("Number of messages", expectedErrors.length, listOfErrorMessages.size());
@@ -226,4 +227,9 @@ public class LoginPage  extends ParentPage{
     }
 
 
+    public LoginPage checkErrorMessageInLoginForm(String text) {
+        checkTextInElement(invalidLoginMessage, text);
+        return this;
+
+    }
 }
