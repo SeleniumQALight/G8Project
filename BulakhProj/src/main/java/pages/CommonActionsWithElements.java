@@ -1,5 +1,6 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -16,15 +17,15 @@ import java.time.Duration;
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
-    protected WebDriverWait webDriverWait10, webDriverWait15;
+    protected WebDriverWait webDriverWait05, webDriverWait15;
 
 
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // ініцйалізуємо елементи сторінки опираючись на анотації @FindBy
-        webDriverWait10= new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait05 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
     }
 
     protected void enterTextInToInput(WebElement element, String text) {
@@ -33,9 +34,13 @@ public class CommonActionsWithElements {
             element.sendKeys(text);
             logger.info(text + " was inputted into input" + getElementName(element));
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
+    }
+
+    private void printErrorAndStopTest(Exception e) {
+        logger.error("Can not work with element " + e);
+        Assert.fail("Can not work with element " + e);
     }
 
     private String getElementName(WebElement webElement) {
@@ -48,13 +53,12 @@ public class CommonActionsWithElements {
 
     protected void clickOnElement(WebElement element) {
         try {
-            webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
+            webDriverWait05.until(ExpectedConditions.elementToBeClickable(element));
             String elementName = getElementName(element);
             element.click();
             logger.info("Element was clicked" + elementName);
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -62,8 +66,7 @@ public class CommonActionsWithElements {
         try {
             clickOnElement(webDriver.findElement(By.xpath(locator)));
     }catch (Exception e){
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -85,8 +88,7 @@ public class CommonActionsWithElements {
             select.selectByVisibleText(text);
             logger.info(text + " was selected in DropDown" + getElementName(dropDown));
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -97,8 +99,7 @@ public class CommonActionsWithElements {
             select.selectByValue(value);
             logger.info(value + " was selected in DropDown" + getElementName(dropDown));
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -128,8 +129,7 @@ public class CommonActionsWithElements {
                 logger.info("Checkbox is already checked");
             }
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -143,8 +143,7 @@ public class CommonActionsWithElements {
                 logger.info("Checkbox is already unchecked");
             }
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -159,8 +158,7 @@ public class CommonActionsWithElements {
                 logger.warn("State should be 'check' or 'uncheck'");
             }
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
