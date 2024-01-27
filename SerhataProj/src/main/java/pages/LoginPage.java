@@ -211,7 +211,7 @@ public class LoginPage extends ParentPage {
         openLoginPage();
         enterTextInToInputLogin("newqaauto");
         DB_Util_seleniumUsers dbUtilSeleniumUsers  = new DB_Util_seleniumUsers();
-        enterTextInToInputPassword(dbUtilSeleniumUsers.getAliasForLogin("newqaauto"));
+        enterTextInToInputPassword(dbUtilSeleniumUsers.getPasswordForLogin("newqaauto"));
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
