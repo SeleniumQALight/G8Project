@@ -1,6 +1,7 @@
 package dataBaseTests;
 
 import libs.DB_Util_seleniumTable;
+import libs.DB_Util_seleniumUsers;
 import libs.Database;
 import libs.MySQL_Database;
 import org.apache.log4j.Logger;
@@ -51,6 +52,9 @@ public class DataBaseTest {
 
         DB_Util_seleniumTable dbUtilSeleniumTable = new DB_Util_seleniumTable();
         logger.info(dbUtilSeleniumTable.getPassForLogin("G7_taras_r"));
+
+        DB_Util_seleniumUsers dbUtilSeleniumUsers = new DB_Util_seleniumUsers();
+        logger.info(dbUtilSeleniumUsers.getPasswordForLogin("newqaauto"));
     }
 
 }

@@ -24,10 +24,19 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = "//p[contains(text(), 'Is this post unique? : ')]")
     private WebElement postUniqueStateOnPostPage;
 
+    @FindBy(xpath = ".//input[@name='title']")
+    private WebElement editTitleField;
+
     private HeaderElement headerElement;
 
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
+
+    @FindBy(xpath = ".//span//a[@data-original-title = 'Edit']")
+    private WebElement buttonEdit;
+
+    @FindBy(xpath = ".//button[@class='btn btn-primary']")
+    private WebElement buttonSaveUpdates;
     private String postNoteLocator = "//u[contains(text(),'%s')]";
 
     public PostPage(WebDriver webDriver) {
@@ -92,6 +101,21 @@ public class PostPage extends ParentPage{
     public PostPage checkIsNoteStateExpected(String valueOfPostUnique) {
         WebElement postNote = webDriver.findElement(By.xpath(String.format(postNoteLocator, valueOfPostUnique)));
         Assert.assertTrue("The post note is not in the expected state.", isElementDisplayed(postNote));
+        return this;
+    }
+
+    public PostPage clickOnEditButton() {
+        clickOnElement(buttonEdit);
+        return this;
+    }
+
+    public PostPage updateTextIntoInputTitle(String updatedTitle) {
+        enterTextInToInput(editTitleField, updatedTitle);
+        return this;
+    }
+
+    public PostPage clickOnSaveUpdatesButton() {
+        clickOnElement(buttonSaveUpdates);
         return this;
     }
 }

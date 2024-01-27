@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import libs.DB_Util_seleniumUsers;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.elements.HeaderElement;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -203,5 +205,14 @@ public class LoginPage extends ParentPage {
 
         return this;
 
+    }
+
+    public HomePage openLoginPageAndFillLoginFormWithPasswordFromDB() throws SQLException, ClassNotFoundException {
+        openLoginPage();
+        enterTextInToInputLogin("newqaauto");
+        DB_Util_seleniumUsers dbUtilSeleniumUsers  = new DB_Util_seleniumUsers();
+        enterTextInToInputPassword(dbUtilSeleniumUsers.getPasswordForLogin("newqaauto"));
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
     }
 }

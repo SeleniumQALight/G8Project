@@ -12,7 +12,6 @@ import org.junit.runner.RunWith;
 @Category(SmokeTestFilter.class)
 
 public class ValidationMessagesTest extends BaseTest {
-    final String ERROR_USERNAME = "Username must be at least 3 characters.";
     final String ERROR_EMAIL = "You must provide a valid email address.";
     final String ERROR_PASSWORD = "Password must be at least 12 characters.";
     final String ERROR_USERNAME_KIRILLIC = "Username can only contain letters and numbers.";
@@ -20,7 +19,7 @@ public class ValidationMessagesTest extends BaseTest {
     final String TEST = "тест";
     final String TEST_NAME_MAX_CHARACTERS = "Username cannot exceed 30 characters.";
     final String TEST_PASSWORD_MAX_CHARACTERS = "Password cannot exceed 50 characters.";
-    final String MAX_CHARACTERS = "test111111111111111111111122222222222222222222222222222222222222222222222222222222222222222222222";
+    final String MAX_CHARACTERS = "test" +"1".repeat(40);
 
     @Test
     @Parameters(method = "parametersForValidationMessagesTests")
