@@ -80,8 +80,13 @@ public class CommonActionsWithElements {
     }
 
     protected WebElement findElementByXpath(String xpath) {
+        By locator = org.openqa.selenium.By.xpath(xpath);
+        return findElementByLocator(locator);
+    }
+
+    protected WebElement findElementByLocator(By locator) {
         try {
-            WebElement element = webDriver.findElement(org.openqa.selenium.By.xpath(xpath));
+            WebElement element = webDriver.findElement(locator);
             return element;
         } catch (Exception e) {
             return null;
@@ -114,6 +119,13 @@ public class CommonActionsWithElements {
         Assert.assertTrue("Element is not visible", isElementDisplayed(WebElement));
     }
 
+    protected void checkIsElementVisible(By locator) {
+
+        WebElement element = findElementByLocator(locator);
+        Assert.assertTrue("Element is not visible", isElementDisplayed(element));
+    }
+
+
     protected void checkIsElementNotVisible(WebElement webElement) {
         Assert.assertFalse("Element is visible", isElementDisplayed(webElement));
     }
@@ -128,3 +140,4 @@ public class CommonActionsWithElements {
         }
     }
 }
+

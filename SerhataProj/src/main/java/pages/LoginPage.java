@@ -46,7 +46,13 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listErrorsMessages;
+
     private String listErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+    private String listLoginErrorsMessagesLocator = ".//*[@class='alert alert-danger text-center']";
+
+    @FindBy(xpath = ".//*[@class='alert alert-danger text-center']")
+    private List<WebElement> listLoginErrorsMessages;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -162,6 +168,11 @@ public class LoginPage extends ParentPage {
 
     public LoginPage checkIsValidationMessageForPasswordFieldVisible() {
         checkIsElementVisible(validationMessageForPasswordField);
+        return this;
+    }
+
+    public LoginPage checkIsLoginErrorVisible() {
+        checkIsElementVisible(listLoginErrorsMessages.get(0));
         return this;
     }
 

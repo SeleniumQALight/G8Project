@@ -7,8 +7,8 @@ import org.junit.Test;
 import BaseTest.BaseTest;
 import org.junit.runner.RunWith;
 
-import static libs.TestData.VALID_LOGIN_UI;
-import static libs.TestData.VALID_PASSWORD_UI;
+import static data.TestData.VALID_LOGIN_UI;
+import static data.TestData.VALID_PASSWORD_UI;
 
 @RunWith(JUnitParamsRunner.class)
 public class ValidationMessageTest extends BaseTest{

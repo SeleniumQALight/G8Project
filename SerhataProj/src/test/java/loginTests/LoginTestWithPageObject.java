@@ -1,12 +1,15 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import categories.SmokeTestFilter;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.junit.runner.RunWith;
 
 import java.io.IOException;
 import java.util.Map;
@@ -14,7 +17,11 @@ import java.util.Map;
 import static data.TestData.VALID_LOGIN_UI;
 import static data.TestData.VALID_PASSWORD_UI;
 
+
+@RunWith(JUnitParamsRunner.class)
+
 public class LoginTestWithPageObject extends BaseTest {
+
     @Test
     @Category(SmokeTestFilter.class)
     public void validLogin() {
@@ -64,5 +71,24 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertTrue("Title My Profile is not visible", pageProvider.homePage().getHeader().isTitleMyProfilePresent());
         Assert.assertTrue("User Name is not visible", pageProvider.homePage().getHeader().isUserNamePresent());
         pageProvider.loginPage().checkIsLoginFieldIsNotVisible();
+    }
+
+    @Parameters(method = "parametersForLoginValidationMessagesTests")
+    @Test
+    public void invalidLoginMessagesTests(String login, String password) {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextInToInputLogin(login);
+        pageProvider.loginPage().enterTextInToInputPassword(password);
+        pageProvider.loginPage().clickOnButtonSignIn();
+        pageProvider.loginPage().checkIsLoginErrorVisible();
+    }
+
+    public Object[][] parametersForLoginValidationMessagesTests() {
+        return new Object[][]{
+                {"tr", "tr"},
+                {"@#$$#@", "@#$$#@"},
+                {"1","1"},
+                {"  ", "  "}
+        };
     }
 }
