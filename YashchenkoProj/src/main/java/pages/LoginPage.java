@@ -72,7 +72,7 @@ public class LoginPage extends ParentPage {
         checkIsButtonSignInVisible();
     }
 
-    public void openLoginPage() {
+    public LoginPage openLoginPage() {
         try {
             webDriver.get(baseUrl);
             logger.info("Login page was opened " + baseUrl);
@@ -80,16 +80,18 @@ public class LoginPage extends ParentPage {
             logger.error("Can not open login page");
             Assert.fail("Can not open login page");
         }
-
+        return this;
     }
 
-    public void enterTextIntoInputLogin(String login) {
+    public LoginPage enterTextIntoInputLogin(String login) {
 //        WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']")); //For example
         enterTextIntoInput(inputLogin, login);
+        return this;
     }
 
-    public void enterTextIntoInputPassword(String password) {
+    public LoginPage enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
+        return this;
     }
 
     public void clickOnButtonSignIn() {
@@ -132,6 +134,11 @@ public class LoginPage extends ParentPage {
 
     public boolean isInvalidUserNamePasswordAlertVisible() {
         return isElementDisplayed(invalidAlert);
+    }
+
+    public LoginPage checkIsInvalidUserNamePasswordAlertVisible(){
+        checkIsElementVisible(invalidAlert);
+        return this;
     }
 
     public HomePage openLoginPageAndFillLoginFormWithValidCreds() {
