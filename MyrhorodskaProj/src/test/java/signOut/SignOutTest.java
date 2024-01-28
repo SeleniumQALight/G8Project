@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import static libs.ErrorMessage.*;
-import static libs.TestData.INVALID_TEXT;
+import static data.TestData.INVALID_TEXT;
 
 public class SignOutTest extends BaseTest {
     @Test

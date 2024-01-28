@@ -1,11 +1,9 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,6 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
@@ -22,8 +21,8 @@ public class CommonActionsWithElements {
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // ініціалізує всі елементи сторінки опираючись на @FindBy
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds((ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW())));
     }
 
     protected void enterTextIntoInput(WebElement input, String text) {
@@ -32,9 +31,12 @@ public class CommonActionsWithElements {
             input.sendKeys(text);
             logger.info(text + " was inputted into input " + getElementName(input));
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
+    }
+
+    private void printErrorAndStopTest(Exception e) {
+        printErrorAndStopTest(e);
     }
 
     private String getElementName(WebElement webElement) {
@@ -53,8 +55,7 @@ public class CommonActionsWithElements {
             element.click();
             logger.info("Element was clicked " + elementName);
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -62,8 +63,7 @@ public class CommonActionsWithElements {
         try {
             clickOnElement(webDriver.findElement(By.xpath(locator)));
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -86,8 +86,7 @@ public class CommonActionsWithElements {
             select.selectByVisibleText(text);
             logger.info(text + " was selected in Dropdown" + getElementName(dropDown));
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
 
         }
     }
@@ -99,8 +98,7 @@ public class CommonActionsWithElements {
             select.selectByValue(value);
             logger.info(value + " was selected in Dropdown " + getElementName(dropDown));
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
 
         }
     }
@@ -120,8 +118,7 @@ public class CommonActionsWithElements {
             String textFromElement = element.getText();
             Assert.assertEquals("Text in element not matched", expectedText, textFromElement);
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -132,8 +129,7 @@ public class CommonActionsWithElements {
                 logger.info("Checkbox was checked");
             }
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -144,8 +140,7 @@ public class CommonActionsWithElements {
                 logger.info("Checkbox was unchecked");
             }
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -160,8 +155,7 @@ public class CommonActionsWithElements {
                 Assert.fail("State should be 'check' or 'uncheck'");
             }
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -173,9 +167,55 @@ public class CommonActionsWithElements {
             actions.sendKeys(Keys.ENTER).build().perform();
             logger.info("Enter key was pressed");
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
+
+    public void openNewTabInBrowser() {
+        try {
+            if (webDriver instanceof JavascriptExecutor) {
+                ((JavascriptExecutor) webDriver).executeScript("window.open()");
+                logger.info("New tab was opened");
+            } else {
+                throw new UnsupportedOperationException("JavascriptExecutor not supported");
+            }
+        } catch (Exception e) {
+            logger.error("Can not open new tab", e);
+            Assert.fail("Can not work new tab");
+        }
+    }
+
+
+    public void switchToNewTab(int tabNumber) {
+        try {
+            webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[tabNumber].toString());
+            logger.info("Switch to new tab");
+        } catch (Exception e) {
+            logger.error("Failed to switch to the new tab", e);
+            Assert.fail("Failed to switch to the new tab");
+        }
+    }
+
+
+    public void closeTab(int tabNumber) {
+        try {
+            webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[tabNumber].toString());
+            webDriver.close();
+            logger.info("New tab was closed and switch to main tab");
+        } catch (Exception e) {
+            logger.error("Failed to close the new tab", e);
+            Assert.fail("Failed to close the new tab");
+        }
+    }
+
+    public void refreshPage() {
+        try {
+            webDriver.navigate().refresh();
+            logger.info("Page was refreshed");
+        } catch (Exception e) {
+            logger.error("Failed to refresh the page", e);
+            Assert.fail("Failed to refresh the page");
+        }
+    }
 }

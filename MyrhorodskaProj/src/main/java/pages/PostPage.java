@@ -18,6 +18,16 @@ public class PostPage  extends ParentPage{
     @FindBy(xpath = ".//div[@class='body-content'][2]//p")
     private WebElement BodyOnPostPage;
     @FindBy(xpath = "//i[contains(text(),' Note: This post was written for ')]")
+    private String noteLocator = ".//i[contains(text(),'Note: This post was written for')]/u[contains(text(),'%s')]";
+
+    private String isThisPostUniqueLocator = ".//p[text()='Is this post unique? : %s']";
+    @FindBy(xpath = ".//h2")
+    private WebElement postTitle;
+
+    @FindBy(xpath = ".//p[contains(text(),'Is this post unique?')]/../following-sibling::div/p")
+    private WebElement postContent;
+
+
     private HeaderElement headerElement;
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -29,6 +39,15 @@ public class PostPage  extends ParentPage{
     protected String getRelativUrl() {
         return "/post/[a-zA-z0-9]*";
     }
+
+    private WebElement getIsThisPostUniqueElement (String сheckboxValue){
+        return webDriver.findElement(By.xpath(String.format(isThisPostUniqueLocator, сheckboxValue)));
+    }
+
+    private WebElement getNoteElement (String dropdownValue){
+        return webDriver.findElement(By.xpath(String.format(noteLocator, dropdownValue)));
+    }
+
 
     public PostPage checkIsRedirectedToPostPage() {
         checkUrlWithPattern();
@@ -57,19 +76,39 @@ public class PostPage  extends ParentPage{
 
     public PostPage checkTitleOnPostPageEqualsTileOnCreatePostPage() {
         checkTextInElement(titleOnPostPage, CreatePostPage.getEnteredTitle());
-        logger.info("Title on Post page equals title on Create Post page");
+        logger.info("Title on the post page is equal to title on Create Post page");
         return this;
     }
 
     public PostPage checkBodyOnPostPageEqualsTileOnCreatePostPage() {
         checkTextInElement(BodyOnPostPage, CreatePostPage.getEnteredBody());
-        logger.info("Body on Post page equals body on Create Post page");
+        logger.info("Body on the Post page is equal to body on Create Post page");
         return this;
     }
 
     public PostPage checkOfNoteTextValue(String valueInDropDown) {
         checkIsElementVisible(webDriver.findElement(By.xpath(String.format(noteOnPostPageValue, valueInDropDown))));
 
+        return this;
+    }
+
+    public PostPage checkPostWithTitleIsPresent(String post_title) {
+        checkTextInElement(postTitle, post_title);
+        return this;
+    }
+
+    public PostPage checkPostWithContentIsPresent(String post_content) {
+        checkTextInElement(postContent, post_content);
+        return this;
+    }
+
+    public PostPage checkIsThisPostUniqueTextPresent(String checkboxValue) {
+        checkIsElementVisible(getIsThisPostUniqueElement(checkboxValue));
+        return this;
+    }
+
+    public PostPage checkNoteTextPresent(String dropdownValue) {
+        checkIsElementVisible(getNoteElement(dropdownValue));
         return this;
     }
 }

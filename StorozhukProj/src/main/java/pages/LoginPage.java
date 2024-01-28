@@ -67,9 +67,9 @@ public class LoginPage extends ParentPage {
         }
     }
 
-    // public void checkIsRedirectOnLoginPage() {
-    //    checkUrl();
-    // }
+    public String getPageHandler() {
+        return webDriver.getWindowHandle();
+    }
 
     public void enterTextIntoInput(String login) {
         enterTextIntoInput(inputLogin, login); // WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
@@ -113,7 +113,7 @@ public class LoginPage extends ParentPage {
     public LoginPage checkErrorMessages(String messages) {
         //error1;error2 -> [error1, error2]
         String[] expectedErrors = messages.split(";");
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(
+        webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(
                 By.xpath(listErrorsMessagesLocator), expectedErrors.length));
 
         Util.waitABit(1);
@@ -185,5 +185,20 @@ public class LoginPage extends ParentPage {
 
     public void checkTextInValidationMessageForPasswordRegisterInput(String password) {
         Assert.assertEquals("Password Text is invalid ", password, validationMessageForPasswordRegister.getText());
+    }
+
+    public LoginPage checkIsFieldLoginEmpty() {
+        Assert.assertEquals("Field Login is not empty", "", inputLogin.getText());
+        return this;
+    }
+
+    public LoginPage checkIsFieldPasswordEmpty() {
+        Assert.assertEquals("Field Password is not empty", "", inputPassword.getText());
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInVisible() {
+        Assert.assertTrue("Button SignIn is not visible", isButtonSignInVisible());
+        return this;
     }
 }

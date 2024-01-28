@@ -1,10 +1,12 @@
 package loginTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import java.io.IOException;
 import java.util.Map;
@@ -14,6 +16,7 @@ import static data.TestData.VALID_PASSWORD_UI;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
+    @Category(SmokeTestFilter.class)
     public void validLogin() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextIntoInputLogin(VALID_LOGIN_UI);
@@ -28,6 +31,7 @@ public class LoginTestWithPageObject extends BaseTest {
        Assert.assertFalse("Field for input password is not visible", pageProvider.loginPage().isInputPasswordVisible());
     }
     @Test
+    @Category(SmokeTestFilter.class)
     public void invalidLogin() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextIntoInputLogin("1qaauto");

@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import libs.DB_Util_seleniumUsers;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.elements.HeaderElement;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +48,13 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listErrorsMessages;
+
     private String listErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+    private String listLoginErrorsMessagesLocator = ".//*[@class='alert alert-danger text-center']";
+
+    @FindBy(xpath = ".//*[@class='alert alert-danger text-center']")
+    private List<WebElement> listLoginErrorsMessages;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -165,11 +173,16 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    public LoginPage checkIsLoginErrorVisible() {
+        checkIsElementVisible(listLoginErrorsMessages.get(0));
+        return this;
+    }
+
     public LoginPage checkErrorMessages(String messages) {
         // error1; error2 -> [error1, error2]
         String[] expectedErrors = messages.split(";");
 
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(
+        webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(
                 By.xpath(listErrorsMessagesLocator), expectedErrors.length));
 
         Util.waitABit(1);
@@ -192,5 +205,14 @@ public class LoginPage extends ParentPage {
 
         return this;
 
+    }
+
+    public HomePage openLoginPageAndFillLoginFormWithPasswordFromDB() throws SQLException, ClassNotFoundException {
+        openLoginPage();
+        enterTextInToInputLogin("newqaauto");
+        DB_Util_seleniumUsers dbUtilSeleniumUsers  = new DB_Util_seleniumUsers();
+        enterTextInToInputPassword(dbUtilSeleniumUsers.getPasswordForLogin("newqaauto"));
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
     }
 }

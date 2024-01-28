@@ -1,14 +1,15 @@
 package loginTest;
 
 import BaseTest.BaseTest;
-import libs.TestData;
+import junitparams.JUnitParamsRunner;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
+import org.junit.runner.RunWith;
 import static libs.TestData.VALID_LOGIN_UI;
 import static libs.TestData.VALID_PASSWORD_UI;
 
+@RunWith(JUnitParamsRunner.class)
 public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void validLogin() {
@@ -40,7 +41,7 @@ public class LoginTestWithPageObject extends BaseTest {
 
     @Test
     @Ignore
-    public void unValidLogin() {
+    public void inValidLogin() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextInToInputLogin("qalogin");
         pageProvider.loginPage().enterTextInToInputPassword("123456qwerty");
