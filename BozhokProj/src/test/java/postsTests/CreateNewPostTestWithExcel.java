@@ -43,8 +43,6 @@ public class CreateNewPostTestWithExcel extends BaseTest {
                 .checkDropdownValueIsPresentOnPostPage(dropdownValue)
                 .checkIsPostUniqueStateConfirmExpectedValue(expectedStatus)
 
-
-//
         ;
 
         pageProvider.getPostPage().getHeader().clickOnMyProfileButton()

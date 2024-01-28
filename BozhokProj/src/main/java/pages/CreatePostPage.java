@@ -48,12 +48,6 @@ public CreatePostPage enterTitleInToInputTitle(String title) {
         return this;
     }
 
-    //select Text in dropDown
-    public CreatePostPage selectTextInToDropDown(String textInDropDown) {
-        selectTextInDropDown(dropDownSelectValue, textInDropDown);
-        return this;
-    }
-
     //select value in dropDown
     public CreatePostPage selectValueInDropDown(String valueInDropDown) {
         selectValueInDropDown(dropDownSelectValue, valueInDropDown);

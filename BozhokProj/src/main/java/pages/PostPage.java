@@ -29,6 +29,7 @@ public class PostPage extends ParentPage{
     private WebElement dropdownValue;
 
     private String postUniqueLocator = ".//p[contains(text(),'Is this post unique? : %s')]";
+    private String postDropdownLocator = ".//u[contains(text(),'%s')]";
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -74,13 +75,14 @@ public class PostPage extends ParentPage{
         return this;
     }
 
-    public PostPage checkDropdownValueIsPresentOnPostPage(String text) {
-        checkTextInElement(dropdownValue, text);
+    public PostPage checkDropdownValueIsPresentOnPostPage(String dropdownValue) {
+        WebElement dropdownValueIsPresent = webDriver.findElement(By.xpath(String.format(postDropdownLocator, dropdownValue)));
+        Assert.assertTrue("The post is not in the expected state or not found.", isElementDisplayed(dropdownValueIsPresent));
         return this;
     }
 
-    public PostPage checkIsPostUniqueStateConfirmExpectedValue(String expectedStatus) {
-        WebElement isPostUnique = webDriver.findElement(By.xpath(String.format(postUniqueLocator, expectedStatus)));
+    public PostPage checkIsPostUniqueStateConfirmExpectedValue(String checkboxValue) {
+        WebElement isPostUnique = webDriver.findElement(By.xpath(String.format(postUniqueLocator, checkboxValue)));
         Assert.assertTrue("The post is not in the expected state or not found.", isElementDisplayed(isPostUnique));
         return this;
     }
