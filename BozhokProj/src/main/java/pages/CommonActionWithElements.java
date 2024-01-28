@@ -118,25 +118,47 @@ public class CommonActionWithElements {
         }
     }
 
-    protected void setCheckBoxState(WebElement checkboxUnique, String elementNane, String state) {
+    protected void selectCheckbox(WebElement checkbox, String elementName) {
         try {
-            if (state.toLowerCase().equals("check")) {
-                if (!checkboxUnique.isSelected()) {
-                    checkboxUnique.click();
-                }
-                logger.info("Checkbox " + elementNane + " is checked");
-            } else if (state.toLowerCase().equals("uncheck")) {
-                if (checkboxUnique.isSelected()) {
-                    checkboxUnique.click();
-                }
-                logger.info("Checkbox " + elementNane + " is unchecked");
+            if (!checkbox.isSelected()) {
+                checkbox.click();
+                logger.info(elementName + " was selected");
             } else {
-                logger.error("State should be 'check' or 'uncheck'");
-                Assert.fail("State should be 'check' or 'uncheck'");
+                logger.info(elementName + " is already selected.");
             }
         } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
         }
     }
+
+    protected void unselectCheckbox(WebElement checkbox, String elementName) {
+        try {
+            if (checkbox.isSelected()) {
+                checkbox.click();
+                logger.info(elementName + " was unselected");
+            } else {
+                logger.info(elementName + " is already unselected.");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    // set checkbox state - check and uncheck
+    protected void setCheckBoxState(WebElement checkbox, String elementName, String state) {
+        try {
+            if (state.toLowerCase().equals("check")) {
+                selectCheckbox(checkbox, elementName);
+            } else if (state.toLowerCase().equals("uncheck")) {
+                unselectCheckbox(checkbox, elementName);
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+
 }
