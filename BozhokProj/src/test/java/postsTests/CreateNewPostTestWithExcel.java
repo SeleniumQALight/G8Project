@@ -41,6 +41,8 @@ public class CreateNewPostTestWithExcel extends BaseTest {
                 .checkPostTitleIsPresentOnPostPage(POST_TITLE)
                 .checkPostBodyIsPresentOnPostPage(POST_BODY)
                 .checkDropdownValueIsPresentOnPostPage(dropdownValue)
+                .checkIsPostUniqueStateConfirmExpectedValue(expectedStatus)
+
 
 //
         ;

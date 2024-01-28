@@ -78,4 +78,10 @@ public class PostPage extends ParentPage{
         checkTextInElement(dropdownValue, text);
         return this;
     }
+
+    public PostPage checkIsPostUniqueStateConfirmExpectedValue(String expectedStatus) {
+        WebElement isPostUnique = webDriver.findElement(By.xpath(String.format(postUniqueLocator, expectedStatus)));
+        Assert.assertTrue("The post is not in the expected state or not found.", isElementDisplayed(isPostUnique));
+        return this;
+    }
 }

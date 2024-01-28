@@ -65,9 +65,13 @@ public CreatePostPage enterTitleInToInputTitle(String title) {
         return new PostPage(webDriver);
     }
 
-    public CreatePostPage checkBoxUniquePost(String checkboxValue) {
-        clickOnElement(checkboxUnique);
+    public CreatePostPage checkBoxUniquePost(String state) {
+        setCheckBoxState(checkboxUnique, "Is this post unique", state);
         return this;
     }
+
+
+
+
 }
 

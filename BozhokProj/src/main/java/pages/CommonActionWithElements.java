@@ -1,6 +1,5 @@
 package pages;
 
-import com.beust.ah.A;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -113,6 +112,28 @@ public class CommonActionWithElements {
         try {
             String textFromElement = element.getText();
             Assert.assertEquals("Text in element not matched", expectedText, textFromElement);
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+    }
+
+    protected void setCheckBoxState(WebElement checkboxUnique, String elementNane, String state) {
+        try {
+            if (state.toLowerCase().equals("check")) {
+                if (!checkboxUnique.isSelected()) {
+                    checkboxUnique.click();
+                }
+                logger.info("Checkbox " + elementNane + " is checked");
+            } else if (state.toLowerCase().equals("uncheck")) {
+                if (checkboxUnique.isSelected()) {
+                    checkboxUnique.click();
+                }
+                logger.info("Checkbox " + elementNane + " is unchecked");
+            } else {
+                logger.error("State should be 'check' or 'uncheck'");
+                Assert.fail("State should be 'check' or 'uncheck'");
+            }
         } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
