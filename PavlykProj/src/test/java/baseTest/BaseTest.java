@@ -14,7 +14,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import pages.PageProvider;
 
-import java.sql.SQLException;
 import java.time.Duration;
 
 // Parent class for all tests
