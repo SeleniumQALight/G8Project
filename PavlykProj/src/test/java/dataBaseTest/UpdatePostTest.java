@@ -70,10 +70,11 @@ public class UpdatePostTest extends BaseTest {
     @Test
     @Parameters(method = "parametersForCreateNewPostWithExcelTest")
     public void TC_001_updatePost(String postTitle, String postBody, String dropDownValue, String checkBoxValue, String successMessage, String uniquePostInfoMessage) throws SQLException, ClassNotFoundException {
-        createNewPostWithExcel(postTitle, postBody, dropDownValue,  checkBoxValue,  successMessage,  uniquePostInfoMessage);
+
         DB_Util_seleniumUsers db_util = new DB_Util_seleniumUsers();
         NEW_POST_TITLE = db_util.getAliasByLogin(LOGIN_DB) + "-" + TIME_STAMP;
-        System.out.println(NEW_POST_TITLE);
+
+        createNewPostWithExcel(postTitle, postBody, dropDownValue,  checkBoxValue,  successMessage,  uniquePostInfoMessage);
         pageProvider.getMyProfilePage()
                 .clickOnPostWithTitle(POST_TITLE)
                 .clickOnEditButton()
