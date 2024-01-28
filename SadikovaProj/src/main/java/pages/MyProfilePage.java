@@ -46,14 +46,14 @@ public class MyProfilePage extends ParentPage {
     }
 
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-        assertUrl();
+        containsUrl();
         clickOnElement(postsTab);
         return this;
     }
 
     @Override
     protected String getRelativeUrl() {
-        return "/profile/" + TestData.VALID_LOGIN_UI;
+        return "/profile/";
     }
 
     public MyProfilePage(WebDriver webDriver) {

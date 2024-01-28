@@ -16,10 +16,14 @@ public class PostPage extends ParentPage {
     private WebElement titleField;
     @FindBy(xpath = "//div[@class='body-content']/p[not(i)]")
     private WebElement bodyField;
+    @FindBy(xpath = "//a[@data-original-title='Edit']")
+    private WebElement editButton;
 
 
     private String thisIsPostUnique = "//div/p[text()='Is this post unique? : %s']";
     private String noteBlock = "//i[contains(text(),'Note: This post was written for')]/u[contains(text(),'%s')]";
+
+    private String postTitleElement = "//a[contains(@class,'list-group-item-action')]/strong[text()='%s']";
 
     private WebElement getThisIsPostUniqueWebElement(String text) {
         return webDriver.findElement(By.xpath(String.format(thisIsPostUnique, text)));
@@ -33,6 +37,17 @@ public class PostPage extends ParentPage {
 
     @FindBy(xpath = "//button[contains(@class,'delete-post-button')]")
     private WebElement deleteButton;
+
+    public EditPage clickOnEditButton() {
+        clickOnElement(editButton);
+        return new EditPage(webDriver);
+    }
+
+    public EditPage clickOnPostWithTitle(String postTitle) {
+        clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleElement, postTitle))));
+        return new EditPage(webDriver);
+    }
+
 
     public PostPage checkIsRedirectToPostPage() {
         checkUrlWithPatternUrl();
@@ -53,7 +68,6 @@ public class PostPage extends ParentPage {
         checkIsElementVisible(getNoteBlockWebElement(value));
         return this;
     }
-
 
 
     public PostPage checkTextPresent(String expectedText) {
@@ -84,7 +98,7 @@ public class PostPage extends ParentPage {
         super(webDriver);
     }
 
-    public MyProfilePage clickOnDeleteButton(){
+    public MyProfilePage clickOnDeleteButton() {
         clickOnElement(deleteButton);
         return new MyProfilePage(webDriver);
     }
