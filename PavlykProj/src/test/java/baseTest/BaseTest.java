@@ -14,6 +14,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import pages.PageProvider;
 
+import java.sql.SQLException;
 import java.time.Duration;
 
 // Parent class for all tests
@@ -24,7 +25,7 @@ public class BaseTest {
 
     // Will be executed before each test
     @Before
-    public void setUp() {
+    public void setUp() throws SQLException, ClassNotFoundException {
         logger.info("----- " + testName.getMethodName() + " was started ------------");
 //        WebDriverManager.chromedriver().setup(); // download driver
 //        webDriver = new ChromeDriver(); // create driver
@@ -36,7 +37,7 @@ public class BaseTest {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown() throws SQLException {
         webDriver.quit();
         logger.info("Browser was closed");
         logger.info("----- " + testName.getMethodName() + " was ended ------------");

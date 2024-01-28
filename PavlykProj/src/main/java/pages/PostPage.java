@@ -26,6 +26,9 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
 
+    @FindBy(xpath = ".//a[@data-original-title='Edit']")
+    private WebElement editButton;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -77,6 +80,11 @@ public class PostPage extends ParentPage{
     public PostPage checkNoteTextPresent(String dropdownValue) {
         checkIsElementVisible(getNoteElement(dropdownValue));
         return this;
+    }
+
+    public EditPostPage clickOnEditButton() {
+        clickOnElement(editButton);
+        return new EditPostPage(webDriver);
     }
 
     public HeaderElement getHeader() {
