@@ -25,7 +25,7 @@ public class BaseTest {
 
     // Will be executed before each test
     @Before
-    public void setUp() throws SQLException, ClassNotFoundException {
+    public void setUp() {
         logger.info("----- " + testName.getMethodName() + " was started ------------");
 //        WebDriverManager.chromedriver().setup(); // download driver
 //        webDriver = new ChromeDriver(); // create driver
@@ -37,7 +37,7 @@ public class BaseTest {
     }
 
     @After
-    public void tearDown() throws SQLException {
+    public void tearDown() {
         webDriver.quit();
         logger.info("Browser was closed");
         logger.info("----- " + testName.getMethodName() + " was ended ------------");
@@ -46,15 +46,15 @@ public class BaseTest {
     @Rule
     public TestName testName = new TestName();
 
-    private WebDriver initDriver(){
+    private WebDriver initDriver() {
         String browser = System.getProperty("browser");
-        if ((browser == null) || ("chrome".equals(browser.toLowerCase()))){ // default browser -Dbrowser=chrome
+        if ((browser == null) || ("chrome".equals(browser.toLowerCase()))) { // default browser -Dbrowser=chrome
             WebDriverManager.chromedriver().setup();
             webDriver = new ChromeDriver();
-        } else if ("firefox".equals(browser.toLowerCase())){ // -Dbrowser=firefox
+        } else if ("firefox".equals(browser.toLowerCase())) { // -Dbrowser=firefox
             WebDriverManager.firefoxdriver().setup();
             webDriver = new FirefoxDriver();
-        } else if ("ie".equals(browser.toLowerCase())){
+        } else if ("ie".equals(browser.toLowerCase())) {
             WebDriverManager.iedriver().setup(); //zoom 100%
             webDriver = new InternetExplorerDriver(); //security level - Medium
         } else if ("safari".equalsIgnoreCase(browser)) {
@@ -63,7 +63,7 @@ public class BaseTest {
         } else if ("edge".equalsIgnoreCase(browser)) {
             WebDriverManager.edgedriver().setup();
             webDriver = new EdgeDriver();
-        }  else {
+        } else {
             throw new IllegalArgumentException("Browser " + browser + " is not supported");
         }
         return webDriver;
