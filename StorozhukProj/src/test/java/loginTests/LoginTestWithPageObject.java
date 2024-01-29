@@ -38,13 +38,40 @@ public class LoginTestWithPageObject extends BaseTest {
 
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextIntoInput("quytto");
-        pageProvider.loginPage().enterTextIntoInputPassword("123456qwerty");
+        pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
         pageProvider.loginPage().clickOnButtonSignIn();
 
         Assert.assertTrue("Button SignIn is not visible", pageProvider.loginPage().isButtonSignInVisible());
         Assert.assertFalse("Button SignOutTest is visible", pageProvider.homePage().isButtonSignOutVisible());
         Assert.assertTrue("Alert is not visible", pageProvider.loginPage().isAlertTextVisible());
     }
+    @Test
+    public void invalidPassword() {
+
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInput(VALID_LOGIN_UI);
+        pageProvider.loginPage().enterTextIntoInputPassword("INVALID_PASSWORD");
+        pageProvider.loginPage().clickOnButtonSignIn();
+
+        Assert.assertTrue("Button SignIn is not visible", pageProvider.loginPage().isButtonSignInVisible());
+        Assert.assertFalse("Button SignOutTest is visible", pageProvider.homePage().isButtonSignOutVisible());
+        Assert.assertTrue("Alert is not visible", pageProvider.loginPage().isAlertTextVisible());
+    }
+
+    @Test
+    public void invalidLoginAndPassword() {
+
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInput("INVALID_LOGIN");
+        pageProvider.loginPage().enterTextIntoInputPassword("INVALID_PASSWORD");
+        pageProvider.loginPage().clickOnButtonSignIn();
+
+        Assert.assertTrue("Button SignIn is not visible", pageProvider.loginPage().isButtonSignInVisible());
+        Assert.assertFalse("Button SignOutTest is visible", pageProvider.homePage().isButtonSignOutVisible());
+        Assert.assertTrue("Alert is not visible", pageProvider.loginPage().isAlertTextVisible());
+    }
+
+
     @Test
     public void validLoginWithExel() throws IOException {
         Map<String, String> dataForValidLogin =

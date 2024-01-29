@@ -88,6 +88,11 @@ public class PostPage extends ParentPage {
         return this;
     }
 
+    public PostPage checkTextInUniquePostInfoMessageByText(String text) {
+        checkIsElementVisible(By.xpath(String.format(".//p[starts-with(text(),'Is this post unique? : %s')]", text)));
+        return this;
+    }
+
     public PostPage checkTextInPostNote(String noteText) {
         checkTextInElement(postVisibilityInfoMessage, noteText);
         return this;
