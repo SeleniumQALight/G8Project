@@ -1,2 +1,4 @@
-package postTest;public class EditPostTitleTest {
+package postTest;
+
+public class EditPostTitleTest {
 }

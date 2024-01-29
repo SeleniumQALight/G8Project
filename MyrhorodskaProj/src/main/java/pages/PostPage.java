@@ -27,6 +27,13 @@ public class PostPage  extends ParentPage{
     @FindBy(xpath = ".//p[contains(text(),'Is this post unique?')]/../following-sibling::div/p")
     private WebElement postContent;
 
+    @FindBy(xpath = ".//a[@data-original-title='Edit']")
+    private WebElement buttonEdit;
+    @FindBy(xpath = ".//input[@id='post-title']")
+    private WebElement inputTitle;
+    @FindBy(xpath = ".//button[@class='btn btn-primary']")
+    private WebElement buttonSaveUpdates;
+
 
     private HeaderElement headerElement;
     public PostPage(WebDriver webDriver) {
@@ -109,6 +116,19 @@ public class PostPage  extends ParentPage{
 
     public PostPage checkNoteTextPresent(String dropdownValue) {
         checkIsElementVisible(getNoteElement(dropdownValue));
+        return this;
+    }
+    public PostPage clickOnEditButton() {
+        clickOnElement(buttonEdit);
+        return this;
+    }
+
+    public void enterTextIntoInputTitle(String text) {
+        enterTextInToInput(inputTitle, text);
+    }
+
+    public PostPage clickOnSaveUpdatesButton() {
+        clickOnElement(buttonSaveUpdates);
         return this;
     }
 }
