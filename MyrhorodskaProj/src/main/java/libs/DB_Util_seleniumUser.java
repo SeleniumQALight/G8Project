@@ -13,7 +13,7 @@ public class DB_Util_seleniumUser {
         logger.info("--- Connected to DB -------");
 
         String pass = mySQL_DataBase.selectValue(
-                String.format("select passWord from seleniumUsers where login = '%s'", login)
+                String.format("SELECT password FROM seleniumUsers WHERE login = '%s'", login)
         );
         mySQL_DataBase.quit();
         logger.info("--- Disconnected from DB -------");
@@ -25,7 +25,7 @@ public class DB_Util_seleniumUser {
         logger.info("--- Connected to DB -------");
 
         String pass = mySQL_DataBase.selectValue(
-                String.format("select alias from seleniumUsers where login = '%s'", login)
+                String.format("SELECT alias FROM seleniumUsers WHERE login = '%s'", login)
         );
         mySQL_DataBase.quit();
         logger.info("--- Disconnected from DB -------");

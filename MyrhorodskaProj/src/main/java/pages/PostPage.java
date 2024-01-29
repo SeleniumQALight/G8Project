@@ -114,8 +114,8 @@ public class PostPage  extends ParentPage{
         return this;
     }
 
-    public PostPage checkNoteTextPresent(String dropdownValue) {
-        checkIsElementVisible(getNoteElement(dropdownValue));
+    public PostPage updateTextIntoInputTitle(String updatedTitle) {
+        enterTextInToInput(inputTitle, updatedTitle);
         return this;
     }
     public PostPage clickOnEditButton() {

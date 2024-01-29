@@ -1,7 +1,7 @@
 package pages;
 
 import libs.DB_Util_seleniumUser;
-import libs.TestData;
+import data.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.elements.HeaderElement;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -253,6 +254,10 @@ public class LoginPage extends ParentPage{
         softAssertions.assertAll(); // check all assertion
 
         return this;
+    }
+
+    public HeaderElement getHeader() {
+        return new HeaderElement(webDriver);
     }
 
     public HomePage openLoginPageAndFillLoginFormWithPasswordFromDB() throws  ClassNotFoundException, SQLException {
