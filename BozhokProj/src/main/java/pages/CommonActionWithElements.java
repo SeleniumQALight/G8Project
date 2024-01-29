@@ -138,4 +138,9 @@ public class CommonActionWithElements {
         webDriver.switchTo().window(newTab);
         logger.info("New tab was closed");
     }
+
+    public void refreshPage() {
+        webDriver.navigate().refresh();
+        logger.info("Page was refreshed");
+    }
 }
