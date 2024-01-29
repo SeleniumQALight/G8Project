@@ -59,6 +59,18 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
+    public void invalidLoginWithRefresh() {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputLogin(VALID_LOGIN_UI);
+        pageProvider.loginPage().enterTextIntoInputPass(VALID_PASSWORD_UI);
+        pageProvider.loginPage().refreshPage();
+        pageProvider.loginPage().clickOnButtonSignIn();
+
+        Assert.assertFalse("Button SignOut is displayed", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+        Assert.assertTrue("Invalid Login massage is absent", pageProvider.loginPage().isMessageFailLogin());
+    }
+
+    @Test
     public void loginValidation() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterIntoUsernameRegistration("tr")

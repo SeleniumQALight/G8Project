@@ -18,6 +18,7 @@ public class CommonActionsWithElements {
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
     protected WebDriverWait webDriverWait10, webDriverWait15;
+    protected JavascriptExecutor javascriptExecutor = (JavascriptExecutor) webDriver;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -30,7 +31,6 @@ public class CommonActionsWithElements {
 
 
     protected Set<String> openNewTab() {
-        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) webDriver;
         String currentTab = webDriver.getWindowHandle();
         logger.info("currentTab: " + currentTab);
         javascriptExecutor.executeScript("window.open()");
@@ -62,6 +62,12 @@ public class CommonActionsWithElements {
         String tabName = webDriver.getWindowHandle();
         webDriver.close();
         logger.info("Tab " + tabName + " was closed");
+    }
+
+    protected void refreshPages(){
+        String url = webDriver.getCurrentUrl();
+        webDriver.navigate().refresh(); // refresh page
+        logger.info("page "+ url+" was refreshed");
     }
 
     protected void enterTextIntoInput(WebElement element, String text) {
