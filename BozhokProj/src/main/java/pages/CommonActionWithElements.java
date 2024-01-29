@@ -118,4 +118,24 @@ public class CommonActionWithElements {
             printErrorAndStopTest(e);
         }
     }
+
+    public void openNewTabAndSwitchToIt() {
+        ((org.openqa.selenium.JavascriptExecutor) webDriver).executeScript("window.open()");
+        String newTab = webDriver.getWindowHandles().stream().skip(1).findFirst().get();
+        webDriver.switchTo().window(newTab);
+        logger.info("New tab was opened");
+    }
+
+    public void switchToFirstTab() {
+        String firstTab = webDriver.getWindowHandles().stream().findFirst().get();
+        webDriver.switchTo().window(firstTab);
+        logger.info("Switch to first tab");
+    }
+
+    public void closeNewTabAndSwitchToFirstTab() {
+        String newTab = webDriver.getWindowHandles().stream().skip(1).findFirst().get();
+        webDriver.close();
+        webDriver.switchTo().window(newTab);
+        logger.info("New tab was closed");
+    }
 }
