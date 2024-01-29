@@ -30,9 +30,13 @@ public class CommonActionsWithElements {
             input.sendKeys(text);
             logger.info(text + " was inputted into input" + getElementName(input));
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
+    }
+
+    private void printErrorAndStopTest(Exception e) {
+        logger.error("Can not work with element" + e);
+        Assert.fail("Can not work with element" + e);
     }
 
     private String getElementName(WebElement webElement) {
@@ -50,8 +54,7 @@ public class CommonActionsWithElements {
             element.click();
             logger.info("Element was clicked " + elementName);
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -59,8 +62,7 @@ public class CommonActionsWithElements {
         try {
             clickOnElement(webDriver.findElement(By.xpath(locator)));
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -81,8 +83,7 @@ public class CommonActionsWithElements {
             select.selectByVisibleText(text);
             logger.info(text + " was selected in dropdown" + getElementName(dropDown));
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
     //select Value in dropdown
@@ -93,8 +94,7 @@ public class CommonActionsWithElements {
             select.selectByValue(value);
             logger.info(value + " was selected in dropdown" + getElementName(dropDown));
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -112,8 +112,7 @@ public class CommonActionsWithElements {
             Assert.assertEquals("Text in element not matched"
                     , expectedText, textFromElement);
         } catch (Exception e) {
-            logger.error("Can not get text from element");
-            Assert.fail("Can not get text from element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -124,8 +123,7 @@ public class CommonActionsWithElements {
                 logger.info("Checkbox was checked");
             }
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -136,8 +134,7 @@ public class CommonActionsWithElements {
                 logger.info("Checkbox was unchecked");
             }
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -152,8 +149,7 @@ public class CommonActionsWithElements {
                 Assert.fail("State should be 'check' or 'uncheck'");
             }
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 }
