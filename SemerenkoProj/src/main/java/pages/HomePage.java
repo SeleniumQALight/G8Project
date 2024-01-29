@@ -5,6 +5,8 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.elements.HeaderElement;
 
+import java.util.Set;
+
 public class HomePage extends ParentPage {
     private HeaderElement headerElement;
 
@@ -21,7 +23,7 @@ public class HomePage extends ParentPage {
         return new HeaderElement(webDriver);
     }
 
-    public LoginPage redirectOnLoginPage (){
+    public LoginPage redirectOnLoginPage() {
         return new LoginPage(webDriver);
     }
 
@@ -45,26 +47,10 @@ public class HomePage extends ParentPage {
         return this;
     }
 
-    public HomePage checkIsButtonChatVisible(){
+    public HomePage checkIsButtonChatVisible() {
         getHeader().checkIsButtonChatVisible();
         return this;
     }
-
-//    public HomePage checkIsInputUsernameUnvisible() {
-//        getHeader().checkIsElementInputUsernameUnvisible();
-//        return this;
-//    }
-//
-//    public HomePage checkIsInputPasswordUnvisible() {
-//        getHeader().checkIsElementInputPasswordUnvisible();
-//        return this;
-//    }
-//
-//    public HomePage checkIsButtonSignInUnvisible(){
-//        getHeader().checkIsElementButtonSignInUnvisible();
-//        return this;
-//    }
-
 
 
     public HomePage checkIsRedirectToHomePage() {
@@ -87,7 +73,22 @@ public class HomePage extends ParentPage {
             logger.info("User is logged in");
         }
         return this;
+    }
 
+    public HomePage openLoginPageInNewTab() {
+        Set<String> tabSet = openNewTab();
+        switchBetweenTabs(tabSet.size(), tabSet);
+        redirectOnLoginPage().openLoginPage();
+        return this;
+    }
 
+    public HomePage switchBetweenTab(int tabNumber) {
+        switchBetweenTabs(tabNumber, webDriver.getWindowHandles());
+        return this;
+    }
+
+    public HomePage closeTab() {
+        closeTabs();
+        return this;
     }
 }

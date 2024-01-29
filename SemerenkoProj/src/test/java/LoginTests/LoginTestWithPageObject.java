@@ -30,6 +30,24 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
+    public void validLoginWithFewTabs() {
+        pageProvider.loginPage().openLoginPageAndFillLoginFormWithValidCred()
+                .checkIsRedirectToHomePage()
+                .checkIsButtonSignOutVisible()
+                .openLoginPageInNewTab()
+                .checkIsButtonSignOutVisible()
+                .openLoginPageInNewTab()
+                .switchBetweenTab(1)
+                .checkIsRedirectToHomePage()
+                .checkIsButtonSignOutVisible()
+                .switchBetweenTab(3)
+                .closeTab()
+                .switchBetweenTab(1)
+                .checkIsButtonSignOutVisible();
+
+    }
+
+    @Test
     public void invalidLogin() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextIntoInputLogin(INVALID_LOGIN_UI);
