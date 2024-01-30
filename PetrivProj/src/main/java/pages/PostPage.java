@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -41,17 +42,19 @@ public class PostPage extends ParentPage {
         return "/post/[a-zA-Z0-9]*";
     }
 
+    @Step
     public PostPage checkIsRedirectToPostPage() {
         checkUrlWithPattern();
         // TODO check element
         return this;
     }
 
+    @Step
     public PostPage checkIsSuccessMessageDisplayed() {
         checkIsElementVisible(successMessage);
         return this; // return this - because eventually we stay on this page
     }
-
+    @Step
     public PostPage checkTextInSuccessMessage(String text) {
         checkTextInElement(successMessage, text);
         return this;
@@ -60,41 +63,41 @@ public class PostPage extends ParentPage {
     public HeaderElement getHeader() {
         return headerElement = new HeaderElement(webDriver);
     }
-
+    @Step
     public PostPage checkTextInUniquePostInfoMessage(String value) {
         checkTextInElement(uniquePostMessage, "Is this post unique? : " + value);
         return this;
     }
-
+    @Step
     public PostPage checkTextInPostTitle(String postTitleText) {
         checkTextInElement(postTitle, postTitleText);
         return this;
     }
-
+    @Step
     public PostPage checkTextInPostBody(String postBodyText) {
         checkTextInElement(postBody, postBodyText);
         return this;
     }
-
+    @Step
     public PostPage checkTextInPostNote(String noteText) {
         checkTextInElement(postNote, noteText);
         return this;
     }
-
+    @Step
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
     }
-
+    @Step
     public PostPage clickOnEditButton() {
         clickOnElement(buttonEdit);
         return this;
     }
-
+    @Step
     public void enterTextIntoInputTitle(String text) {
         enterTextIntoInput(inputTitle, text);
     }
-
+    @Step
     public PostPage clickOnSaveUpdatesButton() {
         clickOnElement(buttonSaveUpdates);
         return this;
