@@ -1,5 +1,6 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -21,8 +22,8 @@ public class CommonActionsWithElements {
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // инициализирует все элементы на странице отмеченные аннотацией @FindBy
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
 
     }
 
@@ -38,14 +39,19 @@ public class CommonActionsWithElements {
     }
 
     protected void enterTextIntoInput(WebElement input, String text) {
+        webDriverWait10.until(ExpectedConditions.elementToBeClickable(input));
         try {
             input.clear();
             input.sendKeys(text);
             logger.info(text + " was inputted into input" + getElementName(input));
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
+    }
+
+    private void printErrorAndStopTest(Exception e) {
+        logger.error("Can not work with element");
+        Assert.fail("Can not work with element");
     }
 
     protected void clickOnElement(WebElement element) {
@@ -55,15 +61,14 @@ public class CommonActionsWithElements {
             element.click();
             logger.info("Element was clicked " + elementName);
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
-    protected void clickOnElement(String locator){
+    protected void clickOnElement(String locator) {
         try {
             clickOnElement(webDriver.findElement(By.xpath(locator)));
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("Can not work with locator");
             Assert.fail("Can not work with locator");
         }
@@ -137,8 +142,7 @@ public class CommonActionsWithElements {
             select.selectByVisibleText(text);
             logger.info(text + " was selected in DropDown" + getElementName(dropDown));
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -149,8 +153,7 @@ public class CommonActionsWithElements {
             select.selectByValue(value);
             logger.info(value + " was selected in DropDown" + getElementName(dropDown));
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -173,26 +176,24 @@ public class CommonActionsWithElements {
 
     }
 
-    public void pressTabKey(){
+    public void pressTabKey() {
         Actions actions = new Actions(webDriver);
         actions.sendKeys(Keys.TAB).build().perform();
         logger.info("Tab pressed");
     }
 
-    public void enterTextWithKeys(WebElement element, String text){
+    public void enterTextWithKeys(WebElement element, String text) {
         element.sendKeys(Keys.CONTROL + "a");
         element.sendKeys(Keys.DELETE);
         element.sendKeys(text);
         logger.info("Filled field: " + text);
     }
 
-    public void pressEnter(WebElement element){
+    public void pressEnter(WebElement element) {
         webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
         element.sendKeys(Keys.ENTER);
         logger.info("Enter key pressed on the element");
     }
-
-
 
 
 }

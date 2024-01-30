@@ -57,7 +57,7 @@ public class MainPage extends ParentPage {
     }
 
     public void openMainPage() {
-        goToWebPage(Urls.HOME_PAGE_URL);
+        goToWebPage(baseUrl);
     }
 
     public void enterTextIntoInputLogin(String login) {
