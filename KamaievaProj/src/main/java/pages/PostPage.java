@@ -18,6 +18,15 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = "//div[@class='body-content']/p[not(i)]")
     private WebElement postBody;
 
+    @FindBy(xpath = ".//a[@data-original-title='Edit']")
+    private WebElement buttonEdit;
+
+    @FindBy(xpath = ".//input[@id='post-title']")
+    private WebElement inputTitle;
+
+    @FindBy(xpath = ".//form[contains(@action, '/post/')]//button")
+    private WebElement buttonSaveUpdates;
+
     private String postUniqueLocator = "//p[contains(text(),'Is this post unique? : %s')]";
     private String postNoteLocator = "//u[contains(text(),'%s')]";
 
@@ -80,5 +89,19 @@ public class PostPage extends ParentPage {
         clickOnElement(buttonDelete);
         //TODO
         return new MyProfilePage(webDriver);
+    }
+
+    public PostPage clickOnEditButton() {
+        clickOnElement(buttonEdit);
+        return this;
+    }
+
+    public void enterTextIntoInputTitle(String text) {
+        enterTextIntoInput(inputTitle, text);
+    }
+
+    public PostPage clickOnSaveUpdatesButton() {
+        clickOnElement(buttonSaveUpdates);
+        return this;
     }
 }
