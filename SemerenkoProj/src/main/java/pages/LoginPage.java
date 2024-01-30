@@ -99,6 +99,9 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignUp);
         return this;
     }
+    public void refreshPage(){
+        refreshPages();
+    }
 
     public boolean isMessageFailLogin() {
         return isElementDisplayed(divFailSignIn);
