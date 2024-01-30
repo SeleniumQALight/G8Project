@@ -1,6 +1,7 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import io.qameta.allure.*;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import categories.SmokeTestFilter;
@@ -20,7 +21,17 @@ import static data.TestData.VALID_PASSWORD_UI;
 
 @RunWith(JUnitParamsRunner.class)
 
+@Epic("Allure examples")
+@Feature("Junit 4 support")
+
 public class LoginTestWithPageObject extends BaseTest {
+
+    @Description("Some detailed test description")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
+    @Story("Base support for bdd annotations")
 
     @Test
     @Category(SmokeTestFilter.class)
