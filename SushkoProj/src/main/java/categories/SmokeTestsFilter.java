@@ -1,2 +1,4 @@
-package categories;public class SmokeTestsFilter {
+package categories;
+
+public class SmokeTestsFilter {
 }
