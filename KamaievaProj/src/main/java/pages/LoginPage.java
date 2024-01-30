@@ -74,12 +74,14 @@ public class LoginPage extends ParentPage {
         }
     }
 
-    public void enterTextIntoInputLogin(String login) {
+    public LoginPage enterTextIntoInputLogin(String login) {
         enterTextIntoInput(inputLogin, login);
+        return this;
     }
 
-    public void enterTextIntoInputPassword(String password) {
+    public LoginPage enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
+        return this;
     }
 
     public void enterTextIntoInputUsernameRegister(String username) {
@@ -106,8 +108,9 @@ public class LoginPage extends ParentPage {
         return isElementDisplayed(inputPassword);
     }
 
-    public void clickOnButtonSignIn() {
+    public HomePage clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
+        return new HomePage(webDriver);
     }
 
     public boolean isButtonSignInVisible() {

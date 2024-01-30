@@ -36,8 +36,10 @@ public class EditPostTest extends BaseTest {
         POST_CHECKBOX_STATUS = dataForCreatingPost.get("checkBoxStatus");
         POST_CHECKBOX_VALUE = dataForCreatingPost.get("checkBoxValue");
 
-        pageProvider.getLoginPage()
-                .openLoginPageAndFillLoginFormWithValidCreate()
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputLogin(LOGIN);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(dbUtilSeleniumUser.getPassForLogin(LOGIN))
+                .clickOnButtonSignIn()
                 .checkIsRedirectToHomePage()
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
