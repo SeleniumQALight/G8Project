@@ -13,6 +13,10 @@ public class PageProvider {
         return new LoginPage(webDriver);
     }
 
+    public LoginPage getLoginPage() {
+        return new LoginPage(webDriver);
+    }
+
     public HomePage homePage() {
         return new HomePage(webDriver);
     }
@@ -20,5 +24,6 @@ public class PageProvider {
     public PostPage getPostPage() {
         return new PostPage(webDriver);
     }
+
 
 }
