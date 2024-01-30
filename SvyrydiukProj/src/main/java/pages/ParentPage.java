@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.ConfigProvider;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
@@ -40,7 +41,7 @@ abstract class ParentPage extends CommonActionsWithElements {
                 , webDriver.getCurrentUrl().matches(baseUrl + getRelativeUrl())
         );
     }
-
+    @Step
     public void pressEnterKey() {
         try {
             Actions actions = new Actions(webDriver);
@@ -52,7 +53,7 @@ abstract class ParentPage extends CommonActionsWithElements {
         }
     }
 
-
+    @Step
     public void pressTabKey(int count) {
         try {
             for (int i = 0; i < count; i++) {
@@ -82,6 +83,7 @@ abstract class ParentPage extends CommonActionsWithElements {
         }
     }*/
 //switch to new Tab in the same browser
+    @Step
     public void switchToNewTab() {
         try {
             webDriver.switchTo().newWindow(WindowType.TAB);
@@ -93,6 +95,7 @@ abstract class ParentPage extends CommonActionsWithElements {
     }
 
     //close tabs and switch to first tab
+    @Step
     public void switchToFirstTab() {
         try {
             webDriver.switchTo().window(webDriver.getWindowHandles().iterator().next());
@@ -104,6 +107,7 @@ abstract class ParentPage extends CommonActionsWithElements {
     }
 
     //swotch to tab by index
+    @Step
     public void switchToTabByIndex(int index) {
         try {
             webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[index].toString());
@@ -114,6 +118,7 @@ abstract class ParentPage extends CommonActionsWithElements {
         }
     }
     //refresh page
+    @Step
     public void enterTextIntoInputWithActions(String text) {
         try {
             Actions actions = new Actions(webDriver);
@@ -124,9 +129,11 @@ abstract class ParentPage extends CommonActionsWithElements {
             Assert.fail("Can not work with element ");
         }
     }
+    @Step
     public void redirectToNewTab() {
         switchToNewTab();
     }
+    @Step
     public void refreshPage() {
         try {
             webDriver.navigate().refresh();

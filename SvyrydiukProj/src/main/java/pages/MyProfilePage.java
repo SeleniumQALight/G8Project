@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -19,7 +20,7 @@ public class MyProfilePage extends ParentPage {
     String getRelativeUrl() {
         return "/profile/[a-zA-Z0-9]*"; //regex
     }
-
+    @Step
     //check if we are on my profile page
     public MyProfilePage checkIsRedirectToMyProfilePage() {
         checkUrlWithPattern();
@@ -31,12 +32,12 @@ public class MyProfilePage extends ParentPage {
         return webDriver.findElements(By.xpath(String.format(postTitleLocator, postTitle)  //no exception if no elements found
         ));
     }
-
+    @Step
     public MyProfilePage checkPostWithTitleIsPresent(String postTitle) {
         Assert.assertEquals("Count of posts with title " + postTitle, 1, getPostsList(postTitle).size());
         return this;
     }
-
+    @Step
     public MyProfilePage deletePostTillPresent(String postTitle) {
         List<WebElement> postsList = getPostsList(postTitle);
         int counter = 0;
@@ -56,7 +57,7 @@ public class MyProfilePage extends ParentPage {
         }
         return this;
     }
-
+    @Step
     public MyProfilePage clickOnPostWithTitle(String postTitle) {
         //clickOnElement(getPostsList(postTitle).get(0)); //list can be empty!!!
 //        clickOnElement(webDriver.findElement(By.xpath(
