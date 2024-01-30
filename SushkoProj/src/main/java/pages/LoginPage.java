@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,6 +41,7 @@ public class LoginPage extends ParentPage{
         return registrationFormElement = new RegistrationFormElement(webDriver);
     }
 
+    @Step
     public LoginPage openLoginPage() {
         try{
             webDriver.get(baseUrl);
@@ -51,22 +53,26 @@ public class LoginPage extends ParentPage{
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputLogin(String login) {
         enterTextIntoInput(inputLogin, login);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
         return this;
     }
 
+    @Step
     public void clickOnButtonSingIn() {
 //        WebElement buttonSingIn =
 //                webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSingIn);
     }
 
+    @Step
     public void clickOnButtonSingInWithEnterButton() {
         pressTheEnterKey(buttonSingIn);
     }
@@ -101,6 +107,8 @@ public class LoginPage extends ParentPage{
         isButtonSignInIsVisible();
 
     }
+
+    @Step
     public void checkAllElementsFromLoginFormAreInvisible() {
         checkIsElementNotVisible(inputLogin);
         checkIsElementNotVisible(inputPassword);

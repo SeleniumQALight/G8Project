@@ -1,6 +1,7 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import io.qameta.allure.*;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Assert;
@@ -11,8 +12,16 @@ import java.util.Map;
 
 import static data.TestData.*;
 
+@Epic("Allure examples")
+@Feature("Junit 4 support")
 public class LoginTestWithPageObject extends BaseTest {
     @Test
+    @Description("Some detailed test description")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
+    @Story("Base support for bdd annotations")
     public void validLogin() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextIntoInputLogin(VALID_LOGIN_UI);
