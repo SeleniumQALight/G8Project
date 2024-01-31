@@ -1,6 +1,7 @@
 package pages.elements;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -49,7 +50,7 @@ public class HeaderElement extends CommonActionsWithElements {
             return null;
         }
     }
-
+    @Step
     public boolean isButtonSignOutVisible() {
         return isElementDisplayed(buttonSignOut);
     }
@@ -58,67 +59,67 @@ public class HeaderElement extends CommonActionsWithElements {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
     }
-
+    @Step
     public MyProfilePage clickOnButtonProfile() {
         clickOnElement(getButtonMyProfile(TestData.VALID_LOGIN_UI));
         return new MyProfilePage(webDriver);
     }
-
+    @Step
     public LoginPage clickOnElementButtonSignOut() {
         clickOnElement(buttonSignOut);
         return new LoginPage(webDriver);
     }
-
+    @Step
     public HeaderElement checkIsButtonCreateNewPostVisible() {
         checkIsElementVisible(buttonCreatePost, "buttonCreatePost");
         return this;
     }
-
+    @Step
     public HeaderElement checkIsButtonCreateNewPostUnvisible() {
         checkIsElementUnvisible(buttonCreatePost, "buttonCreatePost");
         return this;
     }
-
+    @Step
     public HeaderElement checkIsButtonSignOutVisible() {
         checkIsElementVisible(buttonSignOut, "buttonSignOut");
         return this;
     }
-
+    @Step
     public HeaderElement checkIsButtonSignOutUnvisible() {
         checkIsElementUnvisible(buttonSignOut, "buttonSignOut");
         return this;
     }
-
+    @Step
     public HeaderElement checkIsButtonMyProfileVisible() {
         checkIsElementVisible(getButtonMyProfile(TestData.VALID_LOGIN_UI), "buttonMyProfile");
         return this;
     }
-
+    @Step
     public HeaderElement checkIsButtonMyProfileUnvisible() {
         checkIsElementUnvisible(getButtonMyProfile(TestData.VALID_LOGIN_UI), "buttonMyProfile");
         return this;
     }
-
+    @Step
     public HeaderElement checkIsSpanUserNameVisible() {
         checkIsElementVisible(getSpanUserName(TestData.VALID_LOGIN_UI), "spanUserName");
         return this;
     }
-
+    @Step
     public HeaderElement checkIsButtonChatVisible() {
         checkIsElementVisible(buttonChat, "buttonChat");
         return this;
     }
-
+    @Step
     public HeaderElement checkIsButtonChatUnvisible() {
         checkIsElementUnvisible(buttonChat, "buttonChat");
         return this;
     }
-
+    @Step
     public HeaderElement checkIsButtonSearchVisible() {
         checkIsElementVisible(buttonSearch, "buttonSearch");
         return this;
     }
-
+    @Step
     public HeaderElement checkIsButtonSearchUnvisible() {
         checkIsElementUnvisible(buttonSearch, "buttonSearch");
         return this;

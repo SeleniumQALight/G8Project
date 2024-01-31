@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -73,6 +74,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -83,30 +85,35 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterTextIntoInputLogin(String login) {
         enterTextIntoInput(inputUsername, login);
     }
 
+    @Step
     public void enterTextIntoInputPass(String pass) {
         enterTextIntoInput(inputPassword, pass);
     }
 
+    @Step
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public LoginPage clickOnButtonSignup() {
         clickOnElement(buttonSignUp);
         return this;
     }
-    public void refreshPage(){
+    @Step
+    public void refreshPage() {
         refreshPages();
     }
-
+    @Step
     public boolean isMessageFailLogin() {
         return isElementDisplayed(divFailSignIn);
     }
-
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
@@ -114,69 +121,70 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
-
+    @Step
     public HomePage redirectToHomePage() {
         return new HomePage(webDriver);
     }
-
+    @Step
     public HeaderElement redirectToHeaderElement() {
         return new HeaderElement(webDriver);
     }
-
+    @Step
     public LoginPage enterIntoUsernameRegistration(String username) {
         enterTextIntoInput(inputUsernameRegistration, username);
         return this;
     }
-
+    @Step
     public LoginPage enterIntoEmailRegistration(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
-
+    @Step
     public LoginPage enterIntoPasswordRegistration(String pass) {
         enterTextIntoInput(inputPasswordRegistration, pass);
         return this;
     }
 
     //----------------------------------------------------
+    @Step
     public LoginPage checkIsInputUsernameUnvisible() {
         checkIsElementUnvisible(inputUsername, "inputUsername");
         return this;
     }
 
-
+    @Step
     public LoginPage checkIsInputPasswordUnvisible() {
         checkIsElementUnvisible(inputPassword, "inputPassword");
         return this;
     }
 //--------------------------------------------------------
-
+@Step
     public LoginPage checkIsRedirectOnLoginPage() {
         checkIsElementVisible(buttonSignIn, "buttonSignIn");
         return this;
     }
-
+    @Step
     public LoginPage checkIsInputUsernameVisible() {
         checkIsElementVisible(inputUsername, "inputUsername");
         return this;
     }
-
+    @Step
     public LoginPage checkIsInputPasswordVisible() {
         checkIsElementVisible(inputPassword, "inputPassword");
         return this;
     }
-
+    @Step
     public LoginPage checkIsButtonSignInVisible() {
         checkIsElementVisible(buttonSignIn, "buttonSignIn");
         return this;
     }
-
+    @Step
     public LoginPage checkIsButtonSignInUnvisible() {
         checkIsElementUnvisible(buttonSignIn, "buttonSignIn");
         return new LoginPage(webDriver);
     }
 
-
+    @Step
     public LoginPage checkIsWarningUsernameRegistrationVisible() {
         checkIsElementVisible(divWarningUsernameRegistration, "divWarningUsernameRegistration");
         return this;
