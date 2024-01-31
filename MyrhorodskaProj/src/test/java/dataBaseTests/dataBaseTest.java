@@ -56,7 +56,7 @@ public class dataBaseTest {
 
 
         DB_Util_seleniumTable dbUtilSeleniumTable = new DB_Util_seleniumTable();
-        logger.info(dbUtilSeleniumTable.getPassForLogin("G7_taras_r"));7
+        logger.info(dbUtilSeleniumTable.getPassForLogin("G7_taras_r"));
 
         DB_Util_seleniumUser dbUtilSeleniumUsers = new DB_Util_seleniumUser();
         logger.info(dbUtilSeleniumUsers.getPassForLogin("newqaauto"));
