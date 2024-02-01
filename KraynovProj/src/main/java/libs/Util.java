@@ -39,4 +39,10 @@ public class Util {
         return dateFormat.format(date);
     }
 
+    public static String getMethodName() {
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        StackTraceElement element = stackTrace[2];
+        return element.getMethodName();
+    }
+
 }

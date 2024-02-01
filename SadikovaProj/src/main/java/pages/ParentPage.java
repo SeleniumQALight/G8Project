@@ -6,13 +6,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 // Все общее для всех страниц
 abstract public class ParentPage extends CommonActionsWithElements {
-   final String baseUrl = ConfigProvider.configProperties.base_url();
+    String env = System.getProperty("env", "aqa");
+    final String baseUrl =
+            ConfigProvider.configProperties.base_url().replace("[env]", env);
 
     // Конструктор
     public ParentPage(WebDriver webDriver) {
@@ -25,25 +28,32 @@ abstract public class ParentPage extends CommonActionsWithElements {
         Assert.assertEquals("Invalid url " + webDriver.getCurrentUrl(), baseUrl + getRelativeUrl(), webDriver.getCurrentUrl());
         logger.info("Url is correct");
     }
+
+    protected void containsUrl() {
+        webDriverWait10.until(ExpectedConditions.urlContains(baseUrl + getRelativeUrl()));
+        logger.info("Url is correct");
+    }
+
+
     // Метод для проверки, что открыта нужная страница по паттерну
     //https://aqa-complexapp.onrender.com/post/64d21e84903640003414c338
     // regex for 64d21e84903640003414c338
     // [a-zA-Z0-9]{24}
     //https://aqa-complexapp.onrender.com/post/[a-zA-Z0-9]
     protected void checkUrlWithPatternUrl() {
-            Assert.assertTrue("Invalid page \n"
-                            + "Expected result: " + baseUrl + getRelativeUrl() + "\n"
-                            + "Actual result: " + webDriver.getCurrentUrl()
-                    , webDriver.getCurrentUrl().matches(baseUrl + getRelativeUrl()));
-        }
+        Assert.assertTrue("Invalid page \n"
+                        + "Expected result: " + baseUrl + getRelativeUrl() + "\n"
+                        + "Actual result: " + webDriver.getCurrentUrl()
+                , webDriver.getCurrentUrl().matches(baseUrl + getRelativeUrl()));
+    }
+
 
     public void switchTab(int tab) {
         try {
             ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(tab));
             logger.info("Tab is switch and opened: " + tab);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             webDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL + "t");
             logger.info("Was used hot keys " + tab);
 

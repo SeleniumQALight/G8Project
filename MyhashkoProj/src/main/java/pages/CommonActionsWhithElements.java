@@ -1,5 +1,6 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -17,13 +18,13 @@ import java.time.Duration;
 public class CommonActionsWhithElements {
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
-    protected WebDriverWait webDriverWait10, webDriverWait15;
+    protected WebDriverWait webDriverWait5, webDriverWait15;
 
     public CommonActionsWhithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // ініціалізує всі елементи сторінки опираючись на @FindBy
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait5 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
     }
 
 
@@ -33,9 +34,13 @@ public class CommonActionsWhithElements {
             input.sendKeys(text);
             logger.info(text + " was inputted into input " + getElementName(input));
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
+    }
+
+    private void printErrorAndStopTest(Exception e) {
+        logger.error("Can not work with element" + e);
+        Assert.fail("Can not work with element" + e);
     }
 
     private String getElementName(WebElement webElement) {
@@ -48,13 +53,12 @@ public class CommonActionsWhithElements {
 
     protected void clickOnElement(WebElement element) {
         try {
-            webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
+            webDriverWait5.until(ExpectedConditions.elementToBeClickable(element));
             String elementName = getElementName(element);
             element.click();
             logger.info("Element was clicked " + elementName);
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
 
@@ -62,8 +66,7 @@ public class CommonActionsWhithElements {
         try {
             clickOnElement(webDriver.findElement(By.xpath(locator)));
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
 
     }
@@ -86,8 +89,7 @@ public class CommonActionsWhithElements {
             logger.info(text + " was selected in DropDown" + getElementName(dropDown));
         }
             catch (Exception e) {
-                logger.error("Can not work with element");
-                Assert.fail("Can not work with element");
+                printErrorAndStopTest(e);
             }
         }
 
@@ -99,8 +101,7 @@ public class CommonActionsWhithElements {
             logger.info(value + " was selected in DropDown" + getElementName(dropDown));
         }
             catch (Exception e) {
-                logger.error("Can not work with element");
-                Assert.fail("Can not work with element");
+                printErrorAndStopTest(e);
             }
         }
     protected void checkIsElementVisible(WebElement webElement) {
@@ -114,8 +115,7 @@ public class CommonActionsWhithElements {
             String textFromElement = element.getText();
             Assert.assertEquals("Text in element not matched", expectedText, textFromElement);
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            printErrorAndStopTest(e);
         }
     }
     protected void setCheckBoxIsThisPostUniqueChecked(WebElement checkBoxIsSelected) {

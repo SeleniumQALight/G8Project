@@ -3,7 +3,7 @@ package signUpTests;
 import baseTest.BaseTest;
 import org.junit.Test;
 
-import static libs.TestData.INVALID_SIGNUP_UI;
+import static data.TestData.INVALID_SIGNUP_UI;
 
 public class SignUpInvalidTest extends BaseTest {
     @Test

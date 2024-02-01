@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -67,10 +68,11 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public LoginPage openLoginPage() {
         try {
             webDriver.get(baseUrl);
-            logger.info("Login page was opened");
+            logger.info("Login page was opened " + baseUrl);
             return this;
         } catch (Exception e) {
             logger.error("Can not open login page");
@@ -79,23 +81,27 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public LoginPage enterTextIntoInputLogin(String login) {
 //        WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         enterTextIntoInput(inputLogin, login);
         return this;
     }
 
+    @Step
     public LoginPage checkIsInputLoginVisible() {
         checkIsElementVisible(inputLogin);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputPassword(String password) {
 //        WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         enterTextIntoInput(inputPassword, password);
         return this;
     }
 
+    @Step
     public void checkIsInputPasswordVisible() {
         checkIsElementVisible(inputPassword);
     }
@@ -105,25 +111,30 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputEmailRegistration(String email) {
         enterTextIntoInput(inputEmailAtRegistration, email);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputPasswordRegistration(String password) {
         enterTextIntoInput(inputPasswordAtRegistration, password);
         return this;
     }
 
+    @Step
     public void clickOnButtonSignIn() {
 //        WebElement signInButton = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public void clickOnButtonSignUp() {
         clickOnElement(buttonSignUp);
     }
 
+    @Step
     public boolean isWarningMessageVisible() {
 //        WebElement warningMessage = webDriver.findElement(By.xpath(".//div[text()='Invalid username/password.']"));
         return isElementDisplayed(warningMessage);
@@ -131,46 +142,55 @@ public class LoginPage extends ParentPage {
     }
 
     // is button Sign in visible
+    @Step
     public boolean isButtonSignInVisible() {
 //        WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         return isElementDisplayed(buttonSignIn);
     }
 
+    @Step
     public LoginPage checkIsButtonSignInVisible() {
         checkIsElementVisible(buttonSignIn);
         return this;
     }
 
+    @Step
     public LoginPage checkIsValidationMessageForUserNameFieldVisible() {
         checkIsElementVisible(validationMessageForUserNameField);
         return this;
     }
 
+    @Step
     public LoginPage checkIsValidationMessageForEmailFieldVisible() {
         checkIsElementVisible(validationMessageForEmailField);
         return this;
     }
 
+    @Step
     public LoginPage checkIsValidationMessageForPasswordFieldVisible() {
         checkIsElementVisible(validationMessageForPasswordField);
         return this;
     }
 
     // input Login is not visible
+    @Step
     public void checkIsInputLoginNotVisible() {
         checkIsElementNotVisible(inputLogin);
     }
 
     // input Password is not visible
+    @Step
     public void checkIsInputPasswordNotVisible() {
         checkIsElementNotVisible(inputPassword);
     }
 
     // button Sign in is not visible
+    @Step
     public void checkIsButtonSignInNotVisible() {
         checkIsElementNotVisible(buttonSignIn);
     }
 
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
@@ -179,6 +199,7 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public LoginPage enterInvalidTextInRegistrationFieldsAndClickButtonSignUp(String invalidText) {
         openLoginPage();
         enterTextIntoInputUsernameRegistration(invalidText);
@@ -188,6 +209,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public void checkIsLoginFieldIsNotVisible() {
         checkIsInputLoginNotVisible();
         checkIsInputPasswordNotVisible();
@@ -195,6 +217,7 @@ public class LoginPage extends ParentPage {
         logger.info("Login field is not visible");
     }
 
+    @Step
     public LoginPage checkIsRedirectToHomePage() {
         checkUrl();
         getHeader().checkIsHeaderForGuestVisible();
@@ -209,15 +232,16 @@ public class LoginPage extends ParentPage {
         return new HeaderElement(webDriver);
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String messages) {
         //error1;error2 -> [error1, error2]
         String[] expectedErrors = messages.split(";");
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
+        webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
 
         Util.waitABit(1);
         Assert.assertEquals("Number of messages", expectedErrors.length, listErrorsMessages.size());
 
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
+        webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
 
         ArrayList<String> actualErrors = new ArrayList<>();
         for (WebElement element : listErrorsMessages) {
@@ -235,6 +259,7 @@ public class LoginPage extends ParentPage {
         return null;
     }
 
+    @Step
     public LoginPage checkErrorMessageInLoginForm(String text) {
         checkTextInElement(errorMessageLoginForm, text);
         return this;

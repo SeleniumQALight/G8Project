@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -55,6 +56,7 @@ public class LoginPage extends ParentPage {
         checkUrl();
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -65,21 +67,25 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterTextIntoInputLogin(String login) {
         // WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         enterTextIntoInput(inputLogin, login);
     }
 
+    @Step
     public void enterTextIntoInputPassword(String password) {
         //WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         enterTextIntoInput(inputPassword, password);
     }
 
+    @Step
     public void clickOnButtonSignIn() {
         //WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[text()='Sign In']"));
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public boolean isWarningMessageVisible() {
         try {
             WebElement warningMessage = webDriver.findElement(By.xpath(".//div[text()='Invalid username/password.']"));
@@ -89,6 +95,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public boolean isButtonSignInVisible() {
         //try {
         //WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[text()='Sign In']"));
@@ -99,6 +106,7 @@ public class LoginPage extends ParentPage {
     }
 
     //is button Sign In visible
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
@@ -108,80 +116,81 @@ public class LoginPage extends ParentPage {
     }
 
     //is username field visible
+    @Step
 
     public void checkUsernameFieldNotVisible() {
         checkIsElementNotVisible(inputLogin);
     }
-
+    @Step
     public void checkUsernameFieldVisible() {
         checkIsElementVisible(inputLogin);
     }
 
     //is password field visible
-
+    @Step
     public void checkPasswordFieldNotVisible() {
         checkIsElementNotVisible(inputPassword);
     }
-
+    @Step
     public void checkPasswordFieldVisible() {
         checkIsElementVisible(inputPassword);
     }
-
+    @Step
     public void checkSignInButtonNotVisible() {
         checkIsElementNotVisible(buttonSignIn);
     }
 
-
+    @Step
     //enter text into input username registration
     public LoginPage enterTextIntoInputUsernameRegistration(String username) {
         enterTextIntoInput(inputUsernameRegistration, username);
         return this;
     }
-
+    @Step
     public boolean isValidationMessageForUserNameFieldVisible() {
         return isElementDisplayed(validationMessageForUserNameRegistrationField);
     }
-
+    @Step
     public LoginPage checkTextValidationMessageForUserNameRegistrationField(String message) {
         checkTextInElement(validationMessageForUserNameRegistrationField, message);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoInputPasswordRegistration(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
     }
-
+    @Step
     public boolean isValidationMessageForPasswordFieldVisible() {
         return isElementDisplayed(validationMessageForPasswordRegistrationField);
     }
-
+    @Step
     public void checkTextValidationMessageForPasswordRegistrationField(String message) {
         checkTextInElement(validationMessageForPasswordRegistrationField, message);
     }
-
+    @Step
     public boolean isValidationMessageForEmailFieldVisible() {
         return isElementDisplayed(validationMessageForEmailRegistrationField);
     }
-
+    @Step
     public LoginPage enterTextIntoInputEmailRegistration(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
-
+    @Step
     public void checkTextValidationMessageForEmailRegistrationField(String message) {
         checkTextInElement(validationMessageForEmailRegistrationField, message);
     }
-
+    @Step
     public void clickOnButtonSignUp() {
         clickOnElement(buttonSignUp);
     }
-
+    @Step
     public LoginPage checkErrorsMessages(String messages) {
         //String[] errors = messages.split(";"); error1;error2 -> [error1, error2]
         String[] expectedErrors = messages.split(";");
 
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(
+        webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(
                 By.xpath(listErrorsMessagesLocator), expectedErrors.length));
 
         Util.waitABit(1);

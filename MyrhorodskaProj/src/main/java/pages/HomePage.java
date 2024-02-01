@@ -1,14 +1,14 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
-import static libs.TestData.VALID_LOGIN_UI;
-import static libs.TestData.VALID_PASSWORD_UI;
+import static data.TestData.VALID_LOGIN_UI;
+import static data.TestData.VALID_PASSWORD_UI;
 
 
 public class HomePage extends ParentPage {
@@ -24,7 +24,7 @@ public class HomePage extends ParentPage {
         return "/";
     }
 
-
+ @Step
     public HomePage checkIsredirectToHomePage() {
         checkUrl();
         Assert.assertTrue("Home page is not opened", getHeader().isButtonSignOutVisible());
@@ -33,6 +33,7 @@ public class HomePage extends ParentPage {
     public HeaderElement getHeader() {
         return new HeaderElement(webDriver);
     }
+    @Step
     public HomePage openHomePageAndLoginIfNeed() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openLoginPage();

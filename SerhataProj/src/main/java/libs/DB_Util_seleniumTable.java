@@ -13,7 +13,7 @@ public class DB_Util_seleniumTable {
 
         String pass = mySQL_DataBase.selectValue(
                 String.format("select passWord from seleniumTable where login = '%s'", login)
-                                                );
+        );
         mySQL_DataBase.quit();
         logger.info("--- Disconnected from DB -------");
         return pass;

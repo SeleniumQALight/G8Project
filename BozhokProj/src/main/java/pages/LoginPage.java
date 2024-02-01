@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -61,6 +62,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -71,39 +73,47 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterTextIntoInputLogin(String login) {
         enterTextIntoInput(inputLogin, login);
     }
 
+    @Step
     public void enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
     }
 
+    @Step
     public boolean isInputLoginVisible() {
         return isElementDisplayed(inputLogin);
     }
 
+    @Step
     public boolean isInputPasswordVisible() {
         return isElementDisplayed(inputPassword);
     }
 
+    @Step
     public void clickOnButtonSignIn() {
 //        WebElement buttonSignIn = webDriver.findElement(
 //                By.xpath("//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public LoginPage checkIsButtonSignInVisible() {
         checkIsElementVisible(buttonSignIn);
         return this;
     }
 
     // is button Sign In visible
+    @Step
     public LoginPage checkIsButtonSignInNotVisible() {
         checkIsElementNotVisible(buttonSignIn);
         return this;
     }
 
+    @Step
     public boolean isMessageInvalidUsernamePasswordInVisible() {
         try {
             // TODO
@@ -117,7 +127,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
-
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
@@ -127,6 +137,7 @@ public class LoginPage extends ParentPage {
     }
 
     // check enty of short data in the registration form
+    @Step
     public void fillOutTheLoginFormRegistration() {
         openLoginPage();
         enterTextRegistrationUserNameField(TestData.SHORT_VALUE);
@@ -135,11 +146,13 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignUpForOurApp();
     }
 
+    @Step
     private void clickOnButtonSignUpForOurApp() {
         clickOnElement(buttonSignUpForOurApp);
     }
 
     // check massage about short data in username in the registration form
+    @Step
     public LoginPage checkIsMessageAboutShortUsernameInRegistrationFormVisible(String text) {
         checkTextInElement(usernameErrorMessage, text);
         logger.info("Message about short username in the registration form is visible");
@@ -147,6 +160,7 @@ public class LoginPage extends ParentPage {
     }
 
     // check massage about short data in Email in the registration form
+    @Step
     public LoginPage checkIsMessageAboutShortEmailInRegistrationFormVisible(String text) {
         checkTextInElement(emailErrorMessage, text);
         logger.info("Message about short Email in the registration form is visible");
@@ -154,51 +168,60 @@ public class LoginPage extends ParentPage {
     }
 
     // check massage about short data in password in the registration form
+    @Step
     public LoginPage checkIsMessageAboutShortPasswordInRegistrationFormVisible(String text) {
         checkTextInElement(passwordErrorMessage, text);
         logger.info("Message about short password in the registration form is visible");
         return this;
     }
 
+    @Step
     public LoginPage checkIsRedirectOnLoginPage() {
         checkUrl();
         isButtonSignInVisible();
         return this;
     }
 
+    @Step
     public boolean isButtonSignInVisible() {
         return isElementDisplayed(buttonSignIn);
     }
 
+    @Step
     public LoginPage checkIsInputPasswordNotVisible() {
         checkIsElementNotVisible(inputPassword);
         return this;
     }
 
+    @Step
     public LoginPage checkIsInputLoginNotVisible() {
         checkIsElementNotVisible(inputLogin);
         return this;
     }
 
+    @Step
     public LoginPage enterTextRegistrationUserNameField(String userName) {
         enterTextIntoInput(inputUserNameRegistration, userName);
         return this;
     }
 
+    @Step
     public LoginPage enterTextRegistrationEmailField(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
 
+    @Step
     public LoginPage enterTextRegistrationPasswordField(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String massages) {
         //error1;error2 -> [error1, error2]
         String[] expectedErrors = massages.split(";");
-        webDriverWaite10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsMessagesLocator), expectedErrors.length));
+        webDriverWaite05.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsMessagesLocator), expectedErrors.length));
 
         Util.waitABit(1);
         Assert.assertEquals("Number of messages", expectedErrors.length, listOfErrorsMessages.size());
@@ -220,6 +243,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessagesInLogin(String text) {
        checkTextInElement(messageInvalidUsernamePassword, text);
         return this;

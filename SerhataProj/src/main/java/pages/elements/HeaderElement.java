@@ -13,7 +13,7 @@ public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = "//a[contains(text(), 'Create Post')]")
     public static WebElement buttonCreatePost;
 
-    @FindBy(xpath = "//a[@href='/profile/qaauto']")
+    @FindBy(xpath = "//img[@alt='My profile']")
     public static WebElement titleMyProfile;
 
     @FindBy(xpath = "//a[@data-original-title='Search']")

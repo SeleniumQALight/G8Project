@@ -1,5 +1,6 @@
 package pages.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,10 +34,10 @@ public class HeaderElement extends CommonActionsWithElements {
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
     }
-
+    @Step
     public boolean isButtonSignOutVisible() {
-        WebElement buttonSignOut = webDriver.findElement(
-                By.xpath("//button[text()='Sign Out']"));
+//        WebElement buttonSignOut = webDriver.findElement(
+ //               By.xpath("//button[text()='Sign Out']"));
         return isElementDisplayed(buttonSignOut);
     }
 
@@ -79,19 +80,42 @@ public class HeaderElement extends CommonActionsWithElements {
         return new LoginPage(webDriver);
     }
 
-    public void isButtonSearchNotVisible() { checkElementIsNotVisible(buttonSearch);
+    @Step
+    public void checkButtonSearchNotVisible() {checkElementIsNotVisible(buttonSearch);
     }
+
     private void checkElementIsNotVisible(WebElement buttonSearch) {
     }
-    public void isButtonCreatePostNotVisible() { checkElementIsNotVisible(buttonCreatePost);
+
+    public void checkButtonCreatePostNotVisible() {
+        checkElementIsNotVisible(buttonCreatePost);
     }
-    public void isButtonMyProfileNotVisible() { checkElementIsNotVisible(buttonMyProfile);
+
+    public void checkButtonMyProfileNotVisible() {
+        checkElementIsNotVisible(buttonMyProfile);
     }
-    public void isButtonCommentNotVisible() { checkElementIsNotVisible(buttonComment);
+
+    public void checkButtonCommentNotVisible() {
+        checkElementIsNotVisible(buttonComment);
     }
-    public void isButtonUserNameNotVisible() { checkElementIsNotVisible(buttonUserName);
+
+    public void checkButtonUserNameNotVisible() {
+        checkElementIsNotVisible(buttonUserName);
     }
-    public void isButtonSignOutNotVisible() { checkElementIsNotVisible(buttonSignOut);
+
+    public void checkButtonSignOutNotVisible() {
+        checkElementIsNotVisible(buttonSignOut);
+    }
+
+    public boolean isUserNameVisible() {
+        return isElementDisplayed(buttonUserName);
+    }
+
+    public void checkTextInUserName(String textUserName) {
+        checkTextInElement(buttonUserName, textUserName);
+    }
+
+    public void checkIsButtonSignOutVisible(){checkIsElementVisible(buttonSignOut);
     }
 }
 
