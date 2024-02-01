@@ -2,6 +2,7 @@ package pages;
 
 
 import io.qameta.allure.Step;
+import data.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -118,8 +119,8 @@ public class LoginPage extends ParentPage{
     @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred(){
         openLoginPage();
-        enterTextInToInputLogin(data.TestData.VALID_LOGIN_UI);
-        enterTextInToInputPassword(data.TestData.VALID_PASSWORD_UI);
+        enterTextInToInputLogin(TestData.VALID_LOGIN_UI);
+        enterTextInToInputPassword(TestData.VALID_PASSWORD_UI);
         clickOnButtonSingIn();
         return new HomePage(webDriver);
     }

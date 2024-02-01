@@ -6,8 +6,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
-import static libs.TestData.VALID_LOGIN_UI;
-import static libs.TestData.VALID_PASSWORD_UI;
+import static data.TestData.VALID_LOGIN_UI;
+import static data.TestData.VALID_PASSWORD_UI;
 
 public class LoginTestByKeyboardTest extends BaseTest {
         @Test
