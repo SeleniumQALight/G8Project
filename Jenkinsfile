@@ -8,7 +8,7 @@ pipeline {
                     def job = build(job: 'DevJobImulation_G8', propagate: false)
                     if (job.result == 'SUCCESS') {
                         stage('Trigger G8_run_test') {
-                            steps {
+                            step {
                                 build(job: 'G8_run_test', parameters: [
                                     string(name: 'Module', value: 'overAll'),
                                     string(name: 'testName', value: 'LoginTestWithPageObject#validLogin'),
