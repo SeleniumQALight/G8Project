@@ -118,4 +118,20 @@ public class CommonActionWithElements {
             printErrorAndStopTest(e);
         }
     }
+
+    protected void setCheckBoxState(WebElement checkBox, String name, String state) {
+        boolean isStateCheck = state.toLowerCase().equals("check");
+        boolean isStateUnCheck = state.toLowerCase().equals("uncheck");
+        boolean isCheckBoxSelected = checkBox.isSelected();
+        if (isStateCheck || isStateUnCheck) {
+            if ((isStateCheck && isCheckBoxSelected) || (isStateUnCheck && !isCheckBoxSelected)) {
+                logger.info("CheckBox " + name + " is already in needed state");
+            } else if ((isStateCheck && !isCheckBoxSelected) || (isStateUnCheck && isCheckBoxSelected)) {
+                clickOnElement(checkBox);
+            }
+        } else {
+            logger.error("State should be only 'check' or 'uncheck'");
+            Assert.fail("State should be only 'check' or 'uncheck'");
+        }
+    }
 }
