@@ -1,6 +1,7 @@
 package pages.elements;
 
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -41,7 +42,7 @@ public class HeaderElement extends CommonActionsWithElements {
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
     }
-
+    @Step
     public boolean isButtonSignOutVisible() {
         return isElementDisplayed(buttonSignOut);
     }
@@ -85,6 +86,7 @@ public class HeaderElement extends CommonActionsWithElements {
         checkIsElementVisible(buttonChat);
         return this;
     }
+
     public HeaderElement checkIsButtonChatNotVisible() {
         checkIsElementNotVisible(buttonChat);
         return this;
@@ -94,6 +96,7 @@ public class HeaderElement extends CommonActionsWithElements {
         checkIsElementVisible(avatar);
         return this;
     }
+
     public HeaderElement checkIsAvatarNotVisible() {
         checkIsElementNotVisible(avatar);
         return this;
@@ -103,6 +106,7 @@ public class HeaderElement extends CommonActionsWithElements {
         checkIsElementVisible(buttonCreatePost);
         return this;
     }
+
     public HeaderElement checkIsButtonCreatePostNotVisible() {
         checkIsElementNotVisible(buttonCreatePost);
         return this;
