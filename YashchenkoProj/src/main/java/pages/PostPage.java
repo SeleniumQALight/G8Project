@@ -24,6 +24,12 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = "//button[@data-original-title='Delete']")
     private WebElement trashIcon;
 
+    @FindBy(xpath = "//a[@data-original-title='Edit']")
+    private WebElement editIcon;
+
+    @FindBy(xpath = "//h2")
+    private WebElement titleOfCreatedPost;
+
     private HeaderElement headerElement;
 
     public PostPage(WebDriver webDriver) {
@@ -83,5 +89,15 @@ public class PostPage extends ParentPage {
     public MyProfilePage clickOnTrashIcon() {
         clickOnElement(trashIcon);
         return new MyProfilePage(webDriver);
+    }
+
+    public CreatePostPage clickOnEitIcon(){
+        clickOnElement(editIcon);
+        return new CreatePostPage(webDriver);
+    }
+
+    public String getPostName(){
+        String titleOfCreatedPostValue = titleOfCreatedPost.getText();
+        return titleOfCreatedPostValue;
     }
 }

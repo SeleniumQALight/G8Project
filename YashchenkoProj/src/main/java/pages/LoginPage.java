@@ -99,8 +99,9 @@ public class LoginPage extends ParentPage {
     }
 
     @Step
-    public void clickOnButtonSignIn() {
+    public HomePage clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
+        return new HomePage(webDriver);
     }
 
     @Step
