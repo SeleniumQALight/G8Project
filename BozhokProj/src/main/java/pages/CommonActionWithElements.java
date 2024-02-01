@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class CommonActionWithElements {
     protected WebDriver webDriver;
@@ -121,19 +122,19 @@ public class CommonActionWithElements {
 
     public void openNewTabAndSwitchToIt() {
         ((org.openqa.selenium.JavascriptExecutor) webDriver).executeScript("window.open()");
-        String newTab = webDriver.getWindowHandles().stream().skip(1).findFirst().get();
+        String newTab = new ArrayList<>(webDriver.getWindowHandles()).get(1);
         webDriver.switchTo().window(newTab);
         logger.info("New tab was opened");
     }
 
     public void switchToFirstTab() {
-        String firstTab = webDriver.getWindowHandles().stream().findFirst().get();
+        String firstTab = new ArrayList<>(webDriver.getWindowHandles()).get(0);
         webDriver.switchTo().window(firstTab);
         logger.info("Switch to first tab");
     }
 
     public void closeNewTabAndSwitchToFirstTab() {
-        String newTab = webDriver.getWindowHandles().stream().skip(1).findFirst().get();
+        String newTab = new ArrayList<>(webDriver.getWindowHandles()).get(1);
         webDriver.close();
         webDriver.switchTo().window(newTab);
         logger.info("New tab was closed");

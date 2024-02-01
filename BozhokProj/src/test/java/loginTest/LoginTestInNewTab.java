@@ -9,13 +9,12 @@ public class LoginTestInNewTab  extends BaseTest {
     public void loginTestInNewTab() {
         pageProvider.loginPage().openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectOnHomePage()
-                .getHeader().isButtonSignOutVisible();
+                .getHeader().checkIsButtonSignOutVisible();
         pageProvider.loginPage().openNewTabAndSwitchToIt();
         pageProvider.loginPage().openLoginPage();
-        pageProvider.homePage().getHeader().isButtonSignOutVisible();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
         pageProvider.loginPage().switchToFirstTab();
-        pageProvider.homePage().getHeader().isButtonSignOutVisible();
-        pageProvider.loginPage().switchToFirstTab();
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
         pageProvider.loginPage().closeNewTabAndSwitchToFirstTab();
         pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
     }
