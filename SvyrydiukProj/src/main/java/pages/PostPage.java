@@ -83,7 +83,7 @@ public class PostPage extends ParentPage {
 
     public void clickOnEditPostButton() {
         clickOnElement(editPostButton);
-        webDriverWait10.until(
+        webDriverWait05.until(
                 webDriver -> webDriver.findElement(By.xpath("//a[text()='« Back to post permalink']"))
         );
     }
