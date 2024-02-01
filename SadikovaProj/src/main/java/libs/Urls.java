@@ -1,6 +1,5 @@
 package libs;
 
-import org.junit.Assert;
 
 public class Urls {
 

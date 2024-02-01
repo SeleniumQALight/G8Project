@@ -1,5 +1,6 @@
 package pages.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -34,81 +35,97 @@ public class HeaderElement extends CommonActionWithElements {
         super(webDriver);
     }
 
+    @Step
     public boolean isButtonSignOutVisible() {
         return isElementDisplayed(buttonSignOut);
     }
 
+    @Step
     public HeaderElement checkIsButtonSignOutVisible() {
         checkIsElementVisible(buttonSignOut);
         return this;
     }
 
+    @Step
     public HeaderElement checkIsButtonSignOutNotVisible() {
         checkIsElementNotVisible(buttonSignOut);
         return this;
     }
 
+    @Step
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
     }
 
     // check is button Create Post visible
+    @Step
     public HeaderElement checkIsButtonCreatePostVisible() {
         checkIsElementVisible(buttonCreatePost);
         return this;
     }
 
+    @Step
     public MyProfilePage clickOnMyProfileButton() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
     }
 
+    @Step
     // check is button Profile visible
     public boolean isButtonProfileVisible() {
         return isElementDisplayed(buttonMyProfile);
     }
 
+    @Step
     public LoginPage clickOnButtonSignOut() {
         clickOnElement(buttonSignOut);
         return new LoginPage(webDriver);
     }
 
+    @Step
     public HeaderElement checkIsButtonSearchVisible() {
        checkIsElementVisible(buttonSearch);
        return this;
     }
 
+    @Step
     public HeaderElement checkIsButtonSearchNotVisible() {
         checkIsElementNotVisible(buttonSearch);
         return this;
     }
 
+    @Step
     public HeaderElement checkIsButtonChatVisible() {
         checkIsElementVisible(buttonChat);
         return this;
     }
 
+    @Step
     public HeaderElement checkIsButtonChatNotVisible() {
         checkIsElementNotVisible(buttonChat);
         return this;
     }
 
+    @Step
     public HeaderElement checkIsButtonMyProfileVisible() {
         checkIsElementVisible(buttonMyProfile);
         return this;
     }
 
+    @Step
     public HeaderElement checkIsButtonMyProfileNotVisible() {
         checkIsElementNotVisible(buttonMyProfile);
         return this;
     }
 
+    @Step
     public HeaderElement checkIsButtonCreatePostNotVisible() {
         checkIsElementNotVisible(buttonCreatePost);
         return this;
     }
 
+    @Step
     public HeaderElement checkIsProfileNameVisible(String login) {
         checkTextInElement(profileName, login);
         return this;

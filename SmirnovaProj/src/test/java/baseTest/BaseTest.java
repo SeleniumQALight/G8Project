@@ -19,7 +19,7 @@ import java.time.Duration;
 
 public class BaseTest {
     WebDriver webDriver;
-    Logger logger = Logger.getLogger(getClass());
+    protected Logger logger = Logger.getLogger(getClass());
     protected PageProvider pageProvider;
      ParentPage parentPage;
     //Буде виконуватися перед кожним тестом

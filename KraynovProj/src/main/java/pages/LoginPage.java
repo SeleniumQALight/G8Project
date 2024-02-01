@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -64,7 +65,7 @@ public class LoginPage extends ParentPage{
     protected String getRelativeUrl() {
         return "/";
     }
-
+    @Step
     public LoginPage openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -109,42 +110,42 @@ public class LoginPage extends ParentPage{
     public void enterTextIntoInputEmailRegistration(String email) {
         enterTextIntoInput(inputEmailAtRegistration, email);
     }
-
+    @Step
     public LoginPage enterTextIntoInputPasswordRegistration(String password) {
         enterTextIntoInput(inputPasswordAtRegistration, password);
         return this;
     }
-
+    @Step
     public LoginPage checkIsValidationMessageForUserNameFieldVisible() {
         checkIsElementVisible(validationMessageForUserNameField);
         return this;
     }
-
+    @Step
     public LoginPage checkIsValidationMessageForEmailFieldVisible() {
         checkIsElementVisible(validationMessageForEmailField);
         return this;
     }
-
+    @Step
     public LoginPage checkIsValidationMessageForPasswordFieldVisible() {
         checkIsElementVisible(validationMessageForPasswordField);
         return this;
     }
-
+    @Step
     // input Login is not visible
     public void checkIsInputLoginNotVisible() {
         checkIsElementNotVisible(inputLogin);
     }
-
+    @Step
     // input Password is not visible
     public void checkIsInputPasswordNotVisible() {
         checkIsElementNotVisible(inputPassword);
     }
-
+    @Step
     // button Sign in is not visible
     public void checkIsButtonSignInNotVisible() {
         checkIsElementNotVisible(buttonSignIn);
     }
-
+    @Step
     public HomePage openLoginPageFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
@@ -152,6 +153,7 @@ public class LoginPage extends ParentPage{
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
+    @Step
     public boolean isButtonSignInVisible() {
         try {
             return isElementDisplayed(buttonSignIn);
@@ -160,23 +162,23 @@ public class LoginPage extends ParentPage{
             return false;
         }
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         enterTextIntoInput(inputUserNameRegistration, userName);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
 
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
     }
-
+    @Step
     public LoginPage checkErrorsMessages(String messages) {
         String[] expectedErrors = messages.split(";");
 
@@ -199,7 +201,7 @@ public class LoginPage extends ParentPage{
         softAssertions.assertAll();
         return this;
     }
-
+    @Step
     public LoginPage enterInvalidTextInRegistrationFieldsAndClickButtonSignUp(String invalidText) {
         openLoginPage();
         enterTextIntoInputUsernameRegistration(invalidText);
@@ -208,14 +210,14 @@ public class LoginPage extends ParentPage{
         clickOnButtonSignUp();
         return this;
     }
-
+    @Step
     public void checkIsLoginFieldIsNotVisible() {
         checkIsInputLoginNotVisible();
         checkIsInputPasswordNotVisible();
         checkIsButtonSignInNotVisible();
         logger.info("Login field is not visible");
     }
-
+    @Step
     public LoginPage checkIsRedirectToLoginPage() {
         checkUrl();
         getHeader().checkIsHeaderForGuestVisible();
@@ -225,21 +227,22 @@ public class LoginPage extends ParentPage{
         logger.info("Header for guest is visible");
         return this;
     }
+    @Step
     public LoginPage checkIsButtonSignInVisible() {
         checkIsElementVisible(buttonSignIn);
         return this;
     }
-
+    @Step
     public HeaderElement getHeader() {
         return new HeaderElement(webDriver);
     }
-
+    @Step
     public LoginPage fillLoginForm(String login, String password) {
         enterTextIntoInputLogin(login);
         enterTextIntoInputPassword(password);
         return new LoginPage(webDriver);
     }
-
+    @Step
     public LoginPage checkErrorMessageInLoginForm(String text) {
         checkTextInElement(errorMessageLoginForm, text);
         return this;

@@ -4,6 +4,7 @@ package pages;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.qameta.allure.Step;
 import junit.framework.Assert;
 import data.TestData;
 import libs.Util;
@@ -50,6 +51,7 @@ public class LoginPage extends ParentPage{
         return "";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -63,32 +65,32 @@ public class LoginPage extends ParentPage{
     public void checkIsRedirectToLoginPage() {
         checkUrl();
     }
-
+    @Step
     public void enterTextIntoInputLogin(String login) {
 //        WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         enterTextIntoInput(inputLogin, login);
     }
-
+    @Step
     public void enterTextIntoInputPassword(String password) {
 //        WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         enterTextIntoInput(inputPassword, password);
     }
-
+    @Step
     public void clickOnButtonSignIn() {
 //        WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignIn);
     }
-
+    @Step
     public boolean isButtonSignInVisble() {
 //           WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
            return isElementDisplayed(buttonSignIn);
     }
-
+    @Step
     public boolean isErrorMessageVisible() {
 //            WebElement errorMessage = webDriver.findElement(By.xpath("//div[contains(text(),'Invalid username/password.')]"));
             return isElementDisplayed(errorMessage);
         }
-
+    @Step
     public HomePage openLoginPageAndFillLoginFormWhithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
@@ -96,46 +98,47 @@ public class LoginPage extends ParentPage{
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
-
+    @Step
     public boolean isInputLoginVisible() {
         return isElementDisplayed(inputLogin);
     }
+    @Step
     public boolean isInputPasswordVisible() {
         return isElementDisplayed(inputPassword);
     }
-
+    @Step
     public void enterTextIntoInputUsernameRegister(String UserName) {
         enterTextIntoInput(inputUsernameRegister, UserName);
     }
-
+    @Step
     public void enterTextIntoInputEmailRegister(String Email) {
         enterTextIntoInput(inputEmailRegister, Email);
     }
-
+    @Step
     public void enterTextIntoInputPasswordRegister(String Password) {
         enterTextIntoInput(inputPasswordRegister, Password);
     }
-
+    @Step
     public void clickOnButtonSignUpRegister() {
         clickOnElement(buttonSignUp);
     }
-
+    @Step
     public boolean isErrorMessageVisibleForUsernameInput() {
         return isElementDisplayed(errorMessageForUsernameInput);
     }
-
+    @Step
     public boolean isErrorMessageVisibleForEmailInput() {
         return isElementDisplayed(errorMessageForEmailInput);
     }
-
+    @Step
     public boolean isErrorMessageVisibleForPasswordInput() {
         return isElementDisplayed(errorMessageForPasswordInput);
     }
-
+    @Step
     public boolean isButtonSignUpVisible() {
         return isElementDisplayed(buttonSignUp);
     }
-
+    @Step
     public LoginPage checkErrorMessages(String massages) {
         //error1;error2 -> [error1, error2]
         String[] expectedErrors = massages.split(";");
@@ -161,7 +164,7 @@ public class LoginPage extends ParentPage{
 
         return this;
     }
-
+    @Step
     public LoginPage checkisErrorMessageVisibleForInvalidLogin() {
         checkIsElementVisible(errorMessage);
         return this;
