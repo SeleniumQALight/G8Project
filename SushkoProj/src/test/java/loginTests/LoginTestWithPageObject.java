@@ -1,11 +1,13 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import categories.SmokeTestsFilter;
 import io.qameta.allure.*;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import java.io.IOException;
 import java.util.Map;
@@ -16,6 +18,7 @@ import static data.TestData.*;
 @Feature("Junit 4 support")
 public class LoginTestWithPageObject extends BaseTest {
     @Test
+    @Category(SmokeTestsFilter.class)
     @Description("Some detailed test description")
     @Link("https://example.org")
     @Link(name = "allure", type = "mylink")

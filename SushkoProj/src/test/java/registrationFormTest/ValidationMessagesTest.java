@@ -1,14 +1,17 @@
 package registrationFormTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestsFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import static data.TestData.*;
 
 @RunWith(JUnitParamsRunner.class)
+@Category(SmokeTestsFilter.class)
 public class ValidationMessagesTest extends BaseTest {
 
     @Test

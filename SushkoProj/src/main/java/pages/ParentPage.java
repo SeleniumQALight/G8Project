@@ -6,7 +6,8 @@ import org.openqa.selenium.WebDriver;
 
 // все загальне для сторінок
 abstract public class ParentPage extends CommonActionsWithElements {
-    final String baseUrl = ConfigProvider.configProperties.base_url();
+    String env = System.getProperty("env", "aqa");
+    final String baseUrl = ConfigProvider.configProperties.base_url().replace("[env]", env);
     // конструктор
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
