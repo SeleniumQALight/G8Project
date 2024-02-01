@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -20,6 +21,7 @@ public class MyProfilePage extends ParentPage {
         return "/profile/[a-zA-Z0-9]*";
     }
 
+    @Step
     public MyProfilePage checkIsRedirectOnMyProfilePage() {
         checkUrlWithPattern();
         return this;
@@ -30,6 +32,7 @@ public class MyProfilePage extends ParentPage {
         return webDriver.findElements(By.xpath(String.format(postTitleLocator, postTitle)));
     }
 
+    @Step
     public MyProfilePage checkPostWithTitlesIsPresent(String postTitle) {
         Assert.assertEquals("Count of posts with title " + postTitle, 1, getPostList(postTitle).size());
         return this;
