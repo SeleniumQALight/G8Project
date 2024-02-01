@@ -17,7 +17,6 @@ public class LoginTestInNewTab  extends BaseTest {
         pageProvider.homePage().getHeader().isButtonSignOutVisible();
         pageProvider.loginPage().switchToFirstTab();
         pageProvider.loginPage().closeNewTabAndSwitchToFirstTab();
-        pageProvider.homePage().getHeader().isButtonSignOutVisible();
-
+        pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
     }
 }
