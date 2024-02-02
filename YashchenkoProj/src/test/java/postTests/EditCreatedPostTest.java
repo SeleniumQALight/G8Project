@@ -25,36 +25,35 @@ public class EditCreatedPostTest extends BaseTest{
         database = MySQL_Database.getDataBase();
     }
 
+    @Test
+    public void editCreatedPost() throws SQLException, ClassNotFoundException, IOException {
+        final String LOGIN = "newqaauto";
+
+        DB_Util_seleniumUsers dbUtilSeleniumUsers = new DB_Util_seleniumUsers();
+        Map<String, String> dataForCreatingPost = ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "newPost");
+
+        String postTitleWithExcel = String.format(dataForCreatingPost.get("title"), POST_TITLE);
+        String postBodyWithExcel = String.format(dataForCreatingPost.get("body"), POST_BODY);
+        String changedPostTitle = postTitleWithExcel + "-" + dbUtilSeleniumUsers.getAliasForLogin(LOGIN);
+
+        pageProvider.getLoginPage().openLoginPageAndFillLoginFormWithCredsAndCreatePostWithParams
+                        (LOGIN, dbUtilSeleniumUsers.getPassForLogin(LOGIN), postTitleWithExcel, postBodyWithExcel,
+                                dataForCreatingPost.get("option"), dataForCreatingPost.get("checkBoxStatus"))
+                .clickOnEitIcon()
+                .checkIsRedirectedToEditPostPage()
+                .enterTextInToInputTitle(changedPostTitle)
+                .clickOnSaveUpdated()
+                .getHeader().clickOnButtonMyProfile()
+                .checkPostWithTitleIsPresent(changedPostTitle)
+                .deletePostsTillPresent(postTitleWithExcel)
+                .deletePostsTillPresent(changedPostTitle)
+
+        ;
+
+    }
+
     @After
     public void tearDown() throws SQLException{
         database.quit();
     }
-
-    @Test
-    public void editCreatedPost() throws SQLException, ClassNotFoundException, IOException {
-        final String LOGIN = "newqaauto";
-//        ArrayList<Map<String, String>> allDataFromSeleniumUsers =
-//                database.selectTableAsMap("SELECT * FROM seleniumUsers");
-//        logger.info(allDataFromSeleniumUsers);
-        DB_Util_seleniumUsers dbUtilSeleniumUsers = new DB_Util_seleniumUsers();
-        Map<String, String> dataForCreatingPost = ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "newPost");
-
-        pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextIntoInputLogin(LOGIN);
-        pageProvider.getLoginPage().enterTextIntoInputPassword(dbUtilSeleniumUsers.getPassForLogin(LOGIN));
-        pageProvider.getLoginPage().clickOnButtonSignIn()
-                .checkIsRedirectedToHomePage()
-                .getHeader().clickOnButtonCreatePost()
-                .checkIsRedirectedToCreatePostPage()
-                .enterTextInToInputTitle(String.format(dataForCreatingPost.get("title"), POST_TITLE))
-                .enterTextInToInputBody(String.format(dataForCreatingPost.get("body"), POST_BODY))
-                .selectValueInDropDown(dataForCreatingPost.get("option"))
-                .selectIsUniqueCheckboxUsingStringValue(dataForCreatingPost.get("checkBoxStatus"))
-                .clickOnSaveNewPostButton()
-                .checkIsRedirectedToPostPage()
-                .checkIsSuccessMessageDisplayed();
-        String createdPostTitle = pageProvider.getPostPage().getPostName();
-
-    }
-
 }

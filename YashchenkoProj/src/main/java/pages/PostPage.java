@@ -91,13 +91,8 @@ public class PostPage extends ParentPage {
         return new MyProfilePage(webDriver);
     }
 
-    public CreatePostPage clickOnEitIcon(){
+    public EditPostPage clickOnEitIcon(){
         clickOnElement(editIcon);
-        return new CreatePostPage(webDriver);
-    }
-
-    public String getPostName(){
-        String titleOfCreatedPostValue = titleOfCreatedPost.getText();
-        return titleOfCreatedPostValue;
+        return new EditPostPage(webDriver);
     }
 }

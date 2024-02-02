@@ -166,6 +166,26 @@ public class LoginPage extends ParentPage {
     }
 
     @Step
+    public PostPage openLoginPageAndFillLoginFormWithCredsAndCreatePostWithParams
+            (String login, String password, String postTitle, String postBody, String option, String checkBoxStatus){
+        openLoginPage();
+        enterTextIntoInputLogin(login);
+        enterTextIntoInputPassword(password);
+        clickOnButtonSignIn()
+                .checkIsRedirectedToHomePage()
+                .getHeader().clickOnButtonCreatePost()
+                .checkIsRedirectedToCreatePostPage()
+                .enterTextInToInputTitle(postTitle)
+                .enterTextInToInputBody(postBody)
+                .selectValueInDropDown(option)
+                .selectIsUniqueCheckboxUsingStringValue(checkBoxStatus)
+                .clickOnSaveNewPostButton()
+                .checkIsRedirectedToPostPage()
+                .checkIsSuccessMessageDisplayed();
+        return new PostPage(webDriver);
+    }
+
+    @Step
     public LoginPage enterTextIntoRegistrationInputLogin(String login) {
         enterTextIntoInput(registrationInputLogin, login);
         return this;
