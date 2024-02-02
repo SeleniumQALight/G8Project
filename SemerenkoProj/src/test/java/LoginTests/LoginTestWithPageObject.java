@@ -1,18 +1,29 @@
 package LoginTests;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
+import io.qameta.allure.*;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import java.io.IOException;
 import java.util.Map;
 
 import static data.TestData.*;
-
+@Epic("Allure examples")
+@Feature("Junit 4 support")
 public class LoginTestWithPageObject extends BaseTest {
     @Test
+    @Category(SmokeTestFilter.class)
+    @Description("Some detailed test description")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
+    @Story("Base support for bdd annotations")
     public void validLogin() {
         pageProvider.loginPage().openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
@@ -27,10 +38,40 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
+    public void validLoginWithFewTabs() {
+        pageProvider.loginPage().openLoginPageAndFillLoginFormWithValidCred()
+                .checkIsRedirectToHomePage()
+                .checkIsButtonSignOutVisible()
+                .openLoginPageInNewTab()
+                .checkIsButtonSignOutVisible()
+                .openLoginPageInNewTab()
+                .switchBetweenTab(1)
+                .checkIsRedirectToHomePage()
+                .checkIsButtonSignOutVisible()
+                .switchBetweenTab(3)
+                .closeTab()
+                .switchBetweenTab(1)
+                .checkIsButtonSignOutVisible();
+
+    }
+
+    @Test
     public void invalidLogin() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextIntoInputLogin(INVALID_LOGIN_UI);
         pageProvider.loginPage().enterTextIntoInputPass(VALID_PASSWORD_UI);
+        pageProvider.loginPage().clickOnButtonSignIn();
+
+        Assert.assertFalse("Button SignOut is displayed", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+        Assert.assertTrue("Invalid Login massage is absent", pageProvider.loginPage().isMessageFailLogin());
+    }
+
+    @Test
+    public void invalidLoginWithRefresh() {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputLogin(VALID_LOGIN_UI);
+        pageProvider.loginPage().enterTextIntoInputPass(VALID_PASSWORD_UI);
+        pageProvider.loginPage().refreshPage();
         pageProvider.loginPage().clickOnButtonSignIn();
 
         Assert.assertFalse("Button SignOut is displayed", pageProvider.homePage().getHeader().isButtonSignOutVisible());

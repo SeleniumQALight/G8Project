@@ -1,0 +1,103 @@
+BASE_URL = https://aqa-complexapp.onrender.com
+DEFAULT_USER_NAME = qaauto
+DEFAULT_USER_PASSWORD = 123456qwert
+
+TEST_USER_NAME = User+{timestamp}
+TEST_USER_PASSWORD = test+{timestamp}
+TEST_EMAIL = qa.is.quality+{timestamp}@gmail.com
+
+TestCase #001 - Attempt to create a user with empty values of all mandatory fields
+Precondition:
+1. Open the browser [optional]
+2. Navigate to the BASE_URL.
+
+Steps to reproduce:
+1. Do not enter any data in the Username, Email, Password fields.
+2. Click on the 'Sign up for OurApp' button.
+
+Expected Result:
+1. A new user has not been created
+2. A validation prompt for the "Username" field was displayed, with the text "Username must be at least 3 characters."
+3. A validation prompt for the "Email" field was displayed, with the text, "You must provide a valid email address."
+4. A validation prompt for the "Password" field was displayed, with the text, "Password must be at least 12 characters."
+
+
+TestCase #002 - Successful user registration
+Precondition:
+1. Open the browser [optional]
+2. Navigate to the BASE_URL.
+
+Steps to reproduce:
+1. Enter TEST_USER_NAME in the username field
+2. Enter TEST_EMAIL in the Email field
+3. Enter TEST_USER_PASSWORD in the Password field
+4. Click on the 'Sign up for OurApp' button.
+
+Expected Result:
+1. The user is successfully registered
+2. In the header displays the username
+3. In the header displays the "Sign Out" button
+
+
+TestCase #003 - Create Post
+Precondition:
+1. Open the browser [optional]
+2. Navigate to the BASE_URL.
+3. Log in with prepared user, use TEST_USER_NAME and TEST_USER_PASSWORD
+
+Steps to reproduce:
+1. Click Create "Post button" in the header
+2. Enter text in the "Title" text field
+3. Enter text in the "Body Content" text field
+4. Live check box "Is this post unique?" in unchecked state
+5. Select "Загальнодоступне" option in the selector
+6. Click "Save New Post" button
+7. Go to the "My Profile" page
+
+Expected Result:
+1. Successful alert with text "New post successfully created." is displayed
+2. Entered title is displayed
+3. Note "This post was written for All Users" is displayed
+4. Text "Is this post unique? : no" about uniqueness is displayed
+5. Entered body is displayed
+7. Counter near Post tab increased by one
+
+TestCase #004 - Edit Post
+Precondition:
+1. Open the browser [optional]
+2. Navigate to the BASE_URL.
+3. Log in with prepared user, use TEST_USER_NAME and TEST_USER_PASSWORD
+4. Go to the "My Profile" page
+
+Steps to reproduce:
+1. Click on the post item in the "Posts" tab
+2. On the post page click on the "Edit" icon
+3. Make changes in the "Title" text field
+4. Make changes in the "Body Content" text field
+5. Click "Save Updates" button
+6. Click "Back to post permalink" link
+7. Go to the "My Profile" page
+
+Expected Result:
+1. Successful alert with text "Post successfully updated." is displayed
+2. Changed title and body are displayed
+3. Changed post is displayed on the Post tab
+
+TestCase #005 - Delete Post
+Precondition:
+1. Open the browser [optional]
+2. Navigate to the BASE_URL.
+3. Log in with prepared user, use TEST_USER_NAME and TEST_USER_PASSWORD
+4. Click Create "Post button" in the header
+5. Enter text in the "Title" text field
+6. Enter text in the "Body Content" text field
+7. Click "Save New Post" button
+8. Go to the "My Profile" page
+9. Click on the post item in the "Posts" tab
+
+Steps to reproduce:
+1. Click on the "Trash" button
+Expected Result:
+1. Successful alert with text "Post successfully deleted." is displayed
+2. Counter near Post tab decreased by one
+3. Post is not displayed on the Post tab

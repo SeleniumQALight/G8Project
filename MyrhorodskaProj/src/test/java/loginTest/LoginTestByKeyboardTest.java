@@ -5,10 +5,12 @@ import BaseTest.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
 
+
 import static data.TestData.VALID_LOGIN_UI;
 import static data.TestData.VALID_PASSWORD_UI;
 
-    public class LoginTestByKeyboardTest extends BaseTest {
+
+public class LoginTestByKeyboardTest extends BaseTest {
         @Test
         public void validLoginUsingKeyboard() {
             pageProvider.loginPage().openLoginPage();

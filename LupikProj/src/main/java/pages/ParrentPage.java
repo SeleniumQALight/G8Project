@@ -10,7 +10,8 @@ import java.util.ArrayList;
 
 //все загальне для сторінок
 abstract public class ParrentPage extends CommonActionsWithElements{
-    final String baseUrl = ConfigProvider.configProperties.base_url();
+    String env = System.getProperty("env", "aqa");
+    final String baseUrl = ConfigProvider.configProperties.base_url().replace("[env]", env);
     public ParrentPage(WebDriver webDriver) {
         super(webDriver);
     }

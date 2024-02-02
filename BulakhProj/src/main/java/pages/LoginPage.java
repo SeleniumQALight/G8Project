@@ -2,6 +2,7 @@ package pages;
 
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -69,6 +70,7 @@ public class LoginPage  extends ParentPage{
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listOfErrorMessages;
 
+
     private String listOfErrorMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
 
@@ -81,6 +83,8 @@ public class LoginPage  extends ParentPage{
         return "/";
     }
 
+
+    @Step
     public void openLoginPage() {
         try{
             webDriver.get(baseUrl);
@@ -94,23 +98,24 @@ public class LoginPage  extends ParentPage{
     public void checkIsRedirectToLoginPage() {
         checkUrl();
     }
-
+    @Step
     public void enterTextInToInputLogin(String login) {
 //        WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         enterTextInToInput(inputLogin, login);
     }
-
+    @Step
     public void enterTextInToInputPassword(String password) {
 //        WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         enterTextInToInput(inputPassword, password);
     }
-
+    @Step
     public void clickOnButtonSingIn() {
 //        WebElement buttonSingIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSingIn);
     }
 
     // is button Sing In visible
+    @Step
     public boolean isButtonSingInVisible() {
 //        WebElement buttonSingIn =
 //                webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
@@ -118,16 +123,18 @@ public class LoginPage  extends ParentPage{
     }
 
     // is input Login visible
+    @Step
     public boolean isInputLoginVisible() {
         return isElementDisplayed(inputLogin);
     }
 
     // is input Password visible
+    @Step
     public boolean isInputPasswordVisible() {
         return isElementDisplayed(inputPassword);
     }
 
-
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextInToInputLogin(TestData.VALID_LOGIN_UI);
@@ -135,11 +142,12 @@ public class LoginPage  extends ParentPage{
         clickOnButtonSingIn();
         return new HomePage(webDriver);
     }
+    @Step
     public boolean isInvalidLoginMessageDisplayed(){
 //        WebElement invalidLoginMessage = webDriver.findElement(By.xpath("//div[@class=\"alert alert-danger text-center\" and contains(text(),\"Invalid username/password.\")]"));
         return isElementDisplayed(invalidLoginMessage);
     }
-
+    @Step
     public LoginPage fillRegistrationForm(String userName, String Email, String Password) {
         enterTextInToInput(inputUserName, userName);
         enterTextInToInput(inputEmail, Email);
@@ -147,62 +155,62 @@ public class LoginPage  extends ParentPage{
         return this;
 
     }
-
+    @Step
     public LoginPage checkLoginInputIsNotVisible() {
         Assert.assertFalse("Login input is displayed", isElementDisplayed(loginInput));
         return this;
     }
-
+    @Step
     public LoginPage checkPasswordInputIsNotVisible() {
         Assert.assertFalse("Password input is displayed", isElementDisplayed(passwordInput));
         return this;
     }
-
+    @Step
     public void checkSignInButtonIsNotVisible() {
         Assert.assertFalse("Sign In button is displayed", isElementDisplayed(buttonSingIn));
     }
-
+    @Step
     public LoginPage clickOnButtonSingUp() {
         clickOnElement(buttonSignUp1);
         return this;
     }
-
+    @Step
     public LoginPage checkValidationMessageForUsername() {
         checkTextInElement(validationMessageUsername, "Username must be at least 3 characters.");
         return this;
     }
-
+    @Step
     public LoginPage checkValidationMessageForEmail() {
         checkTextInElement(validationMessageEmail, "You must provide a valid email address.");
         return this;
     }
-
+    @Step
     public void checkValidationMessageForPassword() {
         checkTextInElement(validationMessagePassword, "Password must be at least 12 characters.");
     }
 
-
+    @Step
     public LoginPage enterTextIntoRegistrationUsernameField(String username) {
         enterTextInToInput(inputUserNameRegistration, username);
         return this;
     }
 
-
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         enterTextInToInput(inputEmailRegistration, email);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         enterTextInToInput(inputPasswordRegistration, password);
         return this;
     }
 
-
+    @Step
     public LoginPage checkErrorMessages(String messages) {
         // error1;error2 -> [error1, error2]
         String[] expectedErrors = messages.split(";");
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorMessagesLocator), expectedErrors.length));
+        webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorMessagesLocator), expectedErrors.length));
 
         Util.waitABit(1);
         Assert.assertEquals("Number of messages", expectedErrors.length, listOfErrorMessages.size());
@@ -225,5 +233,10 @@ public class LoginPage  extends ParentPage{
         return this;
     }
 
+    @Step
+    public LoginPage checkErrorMessageInLoginForm(String text) {
+        checkTextInElement(invalidLoginMessage, text);
+        return this;
 
+    }
 }

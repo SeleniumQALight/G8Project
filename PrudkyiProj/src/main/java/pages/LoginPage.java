@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -32,33 +33,33 @@ public class LoginPage extends ParentPage {
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
-
+@Step
     public void openLoginPage() {
         try {
-            webDriver.get("https://aqa-complexapp.onrender.com");
-            logger.info("Login page was opened");
+            webDriver.get(baseUrl);
+            logger.info("Login page was opened" + baseUrl);
         } catch (Exception e) {
             logger.error("Can not open login page");
             Assert.fail("Can not open login page");
         }
     }
-
+@Step
     public void enterTextIntoInput(String login) {
         //WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         enterTextIntoInput(inputLogin, login);
     }
-
+@Step
     public void enterTextIntoInputPassword(String password) {
         //WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         enterTextIntoInput(inputPassword, password);
     }
-
+@Step
     public void clickOnButtonSignIn() {
         //  WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignIn);
 
     }
-
+@Step
     //is button SingnIn visible
     public boolean isButtonSingInVisible() {
         // WebElement buttonSingIn = webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));
@@ -94,7 +95,7 @@ public class LoginPage extends ParentPage {
     public LoginPage checkErrorsMessages(String message) {
         //error1;error2 -> [error1,error2]
         String[] expectedErrors = message.split(";");
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
+        webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
         ArrayList<String> actualErrors = new ArrayList<>();
         for (WebElement element : listErrorsMessages) {
             actualErrors.add(element.getText());

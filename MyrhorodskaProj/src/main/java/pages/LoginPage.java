@@ -1,7 +1,7 @@
 package pages;
 
-import libs.DB_Util_seleniumUser;
-import data.TestData;
+
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -10,9 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.elements.HeaderElement;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,7 +76,7 @@ public class LoginPage extends ParentPage{
     protected String getRelativUrl() {
         return "/";
     }
-
+@Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -91,11 +89,13 @@ public class LoginPage extends ParentPage{
     public void checkIsRedirectToLoginPage() {
         checkUrl();
     }
+    @Step
     public void enterTextInToInputLogin(String login) {
       //  WebElement inputLogin = webDriver.findElement(By.xpath(".//*[@placeholder='Username']"));
         enterTextInToInput(inputLogin, login);
 
     }
+   @Step
     public void enterTextInToInputPassword(String password) {
        // WebElement inputPassword = webDriver.findElement(By.xpath(".//*[@placeholder='Password']"));
         enterTextInToInput(inputPassword, password);
@@ -105,18 +105,21 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSignIn);
     }
     //is button Sign In visible
+    @Step
     public boolean isButtonSignInVisible() {
       //  WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         return isElementDisplayed(buttonSignIn);
     }
+    @Step
     public LoginPage checkIsInvalidUsernameOrPasswordMessageVisible() {
         checkIsElementVisible(invalidUsernameOrPasswordMessage);
         return this;
     }
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred(){
         openLoginPage();
-        enterTextInToInputLogin(TestData.VALID_LOGIN_UI);
-        enterTextInToInputPassword(TestData.VALID_PASSWORD_UI);
+        enterTextInToInputLogin(data.TestData.VALID_LOGIN_UI);
+        enterTextInToInputPassword(data.TestData.VALID_PASSWORD_UI);
         clickOnButtonSingIn();
         return new HomePage(webDriver);
     }
@@ -129,22 +132,24 @@ public class LoginPage extends ParentPage{
           //  return false;
        // }
     //}
+    @Step
     public boolean isInvalidUserNamePasswordMessageVisible() {
         //WebElement invalidMassage = webDriver.findElement(By.xpath("//div[contains(text(),'Invalid username/password.')]"));
         return isElementDisplayed(invalidMassage);
     }
+    @Step
     public boolean isInputUsernameVisible() {
         return isElementDisplayed(inputLogin);
     }
-
+    @Step
     public void isInputUsernameNotVisible() {
         checkIsElementNotVisible(inputLogin);
     }
-
+    @Step
     public boolean isInputPasswordVisible() {
         return isElementDisplayed(inputPassword);
     }
-
+    @Step
     public void isInputPasswordNotVisible() {
         checkIsElementNotVisible(inputPassword);
     }
@@ -153,45 +158,51 @@ public class LoginPage extends ParentPage{
         checkIsElementNotVisible(buttonSignIn);
     }
 
+    @Step
     public LoginPage  inputTextIntoRegistrationLogin (String userName) {
         enterTextInToInput(inputUserNameRegistration, userName);
         return this;
     }
-
+    @Step
     public LoginPage inputTextIntoRegistrationPassword(String password) {
         enterTextInToInput(inputPasswordReg, password);
         return this;
     }
-
+    @Step
     public LoginPage inputTextIntoRegistrationEmail(String email) {
         enterTextInToInput(inputEmailReg, email);
         return this;
     }
-
+    @Step
     public boolean isValidationMessageForRegistrationInputLoginDisplayed() {
         return isElementDisplayed(userNameValidationReg);
     }
+    @Step
     public LoginPage checkInputInRegistrationLogin(String text) {
         checkTextInElement(userNameValidationReg, text);
         return this;
     }
+    @Step
     public LoginPage checkInputInRegistrationEmail(String text) {
         checkTextInElement(emailValidationReg, text);
         return this;
     }
+    @Step
     public boolean isValidationMessageForRegistrationInputEmailDisplayed() {
         return isElementDisplayed(emailValidationReg);
     }
 
+    @Step
     public LoginPage checkInputInRegistrationPassword(String text) {
         checkTextInElement(passwordValidationReg, text);
         return this;
     }
+    @Step
     public boolean isValidationMessageForRegistrationInputPasswordDisplayed() {
         return isElementDisplayed(passwordValidationReg);
     }
 
-
+    @Step
     public void clickOnButtonSignUp() {
         clickOnElement(buttonSignUp);
     }
@@ -254,19 +265,6 @@ public class LoginPage extends ParentPage{
         softAssertions.assertAll(); // check all assertion
 
         return this;
-    }
-
-    public HeaderElement getHeader() {
-        return new HeaderElement(webDriver);
-    }
-
-    public HomePage openLoginPageAndFillLoginFormWithPasswordFromDB() throws  ClassNotFoundException, SQLException {
-        openLoginPage();
-        enterTextInToInputLogin("newqaauto");
-        DB_Util_seleniumUser dbUtilSeleniumUsers  = new DB_Util_seleniumUser();
-        enterTextInToInputPassword(dbUtilSeleniumUsers.getPassForLogin("newqaauto"));
-        clickOnButtonSingIn();
-        return new HomePage(webDriver);
     }
 }
 

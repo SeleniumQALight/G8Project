@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -13,8 +14,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginPage extends ParentPage{
-    @FindBy(xpath = ".//button[contains(text(),'Sign In')]") // цей елемент створиться PageFactory в CommonActionsWithElements
+public class LoginPage extends ParentPage {
+    @FindBy(xpath = ".//button[contains(text(),'Sign In')]")
+    // цей елемент створиться PageFactory в CommonActionsWithElements
     private WebElement buttonSingIn;
 
     @FindBy(xpath = ".//input[@placeholder='Username']")
@@ -48,11 +50,12 @@ public class LoginPage extends ParentPage{
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
-        try{
+        try {
             webDriver.get(baseUrl);
             logger.info("Login page was opened " + baseUrl);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("Can not open login page");
             Assert.fail("Can not open login page");
         }
@@ -62,14 +65,15 @@ public class LoginPage extends ParentPage{
         checkUrl();
     }
 
+    @Step
     public void enterTextIntoInputLogin(String login) {
         enterTextIntoInput(inputLogin, login);
     }
-
+    @Step
     public void enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
     }
-
+    @Step
     public void clickOnButtonSingIn() {
 //        WebElement buttonSingIn =
 //                webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));
@@ -77,11 +81,12 @@ public class LoginPage extends ParentPage{
     }
 
     // is button Sign In visible
+    @Step
     public boolean isButtonSignInVisible() {
         return isElementDisplayed(buttonSingIn);
     }
 
-
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
@@ -89,26 +94,26 @@ public class LoginPage extends ParentPage{
         clickOnButtonSingIn();
         return new HomePage(webDriver);
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         enterTextIntoInput(inputUserNameRegistration, userName);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
     }
-
+    @Step
     public LoginPage checkErrorsMessages(String messages) {
         // error1;error2 -> [error1, error2]
         String[] expectedErrors = messages.split(";");
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(
+        webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(
                 By.xpath(listErrorsMessagesLocator), expectedErrors.length));
 
 

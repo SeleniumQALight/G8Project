@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -64,6 +65,7 @@ public class LoginPage extends ParentPage {
         return new HeaderElement(webDriver);
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -73,44 +75,48 @@ public class LoginPage extends ParentPage {
             Assert.fail("Can not open login page");
         }
     }
-
+    @Step
     public void enterTextIntoInputLogin(String login) {
         enterTextIntoInput(inputLogin, login);
     }
 
+    @Step
     public void enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
     }
 
+    @Step
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
 
     // is button Sign In visible
+    @Step
     public boolean isButtonSignInVisible() {
         return isElementDisplayed(buttonSignIn);
     }
 
+    @Step
     public boolean isInputUserNameVisible() {
         return isElementDisplayed(inputLogin);
     }
-
+    @Step
     public boolean isInputPasswordVisible() {
         return isElementDisplayed(inputPassword);
     }
-
+    @Step
     public void isInputUserNameNotVisible() {
         checkIsElementNotVisible(inputLogin);
     }
-
+    @Step
     public void isInputPasswordNotVisible() {
         checkIsElementNotVisible(inputPassword);
     }
-
+    @Step
     public void isButtonSignInNotVisible() {
         checkIsElementNotVisible(buttonSignIn);
     }
-
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
@@ -118,63 +124,63 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
-
+    @Step
     public LoginPage checkIsRedirectToLoginPage() {
         checkUrl();
         Assert.assertTrue("Invalid page - not Login Page", isButtonSignInVisible());
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String username) {
         enterTextIntoInput(inputUserNameRegistration, username);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
     }
-
+    @Step
     public void clickOnButtonSignUp()  {
         clickOnElement(buttonSignUp);
     }
-
+    @Step
     public boolean isValidationMessageForUserNameRegisterInputDisplayed() {
         return isElementDisplayed(validationMessageForUserNameRegister);
     }
-
+    @Step
     public LoginPage checkTextInValidationMessageForUserNameRegisterInput(String text) {
         checkTextInElement(validationMessageForUserNameRegister, text);
         return this;
     }
-
+    @Step
     public boolean isValidationMessageForEmailRegisterInputDisplayed() {
         return isElementDisplayed(validationMessageForEmailRegister);
     }
-
+    @Step
     public LoginPage checkTextInValidationMessageForEmailRegisterInput(String text) {
         checkTextInElement(validationMessageForEmailRegister, text);
         return this;
     }
-
+    @Step
     public boolean isValidationMessageForPasswordRegisterInputDisplayed() {
         return isElementDisplayed(validationMessageForPasswordRegister);
     }
-
+    @Step
     public LoginPage checkTextInValidationMessageForPasswordRegisterInput(String text) {
         checkTextInElement(validationMessageForPasswordRegister, text);
         return this;
     }
-
+    @Step
     public LoginPage checkErrorMessages(String messages) {
         // error1;error2 -> [error1, error2]
         String[] expectedErrors = messages.split(";");
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorMessagesLocator), expectedErrors.length));
+        webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorMessagesLocator), expectedErrors.length));
 
         Util.waitABit(1);
         Assert.assertEquals("Number of messages", expectedErrors.length, listErrorMessages.size());
@@ -195,7 +201,7 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
-
+    @Step
     public LoginPage checkIsInvalidUsernameOrPasswordMessageVisible() {
         checkIsElementVisible(invalidUsernameOrPasswordMessage);
         return this;

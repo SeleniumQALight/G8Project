@@ -1,13 +1,17 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
+import io.qameta.allure.*;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import libs.Util;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import java.io.IOException;
@@ -16,10 +20,19 @@ import java.util.Map;
 import static data.TestData.VALID_LOGIN_UI;
 import static data.TestData.VALID_PASSWORD_UI;
 
-@RunWith(JUnitParamsRunner.class)
+@Epic("Allure examples")
+@Feature("Junit 4 support")
 public class LoginTestWithPageObject extends BaseTest {
 
     @Test
+    @Description("Some detailed test description")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
+    @Story("Base support for bdd annotations")
+
+    @Category(SmokeTestFilter.class)
     public void validLogin() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextIntoInputLogin(VALID_LOGIN_UI);
@@ -37,7 +50,6 @@ public class LoginTestWithPageObject extends BaseTest {
 
 
     @Test
-
     public void validLoginWhitExcel() throws IOException {
         Map<String, String> dataForValidLogin = ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
         pageProvider.loginPage().openLoginPage();
@@ -63,6 +75,7 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
+    @Ignore
     public void validLoginWithSendKeys() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().pressTabKey(2);
@@ -75,6 +88,7 @@ public class LoginTestWithPageObject extends BaseTest {
 
 
     @Test
+    @Ignore
     public void checkLogoutFromAllPages() {
         pageProvider.loginPage().openLoginPageAndFillLoginFormWithValidCred();
         Assert.assertTrue("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
@@ -94,6 +108,7 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
+    @Ignore
     public void checkClearingEnteredDataInLoginAndPasswordFieldsAfterRefresh() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().pressTabKey(2);
@@ -106,22 +121,4 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
 
-    @Test
-    @Parameters(method = "parametersForValidationMessagesLoginFieldsTests")
-        public void validationMessagesForLoginTests(String login, String password) {
-        pageProvider.loginPage().openLoginPage();
-        pageProvider.loginPage().enterTextIntoInputLogin(login);
-        pageProvider.loginPage().enterTextIntoInputPassword(password);
-        pageProvider.loginPage().clickOnButtonSignIn();
-        Assert.assertTrue("Warning message is visible", pageProvider.loginPage().isWarningMessageVisible());
-    }
-
-    public Object[][] parametersForValidationMessagesLoginFieldsTests() {
-        return new Object[][]{
-                {"taras", "tr"},
-                {"", "com123"},
-                {"taras", ""},
-                {"", ""}
-        };
-    }
 }

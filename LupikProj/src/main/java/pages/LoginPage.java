@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -48,9 +49,9 @@ public class LoginPage extends ParrentPage {
     @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
     WebElement errorMessageInRegisterPasswordField;
 
-    @FindBy(xpath =".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listErrorsMessages;
-    private String listErrorsMessagesLocator  = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    private String listErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -61,6 +62,8 @@ public class LoginPage extends ParrentPage {
         return "/";
     }
 
+
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -75,28 +78,32 @@ public class LoginPage extends ParrentPage {
         checkUrl();
     }
 
+    @Step
     public void enterTextInToInputLogin(String login) {
         // WebElement inputLogin = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
         enterTextInToInput(inputLogin, login);
     }
 
+    @Step
     public void enterTextInToInputPassword(String password) {
         //  WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         enterTextInToInput(inputPassword, password);
     }
 
+    @Step
     public void clickOnButtonSignIn() {
         // WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public LoginPage enterTextIntoRegisterLogin(String login) {
 
         enterTextInToInput(registerLogin, login);
         return this;
     }
 
-
+    @Step
     public boolean isButtonSignInVisible() {
         try {
             //   WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));
@@ -107,13 +114,14 @@ public class LoginPage extends ParrentPage {
         }
     }
 
-
+    @Step
     public boolean isTextInvalidLoginOrPasswordDisplayed() {
 
         return isElementDisplayed(textInvalidLoginOrPassword);
 
     }
 
+    @Step
     public boolean isInputLoginFieldVisible() {
 
         return isElementDisplayed(inputLogin);
@@ -121,17 +129,19 @@ public class LoginPage extends ParrentPage {
     }
 
     //new methods:
-
+    @Step
     public LoginPage checkIsInputLoginFieldNotVisible() {
         checkIsElementNotVisible(inputLogin);
         return this;
     }
 
+    @Step
     public LoginPage checkIsInputPasswordFieldNotVisible() {
         checkIsElementNotVisible(inputPassword);
         return this;
     }
 
+    @Step
     public LoginPage checkIsButtonSignInIsNotVisible() {
         checkIsElementNotVisible(buttonSignIn);
         return this;
@@ -146,6 +156,7 @@ public class LoginPage extends ParrentPage {
 
     }
 
+    @Step
 
     public boolean isInputPasswordFieldVisible() {
 
@@ -153,7 +164,7 @@ public class LoginPage extends ParrentPage {
 
     }
 
-
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextInToInputLogin(TestData.VALID_LOGIN_UI);
@@ -163,28 +174,35 @@ public class LoginPage extends ParrentPage {
 
     }
 
+    @Step
     public LoginPage enterTextIntoRegisterPassword(String password) {
 
         enterTextInToInput(registerPassword, password);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegisterEmail(String email) {
         enterTextInToInput(registerEmail, email);
         return this;
     }
 
+    @Step
     public void clickOnButtonSignUp() {
         clickOnElement(buttonSignUp);
     }
 
+    @Step
     public boolean isTextInErrorMessageInRegisterUsernameIsVisible() {
         return isElementDisplayed(errorMessageInRegisterUsernameField);
     }
 
+    @Step
     public boolean isTextInErrorMessageInRegisterEmailIsVisible() {
         return isElementDisplayed(errorMessageInRegisterEmailField);
     }
+
+    @Step
 
     public boolean isTextInErrorMessageInRegisterPasswordIsVisible() {
         return isElementDisplayed(errorMessageInRegisterPasswordField);
@@ -194,7 +212,7 @@ public class LoginPage extends ParrentPage {
     public LoginPage checkErrorMessages(String messages) {
         // error1;error2 ->[error1,error2]
         String[] expectedErrors = messages.split(";");
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
+        webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), expectedErrors.length));
 
         Util.waitABit(1);
         Assert.assertEquals("Number of messages", expectedErrors.length, listErrorsMessages.size());

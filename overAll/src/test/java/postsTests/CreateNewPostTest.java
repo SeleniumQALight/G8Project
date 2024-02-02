@@ -33,6 +33,7 @@ public class CreateNewPostTest extends BaseTest {
 
     @After
     public void deletePosts() {
+        takeScreenshot(testName.getMethodName() + " beforeDelete");
         pageProvider.homePage()
                 .openHomePageAndLoginIfNeeded()
                 .getHeader().clickOnMyProfileButton()
