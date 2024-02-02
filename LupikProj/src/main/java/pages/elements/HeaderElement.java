@@ -1,5 +1,6 @@
 package pages.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -68,6 +69,7 @@ public class HeaderElement extends CommonActionsWithElements {
 
     }
 
+    @Step
     public void checkUserNameIsPresent(String TestUserName) {
         WebElement element = CurrentUserName;
         checkTextInElement(element, TestUserName);
@@ -75,55 +77,60 @@ public class HeaderElement extends CommonActionsWithElements {
 
     }
 
-
+    @Step
     public boolean isChatIconVisible() {
         return isElementDisplayed(chatIcon);
     }
 
-
+    @Step
     public void clickOnButtonSignOut() {
         // WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignOut);
     }
 
-
+    @Step
     public boolean isSearchIconIsVisible() {
         return isElementDisplayed(searchIcon);
     }
 
-
+    @Step
     public boolean isButtonAvatarVisible() {
         return isElementDisplayed(avatar);
     }
 
 
     //new methods:
-
+    @Step
     public HeaderElement checkIsSearchIconIsNotVisible() {
         checkIsElementNotVisible(searchIcon);
         return this;
     }
 
+    @Step
     public HeaderElement checkIsChatIconNotVisible() {
         checkIsElementNotVisible(chatIcon);
         return this;
     }
 
+    @Step
     public HeaderElement checkIsButtonAvatarNotVisible() {
         checkIsElementNotVisible(avatar);
         return this;
     }
 
+    @Step
     public HeaderElement checkIsButtonCreatePostNotVisible() {
         checkIsElementNotVisible(buttonCreatePost);
         return this;
     }
 
+    @Step
     public HeaderElement checkIsButtonSihOutIsNotVisible() {
         checkIsElementNotVisible(buttonSignOut);
         return this;
     }
 
+    @Step
     public HeaderElement checkAllElementsInHeaderAreNotVisible() {
         checkIsSearchIconIsNotVisible();
         checkIsButtonAvatarNotVisible();

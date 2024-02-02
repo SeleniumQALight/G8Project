@@ -1,5 +1,6 @@
 package pages.elements;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -43,7 +44,7 @@ public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = "//span[@class='text-white mr-2']")
     private WebElement userName;
 
-
+    @Step
     public boolean isButtonSignOutVisible() {
         return isElementDisplayed(buttonSignOut);
     }
@@ -53,34 +54,35 @@ public class HeaderElement extends CommonActionsWithElements {
     }
 
     // click on create post button
+    @Step
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
     }
 
     //Checking the presence of elements in the header after login
-
+    @Step
     public HeaderElement checkSearchButtonIsVisible() {
      Assert.assertTrue("Search button is not displayed", isElementDisplayed(searchButton));
         return this;
     }
-
+    @Step
     public HeaderElement checkChatButtonIsVisible() {
         Assert.assertTrue("Chat button is not displayed", isElementDisplayed(chatButton));
         return this;
     }
-
+    @Step
     public HeaderElement checkAvatarIsVisible() {
         Assert.assertTrue("Avatar is not displayed", isElementDisplayed(avatar));
         return this;
     }
-
+    @Step
     public HeaderElement checkCreatePostButtonIsVisible() {
         Assert.assertTrue("Create Post button is not displayed", isElementDisplayed(createPostButton));
         return this;
     }
 
-
+    @Step
     public HeaderElement checkSignOutButtonIsVisible() {
         Assert.assertTrue("Sign Out button is not displayed", isElementDisplayed(signOutButton));
         return this;
@@ -88,11 +90,12 @@ public class HeaderElement extends CommonActionsWithElements {
 
 
     // Sing out button
+    @Step
     public void clickOnButtonSignOut() {
           clickOnElement(buttonSignOut);
 
     }
-
+    @Step
     public boolean isButtonCreatePostVisible() {
         return isElementDisplayed(buttonCreatePost);
 

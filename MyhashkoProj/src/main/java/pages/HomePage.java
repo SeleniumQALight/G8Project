@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import org.junit.Assert;;
 import org.openqa.selenium.WebDriver;
 import pages.elements.HeaderElement;
@@ -17,7 +18,7 @@ public class HomePage extends ParentPage {
     protected String getRelativeUrl() {
         return "/";
     }
-
+    @Step
     public HomePage checkIsRedirectToHomePage() {
         webDriverWait15.until(
                 webDriver -> webDriver.getCurrentUrl().equals(baseUrl + getRelativeUrl())
@@ -27,11 +28,11 @@ public class HomePage extends ParentPage {
                 , getHeader().isButtonSignOutVisble());
         return this;
     }
-
+    @Step
     public HeaderElement getHeader() {
         return new HeaderElement(webDriver);
     }
-
+    @Step
     public HomePage openHomePageAndLoginIfNeeded() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openLoginPage();

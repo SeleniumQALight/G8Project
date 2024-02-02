@@ -28,8 +28,6 @@ public class CommonActionsWithElements {
     }
 
 
-
-
     protected Set<String> openNewTab() {
         String currentTab = webDriver.getWindowHandle();
         logger.info("currentTab: " + currentTab);
@@ -64,10 +62,10 @@ public class CommonActionsWithElements {
         logger.info("Tab " + tabName + " was closed");
     }
 
-    protected void refreshPages(){
+    protected void refreshPages() {
         String url = webDriver.getCurrentUrl();
         webDriver.navigate().refresh(); // refresh page
-        logger.info("page "+ url+" was refreshed");
+        logger.info("page " + url + " was refreshed");
     }
 
     protected void enterTextIntoInput(WebElement element, String text) {
