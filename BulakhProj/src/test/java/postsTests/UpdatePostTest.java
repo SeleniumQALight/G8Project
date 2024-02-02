@@ -28,11 +28,10 @@ public class UpdatePostTest extends BaseTest {
     String NAME = "Bulakh";
     String DATA = Util.getDateAndTimeFormatted();
     String POST_BODY = "Post body";
-    String POST_CHECKBOX;
-    String CHECKBOX_STATUS;
-    String DROPDOWN;
+    String POST_CHECKBOX_STATUS;
+    String DROPDOWN_OPTION;
     String UPDATE_POST_TITLE;
-    String POST_VALUE;
+    String POST_CHECKBOX_VALUE;
 
     @Before
     public void createPost() throws SQLException, ClassNotFoundException, IOException  {
@@ -40,37 +39,34 @@ public class UpdatePostTest extends BaseTest {
 
         Map<String, String> dataForPost = ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "newPost");
 
-        POST_VALUE = dataForPost.get("checkBoxValue");
+        POST_CHECKBOX_VALUE = dataForPost.get("checkBoxValue");
         TITLE =  String.format(dataForPost.get("title"), NAME, DATA);
         POST_BODY = String.format(dataForPost.get("body"), NAME, DATA);
-        CHECKBOX_STATUS = dataForPost.get("checkBoxStatus");
-        DROPDOWN = dataForPost.get("option");
+        POST_CHECKBOX_STATUS = dataForPost.get("checkBoxStatus");
+        DROPDOWN_OPTION = dataForPost.get("option");
 
-        pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterLoginInToInputLogin(LOGIN);
-        pageProvider.getLoginPage().enterPasswordInToInputPassword(db_seleniumUsers.getPassForLogin(LOGIN))
-                .clickOnButtonSingIn();
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextInToInputLogin(LOGIN);
+        pageProvider.loginPage().enterTextInToInputPassword(db_seleniumUsers.getPassForLogin(LOGIN));
+        pageProvider.loginPage().clickOnButtonSingIn();
         pageProvider.homePage().checkIsRedirectToHomePage()
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
                 .enterTitleInToInputTitle(TITLE)
                 .enterTextInToInputBody(POST_BODY)
-                .setCheckboxState(CHECKBOX_STATUS)
-                .selectValueInDropDown(DROPDOWN)
+                .setCheckboxState(POST_CHECKBOX_STATUS)
+                .selectValueInDropDown(DROPDOWN_OPTION)
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
-                .checkIsPostUniqueStateConfirmExpectedValue(POST_VALUE)
-//                .checkIsThisPostUniqueTextPresent(POST_CHECKBOX)
+                .checkIsPostUniqueStateConfirmExpectedValue(POST_CHECKBOX_VALUE)
                 .checkIsCreatedPostHasTitle(TITLE)
                 .checkIsCreatedPostHasBody(POST_BODY)
-                .checkIsCreatedPostHasValueInDropDown("All users")
+                .checkIsCreatedPostHasValueInDropDown("One Person")
         ;
 
-        pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
-                .checkIsRedirectToMyProfilePage()
-                .checkPostWithTitleIsPresent(TITLE);
+
     }
 
 
@@ -80,8 +76,8 @@ public class UpdatePostTest extends BaseTest {
            UPDATE_POST_TITLE = db_seleniumUsers.getAliasForLogin(LOGIN);
 
 
-         pageProvider.getPostPage().clickOnPostTitle(TITLE)
-                .clickOnEditButton()
+         pageProvider.getHomePage().getHeader().clickOnMyProfileButton().clickOnPostWithTitle(TITLE);
+         pageProvider.getPostPage().clickOnEditButton()
                 .enterTitleInToInputTitle(UPDATE_POST_TITLE)
                 .clickOnSaveUpdatesButton()
                 .checkTextInSuccessMessage("Post successfully updated.");

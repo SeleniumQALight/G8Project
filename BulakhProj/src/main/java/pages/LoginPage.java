@@ -233,14 +233,5 @@ public class LoginPage  extends ParentPage{
 
     }
 
-    public LoginPage enterLoginInToInputLogin(String login) {
-        enterTextInToInput(inputLogin, login);
-        return this;
 
-    }
-    public LoginPage enterPasswordInToInputPassword(String password) {
-        enterTextInToInput(inputPassword, password);
-        return this;
-
-    }
 }
