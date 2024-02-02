@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -47,11 +48,13 @@ public class PostPage extends ParentPage {
         return this;
     }
 
+    @Step
     public PostPage checkIsSuccessMessageDisplayed() {
         checkIsElementVisible(successMessage);
         return this;
     }
 
+    @Step
     public PostPage checkTextInSuccessMessage(String text) {
         checkTextInElement(successMessage, text);
         return this;
@@ -61,37 +64,45 @@ public class PostPage extends ParentPage {
         return headerElement = new HeaderElement(webDriver);
     }
 
+    @Step
     public PostPage checkIsThisPostUniqueValuePresent(String value) {
         checkIsElementVisible(webDriver.findElement(By.xpath(String.format(isThisPostUniqueValue, value))));
         return this;
     }
 
+    @Step
     public PostPage checkCreatedPostTitle(String value) {
         checkIsElementVisible(webDriver.findElement(By.xpath(String.format(createdPostTitle, value))));
         return this;
     }
 
-    public PostPage checkCreatedPostBody(String value){
+    @Step
+    public PostPage checkCreatedPostBody(String value) {
         checkIsElementVisible(webDriver.findElement(By.xpath(String.format(createdPostBody, value))));
         return this;
     }
 
+    @Step
     public PostPage checkIsNoteAndNoteValuePresent() {
         checkIsElementVisible(note);
         checkIsElementVisible(noteValue);
         return this;
     }
 
+    @Step
     public PostPage checkValueOfNote(String value) {
         checkTextInElement(noteValue, value);
         return this;
     }
+
+    @Step
     public MyProfilePage clickOnTrashIcon() {
         clickOnElement(trashIcon);
         return new MyProfilePage(webDriver);
     }
 
-    public EditPostPage clickOnEitIcon(){
+    @Step
+    public EditPostPage clickOnEitIcon() {
         clickOnElement(editIcon);
         return new EditPostPage(webDriver);
     }

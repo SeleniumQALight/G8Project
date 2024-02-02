@@ -68,6 +68,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void checkIsRedirectedToLoginPage() {
         checkCurrentUrl();
         checkIsButtonSignInVisible();
@@ -151,7 +152,7 @@ public class LoginPage extends ParentPage {
     }
 
     @Step
-    public LoginPage checkIsInvalidUserNamePasswordAlertVisible(){
+    public LoginPage checkIsInvalidUserNamePasswordAlertVisible() {
         checkIsElementVisible(invalidAlert);
         return this;
     }
@@ -167,7 +168,7 @@ public class LoginPage extends ParentPage {
 
     @Step
     public PostPage openLoginPageAndFillLoginFormWithCredsAndCreatePostWithParams
-            (String login, String password, String postTitle, String postBody, String option, String checkBoxStatus){
+            (String login, String password, String postTitle, String postBody, String option, String checkBoxStatus) {
         openLoginPage();
         enterTextIntoInputLogin(login);
         enterTextIntoInputPassword(password);
@@ -182,6 +183,7 @@ public class LoginPage extends ParentPage {
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectedToPostPage()
                 .checkIsSuccessMessageDisplayed();
+        logger.info("---------- Pre-Conditions (Login and Create a Post) completed ----------");
         return new PostPage(webDriver);
     }
 
@@ -237,13 +239,15 @@ public class LoginPage extends ParentPage {
         checkIsElementVisible(emailRegValidation);
         return this;
     }
+
     @Step
     public LoginPage checkIsValidationMessageForRegistrationInputPasswordVisible() {
         checkIsElementVisible(passwordRegValidation);
         return this;
     }
+
     @Step
-    public LoginPage checkErrorMessages(String messages){
+    public LoginPage checkErrorMessages(String messages) {
         String[] expectedErrors = messages.split(";");
         webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(
                 By.xpath(listErrorMessagesLocator), expectedErrors.length));

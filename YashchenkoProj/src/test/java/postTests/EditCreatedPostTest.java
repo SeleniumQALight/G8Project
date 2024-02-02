@@ -14,14 +14,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class EditCreatedPostTest extends BaseTest{
+public class EditCreatedPostTest extends BaseTest {
     private Database database;
     private Logger logger = Logger.getLogger(getClass());
     final String POST_TITLE = "TC_001-1_Yashchenko" + Util.getDateAndTimeFormatted();
     final String POST_BODY = "New Post Body Yashchenko" + Util.getDateAndTimeFormatted();
 
     @Before
-    public void setUp () throws SQLException, ClassNotFoundException {
+    public void setUp() throws SQLException, ClassNotFoundException {
         database = MySQL_Database.getDataBase();
     }
 
@@ -43,17 +43,15 @@ public class EditCreatedPostTest extends BaseTest{
                 .checkIsRedirectedToEditPostPage()
                 .enterTextInToInputTitle(changedPostTitle)
                 .clickOnSaveUpdated()
+                .checkIsSuccessMessagePresentAndTextIsCorrect()
                 .getHeader().clickOnButtonMyProfile()
                 .checkPostWithTitleIsPresent(changedPostTitle)
                 .deletePostsTillPresent(postTitleWithExcel)
-                .deletePostsTillPresent(changedPostTitle)
-
-        ;
-
+                .deletePostsTillPresent(changedPostTitle);
     }
 
     @After
-    public void tearDown() throws SQLException{
+    public void tearDown() throws SQLException {
         database.quit();
     }
 }
