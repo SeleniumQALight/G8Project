@@ -76,7 +76,7 @@ public class UpdatePostTest extends BaseTest {
            UPDATE_POST_TITLE = db_seleniumUsers.getAliasForLogin(LOGIN);
 
 
-         pageProvider.getHomePage().getHeader().clickOnMyProfileButton().clickOnPostWithTitle(TITLE);
+         pageProvider.homePage().getHeader().clickOnMyProfileButton().clickOnPostWithTitle(TITLE);
          pageProvider.getPostPage().clickOnEditButton()
                 .enterTitleInToInputTitle(UPDATE_POST_TITLE)
                 .clickOnSaveUpdatesButton()
