@@ -55,6 +55,9 @@ public class LoginPage extends ParentPage {
     private String listErrorsMessagesLocator
             = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
+    @FindBy(xpath = ".//div[contains(text(),'Invalid username/password.')]")
+    private WebElement invalidUsernameOrPasswordMessage;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -161,6 +164,11 @@ public class LoginPage extends ParentPage {
 
     public LoginPage checkIsButtonSignInVisible() {
         checkIsElementVisible(buttonSignIn);
+        return this;
+    }
+
+    public LoginPage checkIsInvalidUsernameOrPasswordMessageVisible() {
+        checkIsElementVisible(invalidUsernameOrPasswordMessage);
         return this;
     }
 
