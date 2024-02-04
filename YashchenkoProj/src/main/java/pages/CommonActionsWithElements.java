@@ -121,7 +121,7 @@ public class CommonActionsWithElements {
     protected void checkCheckbox(WebElement checkbox) {
         if (!checkbox.isSelected()) {
             checkbox.click();
-            logger.info("Checkbox is not selected");
+            logger.info("Checkbox is selected");
         } else {
             logger.info("Checkbox is already selected");
         }

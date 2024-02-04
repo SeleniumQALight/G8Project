@@ -21,7 +21,7 @@ public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = ".//span[@class='text-white mr-2']")
     private WebElement profileName;
 
-    @FindBy(xpath = ".//a[@href='/profile/qaauto']")
+    @FindBy(xpath = ".//a[@class='mr-2']")
     private WebElement buttonMyProfile;
 
     @FindBy(xpath = ".//span[@data-original-title='Chat']")
