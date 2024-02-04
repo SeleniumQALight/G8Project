@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class CommonActionWithElements {
     protected WebDriver webDriver;
@@ -117,5 +118,30 @@ public class CommonActionWithElements {
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
+    }
+
+    public void openNewTabAndSwitchToIt() {
+        ((org.openqa.selenium.JavascriptExecutor) webDriver).executeScript("window.open()");
+        String newTab = new ArrayList<>(webDriver.getWindowHandles()).get(1);
+        webDriver.switchTo().window(newTab);
+        logger.info("New tab was opened");
+    }
+
+    public void switchToFirstTab() {
+        String firstTab = new ArrayList<>(webDriver.getWindowHandles()).get(0);
+        webDriver.switchTo().window(firstTab);
+        logger.info("Switch to first tab");
+    }
+
+    public void closeNewTabAndSwitchToFirstTab() {
+        String newTab = new ArrayList<>(webDriver.getWindowHandles()).get(1);
+        webDriver.close();
+        webDriver.switchTo().window(newTab);
+        logger.info("New tab was closed");
+    }
+
+    public void refreshPage() {
+        webDriver.navigate().refresh();
+        logger.info("Page was refreshed");
     }
 }
