@@ -68,6 +68,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void checkIsRedirectedToLoginPage() {
         checkCurrentUrl();
         checkIsButtonSignInVisible();
@@ -99,8 +100,9 @@ public class LoginPage extends ParentPage {
     }
 
     @Step
-    public void clickOnButtonSignIn() {
+    public HomePage clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
+        return new HomePage(webDriver);
     }
 
     @Step
@@ -150,7 +152,7 @@ public class LoginPage extends ParentPage {
     }
 
     @Step
-    public LoginPage checkIsInvalidUserNamePasswordAlertVisible(){
+    public LoginPage checkIsInvalidUserNamePasswordAlertVisible() {
         checkIsElementVisible(invalidAlert);
         return this;
     }
@@ -162,6 +164,27 @@ public class LoginPage extends ParentPage {
         enterTextIntoInputPassword(DEFAULT_VALID_PASSWORD_UI);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+
+    @Step
+    public PostPage openLoginPageAndFillLoginFormWithCredsAndCreatePostWithParams
+            (String login, String password, String postTitle, String postBody, String option, String checkBoxStatus) {
+        openLoginPage();
+        enterTextIntoInputLogin(login);
+        enterTextIntoInputPassword(password);
+        clickOnButtonSignIn()
+                .checkIsRedirectedToHomePage()
+                .getHeader().clickOnButtonCreatePost()
+                .checkIsRedirectedToCreatePostPage()
+                .enterTextInToInputTitle(postTitle)
+                .enterTextInToInputBody(postBody)
+                .selectValueInDropDown(option)
+                .selectIsUniqueCheckboxUsingStringValue(checkBoxStatus)
+                .clickOnSaveNewPostButton()
+                .checkIsRedirectedToPostPage()
+                .checkIsSuccessMessageDisplayed();
+        logger.info("---------- Pre-Conditions (Login and Create a Post) completed ----------");
+        return new PostPage(webDriver);
     }
 
     @Step
@@ -216,13 +239,15 @@ public class LoginPage extends ParentPage {
         checkIsElementVisible(emailRegValidation);
         return this;
     }
+
     @Step
     public LoginPage checkIsValidationMessageForRegistrationInputPasswordVisible() {
         checkIsElementVisible(passwordRegValidation);
         return this;
     }
+
     @Step
-    public LoginPage checkErrorMessages(String messages){
+    public LoginPage checkErrorMessages(String messages) {
         String[] expectedErrors = messages.split(";");
         webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(
                 By.xpath(listErrorMessagesLocator), expectedErrors.length));
