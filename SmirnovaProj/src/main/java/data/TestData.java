@@ -1,4 +1,5 @@
 package data;
+import libs.ConfigProvider;
 
 import libs.ConfigProvider;
 
