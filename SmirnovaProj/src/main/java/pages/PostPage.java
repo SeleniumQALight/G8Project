@@ -18,6 +18,9 @@ public class PostPage extends ParentPage {
     private WebElement bodyTextNote;
     private String uniquePostElement = "//p[contains(text(), 'Is this post unique? : %s')]";
 
+    @FindBy(xpath = "//a[@data-original-title='Edit']")
+    private WebElement buttonEdit;
+
     private HeaderElement headerElement;
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
@@ -77,4 +80,11 @@ public class PostPage extends ParentPage {
         checkIsElementVisible(webDriver.findElement(By.xpath(String.format(uniquePostElement, state))));
         return this;
     }
+
+    public PostPage clickOnButtonEditPost() {
+        checkIsElementVisible(buttonEdit);
+        clickOnElement(buttonEdit);
+        return this;
+    }
+
 }

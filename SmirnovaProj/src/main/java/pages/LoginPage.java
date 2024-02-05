@@ -192,4 +192,12 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
+
+    public HomePage fillLoginFormAndSubmit(String login, String password) {
+        openLoginPage();
+        enterTextIntoInputLogin(login);
+        enterTextIntoInputPassword(password);
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
+    }
 }
