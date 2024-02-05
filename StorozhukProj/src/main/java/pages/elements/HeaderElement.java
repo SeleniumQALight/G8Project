@@ -1,5 +1,6 @@
 package pages.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,10 +34,10 @@ public class HeaderElement extends CommonActionsWithElements {
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
     }
-
+    @Step
     public boolean isButtonSignOutVisible() {
-        WebElement buttonSignOut = webDriver.findElement(
-                By.xpath("//button[text()='Sign Out']"));
+//        WebElement buttonSignOut = webDriver.findElement(
+ //               By.xpath("//button[text()='Sign Out']"));
         return isElementDisplayed(buttonSignOut);
     }
 
@@ -79,6 +80,7 @@ public class HeaderElement extends CommonActionsWithElements {
         return new LoginPage(webDriver);
     }
 
+    @Step
     public void checkButtonSearchNotVisible() {checkElementIsNotVisible(buttonSearch);
     }
 

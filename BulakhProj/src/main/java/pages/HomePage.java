@@ -36,7 +36,7 @@ public class HomePage extends ParentPage {
         if(this.getHeader().isButtonSignOutVisible()) {
             logger.info("User is already logged in");
         } else {
-            loginPage.enterTextInToInputLogin(TestData.VALID_PASSWORD_UI);
+            loginPage.enterTextInToInputLogin(TestData.VALID_LOGIN_UI);
             loginPage.enterTextInToInputPassword(TestData.VALID_PASSWORD_UI);
             loginPage.clickOnButtonSingIn();
             checkIsRedirectToHomePage();

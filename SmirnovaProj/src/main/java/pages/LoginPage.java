@@ -12,8 +12,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.ArrayList;
 import java.util.List;
 
-import static libs.TestData.VALID_LOGIN_UI;
-import static libs.TestData.VALID_PASSWORD_UI;
+import static data.TestData.VALID_LOGIN_UI;
+import static data.TestData.VALID_PASSWORD_UI;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[contains(text(),'Sign In')]")
@@ -169,7 +169,7 @@ public class LoginPage extends ParentPage {
         //error1;error2 -> [error1, error2]
         String[] expectedErrors = messages.split(";");
 
-        webDriverWait10.until(ExpectedConditions
+        webDriverWait5.until(ExpectedConditions
                 .numberOfElementsToBe(By.xpath(listOfErrorMessagesLocator)
                         , expectedErrors.length));
 

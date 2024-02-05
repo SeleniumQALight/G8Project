@@ -28,6 +28,7 @@ public class MyProfilePage extends ParentPage{
     public MyProfilePage checkPostWithTitleIsPresent(String postTitle) {
         Assert.assertEquals("Count of posts with title " + postTitle,
                 1, getPostsList(postTitle).size());
+        logger.info("Needed post is present");
         return this;
     }
 

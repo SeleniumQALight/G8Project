@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -32,7 +33,7 @@ public class LoginPage extends ParentPage {
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
-
+@Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -42,23 +43,23 @@ public class LoginPage extends ParentPage {
             Assert.fail("Can not open login page");
         }
     }
-
+@Step
     public void enterTextIntoInput(String login) {
         //WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         enterTextIntoInput(inputLogin, login);
     }
-
+@Step
     public void enterTextIntoInputPassword(String password) {
         //WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         enterTextIntoInput(inputPassword, password);
     }
-
+@Step
     public void clickOnButtonSignIn() {
         //  WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
         clickOnElement(buttonSignIn);
 
     }
-
+@Step
     //is button SingnIn visible
     public boolean isButtonSingInVisible() {
         // WebElement buttonSingIn = webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]"));

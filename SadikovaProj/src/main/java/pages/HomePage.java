@@ -12,7 +12,7 @@ public class HomePage extends ParentPage {
     }
 
     public void openHomePage() {
-        goToWebPage(Urls.HOME_PAGE_URL);
+        goToWebPage(baseUrl);
     }
 
     public HomePage checkIsRedirectToHomePage() {
