@@ -1,5 +1,7 @@
 package data;
 
+import libs.ConfigProvider;
+
 //клас для зберігання тестових даних
 //які будуть використовуватись в тестах БАГАТО РАЗІВ
 public class TestData {
