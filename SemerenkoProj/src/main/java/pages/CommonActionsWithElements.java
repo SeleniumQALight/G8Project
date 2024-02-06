@@ -18,13 +18,14 @@ public class CommonActionsWithElements {
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
     protected WebDriverWait webDriverWait10, webDriverWait15;
-    protected JavascriptExecutor javascriptExecutor = (JavascriptExecutor) webDriver;
+    protected JavascriptExecutor javascriptExecutor;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
         webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
         webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        javascriptExecutor = (JavascriptExecutor) webDriver;
     }
 
 

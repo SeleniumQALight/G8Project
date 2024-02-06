@@ -76,5 +76,9 @@ public class CreatePostPage extends ParentPage {
         clickOnElement(buttonSaveUpdates);
         return new PostPage(webDriver);
     }
+    public CreatePostPage setCheckBoxUniquePost(String state) {
+        setStateToCheckBox(checkBoxUniquePost, state);
+        return this;
+    }
 }
 

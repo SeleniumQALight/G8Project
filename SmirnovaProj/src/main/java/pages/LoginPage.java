@@ -39,6 +39,9 @@ public class LoginPage extends ParentPage {
     private WebElement passwordValidationMessage;
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listOfErrorMessages;
+    @FindBy(xpath = ".//*[@class='alert alert-danger text-center']")
+    private WebElement invalidLoginMessage;
+
     private String listOfErrorMessagesLocator =
             ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
@@ -191,6 +194,10 @@ public class LoginPage extends ParentPage {
         softAssertions.assertAll(); //перевірка всіх асертів
 
         return this;
+    }
+
+    public void checkErrorsMessagesLogin(String expectedMessage) {
+        checkTextInElement(invalidLoginMessage, expectedMessage);
     }
 
     public HomePage fillLoginFormAndSubmit(String login, String password) {
