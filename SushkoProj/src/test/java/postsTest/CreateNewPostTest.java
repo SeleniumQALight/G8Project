@@ -18,7 +18,7 @@ public class CreateNewPostTest extends BaseTest {
                 .enterTitleInToInputTitle(POST_TITLE)
                 .enterTextIntoInputBody(POST_BODY)
                 //.selectTextInDropDown("Приватне повідомлення")
-                .setUniquePostCheckboxSelected()
+                .setUniquePostCheckboxSelected("check")
                 .selectValueInDropDown("One Person")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
