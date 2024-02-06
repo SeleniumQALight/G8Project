@@ -79,6 +79,13 @@ https://mvnrepository.com/artifact/org.aeonbits.owner/owner
             <version>1.0.12</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.14</version>
+        </dependency>
+
+
         <!--
 https://mvnrepository.com/artifact/mysql/mysql-connector-java
 -->

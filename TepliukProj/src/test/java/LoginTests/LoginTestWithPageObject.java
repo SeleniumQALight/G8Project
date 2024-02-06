@@ -5,13 +5,18 @@ import categories.SmokeTestFilter;
 import io.qameta.allure.*;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import libs.ConfigProvider;
+import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
-import static libs.TestData.VALID_LOGIN_UI;
-import static libs.TestData.VALID_PASSWORD_UI;
+import java.io.IOException;
+import java.util.Map;
+
+import static data.TestData.VALID_LOGIN_UI;
+import static data.TestData.VALID_PASSWORD_UI;
 
 @RunWith(JUnitParamsRunner.class)
 
@@ -42,6 +47,19 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertFalse("The fiels for password is not visible", pageProvider.loginPage().isInputPasswordVisible());
 
     }
+
+    @Test
+    public void validLoginWithExcel() throws IOException {
+        Map<String, String> dataForValidLogin = ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputLogin(dataForValidLogin.get("login"));
+        pageProvider.loginPage().enterTextIntoInputPassword(dataForValidLogin.get("pass"));
+        pageProvider.loginPage().clickOnButtonSignIn();
+
+        Assert.assertTrue("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+    }
+
+
 
     @Test
     public void invalidLogin() {

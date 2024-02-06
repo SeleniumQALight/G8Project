@@ -28,7 +28,7 @@ import java.util.ArrayList;
 // Parent class for all tests
 public class BaseTest {
     WebDriver webDriver;
-    Logger logger = Logger.getLogger(getClass());
+    protected Logger logger = Logger.getLogger(getClass());
 
     protected PageProvider pageProvider;
     protected ArrayList<ScreenShot> listOfScreenShots = new ArrayList<>();
