@@ -29,7 +29,7 @@ public class ValidationMessegesTestsWithExcel extends BaseTest{
     public Collection parametersForValidationMessegesTests() throws IOException {
         final String pathToFile = ConfigProvider.configProperties.DATA_FILE_PATH() + "testDataSuit.xls";
         final String sheetName = "registrationErrors";
-        final boolean skipFirstRow = true;  //if true - first row in excel file will be skipped
+        final boolean skipFirstRow =false;  //if true - first row in excel file will be skipped
         logger.info("Data file path: " + pathToFile + "\nSheet name: " + sheetName + "\nSkip first row: " + skipFirstRow);
 
         return new ExcelSpreadsheetData(new FileInputStream(pathToFile), sheetName, skipFirstRow).getData();

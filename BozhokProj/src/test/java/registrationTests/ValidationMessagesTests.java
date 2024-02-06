@@ -44,9 +44,9 @@ public class ValidationMessagesTests extends BaseTest {
                         + ERROR_PASSWORD},
                 {"тест", "trtr", "tr", ERROR_USERNAME_ONLY_LETTERS + SEMICOLON
                         + ERROR_UNVALID_EMAIL + SEMICOLON + ERROR_PASSWORD},
-                {"taras", "tr@tr.com", "trtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtr",
+                {"taras", "tr@tr.com", "tr".repeat(30),
                         ERROR_PASSWORD_MORE_60_SYMBOLS},
-                {"tr", "tr@tr.com", "trtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtr",
+                {"tr", "tr@tr.com", "tr".repeat(30),
                         ERROR_USERNAME + SEMICOLON + ERROR_PASSWORD_MORE_60_SYMBOLS},
         };
     }

@@ -1,4 +1,7 @@
 package data;
+import libs.ConfigProvider;
+
+import libs.ConfigProvider;
 
 //клас для зберігання тестових даних
 //які будуть використовуватись в тестах БАГАТО РАЗІВ

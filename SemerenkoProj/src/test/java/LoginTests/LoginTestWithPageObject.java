@@ -3,11 +3,14 @@ package LoginTests;
 import baseTest.BaseTest;
 import categories.SmokeTestFilter;
 import io.qameta.allure.*;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.junit.runner.RunWith;
 
 import java.io.IOException;
 import java.util.Map;
@@ -15,6 +18,7 @@ import java.util.Map;
 import static data.TestData.*;
 @Epic("Allure examples")
 @Feature("Junit 4 support")
+@RunWith(JUnitParamsRunner.class)
 public class LoginTestWithPageObject extends BaseTest {
     @Test
     @Category(SmokeTestFilter.class)
@@ -64,6 +68,26 @@ public class LoginTestWithPageObject extends BaseTest {
 
         Assert.assertFalse("Button SignOut is displayed", pageProvider.homePage().getHeader().isButtonSignOutVisible());
         Assert.assertTrue("Invalid Login massage is absent", pageProvider.loginPage().isMessageFailLogin());
+    }
+
+    @Test
+    @Parameters(method = "parametersForInvalidLoginWithParams")
+    public void invalidLoginWithParams(String login, String password) {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputLogin(login);
+        pageProvider.loginPage().enterTextIntoInputPass(password);
+        pageProvider.loginPage().clickOnButtonSignIn();
+
+        Assert.assertFalse("Button SignOut is displayed", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+        Assert.assertTrue("Invalid Login massage is absent", pageProvider.loginPage().isMessageFailLogin());
+    }
+
+    public Object[][] parametersForInvalidLoginWithParams(){
+        return new Object[][]{
+            {"invalidUsername", "qwerty"},
+            {"qaauto", "qazxcvbnnm"},
+            {"aqauto", "123456qwerty"}
+        };
     }
 
     @Test
