@@ -3,12 +3,23 @@ package LoginTests;
 import baseTest.BaseTest;
 import categories.SmokeTestFilter;
 import io.qameta.allure.*;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+import libs.ConfigProvider;
+import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.junit.runner.RunWith;
 
-import static libs.TestData.VALID_LOGIN_UI;
-import static libs.TestData.VALID_PASSWORD_UI;
+import java.io.IOException;
+import java.util.Map;
+
+import static data.TestData.VALID_LOGIN_UI;
+import static data.TestData.VALID_PASSWORD_UI;
+
+@RunWith(JUnitParamsRunner.class)
+
 @Epic("Allure examples")
 @Feature("Junit 4 support")
 
@@ -38,6 +49,19 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
+    public void validLoginWithExcel() throws IOException {
+        Map<String, String> dataForValidLogin = ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputLogin(dataForValidLogin.get("login"));
+        pageProvider.loginPage().enterTextIntoInputPassword(dataForValidLogin.get("pass"));
+        pageProvider.loginPage().clickOnButtonSignIn();
+
+        Assert.assertTrue("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
+    }
+
+
+
+    @Test
     public void invalidLogin() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextIntoInputLogin("invalidLogin");
@@ -47,6 +71,26 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertFalse("Button SignOut is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
         Assert.assertTrue("Error message is visible", pageProvider.loginPage().isErrorMessageVisible());
     }
+
+    @Test
+    @Parameters(method = "parametersForInvalidLoginWithParams")
+    public void invalidLoginWithParams(String login, String password) {
+        pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().enterTextIntoInputLogin(login);
+        pageProvider.loginPage().enterTextIntoInputPassword(password);
+        pageProvider.loginPage().clickOnButtonSignIn();
+        pageProvider.loginPage().checkIsInvalidUsernameOrPasswordMessageVisible();
+    }
+    public Object[][] parametersForInvalidLoginWithParams() {
+        return new Object[][]{
+                {VALID_LOGIN_UI, "wrong_password"},
+                {"wrong_username", VALID_PASSWORD_UI},
+                {"VeryLongLogin_VeryLongLogin_VeryLongLogin", "VeryLongPassword_VeryLongPassword_VeryLongPassword_VeryLongPassword"},
+                {"кирилиця", "кирилиця"}
+        };
+    }
+
+
 
     @Test
     public void checkCorrectStateOfUserLogin() {
