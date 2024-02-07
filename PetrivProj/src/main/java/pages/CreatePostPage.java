@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,6 +32,7 @@ public class CreatePostPage extends ParentPage {
     }
 
     // check if we are on Create Post Page
+    @Step
     public CreatePostPage checkIsRedirectToCreatePostPage() {
         checkUrl();
         Assert.assertTrue("Invalid page - not Create Post Page", isElementDisplayed(inputTitle));
@@ -38,34 +40,39 @@ public class CreatePostPage extends ParentPage {
     }
 
     // fill the title field
+    @Step
     public CreatePostPage enterTextIntoInputTitle(String title) {
         enterTextIntoInput(inputTitle, title);
         return this;
     }
 
-
+    @Step
     public CreatePostPage enterTextIntoInputBody(String bodyText) {
         enterTextIntoInput(inputBody, bodyText);
         return this;
     }
 
     // select Text in dropdown
+    @Step
     public CreatePostPage selectTextInDropDown(String textInDropDown) {
         selectTextInDropDown(dropDownSelectValue, textInDropDown);
         return this;
     }
 
     // select Value in dropdown
+    @Step
     public CreatePostPage selectValueInDropDown(String valueInDropDown) {
         selectValueInDropDown(dropDownSelectValue, valueInDropDown);
         return this;
     }
 
+    @Step
     public PostPage clickOnSaveNewPostButton() {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
 
+    @Step
     public CreatePostPage setCheckBoxUniquePost(String state) {
         setStateToCheckBox(checkBoxUniquePost, state);
         return this;

@@ -30,6 +30,7 @@ public class PageProvider {
     public HomePage homePage() {
         return new HomePage(webDriver);
     }
+    public EditPage editPage(){return new EditPage(webDriver);}
 
 
     public MyProfilePage myProfilePage() {

@@ -1,5 +1,6 @@
 package pages.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,7 +30,7 @@ public class HeaderElement extends CommonActionsWithElements {
 
     @FindBy(xpath = ".//*[@data-original-title='Search']")
     private WebElement buttonSearch;
-
+    @Step
     public LoginPage clickOnButtonSignOut() {
         clickOnElement(buttonSignOut);
         return new LoginPage(webDriver);
@@ -39,57 +40,62 @@ public class HeaderElement extends CommonActionsWithElements {
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
     }
+    @Step
     public boolean isButtonSignOutVisible() {
         return isElementDisplayed(buttonSignOut);
     }
+    @Step
     public MyProfilePage clickOnMyProfileButton() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
     }
 
+    @Step
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
     }
+    @Step
     public boolean isButtonCreatePostVisible() {
         return isElementDisplayed(buttonCreatePost);
     }
-
+    @Step
     public boolean isButtonMyProfileVisible() {
         return isElementDisplayed(buttonMyProfile);
     }
-
+    @Step
     public boolean isUserNameVisible() {
         return isElementDisplayed(userName);
     }
-
+    @Step
     public void checkInputInUserName(String text) {
         checkTextInElement(userName, text);
     }
+    @Step
     public boolean isButtonChatVisible() {
         return isElementDisplayed(buttonChat);
     }
-
+    @Step
     public boolean isButtonSearchVisible() {
         return isElementDisplayed(buttonSearch);
     }
-
+    @Step
     public void isButtonSignOutNotVisible() {
         checkIsElementNotVisible(buttonSignOut);
     }
-
+    @Step
     public void isButtonCreatePostNotVisible() {
         checkIsElementNotVisible(buttonCreatePost);
     }
-
+    @Step
     public void isButtonMyProfileNotVisible() {
         checkIsElementNotVisible(buttonMyProfile);
     }
-
+    @Step
     public void isButtonChatNotVisible() {
         checkIsElementNotVisible(buttonChat);
     }
-
+    @Step
     public void isButtonSearchNotVisible() {
         checkIsElementNotVisible(buttonSearch);
     }

@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -57,6 +58,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -66,28 +68,29 @@ public class LoginPage extends ParentPage {
             Assert.fail("Can not open Login Page");
         }
     }
-
+    @Step
     public String getPageHandler() {
         return webDriver.getWindowHandle();
     }
-
+    @Step
     public void enterTextIntoInput(String login) {
         enterTextIntoInput(inputLogin, login); // WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
     }
-
+    @Step
     public void enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password); // WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
     }
-
+    @Step
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSingIn); // WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
     }
 
     // is button Sign In visible
+    @Step
     public boolean isButtonSignInVisible() {
         return isElementDisplayed(buttonSingIn);
     }
-
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInput(TestData.VALID_LOGIN_UI);
@@ -95,21 +98,22 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         enterTextIntoInput(inputUserNameRegistration, userName);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email){
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password){
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
     }
-
+    @Step
     public LoginPage checkErrorMessages(String messages) {
         //error1;error2 -> [error1, error2]
         String[] expectedErrors = messages.split(";");
@@ -131,42 +135,43 @@ public class LoginPage extends ParentPage {
         softAssertions.assertAll();
         return this;
     }
-
+    @Step
     public boolean isAlertTextVisible() {
         return isElementDisplayed(validationMessage);
     }
-
+    @Step
     public boolean isInputUserNameNotVisible() {
         return isElementDisplayed(inputLogin);
     }
-
+    @Step
     public boolean isInputPasswordNotVisible() {
         return isElementDisplayed(inputPassword);
     }
-
+    @Step
     public boolean isButtonSignInNotVisible() {
         return isElementDisplayed(buttonSingIn);
     }
-
+    @Step
     public void checkIsRedirectToLoginPage() { // перевірка чи ми на сторінці логін
         Assert.assertEquals("Invalid page", "https://aqa-complexapp.onrender.com/", webDriver.getCurrentUrl());
     }
-
+    @Step
     public boolean isInputUserNameVisible() {
         return isElementDisplayed(inputLogin);
     }
-
+    @Step
     public boolean isInputPasswordVisible() {
         return isElementDisplayed(inputPassword);
     }
-
+    @Step
     public void clickOnButtonSignUp() {
         clickOnElement(buttonSingUp);
     }
-
+    @Step
     public boolean isValidationMessageForUserNameRegisterInputDisplayed() {
         return isElementDisplayed(validationMessageForUserNameRegister);
     }
+    @Step
     public boolean isValidationMessageForEmailRegisterInputDisplayed() {
         return isElementDisplayed(validationMessageForEmailRegister);
     }
@@ -174,29 +179,29 @@ public class LoginPage extends ParentPage {
     public boolean isValidationMessageForPasswordRegisterInputDisplayed() {
         return isElementDisplayed(validationMessageForPasswordRegister);
     }
-
+    @Step
     public void checkTextInValidationMessageForUserNameRegisterInput(String username){
         Assert.assertEquals("Username Text is invalid ", username, validationMessageForUserNameRegister.getText());
     }
-
+    @Step
     public void checkTextInValidationMessageForEmailRegisterInput(String email) {
         Assert.assertEquals("Email Text is invalid ", email, validationMessageForEmailRegister.getText());
     }
-
+    @Step
     public void checkTextInValidationMessageForPasswordRegisterInput(String password) {
         Assert.assertEquals("Password Text is invalid ", password, validationMessageForPasswordRegister.getText());
     }
-
+    @Step
     public LoginPage checkIsFieldLoginEmpty() {
         Assert.assertEquals("Field Login is not empty", "", inputLogin.getText());
         return this;
     }
-
+    @Step
     public LoginPage checkIsFieldPasswordEmpty() {
         Assert.assertEquals("Field Password is not empty", "", inputPassword.getText());
         return this;
     }
-
+    @Step
     public LoginPage checkIsButtonSignInVisible() {
         Assert.assertTrue("Button SignIn is not visible", isButtonSignInVisible());
         return this;

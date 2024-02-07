@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -72,6 +73,7 @@ public class LoginPage extends ParentPage {
         checkIsButtonSignInVisible();
     }
 
+    @Step
     public LoginPage openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -83,64 +85,77 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputLogin(String login) {
 //        WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']")); //For example
         enterTextIntoInput(inputLogin, login);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
         return this;
     }
 
+    @Step
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public boolean isButtonSignInVisible() {
         return isElementDisplayed(buttonSignIn);
     }
 
+    @Step
     public LoginPage checkIsButtonSignInVisible() {
         checkIsElementVisible(buttonSignIn);
         return this;
     }
 
+    @Step
     public LoginPage checkIsButtonSignInNotVisible() {
         checkIsElementInvisible(buttonSignIn);
         return this;
     }
 
+    @Step
     public LoginPage checkIsInputPasswordVisible() {
         checkIsElementVisible(inputPassword);
         return this;
     }
 
+    @Step
     public LoginPage checkIsPasswordInputNotVisible() {
         checkIsElementInvisible(inputPassword);
         return this;
     }
 
+    @Step
     public LoginPage checkIsInputLoginVisible() {
         checkIsElementVisible(inputLogin);
         return this;
     }
 
+    @Step
     public LoginPage checkIsLoginInputNotVisible() {
         checkIsElementInvisible(inputLogin);
         return this;
     }
 
+    @Step
     public boolean isInvalidUserNamePasswordAlertVisible() {
         return isElementDisplayed(invalidAlert);
     }
 
+    @Step
     public LoginPage checkIsInvalidUserNamePasswordAlertVisible(){
         checkIsElementVisible(invalidAlert);
         return this;
     }
 
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCreds() {
         openLoginPage();
         enterTextIntoInputLogin(DEFAULT_VALID_LOGIN_UI);
@@ -149,56 +164,64 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
-
+    @Step
     public LoginPage enterTextIntoRegistrationInputLogin(String login) {
         enterTextIntoInput(registrationInputLogin, login);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationInputPassword(String password) {
         enterTextIntoInput(registrationInputPassword, password);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationInputEmail(String email) {
         enterTextIntoInput(inputEmail, email);
         return this;
     }
 
+    @Step
     public LoginPage checkTextInRegistrationInputLogin(String text) {
         checkTextInElement(userNameRegValidation, text);
         return this;
     }
 
+    @Step
     public LoginPage checkTextInRegistrationInputEmail(String text) {
         checkTextInElement(emailRegValidation, text);
         return this;
     }
 
+    @Step
     public LoginPage checkTextInRegistrationInputPassword(String text) {
         checkTextInElement(passwordRegValidation, text);
         return this;
     }
 
+    @Step
     public void clickOnButtonSignUp() {
         clickOnElement(buttonSignUp);
     }
 
+    @Step
     public LoginPage checkIsValidationMessageForRegistrationInputLoginVisible() {
         checkIsElementVisible(userNameRegValidation);
         return this;
     }
 
+    @Step
     public LoginPage checkIsValidationMessageForRegistrationInputEmailVisible() {
         checkIsElementVisible(emailRegValidation);
         return this;
     }
-
+    @Step
     public LoginPage checkIsValidationMessageForRegistrationInputPasswordVisible() {
         checkIsElementVisible(passwordRegValidation);
         return this;
     }
-
+    @Step
     public LoginPage checkErrorMessages(String messages){
         String[] expectedErrors = messages.split(";");
         webDriverWait05.until(ExpectedConditions.numberOfElementsToBe(

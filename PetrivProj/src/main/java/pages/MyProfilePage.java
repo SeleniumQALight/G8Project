@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +19,7 @@ public class MyProfilePage extends ParentPage {
         return "/profile/[a-zA-Z0-9]*";
     }
 
+    @Step
     public MyProfilePage checkIsRedirectToMyProfilePage(){
         checkUrlWithPattern();
         // TODO: check is unique element present
@@ -28,11 +30,13 @@ public class MyProfilePage extends ParentPage {
         return webDriver.findElements(By.xpath(String.format(postTitleLocator, postTitle))); // method findElements() doesn't throw exception if element not found
     }
 
+    @Step
     public MyProfilePage checkPostWithTitleIsPresent(String postTitle) {
         Assert.assertEquals("Number of posts with title " + postTitle, 1, getPostsList(postTitle).size());
         return this;
     }
 
+    @Step
     public MyProfilePage deletePostsTillPresent(String postTitle) {
         List<WebElement> postsList = getPostsList(postTitle);
         int counter = 0;
@@ -53,6 +57,7 @@ public class MyProfilePage extends ParentPage {
         return this;
     }
 
+    @Step
     public MyProfilePage clickOnPostWithTitle(String postTitle) {
         // clickOnElement(getPostsList(postTitle).get(0)); // list can't be empty
         // clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, postTitle)))); // if element not found, throw exception (findElement()) can return exception

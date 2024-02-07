@@ -77,7 +77,7 @@ public class CommonActionsWhithElements {
             logger.info("Element " + getElementName(element) + " is displayed -> " + state);
             return state;
         } catch (Exception e) {
-            logger.info("Element is displayed -> false" + e);
+            logger.info("Element is displayed -> false");
             return false;
         }
     }

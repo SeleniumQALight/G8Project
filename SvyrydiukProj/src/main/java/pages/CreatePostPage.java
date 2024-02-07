@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,7 +32,7 @@ public class CreatePostPage extends ParentPage {
     String getRelativeUrl() {
         return "/create-post";
     }
-
+    @Step
     //check if we are on create post page
     public CreatePostPage checkIsRedirectToCreatePostPage() {
         checkUrl();
@@ -40,39 +41,39 @@ public class CreatePostPage extends ParentPage {
     }
 
     //enter text into input title
-
+    @Step
     public CreatePostPage enterTextIntoInputTitle(String title) {
         enterTextIntoInput(inputTitle, title);
         return this;
     }
-
+    @Step
     public CreatePostPage enterTextIntoInputBody(String bodyText) {
         enterTextIntoInput(inputBody, bodyText);
         return this;
     }
-
+    @Step
     //select Text from dropdown
     public CreatePostPage selectTextInDropDown(String textInDropDown) {
         selectTextInDropDown(dropDownSelectValue, textInDropDown);
         return this;
     }
-
+    @Step
     //select Value from dropdown
     public CreatePostPage selectValueInDropDown(String valueInDropDown) {
         selectValueInDropDown(dropDownSelectValue, valueInDropDown);
         return this;
     }
-
+    @Step
     public PostPage clickOnSaveNewPostButton() {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
-
+    @Step
     public CreatePostPage setCheckbox(String status) {
         setCheckbox(status,checkbox);
         return this;
     }
-
+    @Step
     public void clickOnSaveUpdatesButton() {
         clickOnElement(buttonSaveUpdates);
     }

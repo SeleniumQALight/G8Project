@@ -1,5 +1,6 @@
 package pages.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,84 +31,86 @@ public class HeaderElement extends CommonActionsWithElements {
     private WebElement buttonSearch;
 
 
+    @Step
     public boolean isButtonSignOutVisible() {
         return isElementDisplayed(buttonSignOut);
     }
 
+    @Step
     public HeaderElement checkIsButtonSignOutVisible() {
         checkIsElementVisible(buttonSignOut);
         return this;
     }
 
+    @Step
     public HeaderElement checkIsButtonSignOutNotVisible() {
         checkIsElementInvisible(buttonSignOut);
         return this;
     }
-
+    @Step
     public HeaderElement checkIsProfileNameVisible() {
         checkIsElementVisible(profileName);
         return this;
     }
-
+    @Step
     public HeaderElement checkIsProfileNameNotVisible() {
         checkIsElementInvisible(profileName);
         return this;
     }
-
+    @Step
     public HeaderElement checkIsButtonMyProfileIconVisible() {
         checkIsElementVisible(buttonMyProfile);
         return this;
     }
-
+    @Step
     public HeaderElement checkIsButtonMyProfileIconNotVisible() {
         checkIsElementInvisible(buttonMyProfile);
         return this;
     }
-
+    @Step
     public HeaderElement  checkIsCreatePostButtonVisible() {
         checkIsElementVisible(buttonCreatePost);
         return this;
     }
-
+    @Step
     public HeaderElement checkIsCreatePostButtonNotVisible() {
         checkIsElementInvisible(buttonCreatePost);
         return this;
     }
-
+    @Step
     public HeaderElement checkIsButtonChatVisible() {
         checkIsElementVisible(buttonChat);
         return this;
     }
-
+    @Step
     public HeaderElement checkIsButtonChatNotVisible() {
         checkIsElementInvisible(buttonChat);
         return this;
     }
-
+    @Step
     public HeaderElement checkIsButtonSearchVisible() {
         checkIsElementVisible(buttonSearch);
         return this;
     }
-
+    @Step
     public HeaderElement checkIsButtonSearchNotVisible() {
         checkIsElementInvisible(buttonSearch);
         return this;
     }
-
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
     }
-
+    @Step
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
     }
-
+    @Step
     public LoginPage clickOnButtonSignOut() {
         clickOnElement(buttonSignOut);
         return new LoginPage(webDriver);
     }
-
+    @Step
     public MyProfilePage clickOnButtonMyProfile() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);

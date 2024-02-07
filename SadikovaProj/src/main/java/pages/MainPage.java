@@ -1,6 +1,7 @@
 package pages;
 
 
+import io.qameta.allure.Step;
 import libs.Urls;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -56,18 +57,20 @@ public class MainPage extends ParentPage {
         super(webDriver);
     }
 
+    @Step()
     public void openMainPage() {
-        goToWebPage(Urls.HOME_PAGE_URL);
+        goToWebPage(baseUrl);
     }
 
+    @Step()
     public void enterTextIntoInputLogin(String login) {
         enterTextIntoInput(loginFieldInHeader, login);
     }
-
+    @Step()
     public void enterTextIntoInputPassword(String password) {
         enterTextIntoInput(passwordFieldInHeader, password);
     }
-
+    @Step()
     public boolean isWarningMessageVisible() {
         return isElementDisplayed(warningMessageInHeader);
     }
@@ -75,17 +78,19 @@ public class MainPage extends ParentPage {
     /**
      * VISIBLE
      */
+    @Step()
     public MainPage checkLoginFieldIsVisible() {
         checkIsElementVisible(loginFieldInHeader);
         return this;
     }
 
-
+    @Step()
     public MainPage checkPasswordFieldIsVisible() {
         checkIsElementVisible(passwordFieldInHeader);
         return this;
     }
 
+    @Step()
     public MainPage checkSignInButtonIsVisible() {
         checkIsElementVisible(signInButtonInHeader);
         return this;
@@ -96,26 +101,31 @@ public class MainPage extends ParentPage {
      * NOT visible elements
      */
 
+    @Step()
     public MainPage checkLoginFieldNotVisible() {
         checkElementIsNotDisplayed(loginFieldInHeader);
         return this;
     }
 
+    @Step()
     public MainPage checkPasswordFieldNotVisible() {
         checkElementIsNotDisplayed(passwordFieldInHeader);
         return this;
     }
 
+    @Step()
     public MainPage checkSignInButtonIsNotVisible() {
         checkElementIsNotDisplayed(signInButtonInHeader);
         return this;
     }
 
+    @Step()
     public MainPage checkErrorMessage(int index, String expectedText) {
         checkTextInElement(errorBlockList.get(index), expectedText);
         return this;
     }
 
+    @Step()
     public MainPage checkErrorsMessage(String messages) {
         String[] expectedErrors = messages.split(";");
         webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(errorsMessegesList), expectedErrors.length));
@@ -136,6 +146,7 @@ public class MainPage extends ParentPage {
         return this;
     }
 
+    @Step()
     public MainPage checkErrorMessageInLoginForm(String text) {
         checkTextInElement(errorMessageLoginForm, text);
         return this;
@@ -144,20 +155,21 @@ public class MainPage extends ParentPage {
     /**
      * CLICKS
      */
+    @Step()
     public void clickOnSignInForOurAppButton() {
         clickOnElement(signInForOurAppButton);
     }
 
-
+    @Step()
     public void clickOnButtonSingIn() {
         clickOnElement(signInButtonInHeader);
     }
-
+    @Step()
     public void clickOnButtonSignIn() {
         clickOnElement(signInButtonInHeader);
     }
 
-
+    @Step()
     public MainPage fillRegistrationForm(String name, String email, String pass) {
         enterTextIntoInput(userNameField, name);
         enterTextIntoInput(emailField, email);
@@ -166,12 +178,13 @@ public class MainPage extends ParentPage {
 
     }
 
+    @Step()
     public MainPage fillLoginForm(String login, String password) {
         enterTextIntoInputLogin(login);
         enterTextIntoInputPassword(password);
         return new MainPage(webDriver);
     }
-
+    @Step()
     public MainPage loginToProfile(String login, String password) {
         openMainPage();
         enterTextIntoInputLogin(login);
@@ -179,18 +192,20 @@ public class MainPage extends ParentPage {
         clickOnButtonSingIn();
         return new MainPage(webDriver);
     }
-
+    @Step()
     public MainPage enterLoginFieldWithKeys(String email) {
         enterTextWithKeys(loginFieldInHeader, email);
 
         return new MainPage(webDriver);
     }
 
+    @Step()
     public MainPage enterPasswordFieldWithKeys(String email) {
         enterTextWithKeys(passwordFieldInHeader, email);
         return new MainPage(webDriver);
     }
 
+    @Step()
     public MainPage pressSignInButton() {
         pressEnter(signInButtonInHeader);
         return new MainPage(webDriver);

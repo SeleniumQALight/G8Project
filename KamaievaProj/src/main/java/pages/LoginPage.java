@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -63,7 +64,7 @@ public class LoginPage extends ParentPage {
     protected String getRelatedUrl() {
         return "/";
     }
-
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -74,46 +75,50 @@ public class LoginPage extends ParentPage {
         }
     }
 
-    public void enterTextIntoInputLogin(String login) {
+    @Step
+    public LoginPage enterTextIntoInputLogin(String login) {
         enterTextIntoInput(inputLogin, login);
+        return this;
     }
-
-    public void enterTextIntoInputPassword(String password) {
+    @Step
+    public LoginPage enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
+        return this;
     }
-
+    @Step
     public void enterTextIntoInputUsernameRegister(String username) {
         enterTextIntoInput(inputUsernameRegister, username);
     }
-
+    @Step
     public void enterTextIntoInputEmailRegister(String email) {
         enterTextIntoInput(inputEmailRegister, email);
     }
-
+    @Step
     public void enterTextIntoInputPasswordRegister(String password) {
         enterTextIntoInput(inputPasswordRegister, password);
     }
-
+    @Step
     public void clickOnButtonSignUp() {
         clickOnElement(buttonSignUp);
     }
-
+    @Step
     public boolean isInputLoginVisible() {
         return isElementDisplayed(inputLogin);
     }
-
+    @Step
     public boolean isInputPasswordVisible() {
         return isElementDisplayed(inputPassword);
     }
-
-    public void clickOnButtonSignIn() {
+    @Step
+    public HomePage clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
+        return new HomePage(webDriver);
     }
-
+    @Step
     public boolean isButtonSignInVisible() {
         return isElementDisplayed(buttonSignIn);
     }
-
+    @Step
     public boolean isAlertInvalidUsernamePasswordVisible() {
         try {
             boolean state = webDriver.findElement(By.xpath("//div[text() = 'Invalid username/password.']")).isDisplayed();
@@ -125,6 +130,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCreate() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
@@ -132,44 +138,44 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
-
+    @Step
     public LoginPage checkIsInputUsernameNotVisible() {
         checkIsElementNotVisible(inputLogin, "Input Username");
         return this;
     }
-
+    @Step
     public LoginPage checkIsInputPasswordNotVisible() {
         checkIsElementNotVisible(inputPassword, "Input Password");
         return this;
     }
-
+    @Step
     public LoginPage checkIsButtonSignInNotVisible() {
         checkIsElementNotVisible(buttonSignIn, "Button Sign In");
         return this;
     }
-
+    @Step
     public LoginPage checkIsRedirectToLoginPage() {
         checkCurrentUrl();
         Assert.assertTrue("Login page is not opened", isButtonSignInVisible());
         return this;
     }
-
+    @Step
     public boolean checkIsValidationMessageUsernameRegisterVisible() {
         return checkIsValidationMessageVisible(validationMessageUsernameRegister);
     }
-
+    @Step
     public boolean checkIsValidationMessageEmailRegisterVisible() {
         return checkIsValidationMessageVisible(validationMessageEmailRegister);
     }
-
+    @Step
     public boolean checkIsValidationMessagePasswordRegisterVisible() {
         return checkIsValidationMessageVisible(validationMessagePasswordRegister);
     }
-
+    @Step
     public void checkIsAlertInvalidUsernamePasswordVisible() {
         checkIsElementVisible(validationMessagesInvalidUsernamePassword);
     }
-
+    @Step
     public LoginPage checkErrorsMessages(String message) {
         // error1; error2; -> [error1, error2]
         String[] expectedErrors = message.split(";");
