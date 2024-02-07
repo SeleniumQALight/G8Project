@@ -2,18 +2,25 @@ package loginTests;
 
 import baseTest.BaseTest;
 import categories.SmokeTestFilter;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
+import libs.ExcelSpreadsheetData;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.junit.runner.RunWith;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Map;
 
 import static data.TestData.VALID_LOGIN_UI;
 import static data.TestData.VALID_PASSWORD_UI;
 
+@RunWith(JUnitParamsRunner.class)
 public class LoginTestWithPageObject extends BaseTest {
     @Test
     @Category(SmokeTestFilter.class)
@@ -34,43 +41,27 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
-    public void invalidLogin() {
+    @Parameters(method = "parametersForInvalidLogin")
+    public void invalidLogin(String userName, String password,boolean signInVisibility, boolean signOutVisibility, boolean alertVisibility) {
 
         pageProvider.loginPage().openLoginPage();
-        pageProvider.loginPage().enterTextIntoInput("quytto");
-        pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
+        pageProvider.loginPage().enterTextIntoInput(userName);
+        pageProvider.loginPage().enterTextIntoInputPassword(password);
         pageProvider.loginPage().clickOnButtonSignIn();
 
-        Assert.assertTrue("Button SignIn is not visible", pageProvider.loginPage().isButtonSignInVisible());
-        Assert.assertFalse("Button SignOutTest is visible", pageProvider.homePage().isButtonSignOutVisible());
-        Assert.assertTrue("Alert is not visible", pageProvider.loginPage().isAlertTextVisible());
-    }
-    @Test
-    public void invalidPassword() {
-
-        pageProvider.loginPage().openLoginPage();
-        pageProvider.loginPage().enterTextIntoInput(VALID_LOGIN_UI);
-        pageProvider.loginPage().enterTextIntoInputPassword("INVALID_PASSWORD");
-        pageProvider.loginPage().clickOnButtonSignIn();
-
-        Assert.assertTrue("Button SignIn is not visible", pageProvider.loginPage().isButtonSignInVisible());
-        Assert.assertFalse("Button SignOutTest is visible", pageProvider.homePage().isButtonSignOutVisible());
-        Assert.assertTrue("Alert is not visible", pageProvider.loginPage().isAlertTextVisible());
+        Assert.assertEquals("Button SignIn is not visible", signInVisibility, pageProvider.loginPage().isButtonSignInVisible());
+        Assert.assertEquals("Button SignOutTest is visible", signOutVisibility, pageProvider.homePage().isButtonSignOutVisible());
+        Assert.assertEquals("Alert is not visible", alertVisibility, pageProvider.loginPage().isAlertTextVisible());
     }
 
-    @Test
-    public void invalidLoginAndPassword() {
+    public Collection parametersForInvalidLogin() throws IOException {
+        final String pathToDataFile = ConfigProvider.configProperties.DATA_FILE_PATH() + "LoginTestData.xls";
+        final String sheetName = "invalidLogin";
+        final boolean skipFirstRow = true; // skip first row in file (header)
+        logger.info("Data file path:" + pathToDataFile + "\nSheet name: " + sheetName + "\nSkip first row: "  + skipFirstRow);
 
-        pageProvider.loginPage().openLoginPage();
-        pageProvider.loginPage().enterTextIntoInput("INVALID_LOGIN");
-        pageProvider.loginPage().enterTextIntoInputPassword("INVALID_PASSWORD");
-        pageProvider.loginPage().clickOnButtonSignIn();
-
-        Assert.assertTrue("Button SignIn is not visible", pageProvider.loginPage().isButtonSignInVisible());
-        Assert.assertFalse("Button SignOutTest is visible", pageProvider.homePage().isButtonSignOutVisible());
-        Assert.assertTrue("Alert is not visible", pageProvider.loginPage().isAlertTextVisible());
+        return new ExcelSpreadsheetData(new FileInputStream(pathToDataFile), sheetName, skipFirstRow).getData();
     }
-
 
     @Test
     public void validLoginWithExel() throws IOException {
@@ -85,7 +76,7 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
-    public void checkLoggedUserInNewTab(){
+    public void checkLoggedUserInNewTab() {
         pageProvider.loginPage().openLoginPage();
         String mainPageHandler = pageProvider.loginPage().getPageHandler();
         pageProvider.loginPage().enterTextIntoInput(VALID_LOGIN_UI);
@@ -103,9 +94,8 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.switchToTab(mainPageHandler);
         pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
     }
-
     @Test
-    public void checkToRefreshPage(){
+    public void checkToRefreshPage() {
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextIntoInput(VALID_LOGIN_UI);
         pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
