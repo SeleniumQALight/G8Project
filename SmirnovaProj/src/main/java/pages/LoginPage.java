@@ -199,4 +199,12 @@ public class LoginPage extends ParentPage {
     public void checkErrorsMessagesLogin(String expectedMessage) {
         checkTextInElement(invalidLoginMessage, expectedMessage);
     }
+
+    public HomePage fillLoginFormAndSubmit(String login, String password) {
+        openLoginPage();
+        enterTextIntoInputLogin(login);
+        enterTextIntoInputPassword(password);
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
+    }
 }

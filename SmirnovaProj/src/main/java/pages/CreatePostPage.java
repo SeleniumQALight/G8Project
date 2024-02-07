@@ -18,6 +18,8 @@ public class CreatePostPage extends ParentPage {
     private WebElement buttonSave;
     @FindBy(xpath = "//input[@type='checkbox']")
     private WebElement checkBoxUniquePost;
+    @FindBy(xpath = ".//button[text()='Save Updates']")
+    private WebElement buttonSaveUpdates;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -68,6 +70,11 @@ public class CreatePostPage extends ParentPage {
     public CreatePostPage setCheckBoxUniquePostChosen() {
         setStateToCheckBox(checkBoxUniquePost, "check");
         return this;
+    }
+
+    public PostPage clickOnSaveUpdatesButton() {
+        clickOnElement(buttonSaveUpdates);
+        return new PostPage(webDriver);
     }
     public CreatePostPage setCheckBoxUniquePost(String state) {
         setStateToCheckBox(checkBoxUniquePost, state);
