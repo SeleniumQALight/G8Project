@@ -1,7 +1,6 @@
 package loginTests;
 
 import baseTest.BaseTest;
-import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
@@ -11,7 +10,6 @@ import libs.ExcelDriver;
 import libs.ExcelSpreadsheetData;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import java.io.FileInputStream;
