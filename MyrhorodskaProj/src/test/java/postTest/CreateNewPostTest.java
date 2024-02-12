@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "TC_001_myrhorodska " + Util.getDateAndTimeFormatted();
-    final String POST_BODY = "body text";
+    final String POST_BODY = "Myrhorodska Body";
     final String DROPDOWN_VALUE = "One Person";
     @Test
     public void createNewPost() {
