@@ -22,7 +22,9 @@ public class EditPostTitleTest extends BaseTest {
         String updatedPostTitle;
 
         public void createNewPostWithExcelData (String title, String body, String valueInDropDown, String state) {
-            pageProvider.loginPage().getHeader().clickOnButtonCreatePost()
+            pageProvider.loginPage().openLoginPageAndFillLoginFormWithValidCred()
+                    .checkIsredirectToHomePage()
+                    .getHeader().clickOnButtonCreatePost()
                     .checkIsRedirectOnCreatePostPage()
                     .enterTextInToInputTitle(title)
                     .enterTextInToInputBody(body)

@@ -2,6 +2,7 @@ package pages;
 
 
 import io.qameta.allure.Step;
+import libs.DB_Util_seleniumUser;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -11,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -265,6 +267,15 @@ public class LoginPage extends ParentPage{
         softAssertions.assertAll(); // check all assertion
 
         return this;
+    }
+    @Step
+    public HomePage openLoginPageAndFillLoginFormWithPasswordFromDB() throws SQLException, ClassNotFoundException {
+        openLoginPage();
+        enterTextInToInputLogin("newqaauto");
+        DB_Util_seleniumUser dbUtilSeleniumUsers  = new DB_Util_seleniumUser();
+        enterTextInToInputPassword(dbUtilSeleniumUsers.getPassForLogin("newqaauto"));
+        clickOnButtonSingIn();
+        return new HomePage(webDriver);
     }
 }
 
