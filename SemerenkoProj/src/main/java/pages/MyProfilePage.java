@@ -53,11 +53,11 @@ public class MyProfilePage extends ParentPage {
         return this;
     }
 
-    public MyProfilePage clickOnPostWithTitle(String postTitle) {
+    public PostPage clickOnPostWithTitle(String postTitle) {
         // clickOnElement(getPostsList(postTitle).get(0));  // list can not be empty
 
 //
 clickOnElement(String.format(postTitleLocator, postTitle));
-        return this;
+        return new PostPage(webDriver);
     }
 }
