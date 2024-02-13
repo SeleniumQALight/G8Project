@@ -21,7 +21,7 @@ public class PostsDto {
     private String uniquePost;
     private String createdDate;
     private AuthorDTO author;
-    private boolean isVisitorOwner;
+    private Boolean isVisitorOwner;
 
     public PostsDto(String title, String body, String select, String uniquePost, AuthorDTO author, boolean isVisitorOwner) {
         this.title = title;
@@ -88,13 +88,13 @@ public class PostsDto {
 //        this.author = author;
 //    }
 //
-    public boolean getIsVisitorOwner() {
-        return isVisitorOwner;
-    }
+  //  public boolean getIsVisitorOwner() {
+   //     return isVisitorOwner;
+   // }
 
-    public void setIsVisitorOwner(boolean visitorOwner) {
-        isVisitorOwner = visitorOwner;
-    }
+   // public void setIsVisitorOwner(boolean visitorOwner) {
+   //     isVisitorOwner = visitorOwner;
+   // }
 
   //  @Override
   //  public String toString() {
