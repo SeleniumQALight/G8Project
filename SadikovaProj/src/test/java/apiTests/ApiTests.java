@@ -33,6 +33,7 @@ public class ApiTests {
                         .body("[0].title", equalTo("test2"))
                         .body("author.username", everyItem(equalTo(USER_NAME)))
                         .extract().body().as(PostDto[].class);
+
         logger.info(actualResponseAsDto[0].toString());
         logger.info("Size = " + actualResponseAsDto.length);
         logger.info("Title [0] = " + actualResponseAsDto[0].getTitle());
