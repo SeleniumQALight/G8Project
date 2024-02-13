@@ -1,7 +1,15 @@
 package api.dto.responseDto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class PostsDto {
     @JsonProperty("_id")
     private String id;
@@ -15,8 +23,9 @@ public class PostsDto {
     private Boolean isVisitorOwner;
 
 
-    public PostsDto() {
-    }
+/*    public PostsDto() {
+    }*/
+
     public PostsDto(String title, String body, String select, String uniquePost, AuthorDTO author, Boolean isVisitorOwner) {
         this.title = title;
         this.body = body;
@@ -26,7 +35,7 @@ public class PostsDto {
         this.isVisitorOwner = isVisitorOwner;
     }
 
-    public String getId() {
+   /* public String getId() {
         return id;
     }
 
@@ -102,5 +111,5 @@ public class PostsDto {
                 ", author=" + author +
                 ", isVisitorOwner=" + isVisitorOwner +
                 '}';
-    }
+    }*/
 }

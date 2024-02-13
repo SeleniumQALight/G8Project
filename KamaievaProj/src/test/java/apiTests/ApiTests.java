@@ -57,6 +57,5 @@ public class ApiTests {
                 .ignoringFields("id", "createdDate","author.avatar")
                                 .isEqualTo(expectedDto);
         softAssertions.assertAll();
-
     }
 }
