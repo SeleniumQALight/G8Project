@@ -75,6 +75,21 @@ public class HomePage extends ParentPage {
         return this;
     }
 
+    public HomePage openHomePageLoginIfNeeded(String login, String password) {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if (this.getHeader().isButtonSignOutVisible()) {
+            logger.info("User is already logged in");
+        } else {
+            loginPage.enterTextIntoInputLogin(login);
+            loginPage.enterTextIntoInputPass(password);
+            loginPage.clickOnButtonSignIn();
+            checkIsRedirectToHomePage();
+            logger.info("User is logged in");
+        }
+        return this;
+    }
+
     public HomePage openLoginPageInNewTab() {
         Set<String> tabSet = openNewTab();
         switchBetweenTabs(tabSet.size(), tabSet);

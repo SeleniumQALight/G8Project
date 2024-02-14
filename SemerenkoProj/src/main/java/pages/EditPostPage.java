@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class EditPostPage extends ParentPage {
     @FindBy(xpath = ".//a[text()='« Back to post permalink']")
@@ -111,5 +112,13 @@ public class EditPostPage extends ParentPage {
     public EditPostPage checkIsSuccessPostUpdateMessageVisible(){
         isElementDisplayed(messageSuccessEditPost);
         return this;
+    }
+
+    public MyProfilePage redirectOnProfilePage(){
+        return new MyProfilePage(webDriver);
+    }
+
+    public HeaderElement getHeader() {
+        return new HeaderElement(webDriver);
     }
 }

@@ -4,10 +4,8 @@ import baseTest.BaseTest;
 import data.TestData;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import libs.ConfigProvider;
-import libs.DB_Util_seleniumUsers;
-import libs.ExcelSpreadsheetData;
-import libs.Util;
+import libs.*;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,36 +14,44 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Map;
 
 import static data.TestData.NEW_LOGIN_UI;
 
-@RunWith(JUnitParamsRunner.class)
+
 public class CreateNewPostAndModifyTest extends BaseTest {
     private DB_Util_seleniumUsers dbUtilSeleniumUsers = new DB_Util_seleniumUsers();
-    private String postTitles;
+    private Map<String, String> dataForValidLogin =
+            ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "NewPost");
+    private String postTitles = dataForValidLogin.get("postTitle") + Util.getDateAndTimeFormatted();
+    ;
+    private String postTitlesNew = postTitles + dbUtilSeleniumUsers.getAliasForLogin(NEW_LOGIN_UI);
+    private String password = dbUtilSeleniumUsers.getPassForLogin(NEW_LOGIN_UI);
 
-    //@Before
-    @Test
-    @Parameters(method = "parametersForCreateNewPost")
-    public void createNewPost(String postTitle, String postBody, String dropDownValue, String stateOfCheckBox, String massage, String stateOfUniquePost) throws SQLException, ClassNotFoundException {
-        postTitles = postTitle + Util.getDateAndTimeFormatted();
+    public CreateNewPostAndModifyTest() throws SQLException, ClassNotFoundException, IOException {
+    }
+
+    @Before
+    public void createNewPost() throws SQLException, ClassNotFoundException, IOException {
+
+
         pageProvider.loginPage()
-                .openLoginPageAndFillLoginFormWithValidCred(NEW_LOGIN_UI, dbUtilSeleniumUsers.getPassForLogin(NEW_LOGIN_UI))
+                .openLoginPageAndFillLoginFormWithValidCred(NEW_LOGIN_UI, password)
                 .checkIsRedirectToHomePage()
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextIntoInputTitle(postTitles)
-                .enterTextIntoInputBody(postBody)
-                .setStateOfCheckBox(stateOfCheckBox)
-                .selectValueInDropDown(dropDownValue)
+                .enterTextIntoInputBody(dataForValidLogin.get("postBody"))
+                .setStateOfCheckBox(dataForValidLogin.get("stateOfCheckBox"))
+                .selectValueInDropDown(dataForValidLogin.get("dropDownValue"))
                 .clickOnSavePostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
-                .checkTextInSuccessMessage(massage)
+                .checkTextInSuccessMessage(dataForValidLogin.get("massage"))
                 .checkIsTitleVisible(postTitles)
-                .checkIsBodyVisible(postBody)
-                .checkNoteCreatePostMessage(dropDownValue)
-                .checkStateOfUniquePost(stateOfUniquePost)
+                .checkIsBodyVisible(dataForValidLogin.get("postBody"))
+                .checkNoteCreatePostMessage(dataForValidLogin.get("dropDownValue"))
+                .checkStateOfUniquePost(dataForValidLogin.get("stateOfUniquePost"))
                 .getHeader().clickOnButtonProfile(NEW_LOGIN_UI)
                 .checkIsRedirectToMyProfilePage()
                 .checkPostWithTitleIsPresent(postTitles);
@@ -53,43 +59,32 @@ public class CreateNewPostAndModifyTest extends BaseTest {
 
 
     @Test
-    @Parameters(method = "parametersForSearchAndModifyPost")
-    public void SearchAndModifyPost(String postTitle, String postBody, String dropDownValue, String stateOfCheckBox, String massage, String stateOfUniquePost) throws SQLException, ClassNotFoundException {
-        pageProvider.loginPage()
-                .openLoginPageAndFillLoginFormWithValidCred(NEW_LOGIN_UI, dbUtilSeleniumUsers.getPassForLogin(NEW_LOGIN_UI))
+    public void SearchAndModifyPost() throws SQLException, ClassNotFoundException {
+        pageProvider.homePage()
+                .openHomePageLoginIfNeeded(NEW_LOGIN_UI, password)
                 .checkIsRedirectToHomePage()
                 .getHeader()
-                .clickOnButtonProfile()
+                .clickOnButtonProfile(NEW_LOGIN_UI)
                 .checkPostWithTitleIsPresent(postTitles)
                 .clickOnPostWithTitle(postTitles)
                 .clickOnEditButton()
-                .enterTextIntoInputTitle(postTitles + dbUtilSeleniumUsers.getAliasForLogin(NEW_LOGIN_UI))
+                .enterTextIntoInputTitle(postTitlesNew)
                 .clickOnSaveUpdates()
-                .checkIsSuccessPostUpdateMessageVisible();
+                .checkIsSuccessPostUpdateMessageVisible()
+                .getHeader()
+                .clickOnButtonProfile(NEW_LOGIN_UI)
+                .checkPostWithTitleIsPresent(postTitlesNew)
+
+        ;
 
     }
 
-
-    public Collection parametersForCreateNewPost() throws IOException {
-        final String pathToFile = ConfigProvider.configProperties.DATA_FILE_PATH() + "testDataSuit.xls";
-        final String sheetName = "createPostAndModify";
-        final boolean skipFirstRow = false;
-        logger.info("Data file path: " + pathToFile + "\nSheet name: " + sheetName + "\nSkip first row: " + skipFirstRow);
-        return new ExcelSpreadsheetData(new FileInputStream(pathToFile), sheetName, skipFirstRow).getData();
-    }
-
-    public Collection parametersForSearchAndModifyPost() throws IOException {
-        final String pathToFile = ConfigProvider.configProperties.DATA_FILE_PATH() + "testDataSuit.xls";
-        final String sheetName = "createPostAndModify";
-        final boolean skipFirstRow = false;
-        logger.info("Data file path: " + pathToFile + "\nSheet name: " + sheetName + "\nSkip first row: " + skipFirstRow);
-        return new ExcelSpreadsheetData(new FileInputStream(pathToFile), sheetName, skipFirstRow).getData();
-    }
-
-    public void deletePost(String postTitle) {
-        pageProvider.homePage().openHomePageLoginIfNeeded()
-                .getHeader().clickOnButtonProfile()
+    @After
+    public void deletePost() {
+        pageProvider.homePage().openHomePageLoginIfNeeded(NEW_LOGIN_UI, password)
+                .getHeader().clickOnButtonProfile(NEW_LOGIN_UI)
                 .checkIsRedirectToMyProfilePage()
-                .deletePostTillPresent(postTitle);
+                .deletePostTillPresent(postTitles)
+                .deletePostTillPresent(postTitlesNew);
     }
 }
