@@ -33,7 +33,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkOfNoteTextValue(POST_BODY_NOTE)
         ;
 
-        pageProvider.getpostPage().getHeader().clickOnMyProfileButton()
+        pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkPostWithTitleIsPresent(POST_TITLE)
         ;

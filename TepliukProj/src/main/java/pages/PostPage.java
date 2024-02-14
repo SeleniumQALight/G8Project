@@ -22,6 +22,15 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = "(//div[@class='body-content']//p)[2]")
     private WebElement bodyAfterCreatePostText;
 
+    @FindBy(xpath = ".//a[@data-original-title='Edit']")
+    private WebElement buttonEdit;
+
+    @FindBy(xpath = ".//form[contains(@action, '/post/')]//button")
+    private WebElement buttonSaveUpdates;
+
+    @FindBy(xpath = ".//input[@id='post-title']")
+    private WebElement inputTitle;
+
     //private String uniquePostElement = "//div/p[contains(text(),'Is this post unique? : %s')]";
     private String checkBoxIsThisPostUnique = "//div/p[contains(text(),'Is this post unique? : %s')]";
     private String noteOnPostPageValue = "//i//u[contains(text(),'%s')]";
@@ -82,5 +91,17 @@ public class PostPage extends ParentPage {
         checkIsElementVisible(webDriver.findElement(By.xpath(String.format(noteOnPostPageValue, valueInDropDown))));
 
         return this;
+    }
+
+    public PostPage clickOnEditButton() {
+        clickOnElement(buttonEdit);
+        return this;
+    }
+    public PostPage clickOnSaveUpdatesButton() {
+        clickOnElement(buttonSaveUpdates);
+        return this;
+    }
+    public void enterTextIntoInputTitle(String text) {
+        enterTextIntoInput(inputTitle, text);
     }
 }
