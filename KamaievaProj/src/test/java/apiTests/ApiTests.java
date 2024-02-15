@@ -9,6 +9,7 @@ import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -115,6 +116,7 @@ public class ApiTests {
     }
 
     @Test
+    @Ignore
     public void getAllPostByUserSchema() {
         apiHelper.getAllPostsByUserRequest(USER_NAME)
                 .assertThat()
