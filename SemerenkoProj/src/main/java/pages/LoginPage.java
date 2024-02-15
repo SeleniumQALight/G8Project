@@ -15,6 +15,8 @@ import pages.elements.HeaderElement;
 import java.util.ArrayList;
 import java.util.List;
 
+import static data.TestData.*;
+
 public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//input[@placeholder='Username']")
@@ -116,8 +118,17 @@ public class LoginPage extends ParentPage {
     @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
-        enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
-        enterTextIntoInputPass(TestData.VALID_PASSWORD_UI);
+        enterTextIntoInputLogin(VALID_LOGIN_UI);
+        enterTextIntoInputPass(VALID_PASSWORD_UI);
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
+    }
+
+    @Step
+    public HomePage openLoginPageAndFillLoginFormWithValidCred(String login, String password) {
+        openLoginPage();
+        enterTextIntoInputLogin(login);
+        enterTextIntoInputPass(password);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
