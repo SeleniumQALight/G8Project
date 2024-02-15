@@ -11,5 +11,6 @@ public class TestData {
     public final static String INVALID_EMAIL_UI = "tr";
     public final static String INVALID_PASSWORD_UI = "tr";
 
-
+public final static String VALID_LOGIN_API = "tepliuk";
+public final static String VALID_PASSWORD_API = "123456qwerty";
 }
