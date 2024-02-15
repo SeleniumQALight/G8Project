@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.ConfigProvider;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -29,6 +30,7 @@ abstract public class ParentPage extends CommonActionsWithElements {
         logger.info("Url is correct");
     }
 
+    @Step(value = "")
     protected void containsUrl() {
         webDriverWait10.until(ExpectedConditions.urlContains(baseUrl + getRelativeUrl()));
         logger.info("Url is correct");
