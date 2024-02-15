@@ -14,4 +14,7 @@ public class TestData {
     public final static String ERROR_PASSWORD = "Password must be at least 12 characters.";
     public final static String ERROR_PASSWORD_CHARACTERS_COUNT = "Password cannot exceed 50 characters.";
     public final static String SEMICOLON = ";";
+
+    public final static String VALID_LOGIN_API = "vladyslava";
+    public final static String VALID_PASSWORD_API = "123456qweqwe";
 }
