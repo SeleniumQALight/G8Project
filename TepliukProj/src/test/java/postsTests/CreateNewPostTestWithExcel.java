@@ -44,7 +44,7 @@ public class CreateNewPostTestWithExcel extends BaseTest {
                 .checkPostUniqueStateAfterCreatePost(uniquePostMessage);
 
 
-        pageProvider.getpostPage().getHeader().clickOnMyProfileButton()
+        pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkPostWithTitleIsPresent(POST_TITLE)
         ;
