@@ -13,8 +13,8 @@ import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
-
 import static io.restassured.RestAssured.given;
+import static org.apache.hc.core5.http.HttpStatus.SC_OK;
 
 public class ApiHelper {
 
@@ -64,5 +64,16 @@ public class ApiHelper {
                         .extract().response().getBody();
 
         return responseBody.asString().replace("\"", "");
+    }
+
+    public ValidatableResponse getExchangeRateByDate (String startDate) {
+
+        return  given()
+                .spec(requestSpecification)
+                .queryParam("date", startDate)
+                .when()
+                .get(PrivatEndPoints.EXCHANGE_RATE_BY_DATE)
+                .then()
+                .spec(responseSpecification.statusCode(SC_OK));
     }
 }
