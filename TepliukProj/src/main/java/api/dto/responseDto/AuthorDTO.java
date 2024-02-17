@@ -5,6 +5,8 @@ import lombok.*;
 @Data
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 
 public class AuthorDTO {
     private String username;
@@ -13,8 +15,8 @@ public class AuthorDTO {
 
 
 
-    public AuthorDTO(String username) {
-        this.username = username;
-    }
+//    public AuthorDTO(String username) {
+//        this.username = username;
+//    }
 
 }
