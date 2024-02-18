@@ -1,7 +1,6 @@
 package apiTests;
 
 import api.ApiHelper;
-import api.dto.responsePrivat.ExchangeRateDto;
 import api.dto.responsePrivat.MainExchangeDataDto;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
