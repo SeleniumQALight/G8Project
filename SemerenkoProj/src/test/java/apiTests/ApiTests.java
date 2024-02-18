@@ -74,7 +74,7 @@ public class ApiTests {
         Assert.assertEquals("Number of posts ", expectedDto.length, actualResponseAsDto.length);
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThat(actualResponseAsDto)
-                .usingRecursiveComparison()
+                .usingRecursiveComparison() // для перевірки відповідності джейсона поелементно
                 .ignoringFields("_id", "createdDate", "author.avatar")
                 .isEqualTo(expectedDto);
         softAssertions.assertAll();
