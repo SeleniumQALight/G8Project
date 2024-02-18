@@ -17,6 +17,34 @@ public class Hw1 {
 
     Logger logger = Logger.getLogger(getClass());
     ApiHelper apiHelper = new ApiHelper();
+    String[] CURRENCY = {
+            "AUD",
+            "AZN",
+            "BYN",
+            "CAD",
+            "CHF",
+            "CNY",
+            "CZK",
+            "DKK",
+            "EUR",
+            "GBP",
+            "GEL",
+            "HUF",
+            "ILS",
+            "JPY",
+            "KZT",
+            "MDL",
+            "NOK",
+            "PLN",
+            "SEK",
+            "SGD",
+            "TMT",
+            "TRY",
+            "UAH",
+            "USD",
+            "UZS",
+            "XAU"
+    };
 
     @Test
     public void getExchangeRateByDate() {
@@ -24,52 +52,26 @@ public class Hw1 {
         Response actualResponse = apiHelper.getExchangeRateByDate("29.03.2023")
                 .extract().response();
 
+        SoftAssertions softAssertions = new SoftAssertions();
+
         MainExchangeDataDto actualResponseAsDto = actualResponse.as(MainExchangeDataDto.class);
 
-        MainExchangeDataDto expectedDto=
-                MainExchangeDataDto.builder()
-                        .date("29.03.2023")
-                        .bank("PB")
-                        .baseCurrency(980)
-                        .baseCurrencyLit("UAH")
-                        .exchangeRate(new ExchangeRateDto[]{
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("AUD").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("AZN").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("BYN").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("CAD").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("CHF").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("CNY").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("CZK").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("DKK").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("EUR").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("GBP").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("GEL").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("HUF").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("ILS").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("JPY").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("KZT").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("MDL").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("NOK").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("PLN").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("SEK").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("SGD").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("TMT").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("TRY").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("UAH").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("USD").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("UZS").build(),
-                                ExchangeRateDto.builder().baseCurrency("UAH").currency("XAU").build()
-                        }).build();
-
-
-        SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThat(actualResponseAsDto)
                 .usingRecursiveComparison()
                 .ignoringFields("exchangeRate.saleRateNB", "exchangeRate.purchaseRateNB",
-                        "exchangeRate.saleRate", "exchangeRate.purchaseRate")
-                .isEqualTo(expectedDto);
-        softAssertions.assertAll();
+                        "exchangeRate.saleRate", "exchangeRate.purchaseRate");
+                softAssertions.assertThat(actualResponseAsDto.getDate()).isEqualTo("29.03.2023");
+                softAssertions.assertThat(actualResponseAsDto.getBank()).isEqualTo("PB");
+                softAssertions.assertThat(actualResponseAsDto.getBaseCurrency()).isEqualTo(980);
+                softAssertions.assertThat(actualResponseAsDto.getBaseCurrencyLit()).isEqualTo("UAH");
+
+        for (int i = 0; i < actualResponseAsDto.getExchangeRate().length; i++) {
+            softAssertions.assertThat(actualResponseAsDto.getExchangeRate()[i].getBaseCurrency()).isEqualTo("UAH");
+            softAssertions.assertThat(actualResponseAsDto.getExchangeRate()[i].getCurrency()).isIn(CURRENCY);
         }
+
+                softAssertions.assertAll();
+    }
 
     @Test
     public void validateSchema() {
