@@ -47,7 +47,7 @@ public class PrivateApiTest {
 
     @Test
     public void validateSchemeOfPrivateResponse() {
-        apiHelperPrivat.getExchangeRateByDate(DATE).assertThat().body(matchesJsonSchemaInClasspath("responsePrivate.json"));
+        apiHelperPrivat.getExchangeRateByDate(DATE).assertThat().body(matchesJsonSchemaInClasspath("responsePrivatSchema.json"));
     }
 
     @Test
