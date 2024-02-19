@@ -22,6 +22,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import pages.PageProvider;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.time.Duration;
 import java.util.ArrayList;
 
@@ -108,10 +109,17 @@ public class BaseTest {
     private WebDriver initDriver(){
         String browser = System.getProperty("browser");
 
-        if ((browser == null) || ("chrome".equals(browser.toLowerCase()))){ // default browser -Dbrowser=chrome
-            WebDriverManager.chromedriver().setup();
+//        if ((browser == null) || ("chrome".equals(browser.toLowerCase()))){ // default browser -Dbrowser=chrome
+//            WebDriverManager.chromedriver().setup();
+//            webDriver = new ChromeDriver();
+//                    }else
+        if ((browser == null) || ("chrome2".equals(browser.toLowerCase()))){ // default browser -Dbrowser=chrome
+         //   WebDriverManager.chromedriver().setup();
+            File fileFF = new File("./src/drivers/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
             webDriver = new ChromeDriver();
-        } else if ("firefox".equals(browser.toLowerCase())){ // -Dbrowser=firefox
+        }
+        else if ("firefox".equals(browser.toLowerCase())){ // -Dbrowser=firefox
             WebDriverManager.firefoxdriver().setup();
             webDriver = new FirefoxDriver();
         } else if ("ie".equals(browser.toLowerCase())){
