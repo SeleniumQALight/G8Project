@@ -26,7 +26,6 @@ public class ApiTestPrivatBank {
     @Test
     public void apiTestPrivatBankByDate() {
         Response actualResponse = apiHelperPrivatBank.getExchangeRatePBRequest(DATE, HttpStatus.SC_OK).extract().response();
-        //       ExchangeRateDTO[] actualResponseAsDto = actualResponse.as(ExchangeRateDTO[].class);
         ExchangeRateDTO.builder()
                 .date(DATE)
                 .bank("PB")
@@ -43,7 +42,6 @@ public class ApiTestPrivatBank {
                 .isEqualTo(actualResponse);
         List<Map> actualResponseAsMap = actualResponse.jsonPath().getList("exchangeRate", Map.class);
         for (int i = 0; i < actualResponseAsMap.size(); i++) {
- //           softAssertions.assertThat(actualResponseAsMap.get(i).get("baseCurrency" + i)).as("Iteam number " +i).isEqualTo(baseCurrency);
             softAssertions.assertThat(actualResponseAsMap.get(i).get("currency")).as("Iteam number " +i).isEqualTo(CURRENCY[i]);
         }
         softAssertions.assertAll();
