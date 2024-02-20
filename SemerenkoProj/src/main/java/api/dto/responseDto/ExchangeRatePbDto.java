@@ -10,8 +10,8 @@ import lombok.*;
 public class ExchangeRatePbDto {
     private String baseCurrency;
     private String currency;
-    private double saleRateNB;
-    private double purchaseRateNB;
-    private double saleRate;
-    private double purchaseRate;
+    private Double saleRateNB;
+    private Double purchaseRateNB;
+    private Double saleRate;
+    private Double purchaseRate;
 }
