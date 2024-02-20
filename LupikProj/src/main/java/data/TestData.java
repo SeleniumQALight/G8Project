@@ -9,5 +9,8 @@ public class TestData {
 
     public final static String VALID_PASSWORD_UI = "123456qwerty";
 
+    public final static String VALID_LOGIN_API = "lupikSasha";
+    public final static String VALID_PASSWORD_API = "123456qwerty";
+
 }
 
