@@ -14,4 +14,6 @@ public class TestData {
     public final static String POST_TITLE = "TC_001_semerenko_" + Util.getDateAndTimeFormatted();
     public final static String POST_BODY = "New Post Body";
     public final static String DROPDOWN_VALUE = "One Person";
+    public final static String VALID_LOGIN_API = "qaauto";
+    public final static String VALID_PASSWORD_API = "123456qwerty";
 }

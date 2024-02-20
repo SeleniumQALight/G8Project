@@ -1,16 +1,22 @@
 package apiTest;
 
+import api.ApiHelper;
 import api.EndPoints;
 import api.dto.responseDto.AuthorDto;
 import api.dto.responseDto.PostsDto;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.everyItem;
@@ -18,6 +24,8 @@ import static org.hamcrest.CoreMatchers.everyItem;
 public class ApiTest {
     final String USER_NAME = "autoapi";
     Logger logger = LogManager.getLogger(getClass());
+
+    ApiHelper apiHelper = new ApiHelper();
 
     @Test
     public void getAllPostByUser() {
@@ -43,8 +51,16 @@ public class ApiTest {
 
         // Expected result:
         PostsDto[] expectedDto = {
-                new PostsDto("test2", "test body2", "All Users", "no", new AuthorDto(USER_NAME), false),
-                new PostsDto("test", "test body", "All Users", "no", new AuthorDto(USER_NAME), false)
+//                new PostsDto("test2", "test body2", "All Users", "no", new AuthorDto(USER_NAME), false),
+//                new PostsDto("test", "test body", "All Users", "no", new AuthorDto(USER_NAME), false)
+                PostsDto.builder()
+                        .title("test2").body("test body2").select("All Users").uniquePost("no")
+                        .author(AuthorDto.builder().username(USER_NAME).build()).isVisitorOwner(false)
+                        .build(),
+                PostsDto.builder()
+                        .title("test").body("test body").select("All Users").uniquePost("no")
+                        .author(AuthorDto.builder().username(USER_NAME).build()).isVisitorOwner(false)
+                        .build()
         };
         Assert.assertEquals("Number of posts ", expectedDto.length, actualResponseAsDto.length);
 
@@ -54,5 +70,40 @@ public class ApiTest {
                 .usingRecursiveComparison().ignoringFields("id", "createdDate", "author.avatar")
                 .isEqualTo(expectedDto);
         softAssertions.assertAll();
+    }
+
+    @Test
+    public void getAllPostByUserNegative() {
+        final String NOT_VALID_USER = "NotValidUser";
+        String actualResponse = apiHelper.getAllPostByUserRequest(NOT_VALID_USER, 400)
+                .extract().response().body().asString();
+
+        Assert.assertEquals("Message in response "
+                , "\"Sorry, invalid user requested. Wrong username - " + NOT_VALID_USER + " or there is no posts. Exception is undefined\""
+                , actualResponse);
+    }
+
+    @Test
+    public void getAllPostByUserPath() {
+        Response actualResponse = apiHelper.getAllPostByUserRequest(USER_NAME).extract().response();
+        SoftAssertions softAssertions = new SoftAssertions();
+
+        List<String> actualListOfTitles = actualResponse.jsonPath().getList("title", String.class);
+        for (int i = 0; i < actualListOfTitles.size(); i++) {
+            softAssertions.assertThat(actualListOfTitles.get(i)).as("Item number " +i).contains("test");
+        }
+
+        List<Map> actualAytorList = actualResponse.jsonPath().getList("author", Map.class);
+        for (int i = 0; i < actualAytorList.size(); i++) {
+            softAssertions.assertThat(actualAytorList.get(i).get("username")).as("Item number " +i).isEqualTo(USER_NAME);
+        }
+
+        softAssertions.assertAll();
+    }
+
+    @Test
+    public void getAllPostByUserShema() {
+        apiHelper.getAllPostByUserRequest(USER_NAME)
+                .assertThat().body(matchesJsonSchemaInClasspath("response.json"));
     }
 }
