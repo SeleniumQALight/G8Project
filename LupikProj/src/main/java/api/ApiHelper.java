@@ -1,7 +1,5 @@
 package api;
 
-
-import data.TestData;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -12,14 +10,13 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
+import data.TestData;
 import org.json.JSONObject;
+
 import static io.restassured.RestAssured.given;
-import static org.apache.hc.core5.http.HttpStatus.SC_OK;
 
 public class ApiHelper {
-
     Logger logger = Logger.getLogger(getClass());
-
     RequestSpecification requestSpecification = new RequestSpecBuilder()
             .setContentType(ContentType.JSON)
             .log(LogDetail.ALL)
@@ -30,8 +27,8 @@ public class ApiHelper {
             .expectStatusCode(HttpStatus.SC_OK)
             .build();
 
-    public ValidatableResponse getAllPostsByUserRequest (String userName, int statusCode) {
-       return  given()
+    public ValidatableResponse getAllPostsByUserRequest(String userName, int statusCode) {
+        return given()
                 .spec(requestSpecification)
                 .when()
                 .get(EndPoints.POSTS_BY_USER, userName)
@@ -40,11 +37,12 @@ public class ApiHelper {
 
     }
 
-    public ValidatableResponse getAllPostsByUserRequest (String userName) {
-        return getAllPostsByUserRequest(userName, HttpStatus.SC_OK);
+    public ValidatableResponse getAllPostsByUserRequest(String userName) {
+        return getAllPostsByUserRequest(userName,HttpStatus.SC_OK);
     }
 
     public String getToken() {
+
         return getToken(TestData.VALID_LOGIN_API, TestData.VALID_PASSWORD_API);
     }
 
@@ -53,27 +51,15 @@ public class ApiHelper {
         requestBody.put("username", userName);
         requestBody.put("password", password);
 
-        ResponseBody responseBody =
-                given()
-                        .spec(requestSpecification)
-                        .body(requestBody.toMap())
-                        .when()
-                        .post(EndPoints.LOGIN) // URL
-                        . then()
-                        .spec(responseSpecification)
-                        .extract().response().getBody();
+        ResponseBody responseBody = given()
+                .spec(requestSpecification)
+                .body(requestBody.toMap())
+                .when()
+                .post(EndPoints.LOGIN)
+                .then()
+                .spec(responseSpecification)
+                .extract().response().getBody();
 
         return responseBody.asString().replace("\"", "");
-    }
-
-    public ValidatableResponse getExchangeRateByDate (String startDate) {
-
-        return  given()
-                .spec(requestSpecification)
-                .queryParam("date", startDate)
-                .when()
-                .get(PrivatEndPoints.EXCHANGE_RATE_BY_DATE)
-                .then()
-                .spec(responseSpecification.statusCode(SC_OK));
     }
 }

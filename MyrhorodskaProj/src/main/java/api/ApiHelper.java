@@ -1,6 +1,5 @@
 package api;
 
-
 import data.TestData;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -13,11 +12,10 @@ import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
+
 import static io.restassured.RestAssured.given;
-import static org.apache.hc.core5.http.HttpStatus.SC_OK;
 
 public class ApiHelper {
-
     Logger logger = Logger.getLogger(getClass());
 
     RequestSpecification requestSpecification = new RequestSpecBuilder()
@@ -30,17 +28,16 @@ public class ApiHelper {
             .expectStatusCode(HttpStatus.SC_OK)
             .build();
 
-    public ValidatableResponse getAllPostsByUserRequest (String userName, int statusCode) {
-       return  given()
+
+    public ValidatableResponse getAllPostsByUserRequest(String userName, int statusCode){
+        return given()
                 .spec(requestSpecification)
                 .when()
                 .get(EndPoints.POSTS_BY_USER, userName)
                 .then()
                 .spec(responseSpecification.statusCode(statusCode));
-
     }
-
-    public ValidatableResponse getAllPostsByUserRequest (String userName) {
+    public ValidatableResponse getAllPostsByUserRequest(String userName){
         return getAllPostsByUserRequest(userName, HttpStatus.SC_OK);
     }
 
@@ -58,22 +55,11 @@ public class ApiHelper {
                         .spec(requestSpecification)
                         .body(requestBody.toMap())
                         .when()
-                        .post(EndPoints.LOGIN) // URL
-                        . then()
+                        .post(EndPoints.LOGIN) //url
+                        .then()
                         .spec(responseSpecification)
                         .extract().response().getBody();
 
         return responseBody.asString().replace("\"", "");
-    }
-
-    public ValidatableResponse getExchangeRateByDate (String startDate) {
-
-        return  given()
-                .spec(requestSpecification)
-                .queryParam("date", startDate)
-                .when()
-                .get(PrivatEndPoints.EXCHANGE_RATE_BY_DATE)
-                .then()
-                .spec(responseSpecification.statusCode(SC_OK));
     }
 }
