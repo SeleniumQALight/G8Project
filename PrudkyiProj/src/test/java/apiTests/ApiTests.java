@@ -4,6 +4,7 @@ import api.ApiHelper;
 import api.EndPoints;
 import api.dto.responseDto.AuthorDto;
 import api.dto.responseDto.PostsDto;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.hc.core5.http.HttpStatus;
@@ -29,6 +30,7 @@ public class ApiTests {
     public void getAllPostsByUser() {
         PostsDto[] actualResponseAsDto =
                 given().contentType(ContentType.JSON)
+                        .filter(new AllureRestAssured())
                         .when()
                         .get(EndPoints.POSTS_BY_USER, USER_NAME)// URL
                         .then()
