@@ -61,12 +61,22 @@ public class ApiTests {
 //                new PostsDto("test", "test body", "All Users", "no", new AuthorDto(USER_NAME), false)
                 PostsDto.builder()
                         .title("test2").body("test body2").select1("All Users")
-                        .uniquePost("no").author(AuthorDto.builder().username(USER_NAME).build())
+                        .uniquePost("no")
+                        .author(
+                                AuthorDto.builder()
+                                        .username(USER_NAME)
+                                        .build()
+                        )
                         .isVisitorOwner(false)
                         .build(),
                 PostsDto.builder()
                         .title("test").body("test body").select1("All Users")
-                        .uniquePost("no").author(AuthorDto.builder().username(USER_NAME).build())
+                        .uniquePost("no")
+                        .author(
+                                AuthorDto.builder()
+                                        .username(USER_NAME)
+                                        .build()
+                        )
                         .isVisitorOwner(false)
                         .build()
         };
@@ -74,7 +84,7 @@ public class ApiTests {
         Assert.assertEquals("Number of posts ", expectedDto.length, actualResponseAsDto.length);
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThat(actualResponseAsDto)
-                .usingRecursiveComparison()
+                .usingRecursiveComparison() // для перевірки відповідності джейсона поелементно
                 .ignoringFields("_id", "createdDate", "author.avatar")
                 .isEqualTo(expectedDto);
         softAssertions.assertAll();
@@ -105,8 +115,9 @@ public class ApiTests {
 
         softAssertions.assertAll();
     }
+
     @Test
-    public void getAllPostByUserSchema(){
+    public void getAllPostByUserSchema() {
         apiHelper.getAllPostsByUserRequest(USER_NAME)
                 .assertThat().body(matchesJsonSchemaInClasspath("response.json"));
     }
