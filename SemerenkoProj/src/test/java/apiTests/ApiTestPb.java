@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class ApiTestPb {
     private String rateDate = "22.03.2022";
@@ -40,5 +41,9 @@ public class ApiTestPb {
                 )
                 .isEqualTo(apiHelperPb.getExpectedDto(rateDate, listOfCurrency));
         softAssertions.assertAll();
+    }
+    @Test
+    public void currencyRateByDateSchemaValidate(){
+        apiHelperPb.getRateByDate(rateDate).assertThat().body(matchesJsonSchemaInClasspath("currencyRateResponseSchema.json"));
     }
 }
