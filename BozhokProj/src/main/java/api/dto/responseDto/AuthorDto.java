@@ -1,13 +1,12 @@
 package api.dto.responseDto;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Data
 @ToString
 @NoArgsConstructor
-
+@AllArgsConstructor
+@Builder
 public class AuthorDto {
     private String username;
     private String avatar;
