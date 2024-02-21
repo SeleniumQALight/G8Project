@@ -4,6 +4,7 @@ import api.ApiHelper;
 import api.EndPoints;
 import api.dto.responseDto.AuthorDto;
 import api.dto.responseDto.PostsDto;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -31,6 +32,7 @@ public class ApiTests {
         PostsDto[] actualResponseAsDto =
                 given()
                 .contentType(ContentType.JSON)
+                        .filter(new AllureRestAssured()) // завдяки цьому методу є інтеграція ріквеста або респонса в алюр репорт
                 .log().all() // print request to console
             .when()
                 .get(EndPoints.POSTS_BY_USER, USER_NAME) // URL
