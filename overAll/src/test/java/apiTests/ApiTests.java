@@ -4,6 +4,7 @@ import api.ApiHelper;
 import api.EndPoints;
 import api.dto.responseDto.AuthorDTO;
 import api.dto.responseDto.PostsDto;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -30,7 +31,9 @@ public class ApiTests {
     public void getAllPostsByUser(){
         PostsDto[] actualResponseAsDto =
                 given()
+                        .filter(new AllureRestAssured())
                 .contentType(ContentType.JSON)
+//                 .filter(new AllureRestAssured())
                 .log().all()
            .when()
                 .get(EndPoints.POSTS_BY_USER, USER_NAME) // URL
@@ -68,7 +71,7 @@ public class ApiTests {
 
         };
 
-        Assert.assertEquals("Number of posts ", expectedDto.length, actualResponseAsDto.length);
+        Assert.assertEquals("Number of posts ", expectedDto.length+1, actualResponseAsDto.length);
 
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions
