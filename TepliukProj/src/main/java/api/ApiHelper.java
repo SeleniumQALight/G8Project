@@ -1,7 +1,8 @@
 package api;
 
-import com.google.gson.JsonObject;
+import api.dto.responseDto.PostsDto;
 import data.TestData;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -13,6 +14,9 @@ import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
+import org.junit.Assert;
+
+import java.util.HashMap;
 
 import static io.restassured.RestAssured.given;
 
@@ -22,6 +26,7 @@ public class ApiHelper {
 
     RequestSpecification requestSpecification = new RequestSpecBuilder()
             .setContentType(ContentType.JSON)
+            .addFilter(new AllureRestAssured())
             .log(LogDetail.ALL)
             .build();
 
@@ -49,24 +54,52 @@ public class ApiHelper {
 
     }
 
-    public String getToken() {
-        return getToken(TestData.VALID_LOGIN_API, TestData.VALID_PASSWORD_API);
+    public PostsDto[] getAllPostsByUserAsDto(String userName) {
+        return getAllPostsByUserRequest(userName).extract().response().getBody().as(PostsDto[].class);}
+
+
+        public String getToken () {
+            return getToken(TestData.VALID_LOGIN_API, TestData.VALID_PASSWORD_API);
+        }
+
+        public String getToken (String userName, String password){
+            JSONObject requestBody = new JSONObject();
+            requestBody.put("username", userName);
+            requestBody.put("password", password);
+            ResponseBody responseBody = given()
+                    .spec(requestSpecification)
+                    .body(requestBody.toMap())
+                    .when()
+                    .post(EndPoints.LOGIN)//URL
+                    .then()
+                    .spec(responseSpecification)
+                    .extract().response().getBody();
+
+            return responseBody.asString().replace("\"", "");
+        }
+
+    public void deleteAllPostsTillPresent(String validLoginApi, String token) {
+        PostsDto[] listOfPosts = getAllPostsByUserAsDto(validLoginApi);
+        for (int i = 0; i < listOfPosts.length; i++) {
+            deletePostById(token, listOfPosts[i].getId());
+            logger.info(String.format("Post with id %s and title '%s' was deleted", listOfPosts[i].getId(), listOfPosts[i].getTitle()));
+        }
+        getAllPostsByUserRequest(validLoginApi, HttpStatus.SC_OK);
     }
 
-    public String getToken(String userName, String password) {
-        JSONObject requestBody = new JSONObject();
-        requestBody.put("username", userName);
-        requestBody.put("password", password);
-        ResponseBody responseBody = given()
-                .spec(requestSpecification)
-                .body(requestBody.toMap())
-                .when()
-                .post(EndPoints.LOGIN)//URL
-                .then()
-                .spec(responseSpecification)
-                .extract().response().getBody();
+    private void deletePostById(String token, String id) {
+        HashMap<String, String> bodyRequest = new HashMap<>();
+        bodyRequest.put("token", token);
 
-        return responseBody.asString().replace("\"", "");
+        String actualResponse =
+                given()
+                        .spec(requestSpecification)
+                        .body(bodyRequest)
+                        .when()
+                        .delete(EndPoints.DELETE_POST, id)   //URL with id
+                        .then()
+                        .spec(responseSpecification)
+                        .extract().response().body().asString();
     }
 }
 
