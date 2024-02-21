@@ -4,12 +4,12 @@ import api.ApiHelper;
 import api.EndPoints;
 import api.dto.responseDto.AuthorDTO;
 import api.dto.responseDto.PostsDto;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -30,6 +30,7 @@ public class ApiTests {
     public void getAllPostsByUser() {
         PostsDto[] actualResponseAsDto =
                 given()
+                        .filter(new AllureRestAssured())
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
@@ -52,7 +53,7 @@ public class ApiTests {
 
         //Expected Result
         PostsDto[] expectedDto = {
-/*                new PostsDto("test2", "test body2", "All Users", "no", new AuthorDTO(USER_NAME), false),
+/*              new PostsDto("test2", "test body2", "All Users", "no", new AuthorDTO(USER_NAME), false),
                 new PostsDto("test", "test body", "All Users", "no", new AuthorDTO(USER_NAME), false)*/
 
                 PostsDto.builder()
@@ -116,7 +117,6 @@ public class ApiTests {
     }
 
     @Test
-    @Ignore
     public void getAllPostByUserSchema() {
         apiHelper.getAllPostsByUserRequest(USER_NAME)
                 .assertThat()
