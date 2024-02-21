@@ -5,6 +5,7 @@ import api.EndPoints;
 import api.dto.responseDto.AuthorDTO;
 import api.dto.responseDto.PostsDto;
 import data.TestData;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
@@ -34,6 +35,7 @@ public class ApiTests {
     public void getAllPostsByUser(){
         PostsDto[] actualResponseAsDto =
         given().contentType(ContentType.JSON)
+                .filter(new AllureRestAssured())
                 .log().all()
                 .when()
                 .get(EndPoints.POSTS_BY_USER, USER_NAME) // URL

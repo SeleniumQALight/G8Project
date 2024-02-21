@@ -1,6 +1,8 @@
 package api;
 
+import api.dto.responseDto.PostsDto;
 import data.TestData;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -13,6 +15,8 @@ import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 import static io.restassured.RestAssured.given;
 
 public class ApiHelper {
@@ -20,6 +24,7 @@ public class ApiHelper {
     Logger logger = Logger.getLogger(getClass());
 
     RequestSpecification requestSpecification = new RequestSpecBuilder()
+            .addFilter(new AllureRestAssured())
             .setContentType(ContentType.JSON)
             .log(LogDetail.ALL)
             .build();
@@ -41,7 +46,11 @@ public class ApiHelper {
 
     public ValidatableResponse getAllPostsByUserRequest(String userName) {
         return getAllPostsByUserRequest(userName, HttpStatus.SC_OK);
+    }
 
+    public PostsDto[] getAllPostsByUserAsDTO(String userName) {
+        return getAllPostsByUserRequest(userName)
+                .extract().response().getBody().as(PostsDto[].class);
     }
 
     public String getToken() {
@@ -65,5 +74,29 @@ public class ApiHelper {
                         .response()
                         .getBody();
         return responseBody.asString().replace("\"", "");
+    }
+
+    public void deleteAllPostsTillPresent(String validLoginApi, String token) {
+        PostsDto[] listOfPosts = getAllPostsByUserAsDTO(validLoginApi);
+        for (int i = 0; i < listOfPosts.length; i++) {
+            deletePostById(token, listOfPosts[i].getId());
+            logger.info(String.format("Post with id %s and title '%s' was deleted", listOfPosts[i].getId(), listOfPosts[i].getTitle()));
+        }
+        getAllPostsByUserRequest(validLoginApi, HttpStatus.SC_OK);
+    }
+
+    private void deletePostById(String token, String id) {
+        HashMap<String, String> bodyRequest = new HashMap<>();
+        bodyRequest.put("token", token);
+
+        String actualResponse =
+                given()
+                        .spec(requestSpecification)
+                        .body(bodyRequest)
+                        .when()
+                        .delete(EndPoints.DELETE_POST, id)
+                        .then()
+                        .spec(responseSpecification)
+                        .extract().response().body().asString();
     }
 }

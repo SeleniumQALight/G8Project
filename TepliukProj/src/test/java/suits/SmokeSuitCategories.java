@@ -11,13 +11,12 @@ import registrationTests.ValidationMessagesTests;
 
 @RunWith(Categories.class)
 @Categories.IncludeCategory(SmokeTestFilter.class)
-    @Suite.SuiteClasses({
-            LoginTestWithPageObject.class,
-            CreateNewPostTest.class,
-            ValidationMessagesTests.class
+@Suite.SuiteClasses({
+        LoginTestWithPageObject.class,
+        CreateNewPostTest.class,
+        ValidationMessagesTests.class
 })
 
 public class SmokeSuitCategories {
 
 }
-

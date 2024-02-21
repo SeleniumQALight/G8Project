@@ -9,6 +9,6 @@ public class TestData {
     public final static String VALID_PASSWORD_UI = "123456qwerty";
     public final static String SMALL_INVALID_TEXT = "tr";
     public final static String VALID_LOGIN_API = "qaanton";
-    public final static String VALID_PASSWORD_API = "qwertyui123";
+    public final static String VALID_PASSWORD_API = "qwertyui123456";
 
 }
