@@ -1,5 +1,6 @@
 package suits;
 
+import apiTests.ApiTests;
 import categories.SmokeTestFilter;
 import loginTests.LoginTestAllInOneClass;
 import loginTests.LoginTextWithPageObject;
@@ -11,7 +12,7 @@ import registrationTests.ValidationMessagesTests;
 
 @RunWith(Categories.class)
 @Categories.IncludeCategory(SmokeTestFilter.class)
-@Suite.SuiteClasses({LoginTextWithPageObject.class, CreateNewPostTest.class, ValidationMessagesTests.class})
+@Suite.SuiteClasses({LoginTextWithPageObject.class, CreateNewPostTest.class, ValidationMessagesTests.class, ApiTests.class})
 
 public class SmokeSuit {
 
