@@ -13,4 +13,7 @@ public class TestData {
 
     public final static String VALID_LOGIN_API = "nikitaapi";
     public final static String VALID_PASSWORD_API = "123456qwerty";
+
+    public final static String VALID_LOGIN_DEMOQA_API = "UserTest";
+    public final static String VALID_PASSWORD_DEMOQA_API = "Test123!";
 }
