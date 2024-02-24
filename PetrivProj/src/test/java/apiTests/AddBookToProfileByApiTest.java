@@ -16,7 +16,7 @@ public class AddBookToProfileByApiTest {
     public void deleteBooks() {
         token = demoQaApiHelper.getToken().getString("token");
         userId = demoQaApiHelper.getToken().getString("userId");
-        demoQaApiHelper.deleteAllUsersBooksTillPresent(token, userId);
+        demoQaApiHelper.deleteAllUserBooksTillPresent(token, userId);
     }
 
     @Test
@@ -27,9 +27,9 @@ public class AddBookToProfileByApiTest {
 
         demoQaApiHelper.addBookToUser(userId, bookIsbn, token);
 
-        UsersBooksDto allUsersBooksResponseAsDto = demoQaApiHelper.getAllUsersBooksAsDto(token, userId);
+        UsersBooksDto allUserBooksResponseAsDto = demoQaApiHelper.getAllUserBooksAsDto(token, userId);
 
-        UsersBooksDto usersBooksExpectedDto =
+        UsersBooksDto userBooksExpectedDto =
                 UsersBooksDto.builder()
                         .userId(userId)
                         .username(TestData.VALID_LOGIN_DEMO_QA_API)
@@ -48,12 +48,12 @@ public class AddBookToProfileByApiTest {
 
         SoftAssertions softAssertions = new SoftAssertions();
 
-        softAssertions.assertThat(allUsersBooksResponseAsDto.getBooks().length).isEqualTo(1);
+        softAssertions.assertThat(allUserBooksResponseAsDto.getBooks().length).isEqualTo(1);
 
         softAssertions
-                .assertThat(allUsersBooksResponseAsDto)
+                .assertThat(allUserBooksResponseAsDto)
                 .usingRecursiveComparison()
-                .isEqualTo(usersBooksExpectedDto);
+                .isEqualTo(userBooksExpectedDto);
 
         softAssertions.assertAll();
     }

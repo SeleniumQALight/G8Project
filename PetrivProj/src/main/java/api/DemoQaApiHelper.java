@@ -1,5 +1,8 @@
 package api;
 
+import api.dto.requestDto.AddListOfBooksDto;
+import api.dto.requestDto.CollectionOfIsbnsDto;
+import api.dto.requestDto.CreatePostDto;
 import api.dto.responseDto.BooksDto;
 import api.dto.responseDto.UsersBooksDto;
 import data.TestData;
@@ -54,9 +57,9 @@ public class DemoQaApiHelper {
         return responseBody.jsonPath();
     }
 
-    public void deleteAllUsersBooksTillPresent(String token, String userId) {
+    public void deleteAllUserBooksTillPresent(String token, String userId) {
         deleteBooksByUserIdRequest(token, userId);
-        Assert.assertEquals("Number of books ", 0, getAllUsersBooksAsDto(token, userId).getBooks().length);
+        Assert.assertEquals("Number of books ", 0, getAllUserBooksAsDto(token, userId).getBooks().length);
     }
 
     public ValidatableResponse getAllBooksRequest(String token) {
@@ -78,31 +81,27 @@ public class DemoQaApiHelper {
                         .spec(requestSpecification)
                         .header("Authorization", "Bearer " + token)
                         .when()
-                        .delete(DemoQaEndPoints.DELETE_BOOKS, userId)
+                        .delete(DemoQaEndPoints.DELETE_ALL_USER_BOOKS, userId)
                         .then()
                         .spec(responseSpecification.statusCode(HttpStatus.SC_NO_CONTENT));
     }
 
     public void addBookToUser(String userId, String isbn, String token) {
-        int initialNumberOfBooks = getAllUsersBooksAsDto(token, userId).getBooks().length;
+        int initialNumberOfBooks = getAllUserBooksAsDto(token, userId).getBooks().length;
 
-        Map<String, Object> bodyRequest = new HashMap<>();
-        bodyRequest.put("userId", userId);
-
-        List<Map<String, String>> collectionOfIsbns = new ArrayList<>();
-
-        Map<String, String> isbnMap = new HashMap<>();
-        isbnMap.put("isbn", isbn);
-        collectionOfIsbns.add(isbnMap);
-
-        bodyRequest.put("collectionOfIsbns", collectionOfIsbns);
+        AddListOfBooksDto addListOfBooksDto = AddListOfBooksDto.builder()
+                .userId(userId)
+                .collectionOfIsbns(new CollectionOfIsbnsDto[]{CollectionOfIsbnsDto.builder()
+                        .isbn(isbn)
+                        .build()})
+                .build();
 
         UsersBooksDto actualResponseAsDto =
                 given()
                         .header("Authorization", "Bearer " + token)
                         .contentType(ContentType.JSON)
                         .log().all()
-                        .body(bodyRequest)
+                        .body(addListOfBooksDto)
                         .when()
                         .post(DemoQaEndPoints.ALL_BOOKS)
                         .then()
@@ -112,17 +111,17 @@ public class DemoQaApiHelper {
         Assert.assertEquals("Number of books", initialNumberOfBooks + 1, actualResponseAsDto.getBooks().length);
     }
 
-    public ValidatableResponse getAllUsersBooksRequest(String token, String userId) {
+    public ValidatableResponse getAllUserBooksRequest(String token, String userId) {
         return given()
                 .spec(requestSpecification)
                 .header("Authorization", "Bearer " + token)
                 .when()
-                .get(DemoQaEndPoints.ALL_USERS_BOOKS, userId)
+                .get(DemoQaEndPoints.ALL_USER_BOOKS, userId)
                 .then()
                 .spec(responseSpecification.statusCode(HttpStatus.SC_OK));
     }
 
-    public UsersBooksDto getAllUsersBooksAsDto(String token, String userId) {
-        return getAllUsersBooksRequest(token, userId).extract().response().getBody().as(UsersBooksDto.class);
+    public UsersBooksDto getAllUserBooksAsDto(String token, String userId) {
+        return getAllUserBooksRequest(token, userId).extract().response().getBody().as(UsersBooksDto.class);
     }
 }
