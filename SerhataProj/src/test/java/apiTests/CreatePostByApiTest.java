@@ -5,7 +5,6 @@ import api.EndPoints;
 import api.dto.requestDto.CreatePostDto;
 import api.dto.responseDto.AuthorDTO;
 import api.dto.responseDto.PostsDto;
-import data.TestData;
 import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
 import org.assertj.core.api.SoftAssertions;
