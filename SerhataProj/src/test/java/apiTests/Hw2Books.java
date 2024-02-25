@@ -57,16 +57,14 @@ public class Hw2Books {
                            {
                                add(AllBooksDTO.builder()
                                        .isbn(isbn)
-                                       .title("Git Pocket Guide")
-                                       .subTitle("A Working Introduction")
-                                       .author("Richard E. Silverman")
-                                        .publish_date("2020-06-04T08:48:39.000Z")
-                                        .publisher("O'Reilly Media")
-                                        .pages("234")
-                                        .description("This pocket guide is the perfect on-the-job companion to Git, "+
-                                                "the distributed version control system. It provides a compact, readable introduction to Git for new users, " +
-                                                "as well as a reference to common commands and procedures for those of you with Git exp")
-                                        .website("http://chimera.labs.oreilly.com/books/1230000000561/index.html")
+                                       .title(booksResponse.jsonPath().getString("books[0].title"))
+                                       .subTitle(booksResponse.jsonPath().getString("books[0].subTitle"))
+                                       .author(booksResponse.jsonPath().getString("books[0].author"))
+                                        .publish_date(booksResponse.jsonPath().getString("books[0].publish_date"))
+                                        .publisher(booksResponse.jsonPath().getString("books[0].publisher"))
+                                        .pages(String.valueOf(booksResponse.jsonPath().getInt("books[0].pages")))
+                                        .description(booksResponse.jsonPath().getString("books[0].description"))
+                                        .website(booksResponse.jsonPath().getString("books[0].website"))
                                        .build());
                            }
                        }
