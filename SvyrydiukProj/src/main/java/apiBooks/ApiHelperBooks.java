@@ -28,7 +28,7 @@ import static io.restassured.RestAssured.given;
 
 public class ApiHelperBooks {
 
-    Logger logger = Logger.getLogger(getClass());
+    public Logger logger = Logger.getLogger(getClass());
 
     RequestSpecification requestSpecification = new RequestSpecBuilder()
             .setContentType(ContentType.JSON)
