@@ -11,4 +11,7 @@ public class TestData {
 
     public final static String VALID_LOGIN_API = "romanapi";
     public final static String VALID_PASSWORD_API = "Roman123456!";
+
+    public final static String VALID_LOGIN_API_BOOKS = "RomanSv";
+    public final static String VALID_PASSWORD_API_BOOKS = "Roman123!";
 }
