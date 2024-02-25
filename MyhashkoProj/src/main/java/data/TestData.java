@@ -9,4 +9,7 @@ public class TestData {
 
     public final static String VALID_LOGIN_API = "aszyre123456";
     public final static String VALID_PASSWORD_API = "aszyre123456";
+
+    public final static String VALID_LOGIN_API_DEMOQA = "aszyre123456";
+    public final static String VALID_PASSWORD_API_DEMOQA = "Aszyre123456@";
 }
