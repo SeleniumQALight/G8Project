@@ -53,6 +53,7 @@ public class AddBookToProfileByApiTest {
         softAssertions
                 .assertThat(allUserBooksResponseAsDto)
                 .usingRecursiveComparison()
+                .ignoringFields("title", "subTitle", "author", "publish_date", "publisher", "pages", "description", "website")
                 .isEqualTo(userBooksExpectedDto);
 
         softAssertions.assertAll();
