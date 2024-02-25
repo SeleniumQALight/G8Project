@@ -36,7 +36,7 @@ public class DemoQaApiTest {
 
         Response responseListOfBooksAfterAdd =
                 apiHelperDemoQa.getAllBooksByUserId(userId, token).then().extract().response();
-        logger.info("Got List Of All Books isbn after adding book " +
+        logger.info("Got List Of All Books isbn after adding book to user" +
                 responseListOfBooksAfterAdd.jsonPath().getString("books.isbn"));
 
         Assert.assertEquals("Added book is not equal to the book that user has",
