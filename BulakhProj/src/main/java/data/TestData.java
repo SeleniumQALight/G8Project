@@ -11,5 +11,8 @@ public class TestData {
     public final static String VALID_LOGIN_API = "tanyaBU";
     public final static String VALID_PASSWORD_API = "nfyz123456789";
 
+    public final static String VALID_LOGIN_API_BOOK = "tanyabu";
+    public final static String VALID_PASSWORD_API_BOOK = "Tanya123@";
+
 
 }
