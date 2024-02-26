@@ -27,12 +27,12 @@ public class ApiTestsDemoqaBooks {
         token = apiHelper.getToken(VALID_LOGIN_API_BOOKS, VALID_PASSWORD_API_BOOKS);
         userId = apiHelper.getUserId(VALID_LOGIN_API_BOOKS, VALID_PASSWORD_API_BOOKS);
 
-        apiHelper.deleteAllBooksTillPresent(userId, token);
 
     }
 
     @Test
     public void AddBookForUserTest() {
+        apiHelper.deleteAllBooksTillPresent(userId, token);
 
 
         Response booksResponse = apiHelper.getFullListOfBooks().extract().response();
@@ -83,6 +83,46 @@ public class ApiTestsDemoqaBooks {
         softAssertions.assertAll();
 
 
+    }
+
+
+    @Test
+    public void AddBookForUserThatNotExistTest() {
+
+        Response allBooksResponse = apiHelper.getFullListOfBooks().extract().response();
+
+        List<String> isbnBooks = allBooksResponse.jsonPath().getList("books.isbn");
+
+        Response actualUserBooks = apiHelper.getAllBooksByUser(userId, token);
+        List<String> actualListOfBooksOfUser = actualUserBooks.jsonPath().getList("books.isbn");
+
+        List<String> isbnBooksThatNotExist = new ArrayList<>();
+        for (int i = 0; i < isbnBooks.size(); i++) {
+            if (!actualListOfBooksOfUser.contains(isbnBooks.get(i))) {
+                isbnBooksThatNotExist.add(isbnBooks.get(i));
+            }
+        }
+        if (isbnBooksThatNotExist.isEmpty()) {
+            apiHelper.logger.info("All books are already added");
+        } else {
+            apiHelper.addBookForUser(userId, token, isbnBooksThatNotExist.get(0));
+        }
+
+
+        Response booksofUser = apiHelper.getAllBooksByUser(userId, token);
+
+        List<String> actualListOfBooksOfUserAfterAdd = booksofUser.jsonPath().getList("books.isbn", String.class);
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        if (isbnBooks.size() == actualListOfBooksOfUser.size()) {
+            softAssertions.assertThat(actualListOfBooksOfUserAfterAdd.size()).isEqualTo(actualListOfBooksOfUser.size());
+        } else {
+            softAssertions.assertThat(actualListOfBooksOfUserAfterAdd.size()).isEqualTo(actualListOfBooksOfUser.size() + 1);
+        }
+        for (int i = 0; i < actualListOfBooksOfUser.size(); i++) {
+            softAssertions.assertThat(actualListOfBooksOfUserAfterAdd.get(i)).isIn(actualListOfBooksOfUser);
+            softAssertions.assertAll();
+        }
     }
 
 }
