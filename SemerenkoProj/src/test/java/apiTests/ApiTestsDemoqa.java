@@ -4,26 +4,49 @@ import api.ApiHelperDemoqa;
 import io.restassured.response.ValidatableResponse;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class ApiTestsDemoqa {
     ApiHelperDemoqa apiHelperDemoqa = new ApiHelperDemoqa();
+    private String userId;
+    private String token;
+
+    @Test
+    public void getBookList(){
+        apiHelperDemoqa.getLinkedBook(userId);
+    }
 
     @Test
     public void LoginTest() {
-        ValidatableResponse response = apiHelperDemoqa.login();
-        String userID = response.extract().body().jsonPath().get("userId");
-        String token = response.extract().body().jsonPath().get("token");
-        System.out.println("userID: " + userID);
+        ValidatableResponse loginResponse = apiHelperDemoqa.login();
+        userId = loginResponse.extract().body().jsonPath().get("userId");
+        token = loginResponse.extract().body().jsonPath().get("token");
+        System.out.println("userID: " + userId);
         System.out.println("token: " + token);
     }
 
     @Test
-    public void getBooks (){
-       List<Map> isdnList = apiHelperDemoqa.getBooksList();
-        for (int i = 0; i < isdnList.size(); i++) {
-            System.out.println(isdnList.get(i).get("isbn"));
-        }
+    public void addBooksForUser() {
+
+        ValidatableResponse loginResponse = apiHelperDemoqa.login();
+        userId = loginResponse.extract().body().jsonPath().get("userId");
+        token = loginResponse.extract().body().jsonPath().get("token");
+        System.out.println("userID: " + userId);
+        System.out.println("token: " + token);
+
+        List<String> isbnList = apiHelperDemoqa.getBooksIsbn();
+        List<String> addBookListWithOneBook = new ArrayList<>();
+        addBookListWithOneBook.add(isbnList.get(0));
+
+        List<String> addBookListWithFewBook = new ArrayList<>();
+        addBookListWithFewBook.add(isbnList.get(1));
+        addBookListWithFewBook.add(isbnList.get(3));
+        addBookListWithFewBook.add(isbnList.get(4));
+
+        apiHelperDemoqa.addBooks(userId, token, addBookListWithOneBook);
+
+        apiHelperDemoqa.getLinkedBook(userId);
     }
 }
