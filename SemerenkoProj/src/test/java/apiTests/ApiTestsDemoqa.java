@@ -25,6 +25,7 @@ public class ApiTestsDemoqa {
         token = loginResponse.extract().body().jsonPath().get("token");
         System.out.println("userID: " + userId);
         System.out.println("token: " + token);
+        apiHelperDemoqa.deleteAllBooksByUser(userId, token);
         apiHelperDemoqa.getLinkedBook(userId, token);
     }
 

@@ -72,6 +72,19 @@ public class ApiHelperDemoqa {
                 .spec(responseSpecification);
     }
 
+    public void deleteAllBooksByUser(String userId, String token) {
+        given()
+                .spec(requestSpecification)
+                .header("Authorization", "Bearer " + token)
+                .when()
+                .queryParam("UserId", userId)
+                .delete(EndPointsDemoqa.BOOK_STORE_LOCATOR)
+                .then()
+                .statusCode(HttpStatus.SC_NO_CONTENT)
+                .log().all();
+
+    }
+
     public List<String> getBooksIsbn() {
         List<String> isbnList = new ArrayList<>();
         List<Map> booksList = getBooksList();
