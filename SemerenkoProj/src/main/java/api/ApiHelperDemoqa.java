@@ -61,12 +61,13 @@ public class ApiHelperDemoqa {
 
     }
 
-    public void getLinkedBook(String userId) {
+    public void getLinkedBook(String userId, String token) {
         given()
                 .spec(requestSpecification)
+                .header("Authorization", "Bearer " + token)
                 .when()
-                .queryParam("userId", userId)
-                .get(EndPointsDemoqa.USER_LOCATOR)
+                //.queryParam("UserId", userId)
+                .get(EndPointsDemoqa.USER_LOCATOR, userId)
                 .then()
                 .spec(responseSpecification);
     }

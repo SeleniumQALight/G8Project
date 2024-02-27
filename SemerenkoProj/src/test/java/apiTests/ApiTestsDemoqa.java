@@ -15,7 +15,7 @@ public class ApiTestsDemoqa {
 
     @Test
     public void getBookList(){
-        apiHelperDemoqa.getLinkedBook(userId);
+        apiHelperDemoqa.getLinkedBook(userId, token);
     }
 
     @Test
@@ -25,6 +25,7 @@ public class ApiTestsDemoqa {
         token = loginResponse.extract().body().jsonPath().get("token");
         System.out.println("userID: " + userId);
         System.out.println("token: " + token);
+        apiHelperDemoqa.getLinkedBook(userId, token);
     }
 
     @Test
@@ -45,8 +46,8 @@ public class ApiTestsDemoqa {
         addBookListWithFewBook.add(isbnList.get(3));
         addBookListWithFewBook.add(isbnList.get(4));
 
-        apiHelperDemoqa.addBooks(userId, token, addBookListWithOneBook);
+        apiHelperDemoqa.addBooks(userId, token, addBookListWithFewBook);
 
-        apiHelperDemoqa.getLinkedBook(userId);
+        apiHelperDemoqa.getLinkedBook(userId,token);
     }
 }
