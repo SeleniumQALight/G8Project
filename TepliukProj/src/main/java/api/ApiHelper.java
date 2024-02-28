@@ -14,10 +14,7 @@ import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
-import org.junit.Assert;
-
 import java.util.HashMap;
-
 import static io.restassured.RestAssured.given;
 
 public class ApiHelper {
@@ -26,7 +23,6 @@ public class ApiHelper {
 
     RequestSpecification requestSpecification = new RequestSpecBuilder()
             .setContentType(ContentType.JSON)
-            .addFilter(new AllureRestAssured())
             .log(LogDetail.ALL)
             .build();
 
