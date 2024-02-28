@@ -2,6 +2,7 @@ package api;
 
 import api.dto.requestDto.AddBookDemoqaDto;
 import api.dto.requestDto.CollectionOfIsbnDemoqaDto;
+import api.dto.responseDto.UserInfoDemoqaDto;
 import io.restassured.authentication.AuthenticationScheme;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -61,15 +62,17 @@ public class ApiHelperDemoqa {
 
     }
 
-    public void getLinkedBook(String userId, String token) {
-        given()
+    public UserInfoDemoqaDto getLinkedBook(String userId, String token) {
+        return given()
                 .spec(requestSpecification)
                 .header("Authorization", "Bearer " + token)
                 .when()
                 //.queryParam("UserId", userId)
                 .get(EndPointsDemoqa.USER_LOCATOR, userId)
                 .then()
-                .spec(responseSpecification);
+                .spec(responseSpecification)
+                .extract().body().as(UserInfoDemoqaDto.class);
+
     }
 
     public void deleteAllBooksByUser(String userId, String token) {
