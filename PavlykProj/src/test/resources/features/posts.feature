@@ -6,7 +6,7 @@ Feature: Posts feature
 
   @R003 @Smoke
   Scenario Outline: R003 Check number of posts on UI
-    Given I create '<numberOfPosts>' new posts via API for 'default' ser and 'default' password
+    Given I create <numberOfPosts> new posts via API for 'default' ser and 'default' password
       | title  | Post by API |
       | body   | ody post    |
       | select | One Person  |
