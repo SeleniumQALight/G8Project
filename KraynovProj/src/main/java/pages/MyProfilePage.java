@@ -4,12 +4,16 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
 public class MyProfilePage extends ParentPage {
 
     private String postTitleLocator = ".//*[text()='%s']";
+    @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
+
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -56,6 +60,11 @@ public class MyProfilePage extends ParentPage {
     public MyProfilePage clickOnPostWithTitle(String postTitle) {
         //clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, postTitle))));
         clickOnElement(String.format(postTitleLocator, postTitle));
+        return this;
+    }
+
+    public MyProfilePage checkNumberOfPosts(int numberOfPosts) {
+        Assert.assertEquals("Number of posts ", numberOfPosts, postsList.size());
         return this;
     }
 }
