@@ -1,3 +1,5 @@
+package bdd.stepDefinitions;
+
 import api.ApiHelper;
 import data.TestData;
 import io.cucumber.datatable.DataTable;
@@ -9,7 +11,8 @@ public class ApiSteps {
     final String DEFAULT = "default";
     private ApiHelper apiHelper= new ApiHelper();
 
-    @Given("I create {int} new posts via API for {string} user and {string} password")
+//    I create '<numberOfPosts>' new posts via API for 'default' user and 'default' password
+@Given("I create '{int}' new posts via API for {string} user and {string} password")
     public void iCreateNewPostsViaAPIForDefaultUserAndDefaultPassword(Integer numberOfPosts, String userName, String password, DataTable dataTable) {
         if (DEFAULT.equalsIgnoreCase(userName)) {
             userName = VALID_LOGIN_API;
@@ -22,4 +25,5 @@ public class ApiSteps {
             apiHelper.createPost(token, dataTable.asMap(), i);
         }
     }
+
 }

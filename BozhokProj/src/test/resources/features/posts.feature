@@ -16,5 +16,5 @@ Feature: Posts feature
 
 
     Examples:
-      | numbersOfPosts |
-      | 2              |
+      | numberOfPosts |
+      | 2             |

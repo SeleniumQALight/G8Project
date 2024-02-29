@@ -13,8 +13,10 @@ public class MyProfileSteps extends MainSteps {
         pageProvider.getMyProfilePage().checkIsRedirectOnMyProfilePage();
     }
 
+//    I see '<numberOfPosts>' posts in Posts lists on MyProfile page
     @Then("I see '{int}' posts in Posts lists on MyProfile page")
     public void iSeePostsInPostsListsOnMyProfilePage(Integer numberOfPosts) {
         pageProvider.getMyProfilePage().checkNumberOfPosts(numberOfPosts);
     }
+
 }
