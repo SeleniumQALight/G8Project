@@ -4,6 +4,7 @@ package pages;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonParser;
 import io.qameta.allure.Step;
 import junit.framework.Assert;
 import data.TestData;
@@ -41,6 +42,8 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listErrorsMessages;
     private String listErrorsMessagesLocator    = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    @FindBy(xpath = "//div[contains(text(),'Invalid username/password.')]")
+    private WebElement alertMessageInCenter;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -169,6 +172,13 @@ public class LoginPage extends ParentPage{
         checkIsElementVisible(errorMessage);
         return this;
 
+    }
+
+    public LoginPage checkTextInAlertInCenter(String message) {
+        Assert.assertEquals("Message in center of page", message, alertMessageInCenter.getText());
+
+        checkTextInElement(alertMessageInCenter, message);
+        return this;
     }
 }
 
