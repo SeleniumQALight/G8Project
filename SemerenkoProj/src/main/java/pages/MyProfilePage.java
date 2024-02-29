@@ -4,13 +4,18 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.Optional;
 
 public class MyProfilePage extends ParentPage {
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
 
     @Override
     protected String getRelativeUrl() {
@@ -66,5 +71,10 @@ public class MyProfilePage extends ParentPage {
 //
         clickOnElement(String.format(postTitleLocator, postTitle));
         return new PostPage(webDriver);
+    }
+
+    public MyProfilePage checkNumberOfPosts(Integer numberOfPosts) {
+        Assert.assertEquals("Number of posts", numberOfPosts, Optional.of(postsList.size()));
+        return this;
     }
 }
