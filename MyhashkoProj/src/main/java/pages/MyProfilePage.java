@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.io.ObjectInputStream;
 import java.util.List;
 
 public class MyProfilePage extends ParentPage{
