@@ -52,6 +52,9 @@ public class LoginPage extends ParentPage {
     private List<WebElement> listErrorMessages;
     private String listErrorMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement alertMessageInCenter;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -204,6 +207,13 @@ public class LoginPage extends ParentPage {
     @Step
     public LoginPage checkIsInvalidUsernameOrPasswordMessageVisible() {
         checkIsElementVisible(invalidUsernameOrPasswordMessage);
+        return this;
+    }
+
+    @Step
+    public LoginPage checkTextInAlertInCenter(String message) {
+        checkTextInElement(alertMessageInCenter, message);
+        // Assert.assertEquals("Message in center of page ", message, alertMessageInCenter.getText());
         return this;
     }
 }
