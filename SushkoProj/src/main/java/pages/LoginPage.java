@@ -22,6 +22,9 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//div[text() = 'Invalid username/password.']")
     private WebElement validationMessage;
 
+    @FindBy(xpath = ".//div[text() = 'Invalid username/password.']")
+    private WebElement alertMessageInCenter;
+
     private RegistrationFormElement registrationFormElement;
 
     public LoginPage(WebDriver webDriver) {
@@ -120,6 +123,12 @@ public class LoginPage extends ParentPage{
         switchToTab(num_of_tab);
         openLoginPage();
 
+        return this;
+    }
+
+    public LoginPage checkTextInAlertInCenter(String message) {
+        checkTextInElement(alertMessageInCenter, message);
+        //Assert.assertEquals("Message in center of page is not displayed", message, alertMessageInCenter.getText());
         return this;
     }
 }
