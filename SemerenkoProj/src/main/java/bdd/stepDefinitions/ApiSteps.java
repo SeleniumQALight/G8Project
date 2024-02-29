@@ -13,10 +13,10 @@ public class ApiSteps {
     public void iCreateNumberOfPostsNewPostsViaApiForDefaultUserAndDefaultPassword(
             Integer numberOfPosts, String userName, String password, DataTable dataTable) {
         if (DEFAULT.equalsIgnoreCase(userName)){
-            userName = TestData.VALID_LOGIN_API;
+            userName = TestData.PERSONAL_LOGIN_UI;
         }
         if (DEFAULT.equalsIgnoreCase(password)){
-            password = TestData.VALID_PASSWORD_API;
+            password = TestData.VALID_PASSWORD_UI;
         }
         String token = apiHelper.getToken(userName, password);
         for (int i = 0; i < numberOfPosts; i++) {

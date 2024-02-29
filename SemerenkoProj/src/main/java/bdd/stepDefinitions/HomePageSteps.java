@@ -21,10 +21,10 @@ public class HomePageSteps extends MainSteps {
     @Given("I open Home page as {string} user with {string} password")
     public void iOpenHomePageAsDefaultUserWithDefaultPassword(String userName, String password) {
         if (DEFAULT.equalsIgnoreCase(userName)){
-            userName = TestData.VALID_LOGIN_API;
+            userName = TestData.PERSONAL_LOGIN_UI;
         }
         if (DEFAULT.equalsIgnoreCase(password)){
-            password = TestData.VALID_PASSWORD_API;
+            password = TestData.VALID_PASSWORD_UI;
         }
         pageProvider.loginPage().openLoginPage();
         pageProvider.loginPage().enterTextIntoInputLogin(userName);
@@ -34,6 +34,6 @@ public class HomePageSteps extends MainSteps {
 
     @When("I click on MyProfile button")
     public void iClickOnMyProfileButton() {
-        pageProvider.homePage().getHeader().clickOnButtonProfile();
+        pageProvider.homePage().getHeader().clickOnButtonProfile(TestData.PERSONAL_LOGIN_UI);
     }
 }

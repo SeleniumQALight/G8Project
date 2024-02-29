@@ -73,8 +73,8 @@ public class MyProfilePage extends ParentPage {
         return new PostPage(webDriver);
     }
 
-    public MyProfilePage checkNumberOfPosts(Integer numberOfPosts) {
-        Assert.assertEquals("Number of posts", numberOfPosts, Optional.of(postsList.size()));
+    public MyProfilePage checkNumberOfPosts(int numberOfPosts) {
+        Assert.assertEquals("Number of posts", numberOfPosts, postsList.size());
         return this;
     }
 }
