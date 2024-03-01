@@ -58,6 +58,9 @@ public class LoginPage extends ParentPage {
 
     private String listErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement alertMessageInCenter;
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -262,6 +265,11 @@ public class LoginPage extends ParentPage {
     @Step
     public LoginPage checkErrorMessageInLoginForm(String text) {
         checkTextInElement(errorMessageLoginForm, text);
+        return this;
+    }
+
+    public LoginPage checkTextInAlertInCenter(String message) {
+        checkTextInElement(alertMessageInCenter, message);
         return this;
     }
 }
