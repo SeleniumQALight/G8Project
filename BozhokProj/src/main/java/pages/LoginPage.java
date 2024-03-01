@@ -149,7 +149,7 @@ public class LoginPage extends ParentPage {
     }
 
     @Step
-    private void clickOnButtonSignUpForOurApp() {
+    public void clickOnButtonSignUpForOurApp() {
         clickOnElement(buttonSignUpForOurApp);
     }
 
@@ -254,6 +254,11 @@ public class LoginPage extends ParentPage {
     public LoginPage checkTextInAlertInCenter(String message) {
         checkTextInElement(alertMessageInCenter, message);
 //        Assert.assertEquals("Message in center of page", message, alertMessageInCenter.getText());
+        return this;
+    }
+
+    public LoginPage checkNumberOfErrorsMessagesInRegistrationForm(int numberOfErrors) {
+        Assert.assertEquals("Number of messages", numberOfErrors, listOfErrorsMessages.size());
         return this;
     }
 }
