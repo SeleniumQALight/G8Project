@@ -261,4 +261,19 @@ public class LoginPage extends ParentPage {
         Assert.assertEquals("Number of messages", numberOfErrors, listOfErrorsMessages.size());
         return this;
     }
+
+    public LoginPage checkTextInAlertLoginInRegistrationForm(String errorMessageInLogin) {
+        checkTextInElement(usernameErrorMessage, errorMessageInLogin);
+        return this;
+    }
+
+    public LoginPage checkTextInAlertEmailInRegistrationForm(String errorMessageInEmail) {
+        checkTextInElement(emailErrorMessage, errorMessageInEmail);
+        return this;
+    }
+
+    public LoginPage checkTextInAlertPasswordInRegistrationForm(String errorMessageInPassword) {
+        checkTextInElement(passwordErrorMessage, errorMessageInPassword);
+        return this;
+    }
 }

@@ -64,5 +64,20 @@ public class LoginPageSteps extends MainSteps {
     public void iClickOnRegisterButtonOnLoginPage() {
         pageProvider.loginPage().clickOnButtonSignUpForOurApp();
     }
+
+    @Then("I see alert message in username field {string}")
+    public void iSeeAlertMessage(String messageLogin) {
+        pageProvider.loginPage().checkTextInAlertLoginInRegistrationForm(messageLogin);
+    }
+
+    @And("I see alert message in email field {string}")
+    public void iSeeAlertMessageInEmailField(String messageEmail) {
+        pageProvider.loginPage().checkTextInAlertEmailInRegistrationForm(messageEmail);
+    }
+
+    @And("I see alert  message in password field {string}")
+    public void iSeeAlertMessageInPasswordField(String messagePassword) {
+        pageProvider.loginPage().checkTextInAlertPasswordInRegistrationForm(messagePassword);
+    }
 }
 
