@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +46,8 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
     private WebElement validationMessageForPasswordRegister;
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement alertMessageInCenter;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -204,6 +205,12 @@ public class LoginPage extends ParentPage {
     @Step
     public LoginPage checkIsButtonSignInVisible() {
         Assert.assertTrue("Button SignIn is not visible", isButtonSignInVisible());
+        return this;
+    }
+
+    public LoginPage checkTextInAlertInCenter(String message) {
+    //    checkTextInElement(alertMessageInCenter.getText());
+        Assert.assertEquals("Message in center of page ",message, alertMessageInCenter.getText());
         return this;
     }
 }

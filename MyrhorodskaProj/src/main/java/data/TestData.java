@@ -5,8 +5,8 @@ public class TestData {
     public final static String VALID_LOGIN_UI = "qaauto";
     public final static   String VALID_PASSWORD_UI = "123456qwerty";
     public final static String INVALID_TEXT = "tr";
-    public final static String VALID_LOGIN_API="qanataliia";
-    public final static String VALID_PASSWORD_API = "12345qwerty";
+    public final static String VALID_LOGIN_API="TC001testusertime";
+    public final static String VALID_PASSWORD_API = "Tequth_83!NM";
 
 
 }

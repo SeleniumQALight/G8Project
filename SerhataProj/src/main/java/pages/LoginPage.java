@@ -57,6 +57,9 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//*[@class='alert alert-danger text-center']")
     private List<WebElement> listLoginErrorsMessages;
 
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement alertMessageInCenter;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -215,5 +218,10 @@ public class LoginPage extends ParentPage {
         enterTextInToInputPassword(dbUtilSeleniumUsers.getPasswordForLogin("newqaauto"));
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+
+    public LoginPage checkTextInAlertInCenter(String message) {
+        Assert.assertEquals("Message in center of page", message, alertMessageInCenter.getText());
+        return this;
     }
 }
