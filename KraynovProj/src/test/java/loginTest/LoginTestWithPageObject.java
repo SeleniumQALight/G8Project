@@ -57,7 +57,7 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
-    @Description("Check that user can login.feature with valid login.feature")
+    @Description("Check that user can login with valid login")
     public void validLoginWithExcel() throws IOException {
         Map<String, String> dataForValidLogin = ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
 

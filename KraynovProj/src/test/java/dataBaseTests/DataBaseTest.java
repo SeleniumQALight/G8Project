@@ -41,8 +41,8 @@ public class DataBaseTest {
         int numberOfInsertedRow = database.changeTable("INSERT INTO seleniumTable VALUES ('1515', '%s', '%s')",LOGIN, "121212asd");
         logger.info(numberOfInsertedRow + " was inserted");
 
-        dataFromSeleniumTable = database.selectTableAsMap(String.format("SELECT * FROM seleniumTable WHERE login.feature = '%s'", LOGIN));
-        logger.info("Number of record with login.feature " + LOGIN + " is " + dataFromSeleniumTable.size());
+        dataFromSeleniumTable = database.selectTableAsMap(String.format("SELECT * FROM seleniumTable WHERE login = '%s'", LOGIN));
+        logger.info("Number of record with login " + LOGIN + " is " + dataFromSeleniumTable.size());
 
         int numberOfDeletedRows = database.changeTable("DELETE FROM seleniumTable WHERE login.feature = '" + LOGIN + "'");
         logger.info(numberOfDeletedRows + " was deleted");
