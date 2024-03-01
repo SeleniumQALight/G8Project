@@ -9,6 +9,10 @@ public class TestData {
     INVALID_DATA = "tr",
    WRONG_LOGIN = "qaautotest";
 
+    public final static String LOGIN_API = "qamasha";
+    public final static String VALID_PASSWORD_API = "123456qwerty";
+
+
 
 
 
