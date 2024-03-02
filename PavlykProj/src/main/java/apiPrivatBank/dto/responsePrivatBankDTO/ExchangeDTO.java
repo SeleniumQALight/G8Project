@@ -11,7 +11,7 @@ public class ExchangeDTO {
 
     private String date;
     private String bank;
-    private String baseCurrency;
+    private Integer baseCurrency;
     private String baseCurrencyLit;
     private ExchangeRateDTO[] exchangeRate;
 }
