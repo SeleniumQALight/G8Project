@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,8 +71,13 @@ public class LoginPage  extends ParentPage{
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listOfErrorMessages;
 
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement alertMessageCenter;
+
 
     private String listOfErrorMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+
 
 
     public LoginPage(WebDriver webDriver) {
@@ -241,4 +247,8 @@ public class LoginPage  extends ParentPage{
     }
 
 
+    public LoginPage checkTextInAlertCenter(String message) {
+        Assert.assertEquals("Massage in center of page ", message, alertMessageCenter.getText());
+        return this;
+    }
 }
