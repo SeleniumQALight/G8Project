@@ -58,12 +58,12 @@ public class LoginPageSteps extends MainSteps{
         pageProvider.loginPage().enterTextIntoInputEmailRegister(email);
     }
 
-    @And("I enter {string} into input PasswordRegistration in Login page")
+    @When("I enter {string} into input PasswordRegistration in Login page")
     public void iEnterPasswordIntoInputPasswordRegistrationInLoginPage(String password) {
         pageProvider.loginPage().enterTextIntoInputPasswordRegister(password);
     }
 
-    @And("I click on button Register in Login page")
+    @When("I click on button Register in Login page")
     public void iClickOnButtonRegisterInLoginPage() {
         pageProvider.loginPage().clickOnButtonSignUpRegister();
     }
