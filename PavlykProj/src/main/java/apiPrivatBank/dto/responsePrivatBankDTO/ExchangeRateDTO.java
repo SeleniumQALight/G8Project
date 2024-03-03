@@ -15,4 +15,8 @@ public class ExchangeRateDTO {
     private String purchaseRateNB;
     private String saleRate;
     private String purchaseRate;
+
+    public static ExchangeRateDTO createExchangeRateWithSpecificCurrency(String currency) {
+        return ExchangeRateDTO.builder().baseCurrency("UAH").currency(currency).build();
+    }
 }
