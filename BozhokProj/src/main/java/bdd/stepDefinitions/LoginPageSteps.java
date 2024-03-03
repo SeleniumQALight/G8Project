@@ -1,6 +1,7 @@
 package bdd.stepDefinitions;
 
 import bdd.helpers.WebDriverHelper;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -44,6 +45,39 @@ public class LoginPageSteps extends MainSteps {
     public void iSeeAlertMessageWithTextInvalidUsernamePassword(String message) {
         pageProvider.loginPage().checkTextInAlertInCenter(message);
 
+    }
+
+    @When("I enter {string} in username field and {string} in email field and {string} in password field on Login page")
+    public void iEnterInUsernameFieldAndInEmailFieldAndInPasswordFieldOnLoginPage(String userName, String email, String password) {
+        pageProvider.loginPage().enterTextRegistrationUserNameField(userName);
+        pageProvider.loginPage().enterTextRegistrationEmailField(email);
+        pageProvider.loginPage().enterTextRegistrationPasswordField(password);
+    }
+
+
+    @Then("I see '{int}' error message on Login page")
+    public void iSeeErrorMessageOnLoginPage(Integer numberOfErrors) {
+        pageProvider.loginPage().checkNumberOfErrorsMessagesInRegistrationForm(numberOfErrors);
+    }
+
+    @And("I click on Register button on Login page")
+    public void iClickOnRegisterButtonOnLoginPage() {
+        pageProvider.loginPage().clickOnButtonSignUpForOurApp();
+    }
+
+    @Then("I see alert message in username field {string}")
+    public void iSeeAlertMessage(String messageLogin) {
+        pageProvider.loginPage().checkTextInAlertLoginInRegistrationForm(messageLogin);
+    }
+
+    @And("I see alert message in email field {string}")
+    public void iSeeAlertMessageInEmailField(String messageEmail) {
+        pageProvider.loginPage().checkTextInAlertEmailInRegistrationForm(messageEmail);
+    }
+
+    @And("I see alert  message in password field {string}")
+    public void iSeeAlertMessageInPasswordField(String messagePassword) {
+        pageProvider.loginPage().checkTextInAlertPasswordInRegistrationForm(messagePassword);
     }
 }
 
