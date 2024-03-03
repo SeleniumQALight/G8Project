@@ -63,8 +63,12 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listErrorMessages;
+
     private String listErrorMessagesLocator
             = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement alertMessageInCenter;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -107,14 +111,17 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignUp);
         return this;
     }
+
     @Step
     public void refreshPage() {
         refreshPages();
     }
+
     @Step
     public boolean isMessageFailLogin() {
         return isElementDisplayed(divFailSignIn);
     }
+
     @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
@@ -132,24 +139,29 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
+
     @Step
     public HomePage redirectToHomePage() {
         return new HomePage(webDriver);
     }
+
     @Step
     public HeaderElement redirectToHeaderElement() {
         return new HeaderElement(webDriver);
     }
+
     @Step
     public LoginPage enterIntoUsernameRegistration(String username) {
         enterTextIntoInput(inputUsernameRegistration, username);
         return this;
     }
+
     @Step
     public LoginPage enterIntoEmailRegistration(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
+
     @Step
     public LoginPage enterIntoPasswordRegistration(String pass) {
         enterTextIntoInput(inputPasswordRegistration, pass);
@@ -168,27 +180,32 @@ public class LoginPage extends ParentPage {
         checkIsElementUnvisible(inputPassword, "inputPassword");
         return this;
     }
-//--------------------------------------------------------
-@Step
+
+    //--------------------------------------------------------
+    @Step
     public LoginPage checkIsRedirectOnLoginPage() {
         checkIsElementVisible(buttonSignIn, "buttonSignIn");
         return this;
     }
+
     @Step
     public LoginPage checkIsInputUsernameVisible() {
         checkIsElementVisible(inputUsername, "inputUsername");
         return this;
     }
+
     @Step
     public LoginPage checkIsInputPasswordVisible() {
         checkIsElementVisible(inputPassword, "inputPassword");
         return this;
     }
+
     @Step
     public LoginPage checkIsButtonSignInVisible() {
         checkIsElementVisible(buttonSignIn, "buttonSignIn");
         return this;
     }
+
     @Step
     public LoginPage checkIsButtonSignInUnvisible() {
         checkIsElementUnvisible(buttonSignIn, "buttonSignIn");
@@ -257,6 +274,11 @@ public class LoginPage extends ParentPage {
 
         softAssertions.assertAll();
 
+        return this;
+    }
+
+    public LoginPage checkTextInAlertInCenter(String message) {
+        Assert.assertEquals("", message, alertMessageInCenter.getText());
         return this;
     }
 }

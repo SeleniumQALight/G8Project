@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +51,9 @@ public class LoginPage extends ParentPage {
     private WebElement messageInvalidUsernamePassword;
 
     private String listOfErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+    @FindBy(xpath = ".//*[@class='alert alert-danger text-center']")
+    private WebElement alertMessageInCenter;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -147,7 +149,7 @@ public class LoginPage extends ParentPage {
     }
 
     @Step
-    private void clickOnButtonSignUpForOurApp() {
+    public void clickOnButtonSignUpForOurApp() {
         clickOnElement(buttonSignUpForOurApp);
     }
 
@@ -246,6 +248,32 @@ public class LoginPage extends ParentPage {
     @Step
     public LoginPage checkErrorsMessagesInLogin(String text) {
        checkTextInElement(messageInvalidUsernamePassword, text);
+        return this;
+    }
+
+    public LoginPage checkTextInAlertInCenter(String message) {
+        checkTextInElement(alertMessageInCenter, message);
+//        Assert.assertEquals("Message in center of page", message, alertMessageInCenter.getText());
+        return this;
+    }
+
+    public LoginPage checkNumberOfErrorsMessagesInRegistrationForm(int numberOfErrors) {
+        Assert.assertEquals("Number of messages", numberOfErrors, listOfErrorsMessages.size());
+        return this;
+    }
+
+    public LoginPage checkTextInAlertLoginInRegistrationForm(String errorMessageInLogin) {
+        checkTextInElement(usernameErrorMessage, errorMessageInLogin);
+        return this;
+    }
+
+    public LoginPage checkTextInAlertEmailInRegistrationForm(String errorMessageInEmail) {
+        checkTextInElement(emailErrorMessage, errorMessageInEmail);
+        return this;
+    }
+
+    public LoginPage checkTextInAlertPasswordInRegistrationForm(String errorMessageInPassword) {
+        checkTextInElement(passwordErrorMessage, errorMessageInPassword);
         return this;
     }
 }

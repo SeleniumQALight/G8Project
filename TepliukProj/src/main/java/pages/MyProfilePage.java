@@ -1,16 +1,21 @@
 package pages;
 
 
+import com.fasterxml.jackson.core.TreeNode;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
 public class MyProfilePage extends ParentPage{
 
     private String postTitleLocator = ".//*[text()='%s']";
+
+    @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -63,6 +68,12 @@ if (counter >= MAX_POST_COUNT) {
       //  clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, postTitle)
       //  )));   //find element can return exception
         clickOnElement(String.format(postTitleLocator, postTitle));
+
+        return this;
+    }
+
+    public MyProfilePage checkNumberOfPosts(int numberOfPosts) {
+        Assert.assertEquals("Number of Posts ", numberOfPosts, postsList.size());
 
         return this;
     }

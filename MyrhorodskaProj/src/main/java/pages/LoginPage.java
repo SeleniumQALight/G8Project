@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.awt.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +70,9 @@ public class LoginPage extends ParentPage{
 
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistration;
+
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement alertMessageInCenter;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -277,5 +281,11 @@ public class LoginPage extends ParentPage{
         clickOnButtonSingIn();
         return new HomePage(webDriver);
     }
+
+    public LoginPage checkTextInAlertInCenter(String message) {
+        Assert.assertEquals("Message in center if page",message,alertMessageInCenter.getText());
+        return this;
+    }
 }
+
 

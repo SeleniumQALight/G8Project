@@ -13,9 +13,8 @@ import org.junit.experimental.categories.Category;
 
 import java.io.IOException;
 import java.util.Map;
-
 import static data.TestData.*;
-import static libs.ConfigProvider.configProperties;
+
 
 @Epic("Allure examples")
 @Feature("Junit 4 support")
