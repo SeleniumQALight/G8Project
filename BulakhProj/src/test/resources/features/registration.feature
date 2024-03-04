@@ -1,5 +1,5 @@
 @RegistrationFeature @Regression
-Feature: Login feature
+Feature: Registration feature
 
   @R004 @smoke
     Scenario Outline: R004 Validation messages on registration form
