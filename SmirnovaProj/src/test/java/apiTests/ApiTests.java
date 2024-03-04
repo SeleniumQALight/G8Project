@@ -18,6 +18,7 @@ public class ApiTests {
             .when()
             .get(Endpoints.POST_BY_USER, USER_NAME)
             .then()
+            .log().all()
             .statusCode(200);
 
 
