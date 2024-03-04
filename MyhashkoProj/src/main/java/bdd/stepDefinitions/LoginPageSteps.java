@@ -2,6 +2,7 @@ package bdd.stepDefinitions;
 
 import bdd.helpers.WebDriverHelper;
 import data.TestData;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -43,7 +44,33 @@ public class LoginPageSteps extends MainSteps{
     }
 
     @Then("I see alert message with text {string}")
-    public void iSeeAlertMessageWhithTextInvalidUsernamePassword(String message) {
+    public void iSeeAlertMessageWithTextInvalidUsernamePassword(String message) {
         pageProvider.loginPage().checkTextInAlertInCenter(message);
+    }
+
+    @When("I enter {string} into input UserNameRegistration in Login page")
+    public void iEnterUserNameIntoInputUserNameRegistrationInLoginPage(String login) {
+        pageProvider.loginPage().enterTextIntoInputUsernameRegister(login);
+    }
+
+    @When("I enter {string} into input EmailRegistration in Login page")
+    public void iEnterEmailIntoInputEmailRegistrationInLoginPage(String email) {
+        pageProvider.loginPage().enterTextIntoInputEmailRegister(email);
+    }
+
+    @When("I enter {string} into input PasswordRegistration in Login page")
+    public void iEnterPasswordIntoInputPasswordRegistrationInLoginPage(String password) {
+        pageProvider.loginPage().enterTextIntoInputPasswordRegister(password);
+    }
+
+    @When("I click on button Register in Login page")
+    public void iClickOnButtonRegisterInLoginPage() {
+        pageProvider.loginPage().clickOnButtonSignUpRegister();
+    }
+
+    @Then("I see error message {string} in Login page")
+    public void iSeeErrorMessageErrorMessageInLoginPage(String errorMessage) {
+        pageProvider.loginPage().checkErrorMessages(errorMessage);
+
     }
 }
