@@ -19,5 +19,3 @@ Feature: Login feature
       | login  | password       |
       | qaauto | not_valid_pass |
       | qaauto | 123456qwerty   |
-
-
