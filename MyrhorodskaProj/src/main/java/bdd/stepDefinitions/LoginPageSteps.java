@@ -45,4 +45,25 @@ public class LoginPageSteps extends MainSteps{
         pageProvider.loginPage().checkTextInAlertInCenter(message);
 
     }
+
+
+    @When("I enter {string} into input UserNameRegistration in Login page")
+    public void iEnterUserNameIntoInputUserNameRegistrationInLoginPage(String login) {
+        pageProvider.loginPage().inputTextIntoRegistrationLogin(login);
+    }
+
+    @When("I enter {string} into input EmailRegistration in Login page")
+    public void iEnterEmailIntoInputEmailRegistrationInLoginPage(String email) {
+        pageProvider.loginPage().inputTextIntoRegistrationEmail(email);
+    }
+
+    @When("I enter {string} into input PasswordRegistration in Login page")
+    public void iEnterPasswordIntoInputPasswordRegistrationInLoginPage(String password) {
+        pageProvider.loginPage().inputTextIntoRegistrationPassword(password);
+    }
+    @Then("I see error message {string} in Login page")
+    public void iSeeErrorMessageErrorMessageInLoginPage(String errorMessage) {
+        pageProvider.loginPage().checkErrorMessages(errorMessage);
+
+    }
 }
