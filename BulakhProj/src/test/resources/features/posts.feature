@@ -6,6 +6,7 @@ Background:
 
 
   @R003 @Smoke
+  @deleteAllPostsForDefaultUser
   Scenario Outline: R003 Check number of posts on UI
     Given I create <numberOfPosts> new posts via API 'default' user and 'default' password
       | title  | post by API |
