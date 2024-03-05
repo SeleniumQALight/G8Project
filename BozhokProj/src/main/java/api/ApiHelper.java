@@ -118,4 +118,12 @@ public class ApiHelper {
                 .then()
                 .spec(responseSpecification);
     }
+
+    /**
+     * Delete all posts for Default user
+     */
+    public void deleteAllPostsTillPresent() {
+        String token = getToken();
+        deleteAllPostsTillPresent(TestData.VALID_LOGIN_API, token);
+    }
 }
