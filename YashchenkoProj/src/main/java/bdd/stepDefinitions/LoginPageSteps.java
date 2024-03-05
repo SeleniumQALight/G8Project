@@ -45,4 +45,24 @@ public class LoginPageSteps extends MainSteps{
         pageProvider.getLoginPage().checkTextInAlertInCenter(message);
 
     }
+
+    @When("I enter {string} into registration input Login on Login page")
+    public void iEnterIntoRegistrationInputLoginOnLoginPage(String login) {
+        pageProvider.getLoginPage().enterTextIntoRegistrationInputLogin(login);
+    }
+
+    @When("I enter {string} into registration input Password on Login page")
+    public void iEnterIntoRegistrationInputPasswordOnLoginPage(String password) {
+        pageProvider.getLoginPage().enterTextIntoRegistrationInputPassword(password);
+    }
+
+    @When("I enter {string} into registration input Email on Login page")
+    public void iEnterIntoRegistrationInputEmailOnLoginPage(String email) {
+        pageProvider.getLoginPage().enterTextIntoRegistrationInputEmail(email);
+    }
+
+    @Then("I see expected registration form {string} messages")
+    public void iSeeExpectedRegistrationFormMessages(String errors) {
+        pageProvider.getLoginPage().checkErrorMessages(errors);
+    }
 }
