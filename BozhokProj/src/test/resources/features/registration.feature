@@ -1,4 +1,4 @@
-@PostsFeature @Regression
+@PostsFeature
 Feature: Registration feature
 
   @R004
