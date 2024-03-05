@@ -1,6 +1,7 @@
 @RegistrationFeature @Regression
 Feature: Registration feature
 
+  //123123
   @R004 @Smoke
   Scenario Outline: R004 Check registration form error messages
     Given I open Login page
