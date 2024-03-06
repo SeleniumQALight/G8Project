@@ -12,8 +12,6 @@
     <artifactId>MyhashkoProj</artifactId>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspectj.version>1.9.21</aspectj.version>
         <compiler.version>1.8</compiler.version>
