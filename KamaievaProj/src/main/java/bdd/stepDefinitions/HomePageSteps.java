@@ -20,10 +20,10 @@ public class HomePageSteps extends MainSteps{
     @Given("I open Home page as {string} user with {string} password")
     public void iOpenHomePageAsDefaultUserWithDefaultPassword(String userName, String password) {
         if (DEFAULT.equalsIgnoreCase(userName)) {
-            userName = TestData.VALID_LOGIN_UI;
+            userName = TestData.VALID_LOGIN_API;
         }
         if (DEFAULT.equalsIgnoreCase(password)) {
-            password = TestData.VALID_PASSWORD_UI;
+            password = TestData.VALID_PASSWORD_API;
         }
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputLogin(userName);
