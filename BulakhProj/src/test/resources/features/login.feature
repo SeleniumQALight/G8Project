@@ -9,7 +9,7 @@ Feature:  Login feature
     Then I see avatar on Home page
 
     @R002
-  Scenario Outline: R002 Login with invalid cred
+  Scenario Outline: R002 Login with invalid cred <login>
     Given I open Login page
     When I enter '<login>' into input login in Login page
     When I enter '<password>' into input Password in Login page
