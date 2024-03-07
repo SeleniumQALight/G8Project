@@ -5,6 +5,7 @@ import apiPrivatBank.responsePrivatBankDto.ExchangeDto;
 import apiPrivatBank.responsePrivatBankDto.ExchangeRateDto;
 import io.restassured.response.Response;
 import org.assertj.core.api.SoftAssertions;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
@@ -20,41 +21,58 @@ public class ApiPrivatBankTests {
             "BYN",
             "CAD",
             "CHF",
-            "CZK",
-            "EUR",
-            "GEL",
-            "ILS",
-            "KZT",
-            "NOK",
-            "UAH",
-            "SEK",
-            "TMT",
-            "UZS",
-            "USD",
             "CNY",
+            "CZK",
             "DKK",
-            "HUF",
+            "EUR",
             "GBP",
+            "GEL",
+            "HUF",
+            "ILS",
             "JPY",
+            "KZT",
             "MDL",
+            "NOK",
             "PLN",
+            "SEK",
             "SGD",
-            "TRY"
+            "TMT",
+            "TRY",
+            "UAH",
+            "USD",
+            "UZS"
     };
 
     @Test
     public void ExchangeRatesValidation() {
-        Response actualResponse = apiHelper.getExchangeRateByDate(DATE).extract().response();
+        ExchangeDto actualResponseAsDto = apiHelper.getExchangeRateByDate(DATE).extract().response().as(ExchangeDto.class);
+
+        ExchangeRateDto[] exchangeRateDTOCurrencyMassive = new ExchangeRateDto[CURRENCY.length];
+        for (int i = 0; i < CURRENCY.length; i++) {
+            exchangeRateDTOCurrencyMassive[i] = ExchangeRateDto.createExchangeRateWithSpecificCurrency(CURRENCY[i]);
+        }
+
+        ExchangeDto expectedResponse =
+                ExchangeDto.builder()
+                        .date(DATE)
+                        .bank("PB")
+                        .baseCurrency(980)
+                        .baseCurrencyLit("UAH")
+                        .exchangeRate(exchangeRateDTOCurrencyMassive)
+                        .build();
 
         SoftAssertions softAssertions = new SoftAssertions();
-        ExchangeDto actualResponseAsDto = actualResponse.as(ExchangeDto.class);
+
+        Assert.assertEquals("The number of exchange rates is different ", expectedResponse.getExchangeRate().length, actualResponseAsDto.getExchangeRate().length);
         softAssertions
                 .assertThat(actualResponseAsDto)
                 .usingRecursiveComparison()
-                .ignoringFields("saleRateNB", "purchaseRateNB", "saleRate", "purchaseRate ");
+                .ignoringFields("exchangeRate.saleRateNB", "exchangeRate.purchaseRateNB", "exchangeRate.saleRate", "exchangeRate.purchaseRate")
+                .isEqualTo(expectedResponse);
+        softAssertions.assertAll();
         softAssertions.assertThat(actualResponseAsDto.getDate()).isEqualTo(DATE);
         softAssertions.assertThat(actualResponseAsDto.getBank()).isEqualTo("PB");
-        softAssertions.assertThat(actualResponseAsDto.getBaseCurrency()).isEqualTo("980");
+        softAssertions.assertThat(actualResponseAsDto.getBaseCurrency()).isEqualTo(980);
         softAssertions.assertThat(actualResponseAsDto.getBaseCurrencyLit()).isEqualTo("UAH");
 
         for (int i = 0; i < actualResponseAsDto.getExchangeRate().length; i++) {
