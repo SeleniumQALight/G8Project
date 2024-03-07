@@ -1,8 +1,8 @@
 @LoginFeature @Regression
 Feature: Registration feature
 
-@R001
-Scenario Outline: R001 Check validation massages for Registration form
+@R004
+Scenario Outline: R004 Check validation massages for Registration form
   Given  I open LoginPage
   When I enter '<userName>' into input UserName in Registration form
   When I enter '<email>' into input Email in Registration form
