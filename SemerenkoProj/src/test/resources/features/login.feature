@@ -1,7 +1,7 @@
 @LoginFeature @Regression
 Feature: Login feature
 
-  @R001 @Smoke
+  @R001 @Smoke @Allure
   Scenario: R001 Valid Login
     Given I open Login page
     When I login with valid cred
