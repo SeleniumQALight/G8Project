@@ -20,6 +20,7 @@ import java.util.HashMap;
 
 import java.util.Map;
 
+import static data.TestData.VALID_LOGIN_API;
 import static io.restassured.RestAssured.given;
 
 public class ApiHelper {
@@ -54,7 +55,7 @@ public class ApiHelper {
     }
 
     public String getToken() {
-        return getToken(TestData.VALID_LOGIN_API, TestData.VALID_PASSWORD_API);
+        return getToken(VALID_LOGIN_API, TestData.VALID_PASSWORD_API);
     }
 
     public String getToken(String userName, String password) {
@@ -117,5 +118,10 @@ public class ApiHelper {
                 .post(EndPoints.CREATE_POST)
                 .then()
                 .spec(responseSpecification);
+    }
+
+    public void deleteAllPostsTillPresent() {
+        String token = getToken();
+        deleteAllPostsTillPresent(VALID_LOGIN_API, token);
     }
 }
