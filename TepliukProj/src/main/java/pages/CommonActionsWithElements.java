@@ -36,7 +36,8 @@ public class CommonActionsWithElements {
     }
 
     private void printErrorAndStopTest(Exception e) {
-        printErrorAndStopTest(e);
+        logger.error("Can't work with element " + e);
+        Assert.fail("Can't work with element " + e);
     }
 
     private String getElementName(WebElement webElement) {
