@@ -115,4 +115,9 @@ public class ApiHelper {
                 .then()
                 .spec(responseSpecification);
     }
+
+    public void deleteAllPostsTillPresent(){
+        String token = getToken();
+        deleteAllPostsTillPresent(TestData.PERSONAL_LOGIN_UI, token);
+    }
 }

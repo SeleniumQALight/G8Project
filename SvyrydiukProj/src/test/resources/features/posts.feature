@@ -5,7 +5,9 @@ Feature: Posts feature
   Background:
     Given I open Home page as 'default' user with 'default' password
 
-  @R003 @Smoke
+
+    @R003 @Smoke
+    @deleteAllPostsForDefaultUser
   Scenario Outline: R003 Check number of posts in UI
     Given I create '<numberOfPosts>' new posts via API for 'default' user and 'default' password
       | title  | Post by API |

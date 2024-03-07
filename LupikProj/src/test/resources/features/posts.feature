@@ -6,6 +6,7 @@ Feature: Posts feature
 
 
   @R003 @Smoke
+    @deleteAllPostsForDefaultUser
   Scenario Outline: R003 Check number of posts on UI
 
     Given I create '<numberOfPosts>' new posts via API for 'default' user and 'default' password

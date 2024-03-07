@@ -14,6 +14,7 @@ import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,28 +55,29 @@ public class ApiHelper {
     }
 
     public PostsDto[] getAllPostsByUserAsDto(String userName) {
-        return getAllPostsByUserRequest(userName).extract().response().getBody().as(PostsDto[].class);}
+        return getAllPostsByUserRequest(userName).extract().response().getBody().as(PostsDto[].class);
+    }
 
 
-        public String getToken () {
-            return getToken(TestData.VALID_LOGIN_API, TestData.VALID_PASSWORD_API);
-        }
+    public String getToken() {
+        return getToken(TestData.VALID_LOGIN_API, TestData.VALID_PASSWORD_API);
+    }
 
-        public String getToken (String userName, String password){
-            JSONObject requestBody = new JSONObject();
-            requestBody.put("username", userName);
-            requestBody.put("password", password);
-            ResponseBody responseBody = given()
-                    .spec(requestSpecification)
-                    .body(requestBody.toMap())
-                    .when()
-                    .post(EndPoints.LOGIN)//URL
-                    .then()
-                    .spec(responseSpecification)
-                    .extract().response().getBody();
+    public String getToken(String userName, String password) {
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("username", userName);
+        requestBody.put("password", password);
+        ResponseBody responseBody = given()
+                .spec(requestSpecification)
+                .body(requestBody.toMap())
+                .when()
+                .post(EndPoints.LOGIN)//URL
+                .then()
+                .spec(responseSpecification)
+                .extract().response().getBody();
 
-            return responseBody.asString().replace("\"", "");
-        }
+        return responseBody.asString().replace("\"", "");
+    }
 
     public void deleteAllPostsTillPresent(String validLoginApi, String token) {
         PostsDto[] listOfPosts = getAllPostsByUserAsDto(validLoginApi);
@@ -103,7 +105,7 @@ public class ApiHelper {
 
     public void createPost(String token, Map<String, String> postData, Integer indexOfPost) {
         HashMap<String, String> requestBody = new HashMap<>();
-        requestBody.put("title", postData.get("title")+indexOfPost);
+        requestBody.put("title", postData.get("title") + indexOfPost);
         requestBody.put("body", postData.get("body"));
         requestBody.put("select1", postData.get("select"));
         requestBody.put("uniquePost", "no");
@@ -116,6 +118,15 @@ public class ApiHelper {
                 .post(EndPoints.CREATE_POST)
                 .then()
                 .spec(responseSpecification);
+    }
+
+    /**
+     * Delete all posts for default user
+     */
+
+    public void deleteAllPostsTillPresent() {
+        String token = getToken();
+        deleteAllPostsTillPresent(TestData.VALID_LOGIN_API, token);
     }
 }
 
