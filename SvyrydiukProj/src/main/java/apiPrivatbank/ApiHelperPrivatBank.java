@@ -1,18 +1,19 @@
 package apiPrivatbank;
 
-import api.EndPoints;
+import apiPrivatbank.dto.responsePrivatBank.ExchangeByCoursIdDTO;
 import data.TestData;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
-import io.restassured.response.ResponseBody;
+import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
-import org.json.JSONObject;
+import org.junit.Assert;
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
@@ -30,7 +31,6 @@ public class ApiHelperPrivatBank {
             .build();
 
 
-
     public ValidatableResponse getExchangeRateByDate(String paramDate) {
         return given()
                 .spec(requestSpecification)
@@ -41,6 +41,41 @@ public class ApiHelperPrivatBank {
                 .spec(responseSpecification)
                 .spec(responseSpecification.statusCode(HttpStatus.SC_OK));
     }
+
+    public ValidatableResponse getExchangeRate() {
+        return given()
+                .spec(requestSpecification)
+                .when()
+                .get(EndPointsPrivatBank.EXCHANGE)
+                .then()
+                .spec(responseSpecification)
+                .spec(responseSpecification.statusCode(HttpStatus.SC_OK));
+    }
+
+    public ValidatableResponse getExchangeRateByCoursId() {
+        return given()
+                .spec(requestSpecification)
+                .when()
+                .get(EndPointsPrivatBank.EXCHANGE)
+                .then()
+                .spec(responseSpecification)
+                .spec(responseSpecification.statusCode(HttpStatus.SC_OK));
+    }
+    public void saveExchangeRateByCoursIdToTestDataForSelectedCurrency(String currency) {
+        Response response = getExchangeRateByCoursId().extract().response();
+        List<ExchangeByCoursIdDTO> exchangeByCoursIdDTO = response.jsonPath().getList("", ExchangeByCoursIdDTO.class);
+        try {
+            for (int i = 0; i < exchangeByCoursIdDTO.size(); i++)
+                if (exchangeByCoursIdDTO.get(i).getCcy().equals(currency)){
+                    TestData.privatBankBuyCours = Float.parseFloat(exchangeByCoursIdDTO.get(i).getBuy());
+                    TestData.privatBankSaleCours = Float.parseFloat(exchangeByCoursIdDTO.get(i).getSale());
+                }
+        } catch (Exception e) {
+            logger.error("Invalid currency");
+            Assert.fail("Invalid currency");
+        }
+    }
+
 }
 
 
