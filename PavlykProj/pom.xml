@@ -202,7 +202,7 @@
                             <!-- <parallel>methods</parallel>-->
                             <parallel>classes</parallel>
                             <testFailureIgnore>true</testFailureIgnore>
-                            <rerunFailingTestsCount>1</rerunFailingTestsCount>
+                            <rerunFailingTestsCount>0</rerunFailingTestsCount>
                             <argLine>
                                 -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                             </argLine>
