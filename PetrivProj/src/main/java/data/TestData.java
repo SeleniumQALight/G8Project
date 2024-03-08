@@ -13,4 +13,9 @@ public class TestData {
     public final static String VALID_LOGIN_DEMO_QA_API = "yuliiapetriv";
     public final static String VALID_PASSWORD_DEMO_QA_API = "!123Qwerty";
 
+    public static Double USD_BUY_RATE_UI = 0.0;
+    public static Double USD_SALE_RATE_UI = 0.0;
+
+    public static Double EUR_BUY_RATE_UI = 0.0;
+    public static Double EUR_SALE_RATE_UI = 0.0;
 }
