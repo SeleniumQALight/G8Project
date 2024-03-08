@@ -3,7 +3,6 @@ package pages;
 import org.openqa.selenium.WebDriver;
 
 public class PageProvider {
-
     private WebDriver webDriver;
 
     public PageProvider(WebDriver webDriver) {
@@ -18,8 +17,11 @@ public class PageProvider {
         return new HomePage(webDriver);
     }
 
-    public PostPage getPostPage() {return new PostPage(webDriver);}
+    public PostPage getPostPage() {
+        return new PostPage(webDriver);
+    }
 
-    public MyProfilePage getMyProfilePage() {return new MyProfilePage(webDriver);}
-
+    public MyProfilePage getMyProfilePage() {
+        return new MyProfilePage(webDriver);
+    }
 }
