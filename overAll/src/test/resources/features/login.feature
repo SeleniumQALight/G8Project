@@ -13,7 +13,7 @@ Feature: Login feature
     When I enter '<login>' into input Login in Login page
     And I enter '<password>' into input Password in Login page
     And I click on button SignIn in Login page
-    Then I see alert message with text 'Invalid username/ password'
+    Then I see alert message with text 'Invalid username/password.'
 
 
     Examples:

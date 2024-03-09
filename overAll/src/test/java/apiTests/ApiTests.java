@@ -71,7 +71,7 @@ public class ApiTests {
 
         };
 
-        Assert.assertEquals("Number of posts ", expectedDto.length+1, actualResponseAsDto.length);
+        Assert.assertEquals("Number of posts ", expectedDto.length, actualResponseAsDto.length);
 
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions
