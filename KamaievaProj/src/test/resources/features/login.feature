@@ -8,7 +8,7 @@ Feature: Login feature
     Then I see avatar on the Home page
 
   @R002
-  Scenario Outline: R002 Invalid login
+  Scenario Outline: R002 Invalid login <login>
     Given I open Login page
     When I enter '<login>' into input Login in Login page
     And I enter '<password>' into input Password in Login page
