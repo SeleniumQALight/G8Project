@@ -13,5 +13,3 @@ Feature: Privatbank feature
       | currency |
       | EUR      |
       | USD      |
-      | PLN      |
-      | RUB      |
