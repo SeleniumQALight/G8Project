@@ -10,6 +10,8 @@ public class PrivatBankStartPage extends ParentPage{
     public PrivatBankStartPage(WebDriver webDriver) {
         super(webDriver);
     }
+    String partOfLocatorBuy = ".//*[@id='%s_buy']";
+    String partOfLocatorSale = ".//*[@id='%s_sell']";
 
     @Override
     protected String getRelativeUrl() {
@@ -24,8 +26,8 @@ public class PrivatBankStartPage extends ParentPage{
     }
 
     public void getCurrencyRateWithUiInPrivatBank(String currency) {
-        String locator_buy = String.format(".//*[@id='%s_buy']", currency);
-        String locator_sale = String.format(".//*[@id='%s_sell']", currency);
+        String locator_buy = String.format(partOfLocatorBuy, currency);
+        String locator_sale = String.format(partOfLocatorSale, currency);
 
         WebElement buy = webDriver.findElement(By.xpath(locator_buy));
         WebElement sale = webDriver.findElement(By.xpath(locator_sale));
