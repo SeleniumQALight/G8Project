@@ -56,6 +56,9 @@ public class ApiHelperPrivatBank {
         return given()
                 .spec(requestSpecification)
                 .when()
+                .queryParam("json")
+                .queryParam("exchange")
+                .queryParam("coursid", 5)
                 .get(EndPointsPrivatBank.EXCHANGE)
                 .then()
                 .spec(responseSpecification)
@@ -65,15 +68,25 @@ public class ApiHelperPrivatBank {
         Response response = getExchangeRateByCoursId().extract().response();
         List<ExchangeByCoursIdDTO> exchangeByCoursIdDTO = response.jsonPath().getList("", ExchangeByCoursIdDTO.class);
         try {
-            for (int i = 0; i < exchangeByCoursIdDTO.size(); i++)
+            TestData.privatBankBuyCours = 0;
+            TestData.privatBankSaleCours = 0;
+            for (int i = 0; i < exchangeByCoursIdDTO.size(); i++){
                 if (exchangeByCoursIdDTO.get(i).getCcy().equals(currency)){
                     TestData.privatBankBuyCours = Float.parseFloat(exchangeByCoursIdDTO.get(i).getBuy());
                     TestData.privatBankSaleCours = Float.parseFloat(exchangeByCoursIdDTO.get(i).getSale());
+                    break;
                 }
-        } catch (Exception e) {
-            logger.error("Invalid currency");
-            Assert.fail("Invalid currency");
+            }
+            if (TestData.privatBankBuyCours == 0 || TestData.privatBankSaleCours == 0){
+                logger.error("Invalid currency");
+                Assert.fail("Invalid currency");
+            }
         }
+         catch (Exception e) {
+            logger.error("Exception occurred");
+            Assert.fail("Exception occurred");
+        }
+
     }
 
 }
