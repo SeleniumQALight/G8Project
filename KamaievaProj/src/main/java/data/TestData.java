@@ -9,4 +9,10 @@ public class TestData {
 
     public final static String VALID_LOGIN_API = "apikamaieva";
     public final static String VALID_PASSWORD_API = "1234567qwerty";
+
+    public static Double EXCHANGE_BUY_UI;
+    public static Double EXCHANGE_SELL_UI;
+    public static Double EXCHANGE_BUY_API;
+    public static Double EXCHANGE_SELL_API;
+
 }
