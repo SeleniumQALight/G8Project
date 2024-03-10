@@ -41,6 +41,15 @@ public class ApiHelperPb {
 
     }
 
+    public ValidatableResponse getCurrencyRate(){
+        return given()
+                .spec(requestSpecification)
+                .when()
+                .get(EndPointsPb.EXCH_RATE)
+                .then()
+                .spec(responseSpecification);
+    }
+
     public RateArchPbDto getExpectedDto(String date, List<String> listOfCurrency) {
         List<ExchangeRatePbDto> exchangeRateList = new ArrayList<>();
         for (int i = 0; i < listOfCurrency.size(); i++) {

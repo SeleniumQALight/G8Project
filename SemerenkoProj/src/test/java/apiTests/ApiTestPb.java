@@ -66,4 +66,8 @@ public class ApiTestPb {
         }
         softAssertions.assertAll();
     }
+    @Test
+    public void getCurrencyRate(){
+        apiHelperPb.getCurrencyRate();
+    }
 }
