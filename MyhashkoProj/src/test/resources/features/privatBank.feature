@@ -11,3 +11,4 @@ Feature: PrivatBank
       | PLN      |
       | EUR      |
       | USD      |
+      | PLN      |
