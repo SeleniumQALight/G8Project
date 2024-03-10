@@ -3,25 +3,24 @@ package pages;
 import data.TestData;
 import io.qameta.allure.Step;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 public class PrivatBankMainPage extends ParentPage {
 
     private final String PRIVAT_BANK_BASE_URL_UI = "https://privatbank.ua/";
 
-    @FindBy(xpath = ".//td[@id='USD_buy']")
-    private WebElement usdBuyRate;
+    private String buyRateLocator = ".//td[@id='%s_buy']";
+    private String saleRateLocator = ".//td[@id='%s_sell']";
 
-    @FindBy(xpath = ".//td[@id='USD_sell']")
-    private WebElement usdSaleRate;
+    private WebElement getBuyRate(String currencyName) {
+        return webDriver.findElement(By.xpath(String.format(buyRateLocator, currencyName)));
+    }
 
-    @FindBy(xpath = ".//td[@id='EUR_buy']")
-    private WebElement eurBuyRate;
-
-    @FindBy(xpath = ".//td[@id='EUR_sell']")
-    private WebElement eurSaleRate;
+    private WebElement getSaleRate(String currencyName) {
+        return webDriver.findElement(By.xpath(String.format(saleRateLocator, currencyName)));
+    }
 
     public PrivatBankMainPage(WebDriver webDriver) {
         super(webDriver);
@@ -29,13 +28,13 @@ public class PrivatBankMainPage extends ParentPage {
 
     @Override
     protected String getRelativeUrl() {
-        return null;
+        return PRIVAT_BANK_BASE_URL_UI;
     }
 
     @Step
     public void openMainPage() {
         try {
-            webDriver.get(PRIVAT_BANK_BASE_URL_UI);
+            webDriver.get(getRelativeUrl());
             logger.info("Main page was opened " + PRIVAT_BANK_BASE_URL_UI);
         } catch (Exception e) {
             logger.error("Can not open Main page");
@@ -45,17 +44,7 @@ public class PrivatBankMainPage extends ParentPage {
 
     @Step
     public void storeRateForCurrency(String currencyName) {
-        switch (currencyName.toUpperCase()) {
-            case "USD":
-                TestData.USD_BUY_RATE_UI = Double.valueOf(usdBuyRate.getText());
-                TestData.USD_SALE_RATE_UI = Double.valueOf(usdSaleRate.getText());
-                break;
-            case "EUR":
-                TestData.EUR_BUY_RATE_UI = Double.valueOf(eurBuyRate.getText());
-                TestData.EUR_SALE_RATE_UI = Double.valueOf(eurSaleRate.getText());
-                break;
-            default:
-                break;
-        }
+        TestData.BUY_RATE_UI = Double.valueOf(getBuyRate(currencyName).getText());
+        TestData.SALE_RATE_UI = Double.valueOf(getSaleRate(currencyName).getText());
     }
 }

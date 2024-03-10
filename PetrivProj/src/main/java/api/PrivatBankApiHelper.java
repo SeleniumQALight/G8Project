@@ -56,12 +56,12 @@ public class PrivatBankApiHelper extends ApiHelper {
 
     public void checkUiAndApiCurrenciesRates(String currencyName) {
         if (USD.equalsIgnoreCase(currencyName)) {
-            Assert.assertEquals(currencyName + " rate is different ", usdBuyRateApi, TestData.USD_BUY_RATE_UI);
-            Assert.assertEquals(currencyName + " rate is different ", usdSaleRateApi, TestData.USD_SALE_RATE_UI);
+            Assert.assertEquals(currencyName + " rate is different ", usdBuyRateApi, TestData.BUY_RATE_UI);
+            Assert.assertEquals(currencyName + " rate is different ", usdSaleRateApi, TestData.SALE_RATE_UI);
         }
         if (EUR.equalsIgnoreCase(currencyName)) {
-            Assert.assertEquals(currencyName + " rate is different ", eurBuyRateApi, TestData.EUR_BUY_RATE_UI);
-            Assert.assertEquals(currencyName + " rate is different ", eurSaleRateApi, TestData.EUR_SALE_RATE_UI);
+            Assert.assertEquals(currencyName + " rate is different ", eurBuyRateApi, TestData.BUY_RATE_UI);
+            Assert.assertEquals(currencyName + " rate is different ", eurSaleRateApi, TestData.SALE_RATE_UI);
         }
     }
 }
