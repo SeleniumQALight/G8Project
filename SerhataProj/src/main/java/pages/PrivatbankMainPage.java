@@ -11,8 +11,8 @@ public class PrivatbankMainPage extends ParentPage {
     private final String PRIVAT_BANK_BASE_URL_UI = "https://privatbank.ua/";
     private final String USD = "USD";
     private final String EUR = "EUR";
-    private final String BUY = "buy";
-    private final String SELL = "sell";
+    private String buyLocator = ".//td[@id='%s_buy']";
+    private String saleLocator = ".//td[@id='%s_sell']";
 
     public WebElement getCurrencyElement(String currency, String transactionType) {
         return webDriver.findElement(By.xpath(".//td[@id='" + currency + "_" + transactionType + "']"));
@@ -38,11 +38,17 @@ public class PrivatbankMainPage extends ParentPage {
         }
     }
 
+    private WebElement getBuyRate(String currencyName) {
+        return webDriver.findElement(By.xpath(String.format(buyLocator, currencyName)));
+    }
+
+    private WebElement getSaleRate(String currencyName) {
+        return webDriver.findElement(By.xpath(String.format(saleLocator, currencyName)));
+    }
+
     @Step
     public void storeRateForCurrency(String currencyName) {
-                TestData.BUY_RATE_UI = Double.valueOf(getCurrencyElement(USD,BUY).getText());
-                TestData.SALE_RATE_UI = Double.valueOf(getCurrencyElement(USD,SELL).getText());
-                TestData.BUY_RATE_UI = Double.valueOf(getCurrencyElement(EUR,BUY).getText());
-                TestData.SALE_RATE_UI = Double.valueOf(getCurrencyElement(EUR,SELL).getText());
+        TestData.BUY_RATE_UI = Double.valueOf(getBuyRate(currencyName).getText());
+        TestData.SALE_RATE_UI = Double.valueOf(getSaleRate(currencyName).getText());
     }
 }
