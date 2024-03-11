@@ -29,14 +29,16 @@ public class PrivatBankPage extends ParentPage {
         }
     }
 
-    public String getCurrencySaleValue(String currecyName) {
-        WebElement currencyRate = getElement(locatorCurrSellValue, currecyName);
-        return currencyRate.getText();
+    public Double getCurrencySaleValue(String currency) {
+        WebElement currencyRate = getElement(locatorCurrSellValue, currency);
+        return Double.parseDouble(currencyRate.getText());
     }
 
-    public String getCurrencyBuyValue(String currencyName) {
-        WebElement currencyRate = getElement(locatorCurrBuyValue, currencyName);
-        return currencyRate.getText();
+    public Double getCurrencyBuyValue(String currency) {
+        WebElement currencyRate = getElement(locatorCurrBuyValue, currency);
+        return Double.parseDouble(currencyRate.getText());
     }
+
+
 
 }

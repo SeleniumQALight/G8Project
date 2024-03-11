@@ -1,6 +1,7 @@
 package apiTests;
 
 import api.ApiHelperPb;
+import api.dto.responseDto.CurrencyRatePbDto;
 import api.dto.responseDto.RateArchPbDto;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
@@ -68,6 +69,14 @@ public class ApiTestPb {
     }
     @Test
     public void getCurrencyRate(){
-        apiHelperPb.getCurrencyRate();
+        CurrencyRatePbDto[] actualResponse = apiHelperPb.getCurrencyRate().extract().response().as(CurrencyRatePbDto[].class);
+        logger.info("Length: "+actualResponse.length);
+        for (int i = 0; i < actualResponse.length; i++) {
+            if (actualResponse[i].getCcy().equals("USD")){
+                logger.info("buy: " +actualResponse[i].getBuy());
+                logger.info("buy: " +actualResponse[i].getSale());
+
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 package api;
 
+import api.dto.responseDto.CurrencyRatePbDto;
 import api.dto.responseDto.ExchangeRatePbDto;
 import api.dto.responseDto.RateArchPbDto;
 import io.restassured.builder.RequestSpecBuilder;
@@ -14,6 +15,7 @@ import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -41,7 +43,7 @@ public class ApiHelperPb {
 
     }
 
-    public ValidatableResponse getCurrencyRate(){
+    public ValidatableResponse getCurrencyRate() {
         return given()
                 .spec(requestSpecification)
                 .when()
@@ -49,6 +51,20 @@ public class ApiHelperPb {
                 .then()
                 .spec(responseSpecification);
     }
+
+    public Map<String, Double> getCurrencyRateValues(String currency) {
+        Map<String, Double> currencyRateValues = null;
+        CurrencyRatePbDto[] actualResponse = getCurrencyRate().extract().response().as(CurrencyRatePbDto[].class);
+        //logger.info("Length: " + actualResponse.length);
+        for (int i = 0; i < actualResponse.length; i++) {
+            if (actualResponse[i].getCcy().equals(currency)) {
+                currencyRateValues.put("buy", actualResponse[i].getBuy());
+                currencyRateValues.put("sale", actualResponse[i].getSale());
+            }
+        }
+        return currencyRateValues;
+    }
+
 
     public RateArchPbDto getExpectedDto(String date, List<String> listOfCurrency) {
         List<ExchangeRatePbDto> exchangeRateList = new ArrayList<>();
