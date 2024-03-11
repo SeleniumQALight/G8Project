@@ -2,25 +2,22 @@ package pages;
 
 import data.TestData;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import io.qameta.allure.Step;
 
 public class PrivatbankMainPage extends ParentPage {
     private final String PRIVAT_BANK_BASE_URL_UI = "https://privatbank.ua/";
+    private final String USD = "USD";
+    private final String EUR = "EUR";
+    private final String BUY = "buy";
+    private final String SELL = "sell";
 
-    @FindBy(xpath = ".//td[@id='USD_buy']")
-    private WebElement usdBuyRate;
+    public WebElement getCurrencyElement(String currency, String transactionType) {
+        return webDriver.findElement(By.xpath(".//td[@id='" + currency + "_" + transactionType + "']"));
+    }
 
-    @FindBy(xpath = ".//td[@id='USD_sell']")
-    private WebElement usdSaleRate;
-
-    @FindBy(xpath = ".//td[@id='EUR_buy']")
-    private WebElement eurBuyRate;
-
-    @FindBy(xpath = ".//td[@id='EUR_sell']")
-    private WebElement eurSaleRate;
     public PrivatbankMainPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -43,17 +40,9 @@ public class PrivatbankMainPage extends ParentPage {
 
     @Step
     public void storeRateForCurrency(String currencyName) {
-        switch (currencyName.toUpperCase()) {
-            case "USD":
-                TestData.USD_BUY_RATE_UI = Double.valueOf(usdBuyRate.getText());
-                TestData.USD_SALE_RATE_UI = Double.valueOf(usdSaleRate.getText());
-                break;
-            case "EUR":
-                TestData.EUR_BUY_RATE_UI = Double.valueOf(eurBuyRate.getText());
-                TestData.EUR_SALE_RATE_UI = Double.valueOf(eurSaleRate.getText());
-                break;
-            default:
-                break;
-        }
+                TestData.BUY_RATE_UI = Double.valueOf(getCurrencyElement(USD,BUY).getText());
+                TestData.SALE_RATE_UI = Double.valueOf(getCurrencyElement(USD,SELL).getText());
+                TestData.BUY_RATE_UI = Double.valueOf(getCurrencyElement(EUR,BUY).getText());
+                TestData.SALE_RATE_UI = Double.valueOf(getCurrencyElement(EUR,SELL).getText());
     }
 }
