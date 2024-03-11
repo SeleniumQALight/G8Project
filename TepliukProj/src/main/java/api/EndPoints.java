@@ -8,4 +8,4 @@ public interface EndPoints {
     String LOGIN = BASE_URL + "/api/login";
     String CREATE_POST = BASE_URL + "/api/create-post";
     String DELETE_POST = BASE_URL + "/api/post/{0}";
-}
+  }
