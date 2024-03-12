@@ -12,4 +12,6 @@ public class TestData {
     public final static String VALID_PASSWORD_API = "serhataolena0211";
     public final static String VALID_LOGIN_API_BOOKS = "OlenaSer";
     public final static String VALID_PASSWORD_API_BOOKS = "Olena123!";
+    public static Double BUY_RATE_UI;
+    public static Double SALE_RATE_UI;
 }

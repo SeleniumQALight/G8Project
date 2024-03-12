@@ -11,4 +11,6 @@ public interface EndPoints {
     String BOOKS = DEMOQA_BASE_URL + "/BookStore/v1/Books";
     String DELETE_BOOKS = DEMOQA_BASE_URL + "/BookStore/v1/Book";
     String BOOKS_BY_USER = DEMOQA_BASE_URL + "/Account/v1/User/{0}";
+    String BASE_URL_PRIVATBANK = "https://api.privatbank.ua/p24api";
+    String PUB_INFO = "/pubinfo";
 }

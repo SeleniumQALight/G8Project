@@ -14,5 +14,10 @@ public class TestData {
     public final static String VALID_LOGIN_API_BOOK = "tanyabu";
     public final static String VALID_PASSWORD_API_BOOK = "Tanya123@";
 
+    public static float privatBankBuyCourse;
+    public static float privatBankSaleCourse;
+    public static float privatBankBuyCourseWebPage;
+    public static float privatBankSaleCourseWebPage;
+
 
 }
