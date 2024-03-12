@@ -27,8 +27,8 @@ public class PrivatbankSteps extends MainSteps{
             pageProvider.getPrivatBankMainPage().storeRateForCurrency(currencyName);
         }
 
-        @Then("I compare {string} rates on UI and API")
-        public void iCompareCurrencyRates(String currencyName) {
-            apiHelper.checkUiAndApiCurrenciesRates(currencyName);
+        @Then("I compare rates on UI and API")
+        public void iCompareCurrencyRates() {
+            apiHelper.checkUiAndApiCurrenciesRates();
         }
 }

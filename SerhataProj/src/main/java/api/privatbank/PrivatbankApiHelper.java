@@ -5,7 +5,7 @@ import api.EndPoints;
 import api.dto.PrivatbankDto.CurrencyRateDTO;
 import data.TestData;
 import io.restassured.response.ValidatableResponse;
-import org.junit.Assert;
+import org.assertj.core.api.SoftAssertions;
 
 import static io.restassured.RestAssured.given;
 
@@ -13,8 +13,8 @@ public class PrivatbankApiHelper extends ApiHelper {
     private final String USD = "USD";
     private final String EUR = "EUR";
 
-    Double buyRateApi;
-    Double saleRateApi;
+    static Double buyRateApi;
+    static Double saleRateApi;
 
 
         public ValidatableResponse getCurrenciesRates() {
@@ -44,14 +44,10 @@ public class PrivatbankApiHelper extends ApiHelper {
         }
     }
 
-    public void checkUiAndApiCurrenciesRates(String currencyName) {
-        if (USD.equalsIgnoreCase(currencyName)) {
-            Assert.assertEquals(currencyName + " rate is different ", buyRateApi, TestData.BUY_RATE_UI);
-            Assert.assertEquals(currencyName + " rate is different ", saleRateApi, TestData.SALE_RATE_UI);
-        }
-        if (EUR.equalsIgnoreCase(currencyName)) {
-            Assert.assertEquals(currencyName + " rate is different ", buyRateApi, TestData.BUY_RATE_UI);
-            Assert.assertEquals(currencyName + " rate is different ", saleRateApi, TestData.SALE_RATE_UI);
-        }
+    public void checkUiAndApiCurrenciesRates() {
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(TestData.BUY_RATE_UI).isEqualTo(PrivatbankApiHelper.buyRateApi);
+        softAssertions.assertThat(TestData.SALE_RATE_UI).isEqualTo(PrivatbankApiHelper.saleRateApi);
+        softAssertions.assertAll();
     }
 }
