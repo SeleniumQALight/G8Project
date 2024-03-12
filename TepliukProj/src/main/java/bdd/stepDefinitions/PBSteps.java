@@ -12,7 +12,7 @@ import org.assertj.core.api.SoftAssertions;
 
 
 public class PBSteps extends MainSteps {
-    private org.openqa.selenium.WebDriver WebDriver;
+
 
     public PBSteps(WebDriverHelper webDriverHelper) {
         super(webDriverHelper);

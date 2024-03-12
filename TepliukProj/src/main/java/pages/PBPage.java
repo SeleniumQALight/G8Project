@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static api.EndPointsPB.URL_PB;
+
 public class PBPage extends ParentPage {
 
 
@@ -19,29 +21,31 @@ public class PBPage extends ParentPage {
 
     private String exchangeRateBuyOnTheWeb = ".//*[@id='%s_buy']";
 
-     private String exchangeRateSaleOnTheWeb = "//*[@id='%s_sell']";
+    private String exchangeRateSaleOnTheWeb = "//*[@id='%s_sell']";
 
     @Override
+
     protected String getRelativeUrl() {
-        return null;
+        return "/";
     }
-    public void openPBpage() { openPage(BASE_PB_URL);}
+
+    public void openPBpage() {
+        openPage(BASE_PB_URL);
+    }
 
     public PBPage checkIsTitleExchangeRatesVisible() {
-       checkIsElementVisible(titleExchangeRates);
+        checkIsElementVisible(titleExchangeRates);
         return this;
     }
-
 
 
     public String getExchangeRateBuyOnTheWeb1(String currency) {
         String exchangeRateBuyLocator = String.format(exchangeRateBuyOnTheWeb, currency);
         WebElement element = webDriver.findElement(By.xpath(exchangeRateBuyLocator));
-         TestData.exchangeRateBuy = element.getText();
+        TestData.exchangeRateBuy = element.getText();
         logger.info("currency buying rate (WEBSITE) for " + currency + " is: " + TestData.exchangeRateBuy);
         return TestData.exchangeRateBuy;
     }
-
 
 
     public String getExchangeRateSaleOnTheWeb(String currency) {
