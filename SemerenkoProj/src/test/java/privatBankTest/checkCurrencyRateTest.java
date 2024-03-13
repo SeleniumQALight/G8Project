@@ -1,15 +1,18 @@
 package privatBankTest;
 
+import api.ApiHelperPb;
 import baseTest.BaseTest;
+import data.TestData;
 import org.junit.Test;
 
 public class checkCurrencyRateTest extends BaseTest {
+    ApiHelperPb apiHelperPb = new ApiHelperPb();
+
     @Test
-    public void getCurrencyRates() {
+    public void compareCurrencyRates() {
+        apiHelperPb.getCurrencyRatesAndSaveInMap("usd");
         pageProvider.privatBankPage().openPrivatBankPage();
-        System.out.println("USD buy : " + Double.parseDouble(pageProvider.privatBankPage().getCurrencyBuyValue("USD")));
-        System.out.println("USD sell : " + pageProvider.privatBankPage().getCurrencySaleValue("USD"));
-        System.out.println("EUR buy : " + pageProvider.privatBankPage().getCurrencyBuyValue("EUR"));
-        System.out.println("EUR sell : " + pageProvider.privatBankPage().getCurrencySaleValue("EUR"));
+        //pageProvider.privatBankPage().checkCurrencyRateCompareUiAndApi("usd", apiHelperPb.getCurrencyRatesAndSaveInMap("usd"));
+        pageProvider.privatBankPage().checkCurrencyRateCompareUiAndApi("usd", TestData.currencyRatesMap);
     }
 }

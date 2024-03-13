@@ -67,16 +67,4 @@ public class ApiTestPb {
         }
         softAssertions.assertAll();
     }
-    @Test
-    public void getCurrencyRate(){
-        CurrencyRatePbDto[] actualResponse = apiHelperPb.getCurrencyRate().extract().response().as(CurrencyRatePbDto[].class);
-        logger.info("Length: "+actualResponse.length);
-        for (int i = 0; i < actualResponse.length; i++) {
-            if (actualResponse[i].getCcy().equals("USD")){
-                logger.info("buy: " +actualResponse[i].getBuy());
-                logger.info("buy: " +actualResponse[i].getSale());
-
-            }
-        }
-    }
 }
