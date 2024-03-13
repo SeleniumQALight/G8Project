@@ -8,5 +8,9 @@ public class TestData {
     public final static String VALID_LOGIN_API="TC001testusertime";
     public final static String VALID_PASSWORD_API = "Tequth_83!NM";
 
+    public static String rateBuyAPI;
+    public static String rateSaleAPI;
+    public static String rateBuyUI;
+    public static String rateSaleUI;
 
 }
