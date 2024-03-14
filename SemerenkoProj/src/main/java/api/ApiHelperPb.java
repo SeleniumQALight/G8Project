@@ -54,28 +54,14 @@ public class ApiHelperPb {
                 .spec(responseSpecification);
     }
 
-//    public Map<String, Double> getCurrencyRatesAndSaveInMap(String currency) {
-//        CurrencyRatePbDto[] actualResponse = getCurrencyRate().extract().response().as(CurrencyRatePbDto[].class);
-//        Map<String, Double> currencyRatesMap = new HashMap<>();
-//        //logger.info("Length: " + actualResponse.length);
-//        for (int i = 0; i < actualResponse.length; i++) {
-//            if (actualResponse[i].getCcy().equals(currency.toUpperCase())) {
-//                logger.info("buy: " +actualResponse[i].getBuy());
-//                logger.info("sale: " +actualResponse[i].getSale());
-//                currencyRatesMap.put("buy", actualResponse[i].getBuy());
-//                currencyRatesMap.put("sale", actualResponse[i].getSale());
-//            }
-//        }
-//        return currencyRatesMap;
-//    }
 
     public void getCurrencyRatesAndSaveInMap(String currency) {
         CurrencyRatePbDto[] actualResponse = getCurrencyRate().extract().response().as(CurrencyRatePbDto[].class);
         //logger.info("Length: " + actualResponse.length);
         for (int i = 0; i < actualResponse.length; i++) {
             if (actualResponse[i].getCcy().equals(currency.toUpperCase())) {
-                logger.info("buy: " +actualResponse[i].getBuy());
-                logger.info("sale: " +actualResponse[i].getSale());
+                logger.info("buy: " + actualResponse[i].getBuy());
+                logger.info("sale: " + actualResponse[i].getSale());
                 TestData.currencyRatesMap.put("buy", actualResponse[i].getBuy());
                 TestData.currencyRatesMap.put("sale", actualResponse[i].getSale());
             }

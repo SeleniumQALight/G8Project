@@ -58,10 +58,10 @@ public class ApiTestPb {
         for (int i = 0; i < actualResponseDto.getExchangeRate().size(); i++) {
             softAssertions.assertThat(actualResponseDto.getExchangeRate().get(i).getSaleRateNB()).isGreaterThan(0);
             softAssertions.assertThat(actualResponseDto.getExchangeRate().get(i).getPurchaseRateNB()).isGreaterThan(0);
-            if (actualResponseDto.getExchangeRate().get(i).getSaleRate()!=null) {
+            if (actualResponseDto.getExchangeRate().get(i).getSaleRate() != null) {
                 softAssertions.assertThat(actualResponseDto.getExchangeRate().get(i).getSaleRate()).isGreaterThan(0);
             }
-            if (actualResponseDto.getExchangeRate().get(i).getPurchaseRate()!=null) {
+            if (actualResponseDto.getExchangeRate().get(i).getPurchaseRate() != null) {
                 softAssertions.assertThat(actualResponseDto.getExchangeRate().get(i).getPurchaseRate()).isGreaterThan(0);
             }
         }
