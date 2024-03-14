@@ -16,4 +16,12 @@ public class TestData {
 
     public final static String VALID_LOGIN_DEMO_QA_API = "atepliuk";
     public final static String VALID_PASSWORD_DEMO_QA_API = "1qazXSW@";
+
+
+
+    public static String exchangeRateBuy;
+    public static String exchangeRateSale;
+
+    public static String cursViaApiSale;
+    public static String cursViaApiBui;
 }

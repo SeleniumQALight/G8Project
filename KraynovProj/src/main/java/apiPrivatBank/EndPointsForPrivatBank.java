@@ -1,5 +1,7 @@
-package api;
+package apiPrivatBank;
 
-public interface PrivateEndPoints {
+public interface EndPointsForPrivatBank {
+
     String BASE_URL = "https://api.privatbank.ua/p24api/exchange_rates";
+
 }
