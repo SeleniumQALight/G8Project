@@ -1,6 +1,6 @@
 package apiTests;
 
-import api.PrivatApiHelper;
+import api.PrivatBankApiHelper;
 import api.dto.responseDto.ExchangeRatesGeneralDataDto;
 import io.restassured.response.Response;
 import org.assertj.core.api.SoftAssertions;
@@ -8,12 +8,12 @@ import org.junit.Test;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
-public class ExchangeRatesTest {
+public class PrivatBankTest {
     final String DATE = "22.03.2022";
     final String[] CURRENCIES = {"AUD", "AZN", "BYN", "CAD", "CHF", "CNY", "CZK", "DKK", "EUR", "GBP", "GEL", "HUF", "ILS", "JPY", "KZT", "MDL", "NOK", "PLN", "SEK", "SGD", "TMT", "TRY", "UAH", "USD", "UZS"};
     final String BASE_CURRENCY = "UAH";
 
-    PrivatApiHelper privateApiHelper = new PrivatApiHelper();
+    PrivatBankApiHelper privateApiHelper = new PrivatBankApiHelper();
     @Test
     public void getAllExchangeRatesTest() {
         Response actualResponse = privateApiHelper.getAllExchangeRatesRequest(DATE).extract().response();
