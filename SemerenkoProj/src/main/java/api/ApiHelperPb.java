@@ -48,6 +48,9 @@ public class ApiHelperPb {
     public ValidatableResponse getCurrencyRate() {
         return given()
                 .spec(requestSpecification)
+                .queryParam("json")
+                .queryParam("exchange")
+                .queryParam("coursid", 5)
                 .when()
                 .get(EndPointsPb.EXCH_RATE)
                 .then()
