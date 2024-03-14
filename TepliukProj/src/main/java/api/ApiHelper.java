@@ -122,7 +122,7 @@ public class ApiHelper {
 
     /**
      * Delete all posts for default user
-     */
+     ;*/
 
     public void deleteAllPostsTillPresent() {
         String token = getToken();
