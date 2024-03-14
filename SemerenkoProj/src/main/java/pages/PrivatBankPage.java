@@ -23,7 +23,7 @@ public class PrivatBankPage extends ParentPage {
 
     @Override
     protected String getRelativeUrl() {
-        return null;
+        return "https://privatbank.ua/";
     }
 
     public void openPrivatBankPage() {
