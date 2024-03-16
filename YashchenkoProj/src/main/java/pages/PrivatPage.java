@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,25 +18,18 @@ public class PrivatPage extends CommonActionsWithElements {
     @FindBy(xpath = "//h4[@class='eclipse-text col-6']")
     private WebElement currencyExchangeRatesBlock;
 
-    @FindBy(xpath = "//td[@id='EUR_buy']")
-    private WebElement euroBuy;
+    private String currencyBuy = "//td[@id='%s_buy']";
+    private String currencySell = "//td[@id='%s_sell']";
 
-    @FindBy(xpath = "//td[@id='EUR_sell']")
-    private WebElement euroSell;
-
-    @FindBy(xpath = "//td[@id='USD_buy']")
-    private WebElement usdBuy;
-
-    @FindBy(xpath = "//td[@id='USD_sell']")
-    private WebElement usdSell;
+    private String privatHomePageURL = "https://privatbank.ua/";
 
     public PrivatPage openPrivatHomePage() {
         try {
-            webDriver.get("https://privatbank.ua/");
-            logger.info("https://privatbank.ua/ was opened ");
+            webDriver.get(privatHomePageURL);
+            logger.info(privatHomePageURL + " was opened ");
         } catch (Exception e) {
-            logger.error("Can not open https://privatbank.ua/");
-            Assert.fail("Can not open https://privatbank.ua/");
+            logger.error("Can not open " + privatHomePageURL);
+            Assert.fail("Can not open " + privatHomePageURL);
         }
         return this;
     }
@@ -46,7 +40,7 @@ public class PrivatPage extends CommonActionsWithElements {
     }
 
     public PrivatPage checkIsRedirectedToPrivatHomePage() {
-        Assert.assertEquals("URL is not equal", "https://privatbank.ua/", webDriver.getCurrentUrl());
+        Assert.assertEquals("URL is not equal", privatHomePageURL, webDriver.getCurrentUrl());
         checkIsElementVisible(currencyExchangeRatesBlock);
         return this;
     }
@@ -54,15 +48,10 @@ public class PrivatPage extends CommonActionsWithElements {
     public HashMap<String, Double> getCurrentCurrencyRatesOnUiAsHashMap(String currency){
         uiRates = new HashMap<>();
         currency = currency.toUpperCase();
-            if(currency.equals("USD")){
-                uiRates.put("buy", parseDoubleAndRoundResult(usdBuy.getText()));
-                uiRates.put("sale", parseDoubleAndRoundResult(usdSell.getText()));
-            } else if (currency.equals("EUR")) {
-                uiRates.put("buy", parseDoubleAndRoundResult(euroBuy.getText()));
-                uiRates.put("sale", parseDoubleAndRoundResult(euroSell.getText()));
-            } else {
-                logger.info("Other currencies except USD/EUR are forbidden ");
-            }
+        uiRates.put("buy", parseDoubleAndRoundResult(
+                webDriver.findElement(By.xpath(String.format(currencyBuy, currency))).getText()));
+        uiRates.put("sale", parseDoubleAndRoundResult(
+                webDriver.findElement(By.xpath(String.format(currencySell, currency))).getText()));
         return uiRates;
     }
 }
