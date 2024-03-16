@@ -25,13 +25,13 @@ public class ApiHelper {
 
     Logger logger = Logger.getLogger(getClass());
 
-    RequestSpecification requestSpecification = new RequestSpecBuilder()
+    public RequestSpecification requestSpecification = new RequestSpecBuilder()
             .setContentType(ContentType.JSON)
             .addFilter(new AllureRestAssured())
             .log(LogDetail.ALL)
             .build();
 
-    ResponseSpecification responseSpecification = new ResponseSpecBuilder()
+    public ResponseSpecification responseSpecification = new ResponseSpecBuilder()
             .log(LogDetail.ALL)
             .expectStatusCode(HttpStatus.SC_OK)
             .build();

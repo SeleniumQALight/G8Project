@@ -12,4 +12,9 @@ public class TestData {
 
     public final static String VALID_LOGIN_API_DEMOQA = "aszyre123456";
     public final static String VALID_PASSWORD_API_DEMOQA = "Aszyre123456@";
+
+    public static String api_curs_buy;
+    public static String api_curs_sale;
+    public static String ui_curs_buy;
+    public static String ui_curs_sale;
 }

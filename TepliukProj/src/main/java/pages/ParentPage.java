@@ -11,12 +11,25 @@ import static libs.ConfigProvider.configProperties;
 abstract public class ParentPage extends CommonActionsWithElements {
     String env = System.getProperty("env", "aqa"); // отримуємо з консолі змінну env
     final String baseUrl = ConfigProvider.configProperties.base_url().replace("[env]", env); // отримуємо url з конфіга
-
+    final String BASE_PB_URL = "https://privatbank.ua/";
     // конструктор
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+
+    public void openPage(String url) { // метод для відкриття сторінки
+        try {
+            // Робим выкно браузера максимального розміру, боюсь не буде видно курсыв на сторынцы
+            webDriver.manage().window().maximize();
+
+            webDriver.get(url);
+            logger.info("Page was opened " + url);
+        } catch (Exception e) {
+            logger.error("Can not open " + url);
+            Assert.fail("Can not open " + url);
+        }
+    }
 
     // метод для отримання частини url
     abstract protected String getRelativeUrl();

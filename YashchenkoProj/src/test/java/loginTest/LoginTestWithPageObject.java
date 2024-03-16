@@ -7,7 +7,7 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
-import org.junit.Assert;
+import libs.Util;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.experimental.categories.Category;
@@ -40,6 +40,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.homePage().getHeader().checkIsCreatePostButtonVisible();
         pageProvider.getLoginPage().checkIsLoginInputNotVisible();
         pageProvider.getLoginPage().checkIsPasswordInputNotVisible();
+        Util.waitABit(15);
         pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
 
     }
