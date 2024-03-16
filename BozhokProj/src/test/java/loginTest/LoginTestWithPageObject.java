@@ -38,7 +38,6 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().checkIsInputLoginNotVisible();
         pageProvider.loginPage().checkIsInputPasswordNotVisible();
 
-        Util.waitABit(5);
 
         Assert.assertTrue("Button SignOut is not visible",
                 pageProvider.homePage().getHeader().isButtonSignOutVisible());

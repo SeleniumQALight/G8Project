@@ -41,8 +41,8 @@ public class ApiHelperPrivatBank {
         return getExchangeRatePBRequest(date, HttpStatus.SC_OK);
     }
 
-    public ValidatableResponse getExchangeRatePBByCurrency() {
-        Response actualResponse = given()
+    public Response getExchangeRatePBByCurrency() {
+       return given()
                 .spec(requestSpecification)
                 .when()
                 .get(EndPointsPrivatBank.BASE_URL_CURRENCY)
@@ -50,17 +50,16 @@ public class ApiHelperPrivatBank {
                 .spec(responseSpecification.statusCode(HttpStatus.SC_OK))
                 .extract()
                 .response();
-        return actualResponse.then();
+
     }
 
     public void getExchangeRatePBByCurrency(String currency) {
-        ExchangeRatesByCourseDTO[] listOfExchangeRate = getExchangeRatePBByCurrency().extract().response().as(ExchangeRatesByCourseDTO[].class);
+        ExchangeRatesByCourseDTO[] listOfExchangeRate = getExchangeRatePBByCurrency().as(ExchangeRatesByCourseDTO[].class);
         for (int i = 0; i < listOfExchangeRate.length; i++) {
             if (listOfExchangeRate[i].getCcy().equals(currency)) {
                 TestData.EXCHANGE_RATES_BUY_API = Double.parseDouble(listOfExchangeRate[i].getBuy());
                 TestData.EXCHANGE_RATES_SELL_API = Double.parseDouble(listOfExchangeRate[i].getSale());
-            } else {
-                logger.info("Currency: " + listOfExchangeRate[i].getCcy() + " Sale rate: " + listOfExchangeRate[i].getSale() + " Purchase rate: " + listOfExchangeRate[i].getBuy());
+                logger.info("Currency: " + listOfExchangeRate[i].getCcy() + " Sale rate: " + TestData.EXCHANGE_RATES_SELL_API + " Purchase rate: " + TestData.EXCHANGE_RATES_BUY_API);
             }
         }
     }
