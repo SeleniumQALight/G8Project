@@ -14,7 +14,7 @@ abstract public class ParentPage extends CommonActionWithElements {
     }
 
     // метод для отримання частини url
-    abstract String getRelativeUrl();
+    protected abstract String getRelativeUrl();
 
     // метод для перевірки чи відкрита потрібна сторінка
     protected void checkUrl() {

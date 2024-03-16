@@ -21,7 +21,7 @@ public class MyProfilePage extends ParentPage {
     }
 
     @Override
-    String getRelativeUrl() {
+    protected String getRelativeUrl() {
         return "/profile/[a-zA-Z0-9]*";
     }
 
