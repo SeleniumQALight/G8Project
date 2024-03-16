@@ -3,6 +3,7 @@ package bdd.stepDefinitions;
 import apiPrivatBank.ApiHelperPrivatBank;
 import bdd.helpers.WebDriverHelper;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class PrivatBankSteps extends MainSteps {
@@ -32,5 +33,10 @@ public class PrivatBankSteps extends MainSteps {
         pageProvider.homePagePrivatBank().getBuyExchangeRate(currency);
         pageProvider.homePagePrivatBank().getSellExchangeRate(currency);
 
+    }
+
+    @Then("I compare exchange rates from API with UI for {string} currency")
+    public void iCompareExchangeRatesFromAPIWithUIForCurrency(String currency) {
+        pageProvider.homePagePrivatBank().compareExchangeRates(currency);
     }
 }

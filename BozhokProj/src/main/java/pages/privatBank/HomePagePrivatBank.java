@@ -49,4 +49,9 @@ public class HomePagePrivatBank extends CommonActionWithElements {
             Assert.fail("Can not get sell exchange rate " + e);
         }
     }
+
+    public void compareExchangeRates(String currency) {
+        Assert.assertEquals("Exchange rates are not equal", TestData.EXCHANGE_RATES_BUY_UI, TestData.EXCHANGE_RATES_BUY_API);
+        logger.info("Exchange rates are equal");
+    }
 }
