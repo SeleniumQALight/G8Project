@@ -35,7 +35,6 @@ public class ApiHelperPrivatBank {
                 .then()
                 .spec(responseSpecification);
     }
-    //save exchange rate by currency for future comparison (usd, eur) to testData
 
     public void saveExchangeRateByCurrency(String currency) {
         ValidatableResponse response = given()
