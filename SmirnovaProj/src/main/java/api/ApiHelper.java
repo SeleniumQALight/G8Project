@@ -117,4 +117,9 @@ public class ApiHelper {
                 .spec(responseSpecification)
                 .extract().response().body().asString();
     }
+
+    public void deleteAllPostsTillPresent() {
+        String token = getToken();
+        deleteAllPostsTillPresent(TestData.VALID_LOGIN_API, token);
+    }
 }
