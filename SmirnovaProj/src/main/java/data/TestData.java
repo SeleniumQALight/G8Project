@@ -13,4 +13,9 @@ public class TestData {
     public final static String VALID_LOGIN_API = "nastyasapi";
     public final static String VALID_PASSWORD_API = "123456qwerty";
 
+    public static double EXCHANGE_BUY_API;
+    public static double EXCHANGE_SELL_API;
+    public static double EXCHANGE_BUY_UI;
+    public static double EXCHANGE_SELL_UI;
+
 }
