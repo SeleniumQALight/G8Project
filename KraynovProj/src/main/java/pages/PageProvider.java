@@ -22,5 +22,6 @@ public class PageProvider {
     }
 
     public MyProfilePage getMyProfilePage() {return new MyProfilePage(webDriver);}
+    public PBPage getPBPage() {return new PBPage(webDriver);}
 }
 
