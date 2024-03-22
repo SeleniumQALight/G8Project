@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -97,5 +98,28 @@ public class ApiHelper {
                         .then()
                         .spec(responseSpecification)
                         .extract().response().body().asString();
+    }
+
+    public void createPost(String token, Map<String, String> postData, Integer i) {
+        HashMap<String, String> bodyRequest = new HashMap<>();
+        bodyRequest.put("token", token);
+        bodyRequest.put("title", postData.get("title") + i);
+        bodyRequest.put("body", postData.get("body") + i);
+        bodyRequest.put("select1", postData.get("select"));
+        bodyRequest.put("uniquePost", "no");
+
+        given()
+                .spec(requestSpecification)
+                .body(bodyRequest)
+                .when()
+                .post(Endpoints.CREATE_POST)
+                .then()
+                .spec(responseSpecification)
+                .extract().response().body().asString();
+    }
+
+    public void deleteAllPostsTillPresent() {
+        String token = getToken();
+        deleteAllPostsTillPresent(TestData.VALID_LOGIN_API, token);
     }
 }
