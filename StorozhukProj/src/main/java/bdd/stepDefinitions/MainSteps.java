@@ -12,4 +12,5 @@ public class MainSteps {
         this.webDriverHelper = webDriverHelper;
         pageProvider = new PageProvider(webDriverHelper.getWebDriver());
     }
+
 }

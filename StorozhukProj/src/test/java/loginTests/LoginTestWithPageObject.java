@@ -8,6 +8,7 @@ import io.qameta.allure.*;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import libs.ExcelSpreadsheetData;
+import libs.Util;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,6 +37,8 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().enterTextIntoInput(VALID_LOGIN_UI);
         pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
         pageProvider.loginPage().clickOnButtonSignIn();
+
+        Util.waitABit(15);
 
         Assert.assertTrue("Button SignOutTest is not visible", pageProvider.homePage().getHeader().isButtonSignOutVisible());
         Assert.assertTrue("Button CreatePost is not visible", pageProvider.homePage().getHeader().isButtonCreatePostVisible());
