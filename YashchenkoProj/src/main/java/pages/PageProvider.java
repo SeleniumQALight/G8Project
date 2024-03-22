@@ -24,4 +24,8 @@ public class PageProvider {
     public MyProfilePage myProfilePage() {
         return new MyProfilePage(webDriver);
     }
+
+    public PrivatPage getPrivatPage(){
+        return new PrivatPage(webDriver);
+    }
 }

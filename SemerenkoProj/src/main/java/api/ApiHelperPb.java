@@ -1,7 +1,9 @@
 package api;
 
+import api.dto.responseDto.CurrencyRatePbDto;
 import api.dto.responseDto.ExchangeRatePbDto;
 import api.dto.responseDto.RateArchPbDto;
+import data.TestData;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -13,7 +15,9 @@ import org.apache.hc.core5.http.HttpStatus;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -40,6 +44,33 @@ public class ApiHelperPb {
                 .spec(responseSpecification);
 
     }
+
+    public ValidatableResponse getCurrencyRate() {
+        return given()
+                .spec(requestSpecification)
+                .queryParam("json")
+                .queryParam("exchange")
+                .queryParam("coursid", 5)
+                .when()
+                .get(EndPointsPb.EXCH_RATE)
+                .then()
+                .spec(responseSpecification);
+    }
+
+
+    public void getCurrencyRatesAndSaveInMap(String currency) {
+        CurrencyRatePbDto[] actualResponse = getCurrencyRate().extract().response().as(CurrencyRatePbDto[].class);
+        //logger.info("Length: " + actualResponse.length);
+        for (int i = 0; i < actualResponse.length; i++) {
+            if (actualResponse[i].getCcy().equals(currency.toUpperCase())) {
+                logger.info("buy: " + actualResponse[i].getBuy());
+                logger.info("sale: " + actualResponse[i].getSale());
+                TestData.currencyRatesMap.put("buy", actualResponse[i].getBuy());
+                TestData.currencyRatesMap.put("sale", actualResponse[i].getSale());
+            }
+        }
+    }
+
 
     public RateArchPbDto getExpectedDto(String date, List<String> listOfCurrency) {
         List<ExchangeRatePbDto> exchangeRateList = new ArrayList<>();
