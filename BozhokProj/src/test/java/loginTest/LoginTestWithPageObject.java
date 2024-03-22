@@ -4,9 +4,9 @@ import baseTest.BaseTest;
 import categories.SmokeTestFilter;
 import io.qameta.allure.*;
 import jdk.jfr.Description;
-import libs.ConfigProperties;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
+import libs.Util;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -37,6 +37,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.homePage().getHeader().checkIsProfileNameVisible(VALID_LOGIN_UI);
         pageProvider.loginPage().checkIsInputLoginNotVisible();
         pageProvider.loginPage().checkIsInputPasswordNotVisible();
+
 
         Assert.assertTrue("Button SignOut is not visible",
                 pageProvider.homePage().getHeader().isButtonSignOutVisible());
