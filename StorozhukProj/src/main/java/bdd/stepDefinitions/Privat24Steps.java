@@ -30,8 +30,8 @@ public class Privat24Steps extends MainSteps {
 
     @Then("I take a buy and sell exchange rates for the currency from website")
     public void iTakeFxRateForCurrency() {
-        TestData.BUY_FX_SITE = pageProvider.getPrivat24HomePage().getBuyExchangeRate(TestData.CCY);
-        TestData.SELL_FX_SITE = pageProvider.getPrivat24HomePage().getSellExchangeRate(TestData.CCY);
+        TestData.BUY_FX_SITE = pageProvider.getPrivat24HomePage().getFxRate(TestData.CCY, "buy");
+        TestData.SELL_FX_SITE = pageProvider.getPrivat24HomePage().getFxRate(TestData.CCY, "sell");
     }
 
     @And("I take a buy and sell exchange rates for all currencies from API")

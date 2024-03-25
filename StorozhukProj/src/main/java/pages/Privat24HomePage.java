@@ -1,23 +1,15 @@
 package pages;
 
+import data.TestData;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class Privat24HomePage extends ParentPage {
 
-    @FindBy(xpath = ".//*[@id='USD_buy']")
-    private WebElement usdBuyExchangeRate;
-
-    @FindBy(xpath = ".//*[@id='EUR_buy']")
-    private WebElement eurBuyExchangeRate;
-
-    @FindBy(xpath = ".//*[@id='USD_sell']")
-    private WebElement usdSellExchangeRate;
-
-    @FindBy(xpath = ".//*[@id='EUR_sell']")
-    private WebElement eurSellExchangeRate;
+    private String fxPattern = ".//*[@id='%s_%s']";
 
     public Privat24HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -39,33 +31,15 @@ public class Privat24HomePage extends ParentPage {
         return this;
     }
 
-    public Double getBuyExchangeRate(String currencyCode)
+    public Double getFxRate(String ccy, String action)
     {
-        String strFx;
-        if (currencyCode.equals("EUR"))
-            strFx = eurBuyExchangeRate.getText();
-        else if (currencyCode.equals("USD"))
-            strFx = usdBuyExchangeRate.getText();
-        else {
-            Assert.fail(String.format("Not supported currency code: %s", currencyCode));
-            return 0.0;
+        try {
+            return Double.parseDouble(webDriver.findElement(By.xpath(String.format(fxPattern, ccy, action))).getText());
+        }
+        catch (Exception e) {
+            Assert.fail(String.format("Failed to get FX rate for %s currency and %s action", ccy, action));
         }
 
-        return Double.parseDouble(strFx);
-    }
-
-    public Double getSellExchangeRate(String currencyCode)
-    {
-        String strFx;
-        if (currencyCode.equals("EUR"))
-            strFx = eurSellExchangeRate.getText();
-        else if (currencyCode.equals("USD"))
-            strFx = usdSellExchangeRate.getText();
-        else {
-            Assert.fail(String.format("Not supported currency code: %s", currencyCode));
-            return 0.0;
-        }
-
-        return Double.parseDouble(strFx);
+        return 0.0;
     }
 }
