@@ -13,6 +13,11 @@ public class PageProvider {
         this.webDriver = webDriver;
     }
 
+    public Privat24HomePage getPrivat24HomePage()
+    {
+        return new Privat24HomePage(webDriver);
+    }
+
     public LoginPage loginPage() {
         return new LoginPage(webDriver);
     }
