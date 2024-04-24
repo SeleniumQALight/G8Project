@@ -38,7 +38,7 @@ public class LoginTestWithPageObject extends BaseTest {
 
     @Test
     @Ignore(value = " bug ")
-    public void validLoginWithExcel() throws IOException {
+    public void validLoginWithExcel() throws IOException
         Map<String, String> dataForValidLogin =
                 ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
         pageProvider.loginPage().openLoginPage();
