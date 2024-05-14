@@ -24,6 +24,38 @@ public class ApiHelper {
 
     Logger logger = Logger.getLogger(getClass());
 
+    //метод с прошлого курса
+//    public ValidatableResponse getAllPostByUserRequest(String userName, int statusCode) {
+//        return given()
+//                .spec(requestSpecification)
+//                .when()
+//                .get(EndPoints.POSTS_BY_USER, userName)
+//                .then()
+//                .spec(responseSpecification.statusCode(statusCode));
+//
+//
+//    }
+
+    //response
+public ValidatableResponse getAllPostByUserRequest(String userName, int statusCode) {
+    return given()
+            .contentType(ContentType.JSON)
+            .log().all()
+            .when()
+            .get(EndPoints.POSTS_BY_USER, userName)
+            .then()
+            .log().all()
+            .statusCode(statusCode);
+
+
+}
+
+
+    //response 200
+    public ValidatableResponse getAllPostByUserRequest(String userName) {
+        return getAllPostByUserRequest(userName, HttpStatus.SC_OK);
+    }
+
     RequestSpecification requestSpecification = new RequestSpecBuilder()
             .setContentType(ContentType.JSON)
             .addFilter(new AllureRestAssured())
@@ -35,25 +67,14 @@ public class ApiHelper {
             .expectStatusCode(HttpStatus.SC_OK)
             .build();
 
-    public ValidatableResponse getAllPostByUserRequest(String userName, int statusCode) {
-       return given()
-                .spec(requestSpecification)
-                .when()
-                .get(EndPoints.POSTS_BY_USER, userName)
-                .then()
-                .spec(responseSpecification.statusCode(statusCode));
 
-
-    }
 
 
     public PostDto[] getAllPostsByUserAsDTO(String userName){
         return getAllPostByUserRequest(userName).extract().response().getBody().as(PostDto[].class);
     }
 
-    public ValidatableResponse getAllPostByUserRequest(String userName) {
-       return getAllPostByUserRequest(userName, HttpStatus.SC_OK);
-    }
+
 
     public String getToken(){
         return getToken(TestData.LOGIN_API, TestData.VALID_PASSWORD_API);
