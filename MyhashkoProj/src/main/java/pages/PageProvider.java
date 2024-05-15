@@ -9,16 +9,23 @@ public class PageProvider {
     public PageProvider(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
-    @Step
+
     public LoginPage loginPage() {
         return new LoginPage(webDriver);
     }
-    @Step
+
     public HomePage homePage() {
         return new HomePage(webDriver);
     }
-    @Step
+
     public PostPage getPostPage() {
         return new PostPage(webDriver);
+    }
+
+    public MyProfilePage getMyProfilePage() {
+        return new MyProfilePage(webDriver);
+    }
+
+    public PrivatBankStartPage getPrivatBankStartPage() { return new PrivatBankStartPage(webDriver);
     }
 }

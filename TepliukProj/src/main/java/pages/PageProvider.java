@@ -19,4 +19,8 @@ public class PageProvider {
     public PostPage getPostPage() {
         return new PostPage(webDriver);
     }
+
+    public MyProfilePage getMyProfilePage() {return new MyProfilePage(webDriver);}
+    public PBPage getPBPage() {return new PBPage(webDriver);
+    }
 }

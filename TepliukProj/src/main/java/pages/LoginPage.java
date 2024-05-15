@@ -1,5 +1,6 @@
 package pages;
 
+import com.fasterxml.jackson.core.JsonParser;
 import io.qameta.allure.Step;
 import data.TestData;
 import libs.Util;
@@ -56,6 +57,10 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//div[contains(text(),'Invalid username/password.')]")
     private WebElement invalidUsernameOrPasswordMessage;
+
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement alertMessageInCenter;
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -245,5 +250,8 @@ public class LoginPage extends ParentPage {
     }
 
 
-
+    public LoginPage checkTextInAlertInCenter(String message) {
+        Assert.assertEquals("Message in center of page", message, alertMessageInCenter.getText());
+        return this;
+    }
 }

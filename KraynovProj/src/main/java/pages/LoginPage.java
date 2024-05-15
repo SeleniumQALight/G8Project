@@ -56,6 +56,8 @@ public class LoginPage extends ParentPage{
     private WebElement validationMessageForPasswordField;
     @FindBy(xpath = "//div[contains(@class,'alert-danger') and not (contains(@class,'liveValidateMessage'))]")
     private WebElement errorMessageLoginForm;
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement alertMessageInCenter;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -245,6 +247,11 @@ public class LoginPage extends ParentPage{
     @Step
     public LoginPage checkErrorMessageInLoginForm(String text) {
         checkTextInElement(errorMessageLoginForm, text);
+        return this;
+    }
+
+    public LoginPage checkTextInAlertInCenter(String message) {
+        Assert.assertEquals("TEXT", message, alertMessageInCenter.getText());
         return this;
     }
 }

@@ -5,6 +5,7 @@ import categories.SmokeTestFilter;
 import io.qameta.allure.*;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
+import libs.Util;
 import org.example.util.ExtraOptions;
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,6 +34,8 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.loginPage().enterTextIntoInputLogin(VALID_LOGIN_UI);
         pageProvider.loginPage().enterTextIntoInputPassword(VALID_PASSWORD_UI);
         pageProvider.loginPage().clickOnButtonSignIn();
+
+        Util.waitABit(15);
 
         pageProvider.homePage().getHeader().checkIsButtonSignOutVisible();
         pageProvider.homePage().getHeader().checkIsButtonCreatePostVisible();

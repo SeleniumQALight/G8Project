@@ -3,6 +3,9 @@ package data;
 import libs.ConfigProvider;
 import libs.Util;
 
+import java.util.HashMap;
+import java.util.Map;
+
 //клас ля зберігання тестових даних
 //які будуть використовуватися в тестах багато разів
 public class TestData {
@@ -17,4 +20,5 @@ public class TestData {
     public final static String DROPDOWN_VALUE = "One Person";
     public final static String VALID_LOGIN_API = "qaauto";
     public final static String VALID_PASSWORD_API = "123456qwerty";
+    public static Map<String, Double> currencyRatesMap = new HashMap<>();
 }

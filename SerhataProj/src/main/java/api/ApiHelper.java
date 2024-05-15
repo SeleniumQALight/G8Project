@@ -16,6 +16,7 @@ import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import java.util.HashMap;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static org.apache.hc.core5.http.HttpStatus.SC_OK;
@@ -24,13 +25,13 @@ public class ApiHelper {
 
     Logger logger = Logger.getLogger(getClass());
 
-    RequestSpecification requestSpecification = new RequestSpecBuilder()
+    public RequestSpecification requestSpecification = new RequestSpecBuilder()
             .setContentType(ContentType.JSON)
             .addFilter(new AllureRestAssured())
             .log(LogDetail.ALL)
             .build();
 
-    ResponseSpecification responseSpecification = new ResponseSpecBuilder()
+    public ResponseSpecification responseSpecification = new ResponseSpecBuilder()
             .log(LogDetail.ALL)
             .expectStatusCode(HttpStatus.SC_OK)
             .build();
@@ -112,5 +113,30 @@ public class ApiHelper {
                         .then()
                         .spec(responseSpecification)
                         .extract().response().body().asString();
+    }
+
+    public void createPost(String token, Map<String, String> postData, Integer indexOfPost) {
+        HashMap<String, String> requestBody = new HashMap<>();
+        requestBody.put("title", postData.get("title") + indexOfPost);
+        requestBody.put("body", postData.get("body"));
+        requestBody.put("select1", postData.get("select"));
+        requestBody.put("uniquePost", "no" + indexOfPost);
+        requestBody.put("token", token);
+
+        given()
+                .spec(requestSpecification)
+                .body(requestBody)
+                .when()
+                .post(EndPoints.CREATE_POST)
+                .then()
+                .spec(responseSpecification);
+    }
+
+    /**
+     * Delete all posts for default user
+     */
+    public void deleteAllPostsTillPresent() {
+        String token = getToken();
+        deleteAllPostsTillPresent(TestData.VALID_LOGIN_API, token);
     }
 }

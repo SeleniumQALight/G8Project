@@ -4,24 +4,13 @@ import apiPrivat.ApiHelperPrivatBank;
 import apiPrivat.EndPointsPrivatBank;
 import apiPrivat.responsePrivatBankDTO.ExchangeDTO;
 import apiPrivat.responsePrivatBankDTO.ExchangeRateDTO;
-import io.restassured.http.ContentType;
 
-import static org.hamcrest.Matchers.hasItems;
-
-import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
-import org.bouncycastle.tsp.TSPUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
-
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.greaterThan;
-
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
-import static org.junit.Assert.fail;
-
 
 public class PrivatTests {
 

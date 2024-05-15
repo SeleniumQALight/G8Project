@@ -13,6 +13,11 @@ public class PageProvider {
         this.webDriver = webDriver;
     }
 
+    public Privat24HomePage getPrivat24HomePage()
+    {
+        return new Privat24HomePage(webDriver);
+    }
+
     public LoginPage loginPage() {
         return new LoginPage(webDriver);
     }
@@ -21,8 +26,9 @@ public class PageProvider {
         return new HomePage(webDriver);
     }
 
-    public PostPage getPostPage() {
-        return new PostPage(webDriver);
+    public PostPage getPostPage() {return new PostPage(webDriver);
+    }
+    public MyProfilePage getMyProfilePage() {return new MyProfilePage(webDriver);
     }
 
     public String openNewTab() {

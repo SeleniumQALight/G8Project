@@ -17,4 +17,12 @@ public class TestData {
 
     public final static String VALID_LOGIN_API = "vladyslava";
     public final static String VALID_PASSWORD_API = "123456qweqwe";
+
+    public final static String VALID_LOGIN_API_DEMOQA = "vladyslava2";
+    public final static String VALID_PASSWORD_API_DEMOQA = "Qwer1234!";
+
+    public static float buyRatePrivatAPI;
+    public static float saleRatePrivatAPI;
+    public static float buyRatePrivatUI;
+    public static float saleRatePrivatUI;
 }

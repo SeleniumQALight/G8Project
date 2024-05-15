@@ -14,9 +14,9 @@ import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
-import org.junit.Assert;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -99,5 +99,31 @@ public class ApiHelper {
                         .then()
                         .spec(responseSpecification)
                         .extract().response().body().asString();
+    }
+
+    public void createPost(String token, Map<String, String> postData, Integer indexOfPost) {
+        HashMap<String, String> requestBody = new HashMap<>();
+        requestBody.put("title", postData.get("title") + indexOfPost);
+        requestBody.put("body", postData.get("body"));
+        requestBody.put("select1", postData.get("select"));
+        requestBody.put("uniquePost", "no");
+        requestBody.put("token", token);
+
+        given()
+                .spec(requestSpecification)
+                .body(requestBody)
+                .when()
+                .post(EndPoints.CREATE_POST)
+                .then()
+                .spec(responseSpecification);
+    }
+
+
+    /**
+     * Delete oll posts for default user
+     */
+    public void deleteAllPostsTillPresent() {
+        String token = getToken();
+        deleteAllPostsTillPresent(TestData.VALID_LOGIN_API, token);
     }
 }

@@ -29,7 +29,7 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@placeholder='Username']")
     private WebElement inputLogin;
 
-    @FindBy(xpath = "//div[contains(text(),'Invalid username/password.')]")
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
     private WebElement invalidAlert;
 
     @FindBy(xpath = ".//input[@id='email-register']")
@@ -266,6 +266,11 @@ public class LoginPage extends ParentPage {
                     .isIn(actualErrors);
         }
         softAssertions.assertAll();
+        return this;
+    }
+
+    public LoginPage checkTextInAlertInCenter(String message) {
+        checkTextInElement(invalidAlert, message);
         return this;
     }
 }

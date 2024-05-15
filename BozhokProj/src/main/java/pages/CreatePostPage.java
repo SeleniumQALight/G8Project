@@ -27,7 +27,7 @@ public class CreatePostPage extends ParentPage {
     }
 
     @Override
-    String getRelativeUrl() {
+    protected String getRelativeUrl() {
         return "/create-post";
     }
 

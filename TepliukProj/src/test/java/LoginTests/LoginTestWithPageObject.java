@@ -7,6 +7,7 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
+import libs.Util;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -46,6 +47,7 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertFalse("The fiels for login is not visible", pageProvider.loginPage().isInputLoginVisible());
         Assert.assertFalse("The fiels for password is not visible", pageProvider.loginPage().isInputPasswordVisible());
 
+        Util.waitABit(15);
     }
 
     @Test

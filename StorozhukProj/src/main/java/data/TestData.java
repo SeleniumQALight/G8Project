@@ -10,4 +10,10 @@ public class TestData {
 
     public static String VALID_LOGIN_API = "apiolesia";
     public static String VALID_PASSWORD_API = "123456zaqwer";
+
+    public static String CCY;
+    public static Double BUY_FX_SITE;
+    public static Double BUY_FX_API;
+    public static Double SELL_FX_SITE;
+    public static Double SELL_FX_API;
 }

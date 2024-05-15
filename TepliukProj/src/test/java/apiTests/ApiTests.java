@@ -33,10 +33,10 @@ public class ApiTests {
                 given()
                         .contentType(ContentType.JSON)
                         .filter(new AllureRestAssured())
-                                .log().all()
-                 .when()
+                        .log().all()
+                        .when()
                         .get(EndPoints.POSTS_BY_USER, USER_NAME) //URL
-                 .then()
+                        .then()
                         .log().all()
                         .statusCode(SC_OK)
                         .assertThat()
@@ -56,10 +56,7 @@ public class ApiTests {
             );
         }
 
-        //Except result
         PostsDto[] expectedDto = {
-//                new PostsDto("test2", "test body2", "All Users", "no", new AuthorDTO(USER_NAME), false),
-//                new PostsDto("test", "test body", "All Users", "no", new AuthorDTO(USER_NAME), false)
                 PostsDto.builder()
                         .title("test2").body("test body2").select("All Users").uniquePost("no").isVisitorOwner(false)
                         .author(AuthorDTO.builder().username(USER_NAME).build())
@@ -81,14 +78,14 @@ public class ApiTests {
     }
 
     @Test
-    public void getAllPostsByUserNegative() {
-        final String NOT_VALID_USER = "NotValidUser";
+    public void getAllPostsByUserInvalid() {
+        final String INVALID_USER = "NotValidUser";
         String actualResponse =
-                apiHelper.getAllPostsByUserRequest(NOT_VALID_USER, 400)
+                apiHelper.getAllPostsByUserRequest(INVALID_USER, 400)
                         .extract().response().body().asString();
 
         Assert.assertEquals("Message in response "
-                , "\"Sorry, invalid user requested. Wrong username - " + NOT_VALID_USER + " or there is no posts. Exception is undefined\""
+                , "\"Sorry, invalid user requested. Wrong username - " + INVALID_USER + " or there is no posts. Exception is undefined\""
                 , actualResponse);
     }
 
@@ -118,9 +115,6 @@ public class ApiTests {
         apiHelper.getAllPostsByUserRequest(USER_NAME)
                 .assertThat().body(matchesJsonSchemaInClasspath("response.json"));
     }
-
-
-
 
 
 }

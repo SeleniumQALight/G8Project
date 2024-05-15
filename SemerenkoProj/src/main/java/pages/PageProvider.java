@@ -20,4 +20,12 @@ public class PageProvider {
     public PostPage postPage() {
         return new PostPage(webDriver);
     }
+
+    public MyProfilePage getMyProfilePage() {
+        return new MyProfilePage(webDriver);
+    }
+
+    public PrivatBankPage privatBankPage(){
+        return new PrivatBankPage(webDriver);
+    }
 }

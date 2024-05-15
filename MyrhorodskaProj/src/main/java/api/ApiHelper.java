@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -34,7 +35,7 @@ public class ApiHelper {
             .build();
 
 
-    public ValidatableResponse getAllPostsByUserRequest(String userName, int statusCode){
+    public ValidatableResponse getAllPostsByUserRequest(String userName, int statusCode) {
         return given()
                 .spec(requestSpecification)
                 .when()
@@ -44,17 +45,18 @@ public class ApiHelper {
     }
 
 
-    public ValidatableResponse getAllPostsByUserRequest(String userName){
+    public ValidatableResponse getAllPostsByUserRequest(String userName) {
         return getAllPostsByUserRequest(userName, HttpStatus.SC_OK);
     }
 
     public PostsDto[] getAllPostsByUserAsDto(String userName) {
-        return  getAllPostsByUserRequest(userName)
+        return getAllPostsByUserRequest(userName)
                 .extract()
                 .response()
                 .getBody()
                 .as(PostsDto[].class);
     }
+
     public String getToken() {
         return getToken(TestData.VALID_LOGIN_API, TestData.VALID_PASSWORD_API);
     }
@@ -76,14 +78,15 @@ public class ApiHelper {
 
         return responseBody.asString().replace("\"", "");
     }
-    public void deleteAllPostsTillPresent (String validLoginApi, String token) {
+
+    public void deleteAllPostsTillPresent(String validLoginApi, String token) {
         PostsDto[] listOfPosts = getAllPostsByUserAsDto(validLoginApi);
 
         for (int i = 0; i < listOfPosts.length; i++) {
             deletePostById(token, listOfPosts[i].getId());
             logger.info(String.format("Post with id %s and 'title' %s was deleted", listOfPosts[i].getId(), listOfPosts[i].getTitle()));
         }
-       getAllPostsByUserRequest(validLoginApi, HttpStatus.SC_OK); //TODO check response
+        getAllPostsByUserRequest(validLoginApi, HttpStatus.SC_OK); //TODO check response
 
     }
 
@@ -100,5 +103,32 @@ public class ApiHelper {
                         .then()
                         .spec(responseSpecification)
                         .extract().response().body().asString();
+    }
+
+    public void createPost(String token, Map<String, String> postData, Integer indexOfPost) {
+        HashMap<String, String> requestBody = new HashMap<>();
+        requestBody.put("title", postData.get("title") + indexOfPost);
+        requestBody.put("body", postData.get("body"));
+        requestBody.put("select1", postData.get("select"));
+        requestBody.put("uniquePost", "no");
+        requestBody.put("token", token);
+
+        given()
+                .spec(requestSpecification)
+                .body(requestBody)
+                .when()
+                .post(EndPoints.CREATE_POST)
+                .then()
+                .spec(responseSpecification);
+
+    }
+
+
+    /**
+     * Delete all posts for default user
+     */
+    public void deleteAllPostsTillPresent() {
+        String token = getToken();
+        deleteAllPostsTillPresent(TestData.VALID_LOGIN_API, token);
     }
 }

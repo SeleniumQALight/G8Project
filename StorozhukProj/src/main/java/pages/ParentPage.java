@@ -9,9 +9,7 @@ import org.openqa.selenium.WebDriver;
 abstract public class ParentPage extends CommonActionsWithElements {
     String env = System.getProperty("env", "aqa");
     final String baseUrl = ConfigProvider.configProperties.base_url().replace("[env]", env);
-
-
-
+    final String privat24Url = "https://privatbank.ua/";
 
     // constructor
     public ParentPage(WebDriver webDriver) {

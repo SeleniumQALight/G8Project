@@ -3,11 +3,13 @@ package pages;
 import libs.ConfigProvider;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import static libs.ConfigProvider.configProperties;
 
 // всё общее для всех страниц
 abstract public class ParentPage extends CommonActionsWithElements {
     String env = System.getProperty("env", "aqa");
-    final String baseUrl = ConfigProvider.configProperties.base_url().replace("[env]", env);
+    final String baseUrl = configProperties.base_url().replace("[env]", env);
+    final String BASE_PB_URL = "https://privatbank.ua/";
 
     public ParentPage(WebDriver webDriver) {
         super(webDriver);

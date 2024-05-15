@@ -14,9 +14,10 @@ import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
-import org.junit.Assert;
+
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -36,7 +37,7 @@ public class ApiHelper {
             .expectStatusCode(HttpStatus.SC_OK)
             .build();
 
-    public ValidatableResponse getAllPostsByUserRequest (String userName, int statusCode){
+    public ValidatableResponse getAllPostsByUserRequest(String userName, int statusCode) {
         return given()
                 .spec(requestSpecification)
                 .when()
@@ -45,11 +46,11 @@ public class ApiHelper {
                 .spec(responseSpecification.statusCode(statusCode));
     }
 
-    public ValidatableResponse getAllPostsByUserRequest (String userName){
-        return getAllPostsByUserRequest( userName, HttpStatus.SC_OK);
+    public ValidatableResponse getAllPostsByUserRequest(String userName) {
+        return getAllPostsByUserRequest(userName, HttpStatus.SC_OK);
     }
 
-    public PostsDto[] getAllPostsByUserAsDTO (String userName){
+    public PostsDto[] getAllPostsByUserAsDTO(String userName) {
         return getAllPostsByUserRequest(userName).extract().response().getBody().as(PostsDto[].class);
     }
 
@@ -72,7 +73,7 @@ public class ApiHelper {
                         .spec(responseSpecification)
                         .extract().response().getBody();
 
-        return responseBody.asString().replace("\"","");
+        return responseBody.asString().replace("\"", "");
     }
 
     public void deleteAllPostsTillPresent(String validLoginApi, String token) {
@@ -99,4 +100,23 @@ public class ApiHelper {
     }
 
 
+    public void createPost(String token, Map<String, String> postData, Integer indexOfPost) {
+        HashMap<String, String> requestBody = new HashMap<>();
+        requestBody.put("title", postData.get("title") + indexOfPost);
+        requestBody.put("body", postData.get("body"));
+        requestBody.put("select1", postData.get("select"));
+        requestBody.put("uniquePost", "no");
+        requestBody.put("token", token);
+
+        given().spec(requestSpecification).body(requestBody).when().post(EndPoints.CREATE_POST).then().spec(responseSpecification);
+
+    }
+
+    /**
+    * Delete all posts for default user
+    */
+    public void deleteAllPostsTillPresent() {
+        String token = getToken();
+        deleteAllPostsTillPresent(TestData.VALID_LOGIN_API, token);
+    }
 }

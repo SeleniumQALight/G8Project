@@ -36,7 +36,7 @@ public class PostPage extends ParentPage{
     }
 
     @Override
-    String getRelativeUrl() {
+    protected String getRelativeUrl() {
         return "/post/[a-zA-Z0-9]*";
     }
 

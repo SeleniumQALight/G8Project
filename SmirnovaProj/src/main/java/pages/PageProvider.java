@@ -26,4 +26,8 @@ public class PageProvider {
     public CreatePostPage getCreatePostPage() {
         return new CreatePostPage(webDriver);
     }
+
+    public PrivatBankPage getPrivatBankPage() {
+        return new PrivatBankPage(webDriver);
+    }
 }

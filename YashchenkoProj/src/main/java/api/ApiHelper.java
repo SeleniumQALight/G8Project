@@ -14,11 +14,13 @@ import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
-import org.junit.Assert;
+
 
 import java.util.HashMap;
-import java.util.List;
 
+import java.util.Map;
+
+import static data.TestData.VALID_LOGIN_API;
 import static io.restassured.RestAssured.given;
 
 public class ApiHelper {
@@ -53,7 +55,7 @@ public class ApiHelper {
     }
 
     public String getToken() {
-        return getToken(TestData.VALID_LOGIN_API, TestData.VALID_PASSWORD_API);
+        return getToken(VALID_LOGIN_API, TestData.VALID_PASSWORD_API);
     }
 
     public String getToken(String userName, String password) {
@@ -99,5 +101,27 @@ public class ApiHelper {
                         .extract().response().body().asString();
 
 
+    }
+
+    public void createPost(String token, Map<String, String> postData, Integer indexOfPost) {
+        HashMap<String, String> requestBody = new HashMap<>();
+        requestBody.put("title", postData.get("title") + indexOfPost);
+        requestBody.put("body", postData.get("body"));
+        requestBody.put("select1", postData.get("select"));
+        requestBody.put("uniquePost", "no");
+        requestBody.put("token", token);
+
+        given()
+                .spec(requestSpecification)
+                .body(requestBody)
+                .when()
+                .post(EndPoints.CREATE_POST)
+                .then()
+                .spec(responseSpecification);
+    }
+
+    public void deleteAllPostsTillPresent() {
+        String token = getToken();
+        deleteAllPostsTillPresent(VALID_LOGIN_API, token);
     }
 }

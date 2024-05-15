@@ -17,6 +17,7 @@ import org.json.JSONObject;
 import org.junit.Assert;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -68,7 +69,8 @@ public class ApiHelper {
 
         return responseBody.asString().replace("\"", "");
     }
-    public PostsDto[] getAllPostByUserAsDto (String username){
+
+    public PostsDto[] getAllPostByUserAsDto(String username) {
         return getAllPostsByUserRequest(username).extract().response().getBody().as(PostsDto[].class);
     }
 
@@ -78,7 +80,7 @@ public class ApiHelper {
         for (int i = 0; i < listOfPosts.length; i++) {
             deletePostById(token, listOfPosts[i].get_id());
             logger.info(String.format("Post with id %s and title '%s' was deleted"
-            ,listOfPosts[i].get_id(), listOfPosts[i].getTitle()));
+                    , listOfPosts[i].get_id(), listOfPosts[i].getTitle()));
         }
         getAllPostsByUserRequest(login, HttpStatus.SC_OK);
     }
@@ -98,4 +100,24 @@ public class ApiHelper {
                         .extract().response().body().asString();
     }
 
+    public void createPost(String token, Map<String, String> postData, int indexOfPosts) {
+        HashMap<String, String> requestBody = new HashMap<>();
+        requestBody.put("title", postData.get("title") + indexOfPosts);
+        requestBody.put("body", postData.get("body"));
+        requestBody.put("select1", postData.get("select"));
+        requestBody.put("uniquePost", "no");
+        requestBody.put("token", token);
+        given()
+                .spec(requestSpecification)
+                .body(requestBody)
+                .when()
+                .post(EndPoints.CREATE_POST)
+                .then()
+                .spec(responseSpecification);
+    }
+
+    public void deleteAllPostsTillPresent(){
+        String token = getToken();
+        deleteAllPostsTillPresent(TestData.PERSONAL_LOGIN_UI, token);
+    }
 }
