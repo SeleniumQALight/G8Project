@@ -1,6 +1,8 @@
 package api;
 
+import api.dto.responseDto.PostDto;
 import data.TestData;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -13,6 +15,8 @@ import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 import static io.restassured.RestAssured.given;
 
 public class ApiHelper {
@@ -22,6 +26,7 @@ public class ApiHelper {
 
     RequestSpecification requestSpecification = new RequestSpecBuilder()
             .setContentType(ContentType.JSON)
+            .addFilter(new AllureRestAssured())
             .log(LogDetail.ALL)
             .build();
 
@@ -32,6 +37,7 @@ public class ApiHelper {
 
     public ValidatableResponse getAllPostByUserRequest(String userName, int statusCode) {
         return given()
+                .filter(new AllureRestAssured())
                 .spec(requestSpecification)
                 .when()
                 .get(EndPoints.POSTS_BY_USER, userName)
@@ -76,6 +82,7 @@ public class ApiHelper {
         requestBody.put("username", userName);
         requestBody.put("password", password);
         return given()
+                .filter(new AllureRestAssured())
                 .spec(requestSpecification)
                 .body(requestBody.toMap())
                 .when()
@@ -98,6 +105,7 @@ public class ApiHelper {
         HashMap<String, String> bodyRequest = new HashMap<>();
         bodyRequest.put("token", token);
         given()
+                .filter(new AllureRestAssured())
                 .spec(requestSpecification)
                 .body(bodyRequest)
                 .when()

@@ -12,6 +12,7 @@ import createPost.CreatePostTest;
         LoginTestWithPageObject.class,
         CreatePostTest.class,
         ApiTests.class
+
 })
 public class SmokeSuit {
 }

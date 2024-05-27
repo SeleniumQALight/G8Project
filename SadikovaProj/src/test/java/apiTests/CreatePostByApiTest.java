@@ -13,6 +13,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import static io.restassured.RestAssured.given;
+
 public class CreatePostByApiTest {
     ApiHelper apiHelper = new ApiHelper();
     String token;
@@ -46,6 +48,7 @@ public class CreatePostByApiTest {
                         .build();
 
         String actualResponse =
+
                 given()
 
                         .contentType(ContentType.JSON)
