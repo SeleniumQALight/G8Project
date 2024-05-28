@@ -1,5 +1,6 @@
 package api;
 
+import api.dto.responseDto.PostDto;
 import data.TestData;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -12,6 +13,8 @@ import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import static io.restassured.RestAssured.given;
 
