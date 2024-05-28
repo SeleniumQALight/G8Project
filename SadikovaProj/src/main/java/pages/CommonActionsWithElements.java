@@ -158,6 +158,7 @@ public class CommonActionsWithElements {
     }
 
     public void checkTextInElement(WebElement element, String expectedText) {
+        checkIsElementVisible(element);
         String actualText = element.getText();
         Assert.assertEquals(actualText, expectedText);
         logger.info("Text visible: " + expectedText);

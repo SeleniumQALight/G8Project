@@ -48,6 +48,7 @@ public class CreatePostByApiTest {
                         .build();
 
         String actualResponse =
+
                 given()
 
                         .contentType(ContentType.JSON)
