@@ -19,5 +19,7 @@ public class Hook {
     }
 
     @After
-    public void tearDown(){}
+    public void tearDown(){
+        webDriverHelper.quitDriver();
+    }
 }
