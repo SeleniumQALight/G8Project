@@ -6,8 +6,9 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = "bdd/stepDefinitions",
-        tags = "@R001",
+        tags = "@R003",
         plugin = {"pretty", "html:target/cucumber.html"}
 )
+
 public class RunCucumberTest {
 }
