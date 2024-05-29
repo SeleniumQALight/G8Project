@@ -179,6 +179,25 @@ public class MainPage extends ParentPage {
     }
 
     @Step()
+    public MainPage enterTextInUserNameField(String name){
+        enterTextIntoInput(userNameField, name);
+        return this;
+    }
+
+    @Step()
+    public MainPage enterTextInEmailField(String email){
+        enterTextIntoInput(emailField, email);
+        return this;
+    }
+
+    @Step()
+    public MainPage enterTextInPasswordField(String password){
+        enterTextIntoInput(passwordField, password);
+        return this;
+    }
+
+
+    @Step()
     public MainPage fillLoginForm(String login, String password) {
         enterTextIntoInputLogin(login);
         enterTextIntoInputPassword(password);
