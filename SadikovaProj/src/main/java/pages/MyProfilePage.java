@@ -15,6 +15,8 @@ public class MyProfilePage extends ParentPage {
     private WebElement postsTab;
 
     private String postTitleLocator = "//a[contains(@class,'list-group-item')]/strong[text()='%s']";
+    @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
 
     private List<WebElement> getPostList(String postTitle) {
         return webDriver.findElements(By.xpath(String.format(postTitleLocator, postTitle)));
@@ -47,7 +49,7 @@ public class MyProfilePage extends ParentPage {
 
     public MyProfilePage checkIsRedirectToMyProfilePage() {
         containsUrl();
-        clickOnElement(postsTab);
+       // clickOnElement(postsTab);
         return this;
     }
 
@@ -64,6 +66,11 @@ public class MyProfilePage extends ParentPage {
 //        clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator,postTitle)))); //find element can return exeption if element not found
 //        return this;
         clickOnElement(String.format(postTitleLocator, postTitle));
+        return this;
+    }
+
+    public MyProfilePage checkNumberOfPosts(int numberOfPosts) {
+        Assert.assertEquals("Number of posts ", numberOfPosts, postsList.size());
         return this;
     }
 }
